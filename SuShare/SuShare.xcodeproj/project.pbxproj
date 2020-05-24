@@ -27,6 +27,7 @@
 		0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA4247A256500713BF5 /* ExploreCell.xib */; };
 		0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */; };
 		0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */; };
+		0CB1DAAB247ADB5100713BF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAAA247ADB5100713BF5 /* GoogleService-Info.plist */; };
 		21E6711AEBCFA58A73D4D1A9 /* Pods_SuShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B590E058777444C01A78528 /* Pods_SuShare.framework */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		0CB1DAA4247A256500713BF5 /* ExploreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreCell.xib; sourceTree = "<group>"; };
 		0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighlightsCell.xib; sourceTree = "<group>"; };
 		0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalCell.xib; sourceTree = "<group>"; };
+		0CB1DAAA247ADB5100713BF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
 				0CB1DA8A247A22DB00713BF5 /* TabController.swift */,
+				0CB1DAAA247ADB5100713BF5 /* GoogleService-Info.plist */,
 				0CB1DA95247A23BB00713BF5 /* Shaniya */,
 				0CB1DA92247A238D00713BF5 /* Matt */,
 				0CB1DA93247A23A200713BF5 /* Jaheed */,
@@ -214,6 +217,7 @@
 				0C57A7D22475B1EC00DF437B /* Frameworks */,
 				0C57A7D32475B1EC00DF437B /* Resources */,
 				A128DE9236024869F9ED73CD /* [CP] Embed Pods Frameworks */,
+				21576B5C3CBD8AD7FBD1BD45 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -293,6 +297,7 @@
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C57A7E02475B1EC00DF437B /* Main.storyboard in Resources */,
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
+				0CB1DAAB247ADB5100713BF5 /* GoogleService-Info.plist in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
 			);
@@ -308,6 +313,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		21576B5C3CBD8AD7FBD1BD45 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuShare/Pods-SuShare-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuShare/Pods-SuShare-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuShare/Pods-SuShare-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A128DE9236024869F9ED73CD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

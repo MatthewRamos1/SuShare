@@ -12,6 +12,9 @@ target 'SuShare' do
   pod 'Firebase/Storage'
   pod 'Kingfisher'
   pod 'SnapKit'
+  pod 'GoogleSignIn'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
 
   target 'SuShareTests' do
     inherit! :search_paths
