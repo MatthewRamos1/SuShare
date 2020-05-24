@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,21 @@
 		0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E12475B1EE00DF437B /* Assets.xcassets */; };
 		0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */; };
 		0C57A7F02475B1EE00DF437B /* SuShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7EF2475B1EE00DF437B /* SuShareTests.swift */; };
+		0CB1DA8B247A22DB00713BF5 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8A247A22DB00713BF5 /* TabController.swift */; };
+		0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8C247A233700713BF5 /* Highlights.storyboard */; };
+		0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8E247A235800713BF5 /* ExploreTab.storyboard */; };
+		0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA96247A248100713BF5 /* ExploreViewController.swift */; };
+		0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA98247A249800713BF5 /* DetailViewController.swift */; };
+		0CB1DA9B247A24B200713BF5 /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA9A247A24B200713BF5 /* HighlightsViewController.swift */; };
+		0CB1DA9D247A24DC00713BF5 /* CreateSusu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DA9C247A24DC00713BF5 /* CreateSusu.storyboard */; };
+		0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA9E247A24EE00713BF5 /* CreateSusuViewController.swift */; };
+		0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA0247A250800713BF5 /* PersonalViewController.swift */; };
+		0CB1DAA3247A253300713BF5 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA2247A253300713BF5 /* PersonalView.swift */; };
+		0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA4247A256500713BF5 /* ExploreCell.xib */; };
+		0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */; };
+		0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */; };
+		21E6711AEBCFA58A73D4D1A9 /* Pods_SuShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B590E058777444C01A78528 /* Pods_SuShare.framework */; };
+		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B590E058777444C01A78528 /* Pods_SuShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7D52475B1EC00DF437B /* SuShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7D82475B1EC00DF437B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +54,24 @@
 		0C57A7EB2475B1EE00DF437B /* SuShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7EF2475B1EE00DF437B /* SuShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuShareTests.swift; sourceTree = "<group>"; };
 		0C57A7F12475B1EE00DF437B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CB1DA8A247A22DB00713BF5 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		0CB1DA8C247A233700713BF5 /* Highlights.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Highlights.storyboard; sourceTree = "<group>"; };
+		0CB1DA8E247A235800713BF5 /* ExploreTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExploreTab.storyboard; sourceTree = "<group>"; };
+		0CB1DA96247A248100713BF5 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		0CB1DA98247A249800713BF5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0CB1DA9A247A24B200713BF5 /* HighlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
+		0CB1DA9C247A24DC00713BF5 /* CreateSusu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateSusu.storyboard; sourceTree = "<group>"; };
+		0CB1DA9E247A24EE00713BF5 /* CreateSusuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSusuViewController.swift; sourceTree = "<group>"; };
+		0CB1DAA0247A250800713BF5 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		0CB1DAA2247A253300713BF5 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
+		0CB1DAA4247A256500713BF5 /* ExploreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreCell.xib; sourceTree = "<group>"; };
+		0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighlightsCell.xib; sourceTree = "<group>"; };
+		0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalCell.xib; sourceTree = "<group>"; };
+		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
+		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
+		D089DF1BC033B820349FB779 /* Pods-SuShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.debug.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.debug.xcconfig"; sourceTree = "<group>"; };
+		F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuShareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E6711AEBCFA58A73D4D1A9 /* Pods_SuShare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +100,8 @@
 				0C57A7D72475B1EC00DF437B /* SuShare */,
 				0C57A7EE2475B1EE00DF437B /* SuShareTests */,
 				0C57A7D62475B1EC00DF437B /* Products */,
+				B7AC5440FB30E1DC3022ABC1 /* Pods */,
+				9782732C6A0D179C17AFCB9B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +124,11 @@
 				0C57A7E12475B1EE00DF437B /* Assets.xcassets */,
 				0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
+				0CB1DA8A247A22DB00713BF5 /* TabController.swift */,
+				0CB1DA95247A23BB00713BF5 /* Shaniya */,
+				0CB1DA92247A238D00713BF5 /* Matt */,
+				0CB1DA93247A23A200713BF5 /* Jaheed */,
+				0CB1DA94247A23AB00713BF5 /* Juan */,
 			);
 			path = SuShare;
 			sourceTree = "<group>";
@@ -99,6 +142,66 @@
 			path = SuShareTests;
 			sourceTree = "<group>";
 		};
+		0CB1DA92247A238D00713BF5 /* Matt */ = {
+			isa = PBXGroup;
+			children = (
+				0CB1DA8E247A235800713BF5 /* ExploreTab.storyboard */,
+				0CB1DA96247A248100713BF5 /* ExploreViewController.swift */,
+				0CB1DAA4247A256500713BF5 /* ExploreCell.xib */,
+			);
+			path = Matt;
+			sourceTree = "<group>";
+		};
+		0CB1DA93247A23A200713BF5 /* Jaheed */ = {
+			isa = PBXGroup;
+			children = (
+				0CB1DA8C247A233700713BF5 /* Highlights.storyboard */,
+				0CB1DA9A247A24B200713BF5 /* HighlightsViewController.swift */,
+				0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */,
+				0CB1DA98247A249800713BF5 /* DetailViewController.swift */,
+			);
+			path = Jaheed;
+			sourceTree = "<group>";
+		};
+		0CB1DA94247A23AB00713BF5 /* Juan */ = {
+			isa = PBXGroup;
+			children = (
+				0CB1DAA0247A250800713BF5 /* PersonalViewController.swift */,
+				0CB1DAA2247A253300713BF5 /* PersonalView.swift */,
+				0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */,
+			);
+			path = Juan;
+			sourceTree = "<group>";
+		};
+		0CB1DA95247A23BB00713BF5 /* Shaniya */ = {
+			isa = PBXGroup;
+			children = (
+				0CB1DA9C247A24DC00713BF5 /* CreateSusu.storyboard */,
+				0CB1DA9E247A24EE00713BF5 /* CreateSusuViewController.swift */,
+			);
+			path = Shaniya;
+			sourceTree = "<group>";
+		};
+		9782732C6A0D179C17AFCB9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B590E058777444C01A78528 /* Pods_SuShare.framework */,
+				F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7AC5440FB30E1DC3022ABC1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D089DF1BC033B820349FB779 /* Pods-SuShare.debug.xcconfig */,
+				B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */,
+				6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */,
+				50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C57A7F42475B1EE00DF437B /* Build configuration list for PBXNativeTarget "SuShare" */;
 			buildPhases = (
+				B2D5965C33A83C976AC3B82B /* [CP] Check Pods Manifest.lock */,
 				0C57A7D12475B1EC00DF437B /* Sources */,
 				0C57A7D22475B1EC00DF437B /* Frameworks */,
 				0C57A7D32475B1EC00DF437B /* Resources */,
+				A128DE9236024869F9ED73CD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C57A7F72475B1EE00DF437B /* Build configuration list for PBXNativeTarget "SuShareTests" */;
 			buildPhases = (
+				ADFBCCFBF333D5475007ED37 /* [CP] Check Pods Manifest.lock */,
 				0C57A7E72475B1EE00DF437B /* Sources */,
 				0C57A7E82475B1EE00DF437B /* Frameworks */,
 				0C57A7E92475B1EE00DF437B /* Resources */,
@@ -180,9 +286,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
 				0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */,
+				0CB1DA9D247A24DC00713BF5 /* CreateSusu.storyboard in Resources */,
 				0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */,
+				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C57A7E02475B1EC00DF437B /* Main.storyboard in Resources */,
+				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
+				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
+				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,12 +307,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A128DE9236024869F9ED73CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuShare/Pods-SuShare-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuShare/Pods-SuShare-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuShare/Pods-SuShare-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADFBCCFBF333D5475007ED37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuShareTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2D5965C33A83C976AC3B82B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuShare-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0C57A7D12475B1EC00DF437B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CB1DA9B247A24B200713BF5 /* HighlightsViewController.swift in Sources */,
 				0C57A7DD2475B1EC00DF437B /* ViewController.swift in Sources */,
+				0CB1DAA3247A253300713BF5 /* PersonalView.swift in Sources */,
+				0CB1DA8B247A22DB00713BF5 /* TabController.swift in Sources */,
+				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
+				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
+				0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */,
+				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,
 				0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */,
 				0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */,
 			);
@@ -360,6 +543,7 @@
 		};
 		0C57A7F52475B1EE00DF437B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D089DF1BC033B820349FB779 /* Pods-SuShare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -378,6 +562,7 @@
 		};
 		0C57A7F62475B1EE00DF437B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +581,7 @@
 		};
 		0C57A7F82475B1EE00DF437B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,6 +604,7 @@
 		};
 		0C57A7F92475B1EE00DF437B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

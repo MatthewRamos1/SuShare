@@ -1,0 +1,6 @@
+framework module Pods_SuShare {
+  umbrella header "Pods-SuShare-umbrella.h"
+
+  export *
+  module * { export * }
+}
