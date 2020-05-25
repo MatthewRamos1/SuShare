@@ -7,4 +7,23 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseAuth
 
+
+class DatabaseService{
+    
+    static let susuCollection = "SusuCollection"
+    
+   private let db = Firestore.firestore()
+    
+//    private init {
+//
+//    }
+    
+    public func createSusu(){
+        
+    }
+    
+    
+}
