@@ -8,6 +8,8 @@
 
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class CreateSusuViewController: UIViewController {
     
@@ -30,7 +32,7 @@ class CreateSusuViewController: UIViewController {
     @IBOutlet weak var participaintsStepper: UIStepper!
     
     
-    // private let db = DatabaseService()
+     private let db = DatabaseService()
     
     
     
@@ -57,20 +59,42 @@ class CreateSusuViewController: UIViewController {
     guard let susuTitle = titleTextField.text , !susuTitle.isEmpty,
             let susuDes = descriptionTextView.text, !susuDes.isEmpty,
         let AmountofPot = potAmount.text, !AmountofPot.isEmpty
-            
+       // let participants = participaintsSlider.value ,
+        
+             
             else {
                 print("error ")
                 return
         }
         
         // for right now if they dont have a user name then they cannot create a post
-//        guard let displayName = Auth.auth().currentUser?.displayName else {
-//                       showAlert(title: "Incomplete Profile", message: "Please complete your profile")
-//                       return
-//                   }
+        guard let displayName =
+            Auth.auth().currentUser?.displayName else {
+                       showAlert(title: "Incomplete Profile", message: "Please complete your profile")
+                       return
+                   }
+        
+        let num = Double(AmountofPot)
+        
+        db.createASusu(susuTitle: susuTitle, description: susuDes, potAmount: num!, numOfParticipants: 0, paymentSchedule: "updateThisShaniya", displayName: displayName) { (result) in
+            switch result {
+            case .failure(let error):
+                print("it didn't work, currently inside of the create controller\(error.localizedDescription)")
+            case .success(let docId) :
+                print("it was successfully added\(docId)")
+                // need to do storage services for to add image by docId. 
+            }
+        }
         
         
     }
+    
+    
+    // the slider action
+    
+    
+    // the stepper action
+    
     
     
     

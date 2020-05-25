@@ -23,7 +23,7 @@ enum Category: String, CaseIterable {
 
 struct Susu{
     
-    let securityState: Security
+   // let securityState: Security
     let susuTitle: String
     let susuImage: UIImage
     let description: String
@@ -35,7 +35,7 @@ struct Susu{
     
     let userId: String
     
-    let category: Category
+   // let category: Category
     
     let createdDate: String
     
