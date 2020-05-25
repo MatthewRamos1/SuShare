@@ -12,7 +12,9 @@ class TabController: UITabBarController {
     
     lazy var exploreViewController: UIViewController = {
         let storyboard = UIStoryboard(name: "ExploreTab", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController() ?? CreateSusuViewController()
+        guard let vc = storyboard.instantiateInitialViewController() else {
+            fatalError("Couldn't instantiateInitialViewController")
+        }
         vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "gear"), tag: 1)
         return vc
     }()

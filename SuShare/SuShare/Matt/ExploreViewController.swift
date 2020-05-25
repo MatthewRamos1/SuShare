@@ -18,6 +18,28 @@ class ExploreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dataSource = self
+        collectionView.delegate = self
 
     }
+}
+
+extension ExploreViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
+            fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
+        }
+        return cell
+        
+    }
+    
+    
+}
+
+extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
+    
 }
