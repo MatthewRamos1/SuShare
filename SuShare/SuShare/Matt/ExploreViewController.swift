@@ -16,12 +16,35 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var originalSusus = [Susu]()
+    var currentSusus = [Susu]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
 
     }
+    @IBAction func tagButtonPressed(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            currentSusus = originalSusus.filter { $0.category == .new}
+        case 1:
+            currentSusus = originalSusus.filter { $0.category == .new}
+        case 2:
+            currentSusus = originalSusus.filter { $0.category == .new}
+        case 3:
+            currentSusus = originalSusus.filter { $0.category == .new}
+        case 4:
+            currentSusus = originalSusus.filter { $0.category == .new}
+        case 5:
+            currentSusus = originalSusus.filter { $0.category == .new}
+        default:
+            currentSusus = originalSusus.filter { $0.category == .new}
+
+        }
+    }
+    
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -41,5 +64,10 @@ extension ExploreViewController: UICollectionViewDataSource {
 }
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = UIScreen.main.bounds.size.height / 3
+        let width =
+            UIScreen.main.bounds.size.width - 100
+        return CGSize(width: width, height: height * 2)
+    }
 }
