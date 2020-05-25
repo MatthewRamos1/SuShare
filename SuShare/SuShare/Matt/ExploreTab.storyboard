@@ -4,23 +4,150 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--SuShare-->
         <scene sceneID="PxN-Np-hHO">
             <objects>
-                <viewController id="KyG-UW-c42" sceneMemberID="viewController">
+                <viewController id="KyG-UW-c42" customClass="ExploreViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L0O-VM-7Tc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="00f-su-SwS">
+                                <rect key="frame" x="78" y="106" width="258" height="32"/>
+                                <segments>
+                                    <segment title="Explore"/>
+                                    <segment title="Friends"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="exploreSegementedControl:" destination="KyG-UW-c42" eventType="valueChanged" id="RMy-AF-7eJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NHj-ua-sKX">
+                                <rect key="frame" x="44" y="149" width="326" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sot-vA-Y9h">
+                                <rect key="frame" x="20" y="252" width="374" height="610"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZX2-3e-GWY">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="arK-ka-Rc2">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Ol-1Z-hyl">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="hQb-tY-vBx">
+                                <rect key="frame" x="20" y="217" width="374" height="27"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfC-KV-huR">
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zn-U3-3gg">
+                                        <rect key="frame" x="56" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVX-aw-JP2">
+                                        <rect key="frame" x="112" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTB-XQ-TgY">
+                                        <rect key="frame" x="168" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-ut-kAG">
+                                        <rect key="frame" x="224" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqZ-ZS-9vf">
+                                        <rect key="frame" x="280" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7MH-Sv-fID">
+                                        <rect key="frame" x="336" y="0.0" width="38" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="00f-su-SwS" firstAttribute="top" secondItem="auh-yt-3WH" secondAttribute="top" constant="18" id="0RR-rS-Zam"/>
+                            <constraint firstItem="NHj-ua-sKX" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="44" id="DLB-on-2tD"/>
+                            <constraint firstItem="sot-vA-Y9h" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="FVS-aR-QNu"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="NHj-ua-sKX" secondAttribute="trailing" constant="44" id="Ftj-67-i7Z"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="sot-vA-Y9h" secondAttribute="trailing" constant="20" id="NqY-3y-BtL"/>
+                            <constraint firstItem="hQb-tY-vBx" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="20" id="Y3T-fG-GhA"/>
+                            <constraint firstItem="hQb-tY-vBx" firstAttribute="top" secondItem="NHj-ua-sKX" secondAttribute="bottom" constant="12" id="Yct-Ea-Alq"/>
+                            <constraint firstItem="00f-su-SwS" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="78" id="cEO-BJ-NN6"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="00f-su-SwS" secondAttribute="trailing" constant="78" id="n6e-si-7aa"/>
+                            <constraint firstItem="sot-vA-Y9h" firstAttribute="top" secondItem="hQb-tY-vBx" secondAttribute="bottom" constant="8" id="qnE-EE-QvD"/>
+                            <constraint firstItem="NHj-ua-sKX" firstAttribute="top" secondItem="00f-su-SwS" secondAttribute="bottom" constant="12" id="tZl-PB-k4v"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="hQb-tY-vBx" secondAttribute="trailing" constant="20" id="vdX-fT-TBk"/>
+                            <constraint firstItem="sot-vA-Y9h" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="20" id="zPW-I7-6Zx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="auh-yt-3WH"/>
                     </view>
+                    <navigationItem key="navigationItem" title="SuShare" id="o76-Gu-QoD">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="HAa-cS-E6U">
+                            <color key="tintColor" red="0.22199982400000001" green="0.51002997159999997" blue="0.4823570848" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="sot-vA-Y9h" id="ddU-Wr-9qi"/>
+                        <outlet property="searchBar" destination="NHj-ua-sKX" id="0ml-Pk-zkZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuT-Q0-HUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="99" y="129"/>
+            <point key="canvasLocation" x="1008.6956521739131" y="128.57142857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yaY-I0-fXl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P9b-ow-g19" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e6j-an-sZ6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.29313957689999998" green="0.65127474070000002" blue="0.6156913638" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KyG-UW-c42" kind="relationship" relationship="rootViewController" id="pTe-u6-aCB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iTU-O8-oYW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="98.550724637681171" y="128.57142857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+    </resources>
 </document>
