@@ -21,52 +21,128 @@ class CreateSusuViewController: UIViewController {
     @IBOutlet weak var potLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var paymentLabel: UILabel!
+    @IBOutlet weak var numberOfParticipaintLabel: UILabel!
     
+    
+    //  @IBOutlet weak var numberLabel: UILabel!
     
     // the actual items
     @IBOutlet weak var SusuImage: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var potAmount: UITextField!
-    @IBOutlet weak var participaintsSlider: UISlider!
-    @IBOutlet weak var participaintsStepper: UIStepper!
-    
+    @IBOutlet weak var sliderForParticipaints: UISlider!
+    @IBOutlet weak var stepperForparticipaints: UIStepper!
     
      private let db = DatabaseService()
     
     
+    // properties that will be determined based on what the user types
+    // the default number is 5
+    private var amountOfParticipants = 4.0
+    private var schedule: String?
+    
+    // will it change when they click it.
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureController()
-        
-        
+       configureSlider()
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+      //  configureController()
+       // configureSlider()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+      //  configureSlider()
+    }
     // helper functions
     private func configureController(){
         // the delegates and the data source
+      
+       
+       //participaintsSlider.s
+       // stepperForparticipaints.
+               stepperForparticipaints.value = 4.0
+               stepperForparticipaints.minimumValue = 2.0
+               stepperForparticipaints.maximumValue = 10.0
+               stepperForparticipaints.stepValue = 1
+
+        numberLabel.text = "\(stepperForparticipaints.value)"
+ 
+    }
+    
+    func configureSlider(){
+        sliderForParticipaints.minimumValue = 2.0
+                      sliderForParticipaints.maximumValue = 10.0
+                      sliderForParticipaints.value = 4.0
+    }
+    
+   
+    
+    @IBAction func participantSlider(_ sender: UISlider) {
+        // change the number label
+        // assign the number label.
+        
+        let amount = sender.value
+
+        sliderForParticipaints?.value = amount
+        stepperForparticipaints?.value = Double(amount)
+        amountOfParticipants = Double(amount)
+               // sampleSizeLabel.text = "The size is now\(sender.value)"
+         
+        numberLabel.text = "\(amount)"
     }
     
     
+    @IBAction func participantStepper(_ sender: UIStepper) {
+        
+                 let amount = sender.value
+        numberLabel.text = "\(amount)"
+
+              //sampleSizeLabel.text = "The size is now\(sender.value)"
+        sliderForParticipaints?.value = Float(amount)
+              stepperForparticipaints?.value = amount
+        amountOfParticipants = Double(amount)
+         
+    }
+    
+    
+    @IBAction func paymentSchedule(_ sender: UIButton) {
+        
+        switch sender.restorationIdentifier {
+        case "weekly":
+            schedule = sender.restorationIdentifier
+        case "bi-weekly":
+            schedule = sender.restorationIdentifier
+        case "monthly":
+            schedule = sender.restorationIdentifier
+        default :
+            print("the alert should show that they didnt pick one. ")
+        }
+        
+    }
+    
     
     private func addSusu(){
-        
         // call the datasource function here to add this susu
         print("the function is working...")
-        
     guard let susuTitle = titleTextField.text , !susuTitle.isEmpty,
             let susuDes = descriptionTextView.text, !susuDes.isEmpty,
-        let AmountofPot = potAmount.text, !AmountofPot.isEmpty
-       // let participants = participaintsSlider.value ,
-        
-             
-            else {
+        let AmountofPot = potAmount.text, !AmountofPot.isEmpty,
+          let num = Double(AmountofPot),
+         //  let participants = Int(amountOfParticipants)
+        let paymentSchedule = schedule
+             else {
                 print("error ")
                 return
         }
-        
         // for right now if they dont have a user name then they cannot create a post
         guard let displayName =
             Auth.auth().currentUser?.displayName else {
@@ -74,9 +150,10 @@ class CreateSusuViewController: UIViewController {
                        return
                    }
         
-        let num = Double(AmountofPot)
+        // there is a default amount of participants.
+        let participants = Int(amountOfParticipants)
         
-        db.createASusu(susuTitle: susuTitle, description: susuDes, potAmount: num!, numOfParticipants: 0, paymentSchedule: "updateThisShaniya", displayName: displayName) { (result) in
+        db.createASusu(susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, displayName: displayName) { (result) in
             switch result {
             case .failure(let error):
                 print("it didn't work, currently inside of the create controller\(error.localizedDescription)")
@@ -103,14 +180,12 @@ class CreateSusuViewController: UIViewController {
     // Actions
     @IBAction func addSusu(_ sender: UIButton) {
         print("button has been pressed")
-        
         addSusu()
+        // dismiss controller
     }
     
     
     
 }// end of class
-
-
 
 //extensions...
