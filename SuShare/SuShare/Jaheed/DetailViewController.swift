@@ -9,6 +9,19 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    
+    
+    
+    private var isFavorite = false {
+        didSet{
+            if isFavorite {
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+            }else{
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,14 +30,6 @@ class DetailViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
