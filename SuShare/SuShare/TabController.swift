@@ -17,10 +17,17 @@ class TabController: UITabBarController {
         return vc
     }()
     
+    lazy var highlightsViewController: UIViewController = {
+        let storyboard = UIStoryboard(name: "Highlights", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController() ?? HighlightsViewController()
+        vc.tabBarItem = UITabBarItem(title: "Spotlight", image: UIImage(systemName: "globe"), tag: 0)
+        return vc
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [exploreViewController]
+        viewControllers = [highlightsViewController,exploreViewController]
     }
     
 }
