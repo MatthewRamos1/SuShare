@@ -14,7 +14,9 @@ class HighlightsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //private let databaseService = DatabaseServices()
+    private var databaseService = DatabaseServices()
+    
+    private var authSession = AuthenticationSession()
     
     private var listener: ListenerRegistration?
     
@@ -30,11 +32,12 @@ class HighlightsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // authSession.signOutExistingUser()
         view.backgroundColor = .systemTeal
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: identifier)
+//
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        collectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
     }
     
     
@@ -89,20 +92,20 @@ extension HighlightsViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: 420)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let susus = susu[indexPath.row]
-        
-        let susuDetailStoryBoard = UIStoryboard(name: "Highlights", bundle: nil)
-        
-        guard let susuDetailController = susuDetailStoryBoard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
-            
-            showAlert(title: "ok", message: "could not downcast to DetailViewController")
-            fatalError("could not downcast to DetailViewController")
-        }
-        //susuDetailController.susu = susus
-        
-        navigationController?.pushViewController(susuDetailController, animated: true)
-    }
-    
-    
+
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let susus = susu[indexPath.row]
+//
+//        let susuDetailStoryBoard = UIStoryboard(name: "Highlights", bundle: nil)
+//
+//        guard let susuDetailController = susuDetailStoryBoard.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
+//
+//            showAlert(title: "ok", message: "could not downcast to DetailViewController")
+//            fatalError("could not downcast to DetailViewController")
+//        }
+//        susuDetailController.susu = susus
+//
+//        navigationController?.pushViewController(susuDetailController, animated: true)
+//    }
+
 }

@@ -42,6 +42,7 @@
 		300F67B9247C55D90081DD3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 300F67B8247C55D80081DD3B /* GoogleService-Info.plist */; };
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
+		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		300F67B8247C55D80081DD3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */,
 				0CB1DAB0247C1A5300713BF5 /* HighlightsCell.swift */,
 				0CB1DA98247A249800713BF5 /* DetailViewController.swift */,
+				302B3729247EED6100FC6E6B /* CommentsViewController.swift */,
 				0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */,
 				302B3725247E1D2C00FC6E6B /* DesignableView.swift */,
 				0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */,
@@ -483,6 +486,7 @@
 				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,
 				0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */,
 				0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */,
+				302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */,
 				0CB1DAAF247C1A3600713BF5 /* PersonalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

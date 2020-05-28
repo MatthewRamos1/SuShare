@@ -10,20 +10,24 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-
 class DatabaseService{
     
     static let suShareCollection = "suShare"
-    
+    static let userCollection = "users"
+    static let commentCollection = "comments"
+    static let favoriteCollection = "favorites"
+   
    private let db = Firestore.firestore()
     
+   static let shared = DatabaseServices()
+  
     public func createASusu(susuTitle: String, description: String, potAmount: Double, numOfParticipants: Int, paymentSchedule: String,
                         //  displayName: String,
                             completion: @escaping (Result <String, Error>) -> () ) {
         
-        //guard let user = Auth.auth().currentUser else {
-          //  return
-              //  }
+        guard let user = Auth.auth().currentUser else {
+           return
+                }
         
 
         let docRef = db.collection(DatabaseService.suShareCollection).document()
@@ -36,7 +40,7 @@ class DatabaseService{
             "potAmount": potAmount,
             "numOfParticipants": numOfParticipants,
             "paymentSchedule": paymentSchedule,
-        //    "userId": user.uid,
+            "userId": user.uid,
             "createdDate": Timestamp(date: Date()),
             //"category": category,
             "iD": docRef.documentID
@@ -59,7 +63,36 @@ class DatabaseService{
                   } else {
                       completion(.success(true))
                   }}} // end of delete
+
     
+    public func createDatabaseUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let email = authDataResult.user.email else {
+            return
+        }
+        
+        db.collection(DatabaseServices.userCollection).document(authDataResult.user.uid).setData(["email" : email, "userId": authDataResult.user.uid]) { (error) in
+
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     
-}
+    func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseServices.userCollection).document(user.uid).updateData(["username": username]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+} 
 

@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+struct User {
+    let username: String
+    let email: String
+    let userId: String
+}
+
+extension User {
+    init(_ dictionary: [String: Any]) {
+        self.username = dictionary["username"] as? String ?? "No username"
+        self.email = dictionary["email"] as? String ?? "No Email"
+        self.userId = dictionary["userId"] as? String ?? "No user id"
+    }
+}

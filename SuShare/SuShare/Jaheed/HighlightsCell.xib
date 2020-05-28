@@ -140,6 +140,7 @@
             <connections>
                 <outlet property="commitsLabel" destination="a1B-A4-Shg" id="IaF-ff-RXg"/>
                 <outlet property="daysRemainLabel" destination="Ezv-Ym-zR5" id="D1I-cT-20S"/>
+
                 <outlet property="descriptionLabel" destination="Fj0-VQ-QNt" id="S36-Aw-JIO"/>
                 <outlet property="imageView" destination="UNC-ZY-8Mb" id="405-xy-mnq"/>
                 <outlet property="numCommitsLabel" destination="ajQ-YV-RLo" id="KOk-7d-JS7"/>
@@ -150,6 +151,7 @@
                 <outlet property="susuImageView" destination="UNC-ZY-8Mb" id="5jt-t1-qQd"/>
                 <outlet property="tagImageView" destination="vG3-Js-rPa" id="Kgc-lv-ycA"/>
                 <outlet property="tagLabel" destination="Mkg-1t-v9D" id="hG9-R0-Ee7"/>
+
                 <outlet property="titleLabel" destination="jkd-c5-Zh7" id="9jW-F8-pZw"/>
             </connections>
             <point key="canvasLocation" x="90" y="104"/>
