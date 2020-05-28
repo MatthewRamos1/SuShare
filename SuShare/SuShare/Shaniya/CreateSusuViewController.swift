@@ -91,15 +91,13 @@ class CreateSusuViewController: UIViewController {
     
     
     @IBAction func participantStepper(_ sender: UIStepper) {
-        
+        // 
                  let amount = sender.value
         numberLabel.text = "\(amount)"
-
               //sampleSizeLabel.text = "The size is now\(sender.value)"
         sliderForParticipaints?.value = Float(amount)
               stepperForparticipaints?.value = amount
         amountOfParticipants = Int(amount) // need to change it
-         
     }
     
     
