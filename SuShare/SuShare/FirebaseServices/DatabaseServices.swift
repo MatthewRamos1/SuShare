@@ -19,7 +19,7 @@ class DatabaseService{
    
    private let db = Firestore.firestore()
     
-   static let shared = DatabaseServices()
+   static let shared = DatabaseService()
   
     public func createASusu(susuTitle: String, description: String, potAmount: Double, numOfParticipants: Int, paymentSchedule: String,
                         //  displayName: String,
@@ -71,7 +71,7 @@ class DatabaseService{
             return
         }
         
-        db.collection(DatabaseServices.userCollection).document(authDataResult.user.uid).setData(["email" : email, "userId": authDataResult.user.uid]) { (error) in
+        db.collection(DatabaseService.userCollection).document(authDataResult.user.uid).setData(["email" : email, "userId": authDataResult.user.uid]) { (error) in
 
             if let error = error {
                 completion(.failure(error))
@@ -84,7 +84,7 @@ class DatabaseService{
     func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseServices.userCollection).document(user.uid).updateData(["username": username]) { (error) in
+        db.collection(DatabaseService.userCollection).document(user.uid).updateData(["username": username]) { (error) in
             
             if let error = error {
                 completion(.failure(error))

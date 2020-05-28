@@ -14,7 +14,7 @@ class HighlightsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var databaseService = DatabaseServices()
+    private var databaseService = DatabaseService()
     
     private var authSession = AuthenticationSession()
     

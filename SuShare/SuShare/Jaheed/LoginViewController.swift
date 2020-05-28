@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     
     private var accountState: AccountState = .existingUser
     private var authSession = AuthenticationSession()
-    private var databaseService = DatabaseServices()
+    private var databaseService = DatabaseService()
     
     let hidden = ""
     
