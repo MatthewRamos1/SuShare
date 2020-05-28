@@ -39,7 +39,7 @@ class CreateSusuViewController: UIViewController {
     
     // properties that will be determined based on what the user types
     // the default number is 5
-    private var amountOfParticipants = 4.0
+    private var amountOfParticipants: Int?
     private var schedule: String?
     
     // will it change when they click it.
@@ -51,24 +51,12 @@ class CreateSusuViewController: UIViewController {
        configureSlider()
         
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-      //  configureController()
-       // configureSlider()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-      //  configureSlider()
-    }
+   
     // helper functions
     private func configureController(){
         // the delegates and the data source
       
-       
-       //participaintsSlider.s
-       // stepperForparticipaints.
+
                stepperForparticipaints.value = 4.0
                stepperForparticipaints.minimumValue = 2.0
                stepperForparticipaints.maximumValue = 10.0
@@ -94,7 +82,8 @@ class CreateSusuViewController: UIViewController {
 
         sliderForParticipaints?.value = amount
         stepperForparticipaints?.value = Double(amount)
-        amountOfParticipants = Double(amount)
+        amountOfParticipants = Int(amount)
+       // numberLabel.text = "\(amount)"
                // sampleSizeLabel.text = "The size is now\(sender.value)"
          
         numberLabel.text = "\(amount)"
@@ -109,7 +98,7 @@ class CreateSusuViewController: UIViewController {
               //sampleSizeLabel.text = "The size is now\(sender.value)"
         sliderForParticipaints?.value = Float(amount)
               stepperForparticipaints?.value = amount
-        amountOfParticipants = Double(amount)
+        amountOfParticipants = Int(amount) // need to change it
          
     }
     
@@ -137,23 +126,25 @@ class CreateSusuViewController: UIViewController {
             let susuDes = descriptionTextView.text, !susuDes.isEmpty,
         let AmountofPot = potAmount.text, !AmountofPot.isEmpty,
           let num = Double(AmountofPot),
-         //  let participants = Int(amountOfParticipants)
+           let participants = amountOfParticipants,
         let paymentSchedule = schedule
              else {
                 print("error ")
                 return
         }
         // for right now if they dont have a user name then they cannot create a post
-        guard let displayName =
-            Auth.auth().currentUser?.displayName else {
-                       showAlert(title: "Incomplete Profile", message: "Please complete your profile")
-                       return
-                   }
+//        guard let displayName =
+//            Auth.auth().currentUser?.displayName else {
+//                       showAlert(title: "Incomplete Profile", message: "Please complete your profile")
+//                       return
+//                   }
         
         // there is a default amount of participants.
-        let participants = Int(amountOfParticipants)
+//        let participants = Int(amountOfParticipants)
         
-        db.createASusu(susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, displayName: displayName) { (result) in
+        db.createASusu(susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule
+            //, displayName: displayName
+        ) { (result) in
             switch result {
             case .failure(let error):
                 print("it didn't work, currently inside of the create controller\(error.localizedDescription)")
@@ -182,6 +173,7 @@ class CreateSusuViewController: UIViewController {
         print("button has been pressed")
         addSusu()
         // dismiss controller
+        print("function done")
     }
     
     
@@ -189,3 +181,4 @@ class CreateSusuViewController: UIViewController {
 }// end of class
 
 //extensions...
+
