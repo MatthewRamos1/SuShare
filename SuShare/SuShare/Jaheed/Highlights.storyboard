@@ -72,7 +72,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="oRH-ah-Hz7" id="9sJ-yv-v23"/>
+                        <outlet property="collectionView" destination="oRH-ah-Hz7" id="675-G0-Adn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR2-Ml-0Cq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

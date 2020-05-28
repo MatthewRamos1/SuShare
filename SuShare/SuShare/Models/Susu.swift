@@ -15,15 +15,20 @@ enum Security: String, CaseIterable{
     
 }
 
-enum Category: String, CaseIterable {
-    case new = "one"
+enum Category: Int, CaseIterable {
+    case technology = 0
+    case payments = 1
+    case travel = 2
+    case furniture = 3
+    case renovations = 4
+    case miscellaneous = 5
 }
 
 
 
 struct Susu{
     
-    let securityState: Security
+   // let securityState: Security
     let susuTitle: String
     let susuImage: UIImage
     let description: String
@@ -35,7 +40,7 @@ struct Susu{
     
     let userId: String
     
-    let category: Category
+   // let category: Category
     
     let createdDate: String
     
