@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    public var susu: Susu?
+    public var susu: SuShare?
     
     private var isFavorite = false {
         didSet{

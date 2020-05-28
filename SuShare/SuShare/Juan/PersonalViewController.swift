@@ -12,7 +12,7 @@ class PersonalViewController: UIViewController {
 
     let personalView = PersonalView()
     
-    var suShares = [Susu]()   {
+    var suShares = [SuShare]()   {
         didSet  {
             personalView.personalCollectionView.reloadData()
             if suShares.isEmpty {
@@ -35,7 +35,7 @@ class PersonalViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
         personalView.personalCollectionView.register(PersonalCell.self, forCellWithReuseIdentifier: "personalCell")
-        suShares = [Susu]()
+        suShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
     }

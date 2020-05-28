@@ -16,8 +16,8 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var originalSusus = [Susu]()
-    var currentSusus = [Susu]()
+    var originalSusus = [SuShare]()
+    var currentSusus = [SuShare]()
     var currentTags = [Int]()
     var currentQuery = "" {
         didSet {

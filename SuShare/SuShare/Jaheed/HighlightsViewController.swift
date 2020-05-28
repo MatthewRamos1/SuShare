@@ -22,7 +22,7 @@ class HighlightsViewController: UIViewController {
     
     private let identifier = "highlightsCell"
     
-    private var susu = [Susu]() {
+    private var susu = [SuShare]() {
         didSet{
             DispatchQueue.main.async {
                 self.collectionView.reloadData()

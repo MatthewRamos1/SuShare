@@ -30,7 +30,7 @@
 		0CB1DAB3247C1A7100713BF5 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB2247C1A7100713BF5 /* ExploreCell.swift */; };
 		0CB1DAB5247C1A8900713BF5 /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */; };
 		0CB1DAB7247C1ACF00713BF5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */; };
-		0CB1DAB9247C1AF300713BF5 /* Susu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB8247C1AF300713BF5 /* Susu.swift */; };
+		0CB1DAB9247C1AF300713BF5 /* SuShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB8247C1AF300713BF5 /* SuShare.swift */; };
 		0CB1DABB247C1B0200713BF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DABA247C1B0200713BF5 /* User.swift */; };
 		0CB1DABD247C1B1000713BF5 /* DatabaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DABC247C1B1000713BF5 /* DatabaseServices.swift */; };
 		0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DABF247C1BCC00713BF5 /* Comment.swift */; };
@@ -85,7 +85,7 @@
 		0CB1DAB2247C1A7100713BF5 /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		0CB1DAB8247C1AF300713BF5 /* Susu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Susu.swift; sourceTree = "<group>"; };
+		0CB1DAB8247C1AF300713BF5 /* SuShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuShare.swift; sourceTree = "<group>"; };
 		0CB1DABA247C1B0200713BF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0CB1DABC247C1B1000713BF5 /* DatabaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServices.swift; sourceTree = "<group>"; };
 		0CB1DABF247C1BCC00713BF5 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		0CB1DAC8247C1CC100713BF5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0CB1DAB8247C1AF300713BF5 /* Susu.swift */,
+				0CB1DAB8247C1AF300713BF5 /* SuShare.swift */,
 				0CB1DABA247C1B0200713BF5 /* User.swift */,
 				0CB1DABF247C1BCC00713BF5 /* Comment.swift */,
 			);
@@ -464,7 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CB1DAB9247C1AF300713BF5 /* Susu.swift in Sources */,
+				0CB1DAB9247C1AF300713BF5 /* SuShare.swift in Sources */,
 				0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */,
 				0CB1DAC4247C1C1500713BF5 /* UIImage + Extensions.swift in Sources */,
 				0CB1DAB7247C1ACF00713BF5 /* LoginViewController.swift in Sources */,

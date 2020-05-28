@@ -26,7 +26,7 @@ enum Category: Int, CaseIterable {
 
 
 
-struct Susu{
+struct SuShare{
     
    // let securityState: Security
     let susuTitle: String

@@ -56,7 +56,7 @@ class DatabaseService{
         }
     } // end of create func
     
-    public func delete(susu: Susu, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func delete(susu: SuShare, completion: @escaping (Result<Bool, Error>) -> ()) {
         db.collection(DatabaseService.suShareCollection).document(susu.iD).delete { (error) in
                   if let error = error {
                       completion(.failure(error))
