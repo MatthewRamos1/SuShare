@@ -10,17 +10,18 @@ import UIKit
 
 class TabController: UITabBarController {
     
-    lazy var exploreViewController: UIViewController = {
-        let storyboard = UIStoryboard(name: "ExploreTab", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController() ?? CreateSusuViewController()
-        vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "gear"), tag: 1)
+    lazy var create: UIViewController = {
+        let storyboard = UIStoryboard(name: "CreateSusu", bundle: nil)
+      guard let vc = storyboard.instantiateViewController(identifier: "CreateSusuViewController") as? CreateSusuViewController else {
+            fatalError("not working")
+        }
+        vc.tabBarItem = UITabBarItem(title: "create", image: UIImage(systemName: "gear"), tag: 1)
         return vc
     }()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [exploreViewController]
+        viewControllers = [create]
     }
     
 }
