@@ -30,5 +30,14 @@ class AuthenticationSession {
       }
     }
   }
+    
+    public func signOutExistingUser(){
+        do {
+            try Auth.auth().signOut()
+            UIViewController.showViewController(storyBoardName: "LoginView", viewControllerId: "LoginViewController")
+        } catch {
+            print("error")
+        }
+    }
   
 }

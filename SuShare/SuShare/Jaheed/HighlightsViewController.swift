@@ -16,6 +16,8 @@ class HighlightsViewController: UIViewController {
     
     private var databaseService = DatabaseServices()
     
+    private var authSession = AuthenticationSession()
+    
     private var listener: ListenerRegistration?
     
     private let identifier = "highlightsCell"
@@ -30,6 +32,7 @@ class HighlightsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // authSession.signOutExistingUser()
         view.backgroundColor = .systemTeal
 //
 //        collectionView.delegate = self

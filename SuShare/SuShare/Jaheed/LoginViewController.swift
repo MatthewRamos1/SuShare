@@ -51,10 +51,13 @@ class LoginViewController: UIViewController {
                 !email.isEmpty,
                 let password = passwordTextfield.text,
                 !password.isEmpty,
+                let username = usernameTextField.text,
+                !username.isEmpty,
                 let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty, confirmPassword == password else {
                     print("missing fields")
                     return
             }
+            continueLoginFlow(email: email, password: password, username: username)
         }
         
         if accountState == .existingUser{
@@ -65,11 +68,11 @@ class LoginViewController: UIViewController {
                     print("missing fields")
                     return
             }
-            continueLoginFlow(email: email, password: password)
+            continueLoginFlow(email: email, password: password, username: "")
         }
     }
     
-    private func continueLoginFlow(email: String, password: String) {
+    private func continueLoginFlow(email: String, password: String, username: String?) {
         if accountState == .existingUser {
             authSession.signExistingUser(email: email, password: password) { [weak self] (result) in
                 switch result {
@@ -116,7 +119,8 @@ class LoginViewController: UIViewController {
     }
     
     private func navigateToMainView() {
-        UIViewController.showViewController(storyBoardName: "Highlights", viewControllerId: "HighlightsViewController")
+        //UIViewController.showViewController(storyBoardName: "Highlights", viewControllerId: "HighlightsViewController")
+        UIViewController.showVC(viewcontroller: TabController())
     }
     
     private func clearErrorLabel() {
