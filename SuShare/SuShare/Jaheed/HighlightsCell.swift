@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Kingfisher
+import Firebase
 
 class HighlightsCell: UICollectionViewCell {
+    
     @IBOutlet weak var susuImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -23,6 +26,6 @@ class HighlightsCell: UICollectionViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     
     
-    
+   
     
 }

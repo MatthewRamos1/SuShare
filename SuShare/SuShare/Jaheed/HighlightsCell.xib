@@ -140,11 +140,15 @@
             <connections>
                 <outlet property="commitsLabel" destination="a1B-A4-Shg" id="IaF-ff-RXg"/>
                 <outlet property="daysRemainLabel" destination="Ezv-Ym-zR5" id="D1I-cT-20S"/>
+                <outlet property="descriptionLabel" destination="Fj0-VQ-QNt" id="k63-jX-1zO"/>
                 <outlet property="imageView" destination="UNC-ZY-8Mb" id="405-xy-mnq"/>
                 <outlet property="numCommitsLabel" destination="ajQ-YV-RLo" id="KOk-7d-JS7"/>
                 <outlet property="numPercentageBackedLabel" destination="FHM-c0-PVV" id="ZjU-tL-p9l"/>
+                <outlet property="numdaysRemainLabel" destination="58a-HU-p8c" id="gJ2-6U-9ed"/>
                 <outlet property="percentageBackedLabel" destination="WfQ-b7-haM" id="DBL-48-IYd"/>
                 <outlet property="progressView" destination="yqS-Xh-nYd" id="BkK-qP-dOw"/>
+                <outlet property="tagImageView" destination="vG3-Js-rPa" id="n7y-UM-ncZ"/>
+                <outlet property="tagLabel" destination="Mkg-1t-v9D" id="uRJ-yz-vIN"/>
                 <outlet property="titleLabel" destination="jkd-c5-Zh7" id="9jW-F8-pZw"/>
             </connections>
             <point key="canvasLocation" x="90" y="104"/>

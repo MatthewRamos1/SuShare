@@ -9,14 +9,14 @@
 import Foundation
 
 struct User {
-    let displayName: String
+    let username: String
     let email: String
     let userId: String
 }
 
 extension User {
     init(_ dictionary: [String: Any]) {
-        self.displayName = dictionary["displayName"] as? String ?? "No Display Name"
+        self.username = dictionary["username"] as? String ?? "No username"
         self.email = dictionary["email"] as? String ?? "No Email"
         self.userId = dictionary["userId"] as? String ?? "No user id"
     }

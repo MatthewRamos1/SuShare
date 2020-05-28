@@ -12,9 +12,9 @@ import Firebase
 struct Comment {
  let commentDate: Timestamp
  let commentedBy: String
- let itemId: String
- let itemName: String
- let sellerName: String
+ let susuId: String
+ let susuName: String
+ let creatorName: String
  let text: String
 }
 extension Comment {
@@ -22,9 +22,9 @@ extension Comment {
  init(_ dictionary: [String: Any]) {
   self.commentDate = dictionary["commentDate"] as? Timestamp ?? Timestamp(date: Date())
   self.commentedBy = dictionary["commentedBy"] as? String ?? "no commentedBy name"
-  self.itemId = dictionary["itemId"] as? String ?? "no item id"
-  self.itemName = dictionary["itemName"] as? String ?? "no item name"
-  self.sellerName = dictionary["sellerName"] as? String ?? "no seller name"
+  self.susuId = dictionary["itemId"] as? String ?? "no susuId"
+  self.susuName = dictionary["itemName"] as? String ?? "no susuName"
+  self.creatorName = dictionary["sellerName"] as? String ?? "no creatorName"
   self.text = dictionary["text"] as? String ?? "no text"
  }
 }
