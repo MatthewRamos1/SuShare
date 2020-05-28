@@ -10,4 +10,7 @@ import UIKit
 
 class ExploreCell: UICollectionViewCell {
     
+    @IBOutlet weak var susuImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
 }
