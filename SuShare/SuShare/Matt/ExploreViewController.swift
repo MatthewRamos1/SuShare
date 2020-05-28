@@ -46,7 +46,8 @@ class ExploreViewController: UIViewController {
             currentTags.remove(at: index)
         }
         
-        currentSusus = originalSusus.filter { currentTags.contains($0.category.rawValue)}
+        currentSusus = originalSusus
+            //.filter { currentTags.contains($0.category.rawValue)}
     }
 }
 

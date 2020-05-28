@@ -28,7 +28,9 @@ class TabController: UITabBarController {
         
     lazy var highlightsViewController: UIViewController = {
         let storyboard = UIStoryboard(name: "Highlights", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController() ?? HighlightsViewController()
+        guard let vc = storyboard.instantiateViewController(identifier: "HighlightsViewController") as? HighlightsViewController else{
+            fatalError("Couldnt instantiate ViewController")
+        }
         vc.tabBarItem = UITabBarItem(title: "Spotlight", image: UIImage(systemName: "globe"), tag: 0)
         return vc
     }()

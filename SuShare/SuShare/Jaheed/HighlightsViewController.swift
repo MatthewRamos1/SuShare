@@ -65,7 +65,7 @@ class HighlightsViewController: UIViewController {
 
 extension HighlightsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        susu.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -73,6 +73,9 @@ extension HighlightsViewController: UICollectionViewDataSource{
             showAlert(title: "Error", message: "Could not load Data")
             fatalError()
         }
+        let item = susu[indexPath.row]
+       // cell.susuImageView.image = item.susuImage
+        cell.commitsLabel.text = item.createdDate
         return cell
     }
     
@@ -100,4 +103,6 @@ extension HighlightsViewController: UICollectionViewDelegateFlowLayout {
         
         navigationController?.pushViewController(susuDetailController, animated: true)
     }
+    
+    
 }
