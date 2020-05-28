@@ -78,3 +78,91 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
         // segue
     }
 }
+
+class EmptyView: UIView {
+  
+  public lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.preferredFont(forTextStyle: .headline)
+    label.numberOfLines = 1
+    label.textAlignment = .center
+    label.text = "Empty State"
+    return label
+  }()
+  
+  public lazy var messageLabel: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+    label.numberOfLines = 4
+    label.textAlignment = .center
+    label.text = "There are no items currently in your collection."
+    return label
+  }()
+  
+  init(title: String, message: String) {
+    super.init(frame: UIScreen.main.bounds)
+    titleLabel.text = title
+    messageLabel.text = message
+    commonInit()
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    commonInit()
+  }
+  
+  private func commonInit() {
+    setupMessageLabelConstraints()
+    setupTitleLabelConstraints()
+  }
+  
+  private func setupMessageLabelConstraints() {
+    addSubview(messageLabel)
+    messageLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      messageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+      messageLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+      messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+      messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+    ])
+  }
+  
+  private func setupTitleLabelConstraints() {
+    addSubview(titleLabel)
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      titleLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -8),
+      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+      titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+    ])
+    
+  }
+}
+
+extension UIButton {
+    func underline() {
+        guard let text = self.titleLabel?.text else { return }
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor.systemGray, range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: self.titleColor(for: .normal)!, range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
+        self.setAttributedTitle(attributedString, for: .normal)
+    }
+    
+    func removeLine()   {
+        guard let text = self.titleLabel?.text else { return }
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemGray, range: NSRange(location: 0, length: text.count))
+        self.setAttributedTitle(attributedString, for: .normal)
+    }
+}
+
+extension UILabel {
+    func underline() {
+        if let textString = self.text {
+            let attributedString = NSMutableAttributedString(string: textString)
+            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length - 1))
+            attributedText = attributedString
+        }
+    }
+}
