@@ -17,10 +17,16 @@ class TabController: UITabBarController {
         return vc
     }()
     
+    lazy var personalViewController: UIViewController = {
+        let vc = PersonalViewController()
+        vc.tabBarItem = UITabBarItem(title: "Personal", image: UIImage(systemName: "person.fill"), tag: 2)
+        return vc
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [exploreViewController]
+        viewControllers = [exploreViewController, UINavigationController(rootViewController: personalViewController)]
     }
     
 }
