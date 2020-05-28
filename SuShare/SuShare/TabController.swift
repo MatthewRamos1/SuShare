@@ -19,6 +19,13 @@ class TabController: UITabBarController {
         return vc
     }()
     
+
+    lazy var personalViewController: UIViewController = {
+        let vc = PersonalViewController()
+        vc.tabBarItem = UITabBarItem(title: "Personal", image: UIImage(systemName: "person.fill"), tag: 2)
+        return vc
+    }()
+        
     lazy var highlightsViewController: UIViewController = {
         let storyboard = UIStoryboard(name: "Highlights", bundle: nil)
         let vc = storyboard.instantiateInitialViewController() ?? HighlightsViewController()
@@ -29,7 +36,7 @@ class TabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [highlightsViewController,exploreViewController]
+        viewControllers = [highlightsViewController,exploreViewController, UINavigationController(rootViewController: personalViewController)]
     }
     
 }
