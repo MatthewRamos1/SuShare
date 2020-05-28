@@ -15,8 +15,13 @@ enum Security: String, CaseIterable{
     
 }
 
-enum Category: String, CaseIterable {
-    case new = "one"
+enum Category: Int, CaseIterable {
+    case technology = 0
+    case payments = 1
+    case travel = 2
+    case furniture = 3
+    case renovations = 4
+    case miscellaneous = 5
 }
 
 

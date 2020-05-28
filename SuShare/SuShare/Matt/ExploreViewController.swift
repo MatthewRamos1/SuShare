@@ -9,7 +9,7 @@
 import UIKit
 
 class ExploreViewController: UIViewController {
-
+    
     @IBAction func exploreSegementedControl(_ sender: UISegmentedControl) {
     }
     
@@ -18,33 +18,36 @@ class ExploreViewController: UIViewController {
     
     var originalSusus = [Susu]()
     var currentSusus = [Susu]()
+    var currentTags = [Int]()
+    var currentQuery = "" {
+        didSet {
+            currentSusus = currentSusus.filter { $0.description.contains(currentQuery) }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-
+        searchBar.delegate = self
+        
     }
     @IBAction func tagButtonPressed(_ sender: UIButton) {
-        switch sender.tag {
-        case 0:
-            currentSusus = originalSusus.filter { $0.category == .new}
-        case 1:
-            currentSusus = originalSusus.filter { $0.category == .new}
-        case 2:
-            currentSusus = originalSusus.filter { $0.category == .new}
-        case 3:
-            currentSusus = originalSusus.filter { $0.category == .new}
-        case 4:
-            currentSusus = originalSusus.filter { $0.category == .new}
-        case 5:
-            currentSusus = originalSusus.filter { $0.category == .new}
-        default:
-            currentSusus = originalSusus.filter { $0.category == .new}
-
-        }
+        tagFilter(tag: sender.tag)
     }
     
+    private func tagFilter(tag: Int) {
+        if !currentTags.contains(tag) {
+            currentTags.append(tag)
+        } else {
+            guard let index = currentTags.firstIndex(of: tag) else {
+                return
+            }
+            currentTags.remove(at: index)
+        }
+        
+        currentSusus = originalSusus.filter { currentTags.contains($0.category.rawValue)}
+    }
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -69,5 +72,14 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
         let width =
             UIScreen.main.bounds.size.width - 100
         return CGSize(width: width, height: height * 2)
+    }
+}
+
+extension ExploreViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text, !query.isEmpty else {
+            return
+        }
+        currentQuery = query
     }
 }
