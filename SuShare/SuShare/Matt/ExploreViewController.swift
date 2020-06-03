@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ExploreViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var suShareListener: ListenerRegistration?
     var originalSusus = [SuShare]()
     var currentSusus = [SuShare]()
     var currentTags = [Int]()
@@ -32,6 +34,21 @@ class ExploreViewController: UIViewController {
         searchBar.delegate = self
         
     }
+    
+    private func getSushares() {
+        suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener( { [weak self] (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error getting favorites", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                let suShareData = snapshot.documents.map { $0.data()}
+                
+        }
+    }
+        )
+    }
+        
     @IBAction func tagButtonPressed(_ sender: UIButton) {
         tagFilter(tag: sender.tag)
     }
