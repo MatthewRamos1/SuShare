@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 enum Security: String, CaseIterable{
     
     case privateState = "privateState"
@@ -24,11 +23,8 @@ enum Category: Int, CaseIterable {
     case miscellaneous = 5
 }
 
-
-
 struct SuShare{
-    
-   // let securityState: Security
+    let securityState: Security
     let susuTitle: String
     let susuImage: UIImage
     let description: String
@@ -40,15 +36,12 @@ struct SuShare{
     
     let userId: String
     
-   // let category: Category
+    let category: Category
     
     let createdDate: String
     
-    let iD: String
-    
+    let suShareId: String
     
     // after creation
     let favId: String
-    
-    
 }
