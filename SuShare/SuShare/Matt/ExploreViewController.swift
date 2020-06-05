@@ -21,6 +21,8 @@ class ExploreViewController: UIViewController {
     
     
     var suShareListener: ListenerRegistration?
+    var boldFont: UIFont?
+    var thinFont: UIFont?
     var originalSusus = [SuShare]() {
         didSet {
             collectionView.reloadData()
@@ -40,6 +42,8 @@ class ExploreViewController: UIViewController {
         collectionView.delegate = self
         searchBar.delegate = self
         toggleExplore()
+        boldFont = exploreButton.titleLabel?.font
+        thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
     }
@@ -50,7 +54,10 @@ class ExploreViewController: UIViewController {
     }
     
     private func toggleExplore() {
+        exploreButton.isEnabled = false
+        friendsButton.isEnabled = true
         exploreButton.titleLabel?.underline()
+        
     }
     
     private func setSuShareListener() {
@@ -68,7 +75,19 @@ class ExploreViewController: UIViewController {
     }
         )
     }
-        
+    @IBAction func exploreButtonPressed(_ sender: UIButton) {
+        toggleExplore()
+        exploreButton.titleLabel?.font = boldFont
+    }
+    
+    @IBAction func friendsButtonPressed(_ sender: UIButton) {
+        friendsButton.isEnabled.toggle()
+        exploreButton.isEnabled.toggle()
+        friendsButton.titleLabel?.font = boldFont
+        friendsButton.titleLabel?.underline()
+    }
+    
+    
     @IBAction func tagButtonPressed(_ sender: UIButton) {
         tagFilter(tag: sender.tag)
     }

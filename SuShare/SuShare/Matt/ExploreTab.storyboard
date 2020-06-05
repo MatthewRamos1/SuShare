@@ -149,6 +149,7 @@
                                         </state>
                                         <connections>
                                             <action selector="exploreButton:" destination="KyG-UW-c42" eventType="touchUpInside" id="iyK-Ad-mNb"/>
+                                            <action selector="exploreButtonPressed:" destination="KyG-UW-c42" eventType="touchUpInside" id="P9M-Ow-ALh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IT-W6-DPS">
@@ -157,6 +158,9 @@
                                         <state key="normal" title="Friends">
                                             <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="friendsButtonPressed:" destination="KyG-UW-c42" eventType="touchUpInside" id="Q13-Xn-KoS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
