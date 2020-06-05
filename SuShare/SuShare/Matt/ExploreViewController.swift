@@ -16,9 +16,16 @@ class ExploreViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var exploreButton: UIButton!
+    @IBOutlet weak var friendsButton: UIButton!
+    
     
     var suShareListener: ListenerRegistration?
-    var originalSusus = [SuShare]()
+    var originalSusus = [SuShare]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     var currentSusus = [SuShare]()
     var currentTags = [Int]()
     var currentQuery = "" {
@@ -32,17 +39,30 @@ class ExploreViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBar.delegate = self
+        toggleExplore()
+        setSuShareListener()
         
     }
     
-    private func getSushares() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        suShareListener?.remove()
+    }
+    
+    private func toggleExplore() {
+        exploreButton.titleLabel?.underline()
+    }
+    
+    private func setSuShareListener() {
         suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener( { [weak self] (snapshot, error) in
             if let error = error {
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Error getting favorites", message: "\(error.localizedDescription)")
                 }
             } else if let snapshot = snapshot {
-                let suShareData = snapshot.documents.map { $0.data()}
+                let suShareData = snapshot.documents.map { $0.data() }
+                let suShares = suShareData.map { SuShare($0)}
+                self?.originalSusus = suShares
                 
         }
     }
@@ -70,13 +90,15 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        originalSusus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
             fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
         }
+        let suShare = originalSusus[indexPath.row]
+        cell.configureCell(suShare: suShare)
         return cell
         
     }

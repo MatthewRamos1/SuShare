@@ -16,23 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="00f-su-SwS">
-                                <rect key="frame" x="78" y="106" width="258" height="32"/>
-                                <segments>
-                                    <segment title="Explore"/>
-                                    <segment title="Friends"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="exploreSegementedControl:" destination="KyG-UW-c42" eventType="valueChanged" id="RMy-AF-7eJ"/>
-                                </connections>
-                            </segmentedControl>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NHj-ua-sKX">
-                                <rect key="frame" x="44" y="149" width="326" height="56"/>
+                                <rect key="frame" x="44" y="134" width="326" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sot-vA-Y9h">
-                                <rect key="frame" x="20" y="252" width="374" height="610"/>
+                                <rect key="frame" x="20" y="237" width="374" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZX2-3e-GWY">
                                     <size key="itemSize" width="313" height="286"/>
@@ -79,7 +68,7 @@
                                 </cells>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="hQb-tY-vBx">
-                                <rect key="frame" x="20" y="217" width="374" height="27"/>
+                                <rect key="frame" x="20" y="202" width="374" height="27"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfC-KV-huR">
                                         <rect key="frame" x="0.0" y="0.0" width="47.5" height="27"/>
@@ -149,20 +138,42 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gYz-nj-jVc">
+                                <rect key="frame" x="100" y="96" width="214" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J82-V6-Cck">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Explore">
+                                            <color key="titleColor" red="0.0091510069390000007" green="0.036073129189999997" blue="0.2129401967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exploreButton:" destination="KyG-UW-c42" eventType="touchUpInside" id="iyK-Ad-mNb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IT-W6-DPS">
+                                        <rect key="frame" x="107" y="0.0" width="107" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                        <state key="normal" title="Friends">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="00f-su-SwS" firstAttribute="top" secondItem="auh-yt-3WH" secondAttribute="top" constant="18" id="0RR-rS-Zam"/>
                             <constraint firstItem="NHj-ua-sKX" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="44" id="DLB-on-2tD"/>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="FVS-aR-QNu"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="NHj-ua-sKX" secondAttribute="trailing" constant="44" id="Ftj-67-i7Z"/>
+                            <constraint firstItem="NHj-ua-sKX" firstAttribute="top" secondItem="gYz-nj-jVc" secondAttribute="bottom" constant="8" id="Hva-4F-jS0"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="sot-vA-Y9h" secondAttribute="trailing" constant="20" id="NqY-3y-BtL"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="gYz-nj-jVc" secondAttribute="trailing" constant="100" id="OZj-an-ruW"/>
+                            <constraint firstItem="gYz-nj-jVc" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="100" id="PKG-4p-5EF"/>
                             <constraint firstItem="hQb-tY-vBx" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="20" id="Y3T-fG-GhA"/>
                             <constraint firstItem="hQb-tY-vBx" firstAttribute="top" secondItem="NHj-ua-sKX" secondAttribute="bottom" constant="12" id="Yct-Ea-Alq"/>
-                            <constraint firstItem="00f-su-SwS" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="78" id="cEO-BJ-NN6"/>
-                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="00f-su-SwS" secondAttribute="trailing" constant="78" id="n6e-si-7aa"/>
+                            <constraint firstItem="gYz-nj-jVc" firstAttribute="top" secondItem="auh-yt-3WH" secondAttribute="top" constant="8" id="cvo-Gj-onn"/>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="top" secondItem="hQb-tY-vBx" secondAttribute="bottom" constant="8" id="qnE-EE-QvD"/>
-                            <constraint firstItem="NHj-ua-sKX" firstAttribute="top" secondItem="00f-su-SwS" secondAttribute="bottom" constant="12" id="tZl-PB-k4v"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="hQb-tY-vBx" secondAttribute="trailing" constant="20" id="vdX-fT-TBk"/>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="20" id="zPW-I7-6Zx"/>
                         </constraints>
@@ -175,6 +186,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="sot-vA-Y9h" id="ddU-Wr-9qi"/>
+                        <outlet property="exploreButton" destination="J82-V6-Cck" id="NKP-ir-89w"/>
+                        <outlet property="friendsButton" destination="3IT-W6-DPS" id="t9h-aZ-xBL"/>
                         <outlet property="searchBar" destination="NHj-ua-sKX" id="0ml-Pk-zkZ"/>
                     </connections>
                 </viewController>
