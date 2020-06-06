@@ -11,8 +11,6 @@ import FirebaseFirestore
 
 class ExploreViewController: UIViewController {
     
-    @IBAction func exploreSegementedControl(_ sender: UISegmentedControl) {
-    }
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -56,7 +54,7 @@ class ExploreViewController: UIViewController {
     private func toggleExplore() {
         exploreButton.isEnabled = false
         friendsButton.isEnabled = true
-        exploreButton.titleLabel?.underline()
+        exploreButton.underline()
         
     }
     
@@ -76,15 +74,19 @@ class ExploreViewController: UIViewController {
         )
     }
     @IBAction func exploreButtonPressed(_ sender: UIButton) {
-        toggleExplore()
+        friendsButton.removeLine()
         exploreButton.titleLabel?.font = boldFont
+        friendsButton.titleLabel?.font = thinFont
+        toggleExplore()
     }
     
     @IBAction func friendsButtonPressed(_ sender: UIButton) {
         friendsButton.isEnabled.toggle()
         exploreButton.isEnabled.toggle()
+        exploreButton.titleLabel?.font = thinFont
         friendsButton.titleLabel?.font = boldFont
-        friendsButton.titleLabel?.underline()
+        exploreButton.removeLine()
+        friendsButton.underline()
     }
     
     

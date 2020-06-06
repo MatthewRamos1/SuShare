@@ -145,18 +145,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Explore">
-                                            <color key="titleColor" red="0.0091510069390000007" green="0.036073129189999997" blue="0.2129401967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="exploreButton:" destination="KyG-UW-c42" eventType="touchUpInside" id="iyK-Ad-mNb"/>
-                                            <action selector="exploreButtonPressed:" destination="KyG-UW-c42" eventType="touchUpInside" id="P9M-Ow-ALh"/>
+                                            <action selector="exploreButtonPressed:" destination="KyG-UW-c42" eventType="touchUpInside" id="wvL-PN-gb7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IT-W6-DPS">
                                         <rect key="frame" x="107" y="0.0" width="107" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                         <state key="normal" title="Friends">
-                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="friendsButtonPressed:" destination="KyG-UW-c42" eventType="touchUpInside" id="Q13-Xn-KoS"/>
