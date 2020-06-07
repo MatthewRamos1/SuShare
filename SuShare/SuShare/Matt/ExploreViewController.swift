@@ -17,16 +17,22 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var exploreButton: UIButton!
     @IBOutlet weak var friendsButton: UIButton!
     
-    
     var suShareListener: ListenerRegistration?
     var boldFont: UIFont?
     var thinFont: UIFont?
     var originalSusus = [SuShare]() {
         didSet {
+            if currentSusus.isEmpty {
+                currentSusus = originalSusus
+            }
+        }
+    }
+    
+    var currentSusus = [SuShare]() {
+        didSet {
             collectionView.reloadData()
         }
     }
-    var currentSusus = [SuShare]()
     var currentTags = [Int]()
     var currentQuery = "" {
         didSet {
@@ -111,14 +117,15 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        originalSusus.count
+        currentSusus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
             fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
         }
-        let suShare = originalSusus[indexPath.row]
+        let suShare = currentSusus[indexPath.row]
+        
         cell.configureCell(suShare: suShare)
         return cell
         
@@ -141,6 +148,6 @@ extension ExploreViewController: UISearchBarDelegate {
         guard let query = searchBar.text, !query.isEmpty else {
             return
         }
-        currentQuery = query
+        currentSusus = originalSusus.filter { $0.description.contains(query) || $0.susuTitle.contains(query)}
     }
 }
