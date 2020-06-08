@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Kingfisher
 
 class PersonalViewController: UIViewController {
 
+    let authSession = AuthenticationSession()
+    
     let personalView = PersonalView()
     
     var suShares = [SuShare]()   {
@@ -39,14 +43,20 @@ class PersonalViewController: UIViewController {
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
     }
-    
-    // detail view segue
 
 }
 
 extension PersonalViewController: UICollectionViewDataSource    {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return suShares.count
+        if section == 0 {
+            return 0
+        }   else    {
+            return 5
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -59,9 +69,38 @@ extension PersonalViewController: UICollectionViewDataSource    {
         cell.layer.borderWidth = 1
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let section = indexPath.section
+        if section == 0 {
+            guard let profileHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeader", for: indexPath) as? ProfileHeaderView   else    {
+                fatalError()
+            }
+            profileHeaderView.backgroundColor = .white
+            return profileHeaderView
+        }   else  {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? HeaderView   else    {
+                fatalError()
+            }
+            headerView.backgroundColor = .white
+            return headerView
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSize(width: 100, height: 88)
+        }   else    {
+            return CGSize(width: 50, height: 55)
+        }
+    }
+    
 }
 
 extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.84
@@ -77,92 +116,5 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // segue
     }
-}
-
-class EmptyView: UIView {
-  
-  public lazy var titleLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.preferredFont(forTextStyle: .headline)
-    label.numberOfLines = 1
-    label.textAlignment = .center
-    label.text = "Empty State"
-    return label
-  }()
-  
-  public lazy var messageLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-    label.numberOfLines = 4
-    label.textAlignment = .center
-    label.text = "There are no items currently in your collection."
-    return label
-  }()
-  
-  init(title: String, message: String) {
-    super.init(frame: UIScreen.main.bounds)
-    titleLabel.text = title
-    messageLabel.text = message
-    commonInit()
-  }
-  
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    commonInit()
-  }
-  
-  private func commonInit() {
-    setupMessageLabelConstraints()
-    setupTitleLabelConstraints()
-  }
-  
-  private func setupMessageLabelConstraints() {
-    addSubview(messageLabel)
-    messageLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      messageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-      messageLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-      messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-      messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-    ])
-  }
-  
-  private func setupTitleLabelConstraints() {
-    addSubview(titleLabel)
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      titleLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -8),
-      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-      titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-    ])
     
-  }
-}
-
-extension UIButton {
-    func underline() {
-        guard let text = self.titleLabel?.text else { return }
-        let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor.systemGray, range: NSRange(location: 0, length: text.count))
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: self.titleColor(for: .normal)!, range: NSRange(location: 0, length: text.count))
-        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
-        self.setAttributedTitle(attributedString, for: .normal)
-    }
-    
-    func removeLine()   {
-        guard let text = self.titleLabel?.text else { return }
-        let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemGray, range: NSRange(location: 0, length: text.count))
-        self.setAttributedTitle(attributedString, for: .normal)
-    }
-}
-
-extension UILabel {
-    func underline() {
-        if let textString = self.text {
-            let attributedString = NSMutableAttributedString(string: textString)
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: attributedString.length - 1))
-            attributedText = attributedString
-        }
-    }
 }

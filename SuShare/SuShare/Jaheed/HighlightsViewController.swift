@@ -32,7 +32,7 @@ class HighlightsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // authSession.signOutExistingUser()
+        //authSession.signOutExistingUser()
         view.backgroundColor = .systemTeal
 //
 //        collectionView.delegate = self
