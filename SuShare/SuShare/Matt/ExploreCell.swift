@@ -16,6 +16,7 @@ class ExploreCell: UICollectionViewCell {
     
     public func configureCell(suShare: SuShare) {
         descriptionLabel.text = suShare.description
+        fundingProgressView.progress = Float(suShare.currentParticipantCount / suShare.numOfParticipants)
     }
     
 }

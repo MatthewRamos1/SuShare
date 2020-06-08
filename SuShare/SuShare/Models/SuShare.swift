@@ -35,6 +35,7 @@ struct SuShare {
     let potAmount: Double
     
     let numOfParticipants: Int
+    let currentParticipantCount: Int
     
     let paymentSchedule: String
     
@@ -61,6 +62,7 @@ extension SuShare {
         self.description = dictionary["description"] as? String ?? "No Description"
         self.potAmount = dictionary["potAmount"] as? Double ?? 0.0
         self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0
+        self.currentParticipantCount = dictionary["currentParticipantCount"] as? Int ?? 0
         self.paymentSchedule = dictionary["paymentSchedule"] as? String ?? ""
         self.userId = dictionary["userId"] as? String ?? ""
         self.createdDate = dictionary["createdDate"] as? String ?? ""
