@@ -25,7 +25,10 @@ class HighlightsCell: UICollectionViewCell {
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var tagLabel: UILabel!
     
+     func configureCell(){
     
+        shadowDecorate()
+    }
    
     
 }

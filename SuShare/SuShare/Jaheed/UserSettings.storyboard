@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings-->
+        <scene sceneID="2po-aw-pNJ">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="tEk-eH-ios" customClass="SettingsViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ltQ-IZ-Iw8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yPA-RL-j5A">
+                                <rect key="frame" x="20" y="119.5" width="100" height="97.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="idr-Y7-CuR"/>
+                                    <constraint firstAttribute="width" constant="100" id="qv5-rz-6uQ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNk-KB-IuI">
+                                <rect key="frame" x="130" y="162" width="264" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDa-8v-TOl">
+                                <rect key="frame" x="0.0" y="276" width="414" height="620"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5s-CW-DrM">
+                                <rect key="frame" x="38" y="226" width="64" height="30"/>
+                                <state key="normal" title="Update"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="trailing" secondItem="1M7-I7-W6R" secondAttribute="trailing" id="2dM-HH-ie4"/>
+                            <constraint firstItem="yPA-RL-j5A" firstAttribute="leading" secondItem="1M7-I7-W6R" secondAttribute="leading" constant="20" id="3a9-w9-fnk"/>
+                            <constraint firstItem="n5s-CW-DrM" firstAttribute="centerX" secondItem="yPA-RL-j5A" secondAttribute="centerX" id="3vA-iB-lb4"/>
+                            <constraint firstItem="n5s-CW-DrM" firstAttribute="top" secondItem="yPA-RL-j5A" secondAttribute="bottom" constant="8" id="6QU-ys-sXT"/>
+                            <constraint firstItem="uNk-KB-IuI" firstAttribute="top" secondItem="1M7-I7-W6R" secondAttribute="top" constant="74" id="Bv8-A9-vCf"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="leading" secondItem="1M7-I7-W6R" secondAttribute="leading" id="K2e-jb-gkE"/>
+                            <constraint firstItem="n5s-CW-DrM" firstAttribute="leading" secondItem="1M7-I7-W6R" secondAttribute="leading" constant="38" id="OJO-wh-21s"/>
+                            <constraint firstItem="1M7-I7-W6R" firstAttribute="trailing" secondItem="uNk-KB-IuI" secondAttribute="trailing" constant="20" id="Poz-uQ-4Vc"/>
+                            <constraint firstItem="yPA-RL-j5A" firstAttribute="top" secondItem="1M7-I7-W6R" secondAttribute="top" constant="30" id="YB5-gE-taX"/>
+                            <constraint firstAttribute="bottom" secondItem="sDa-8v-TOl" secondAttribute="bottom" id="Z6f-Sz-JgV"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="trailing" secondItem="1M7-I7-W6R" secondAttribute="trailing" id="g61-Ls-YGM"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="leading" secondItem="1M7-I7-W6R" secondAttribute="leading" id="ibX-hc-Dvm"/>
+                            <constraint firstAttribute="bottom" secondItem="sDa-8v-TOl" secondAttribute="bottom" id="j7f-X4-nAk"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="top" secondItem="n5s-CW-DrM" secondAttribute="bottom" constant="20" id="yp2-G3-UCg"/>
+                            <constraint firstItem="uNk-KB-IuI" firstAttribute="leading" secondItem="yPA-RL-j5A" secondAttribute="trailing" constant="10" id="zk9-qp-rMA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1M7-I7-W6R"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="GQI-Vn-lpt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QCw-AP-gXy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939.13043478260875" y="13.392857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5tx-8L-goy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sF5-if-8ds" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yKe-Uc-cH0">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tEk-eH-ios" kind="relationship" relationship="rootViewController" id="3s3-EU-YUd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YeK-4X-58i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28.985507246376812" y="13.392857142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person" catalog="system" width="128" height="117"/>
+    </resources>
+</document>

@@ -43,6 +43,14 @@
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
+		305C48612481AE490067C22A /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C48602481AE490067C22A /* UICollectionViewCell + Extensions.swift */; };
+		30900A53248D33B3000469EB /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30900A52248D33B3000469EB /* SideViewController.swift */; };
+		30900A82248D6A5B000469EB /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30900A81248D6A5B000469EB /* SideView.storyboard */; };
+		30D8DE0B248DD69200CD64BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D8DE0A248DD69200CD64BA /* HomeViewController.swift */; };
+		30D8DE0D248DD6CE00CD64BA /* MenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D8DE0C248DD6CE00CD64BA /* MenueViewController.swift */; };
+		30D8DE0F248DDE4E00CD64BA /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D8DE0E248DDE4E00CD64BA /* SlideInTransition.swift */; };
+		30D8DE14248DF28500CD64BA /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D8DE13248DF28500CD64BA /* UserSettings.storyboard */; };
+		30D8DE16248DF3EA00CD64BA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D8DE15248DF3EA00CD64BA /* SettingsViewController.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +105,14 @@
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		305C48602481AE490067C22A /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
+		30900A52248D33B3000469EB /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		30900A81248D6A5B000469EB /* SideView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
+		30D8DE0A248DD69200CD64BA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		30D8DE0C248DD6CE00CD64BA /* MenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenueViewController.swift; sourceTree = "<group>"; };
+		30D8DE0E248DDE4E00CD64BA /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		30D8DE13248DF28500CD64BA /* UserSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
+		30D8DE15248DF3EA00CD64BA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,15 +204,12 @@
 		0CB1DA93247A23A200713BF5 /* Jaheed */ = {
 			isa = PBXGroup;
 			children = (
-				0CB1DA8C247A233700713BF5 /* Highlights.storyboard */,
-				0CB1DA9A247A24B200713BF5 /* HighlightsViewController.swift */,
-				0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */,
-				0CB1DAB0247C1A5300713BF5 /* HighlightsCell.swift */,
-				0CB1DA98247A249800713BF5 /* DetailViewController.swift */,
-				302B3729247EED6100FC6E6B /* CommentsViewController.swift */,
-				0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */,
-				302B3725247E1D2C00FC6E6B /* DesignableView.swift */,
-				0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */,
+				30D8DE11248DF1BB00CD64BA /* Login */,
+				30D8DE12248DF22900CD64BA /* SideView */,
+				30900A80248D69EB000469EB /* HighlightStuff */,
+				30D8DE10248DE68800CD64BA /* old Slide */,
+				30D8DE13248DF28500CD64BA /* UserSettings.storyboard */,
+				30D8DE15248DF3EA00CD64BA /* SettingsViewController.swift */,
 			);
 			path = Jaheed;
 			sourceTree = "<group>";
@@ -226,6 +239,7 @@
 			children = (
 				0CB1DAC1247C1BF000713BF5 /* UIViewController + Alerts.swift */,
 				0CB1DAC3247C1C1500713BF5 /* UIImage + Extensions.swift */,
+				305C48602481AE490067C22A /* UICollectionViewCell + Extensions.swift */,
 				0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
@@ -249,6 +263,48 @@
 				0CB1DABF247C1BCC00713BF5 /* Comment.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		30900A80248D69EB000469EB /* HighlightStuff */ = {
+			isa = PBXGroup;
+			children = (
+				0CB1DA8C247A233700713BF5 /* Highlights.storyboard */,
+				0CB1DA9A247A24B200713BF5 /* HighlightsViewController.swift */,
+				0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */,
+				0CB1DAB0247C1A5300713BF5 /* HighlightsCell.swift */,
+				0CB1DA98247A249800713BF5 /* DetailViewController.swift */,
+				302B3729247EED6100FC6E6B /* CommentsViewController.swift */,
+			);
+			path = HighlightStuff;
+			sourceTree = "<group>";
+		};
+		30D8DE10248DE68800CD64BA /* old Slide */ = {
+			isa = PBXGroup;
+			children = (
+				30900A52248D33B3000469EB /* SideViewController.swift */,
+			);
+			path = "old Slide";
+			sourceTree = "<group>";
+		};
+		30D8DE11248DF1BB00CD64BA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */,
+				302B3725247E1D2C00FC6E6B /* DesignableView.swift */,
+				0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		30D8DE12248DF22900CD64BA /* SideView */ = {
+			isa = PBXGroup;
+			children = (
+				30900A81248D6A5B000469EB /* SideView.storyboard */,
+				30D8DE0A248DD69200CD64BA /* HomeViewController.swift */,
+				30D8DE0C248DD6CE00CD64BA /* MenueViewController.swift */,
+				30D8DE0E248DDE4E00CD64BA /* SlideInTransition.swift */,
+			);
+			path = SideView;
 			sourceTree = "<group>";
 		};
 		9782732C6A0D179C17AFCB9B /* Frameworks */ = {
@@ -356,7 +412,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30900A82248D6A5B000469EB /* SideView.storyboard in Resources */,
 				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
+				30D8DE14248DF28500CD64BA /* UserSettings.storyboard in Resources */,
 				0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */,
 				0CB1DA9D247A24DC00713BF5 /* CreateSusu.storyboard in Resources */,
 				0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */,
@@ -466,22 +524,28 @@
 			files = (
 				0CB1DAB9247C1AF300713BF5 /* Susu.swift in Sources */,
 				0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */,
+				30D8DE0B248DD69200CD64BA /* HomeViewController.swift in Sources */,
 				0CB1DAC4247C1C1500713BF5 /* UIImage + Extensions.swift in Sources */,
 				0CB1DAB7247C1ACF00713BF5 /* LoginViewController.swift in Sources */,
 				0CB1DA9B247A24B200713BF5 /* HighlightsViewController.swift in Sources */,
+				30D8DE0F248DDE4E00CD64BA /* SlideInTransition.swift in Sources */,
 				0CB1DABB247C1B0200713BF5 /* User.swift in Sources */,
 				0CB1DAB1247C1A5300713BF5 /* HighlightsCell.swift in Sources */,
 				0CB1DABD247C1B1000713BF5 /* DatabaseServices.swift in Sources */,
 				0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */,
+				30900A53248D33B3000469EB /* SideViewController.swift in Sources */,
 				0CB1DAC2247C1BF000713BF5 /* UIViewController + Alerts.swift in Sources */,
 				0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */,
+				30D8DE0D248DD6CE00CD64BA /* MenueViewController.swift in Sources */,
 				0CB1DAB3247C1A7100713BF5 /* ExploreCell.swift in Sources */,
 				302B3728247E315C00FC6E6B /* StorageService.swift in Sources */,
 				0CB1DAA3247A253300713BF5 /* PersonalView.swift in Sources */,
+				305C48612481AE490067C22A /* UICollectionViewCell + Extensions.swift in Sources */,
 				302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */,
 				0CB1DA8B247A22DB00713BF5 /* TabController.swift in Sources */,
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
 				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
+				30D8DE16248DF3EA00CD64BA /* SettingsViewController.swift in Sources */,
 				0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */,
 				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,
 				0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */,

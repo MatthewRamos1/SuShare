@@ -32,12 +32,12 @@ class HighlightsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // authSession.signOutExistingUser()
+       //authSession.signOutExistingUser()
         view.backgroundColor = .systemTeal
-//
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//        collectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
+
+      collectionView.delegate = self
+      collectionView.dataSource = self
+       collectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
     }
     
     
@@ -68,17 +68,18 @@ class HighlightsViewController: UIViewController {
 
 extension HighlightsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        susu.count
+        3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "highlightsCell", for: indexPath) as? HighlightsCell else {
-            showAlert(title: "Error", message: "Could not load Data")
-            fatalError()
+            //showAlert(title: "Error", message: "Could not load Data")
+            fatalError("could not downcast")
         }
-        let item = susu[indexPath.row]
-       // cell.susuImageView.image = item.susuImage
-        cell.commitsLabel.text = item.createdDate
+        //cell.shadowDecorate()
+        //let item = susu[indexPath.row]
+        // configure cell here
+        
         return cell
     }
     
@@ -87,13 +88,17 @@ extension HighlightsViewController: UICollectionViewDataSource{
 
 extension HighlightsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.90
-        return CGSize(width: itemWidth, height: 420)
+        //let maxSize: CGSize = UIScreen.main.bounds.size
+        //let itemWidth: CGFloat = maxSize.width * 0.90
+        let height = UIScreen.main.bounds.size.height / 3
+        let width =
+        UIScreen.main.bounds.size.width - 200
+        
+        return CGSize(width: width, height: height * 2)
     }
     
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let susus = susu[indexPath.row]
 //
 //        let susuDetailStoryBoard = UIStoryboard(name: "Highlights", bundle: nil)
@@ -106,6 +111,6 @@ extension HighlightsViewController: UICollectionViewDelegateFlowLayout {
 //        susuDetailController.susu = susus
 //
 //        navigationController?.pushViewController(susuDetailController, animated: true)
-//    }
+    }
 
 }

@@ -27,8 +27,8 @@ class TabController: UITabBarController {
     }()
         
     lazy var highlightsViewController: UIViewController = {
-        let storyboard = UIStoryboard(name: "Highlights", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(identifier: "HighlightsViewController") as? HighlightsViewController else{
+        let storyboard = UIStoryboard(name: "SideView", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "HomeViewController") as? HomeViewController else{
             fatalError("Couldnt instantiate ViewController")
         }
         vc.tabBarItem = UITabBarItem(title: "Spotlight", image: UIImage(systemName: "globe"), tag: 0)
@@ -38,7 +38,7 @@ class TabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [highlightsViewController,exploreViewController, UINavigationController(rootViewController: personalViewController)]
+        viewControllers = [UINavigationController(rootViewController: highlightsViewController),exploreViewController, UINavigationController(rootViewController: personalViewController)]
     }
     
 }

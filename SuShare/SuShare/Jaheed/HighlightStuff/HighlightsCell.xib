@@ -11,14 +11,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="highlightsCell" id="c5S-Jj-eFj" customClass="HighlightsCell" customModule="SuShare" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="420" height="420"/>
+            <rect key="frame" x="0.0" y="0.0" width="420" height="500"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="w46-sO-VU0">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="420"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="500"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google.png" translatesAutoresizingMaskIntoConstraints="NO" id="UNC-ZY-8Mb">
-                        <rect key="frame" x="0.0" y="0.0" width="420" height="250"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UNC-ZY-8Mb">
+                        <rect key="frame" x="0.0" y="1" width="420" height="248.5"/>
+                        <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="420" id="HSM-SR-bu4"/>
                             <constraint firstAttribute="height" constant="250" id="Ifl-mg-ewf"/>
@@ -99,14 +100,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vG3-Js-rPa">
-                        <rect key="frame" x="20" y="395.5" width="20" height="19"/>
+                        <rect key="frame" x="20" y="415.5" width="20" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ZTo-qY-stF"/>
                             <constraint firstAttribute="width" constant="20" id="aUl-rR-z9L"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkg-1t-v9D">
-                        <rect key="frame" x="48" y="395" width="352" height="20.5"/>
+                        <rect key="frame" x="48" y="415" width="352" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -122,27 +123,25 @@
                     <constraint firstAttribute="trailing" secondItem="Mkg-1t-v9D" secondAttribute="trailing" constant="20" id="H1H-6v-Pb4"/>
                     <constraint firstItem="UNC-ZY-8Mb" firstAttribute="top" secondItem="w46-sO-VU0" secondAttribute="top" id="N3L-aN-e8M"/>
                     <constraint firstItem="yqS-Xh-nYd" firstAttribute="top" secondItem="jkd-c5-Zh7" secondAttribute="bottom" constant="20" id="OS7-AK-qMx"/>
-                    <constraint firstItem="vG3-Js-rPa" firstAttribute="top" secondItem="0U6-b1-Xhz" secondAttribute="bottom" constant="20" id="Pky-e9-mv8"/>
+                    <constraint firstItem="vG3-Js-rPa" firstAttribute="top" secondItem="0U6-b1-Xhz" secondAttribute="bottom" constant="40" id="Pky-e9-mv8"/>
                     <constraint firstAttribute="trailing" secondItem="0U6-b1-Xhz" secondAttribute="trailing" constant="20" id="WPj-H0-jOk"/>
                     <constraint firstItem="Fj0-VQ-QNt" firstAttribute="leading" secondItem="jkd-c5-Zh7" secondAttribute="trailing" constant="8" id="erV-bF-rFo"/>
                     <constraint firstAttribute="trailing" secondItem="Fj0-VQ-QNt" secondAttribute="trailing" constant="20" id="fiw-OA-xk9"/>
                     <constraint firstItem="UNC-ZY-8Mb" firstAttribute="leading" secondItem="w46-sO-VU0" secondAttribute="leading" id="hAP-kJ-li8"/>
                     <constraint firstItem="0U6-b1-Xhz" firstAttribute="leading" secondItem="w46-sO-VU0" secondAttribute="leading" constant="20" id="hya-sX-kod"/>
                     <constraint firstItem="0U6-b1-Xhz" firstAttribute="top" secondItem="yqS-Xh-nYd" secondAttribute="bottom" constant="10" id="mkt-en-6BH"/>
-                    <constraint firstItem="Mkg-1t-v9D" firstAttribute="top" secondItem="0U6-b1-Xhz" secondAttribute="bottom" constant="20" id="mkx-Kx-onA"/>
+                    <constraint firstItem="Mkg-1t-v9D" firstAttribute="top" secondItem="0U6-b1-Xhz" secondAttribute="bottom" constant="40" id="mkx-Kx-onA"/>
                     <constraint firstItem="jkd-c5-Zh7" firstAttribute="top" secondItem="UNC-ZY-8Mb" secondAttribute="bottom" constant="20" id="oyL-35-Wnx"/>
                     <constraint firstItem="yqS-Xh-nYd" firstAttribute="leading" secondItem="w46-sO-VU0" secondAttribute="leading" constant="20" id="pP8-cr-5Fo"/>
                     <constraint firstItem="Mkg-1t-v9D" firstAttribute="leading" secondItem="vG3-Js-rPa" secondAttribute="trailing" constant="8" id="u5z-h6-xKS"/>
                     <constraint firstItem="vG3-Js-rPa" firstAttribute="leading" secondItem="w46-sO-VU0" secondAttribute="leading" constant="20" id="zCT-qe-1R9"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="420" height="550"/>
+            <size key="customSize" width="420" height="630"/>
             <connections>
                 <outlet property="commitsLabel" destination="a1B-A4-Shg" id="IaF-ff-RXg"/>
                 <outlet property="daysRemainLabel" destination="Ezv-Ym-zR5" id="D1I-cT-20S"/>
-
                 <outlet property="descriptionLabel" destination="Fj0-VQ-QNt" id="S36-Aw-JIO"/>
-                <outlet property="imageView" destination="UNC-ZY-8Mb" id="405-xy-mnq"/>
                 <outlet property="numCommitsLabel" destination="ajQ-YV-RLo" id="KOk-7d-JS7"/>
                 <outlet property="numPercentageBackedLabel" destination="FHM-c0-PVV" id="ZjU-tL-p9l"/>
                 <outlet property="numdaysRemainLabel" destination="58a-HU-p8c" id="F1e-O7-3yE"/>
@@ -151,14 +150,13 @@
                 <outlet property="susuImageView" destination="UNC-ZY-8Mb" id="5jt-t1-qQd"/>
                 <outlet property="tagImageView" destination="vG3-Js-rPa" id="Kgc-lv-ycA"/>
                 <outlet property="tagLabel" destination="Mkg-1t-v9D" id="hG9-R0-Ee7"/>
-
                 <outlet property="titleLabel" destination="jkd-c5-Zh7" id="9jW-F8-pZw"/>
             </connections>
-            <point key="canvasLocation" x="90" y="104"/>
+            <point key="canvasLocation" x="89.855072463768124" y="130.58035714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="google.png" width="18" height="18"/>
+        <image name="globe" catalog="system" width="128" height="121"/>
         <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
