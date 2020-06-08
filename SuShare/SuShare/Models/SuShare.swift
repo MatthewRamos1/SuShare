@@ -40,7 +40,7 @@ struct SuShare {
     
     let userId: String
     
-    // let category: Category
+    let category: Category
     
     let createdDate: String
     
@@ -57,6 +57,7 @@ extension SuShare {
     init(_ dictionary: [String: Any]) {
         self.susuTitle = dictionary["susuTitle"] as? String ?? "No Title"
         self.susuImage = nil
+        self.category = Category(rawValue: dictionary["category"] as? Int ?? 0) ?? Category.furniture
         self.description = dictionary["description"] as? String ?? "No Description"
         self.potAmount = dictionary["potAmount"] as? Double ?? 0.0
         self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0

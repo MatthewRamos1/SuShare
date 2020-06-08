@@ -16,14 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NHj-ua-sKX">
-                                <rect key="frame" x="44" y="134" width="326" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NHj-ua-sKX">
+                                <rect key="frame" x="44" y="126" width="326" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sot-vA-Y9h">
-                                <rect key="frame" x="20" y="237" width="374" height="625"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sot-vA-Y9h">
+                                <rect key="frame" x="20" y="229" width="374" height="633"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZX2-3e-GWY">
                                     <size key="itemSize" width="313" height="286"/>
@@ -43,7 +41,7 @@
                                                     <rect key="frame" x="0.0" y="1" width="313" height="169"/>
                                                     <color key="tintColor" red="0.29313957689999998" green="0.65127474070000002" blue="0.6156913638" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Rd-iV-ciM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Rd-iV-ciM">
                                                     <rect key="frame" x="8" y="179.5" width="297" height="57.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -86,8 +84,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="hQb-tY-vBx">
-                                <rect key="frame" x="20" y="202" width="282" height="27"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="hQb-tY-vBx">
+                                <rect key="frame" x="66" y="194" width="282" height="27"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfC-KV-huR">
                                         <rect key="frame" x="0.0" y="0.0" width="32" height="27"/>
@@ -157,11 +155,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gYz-nj-jVc">
-                                <rect key="frame" x="100" y="96" width="112" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gYz-nj-jVc">
+                                <rect key="frame" x="125" y="96" width="164" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J82-V6-Cck">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Explore">
                                             <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -171,7 +169,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IT-W6-DPS">
-                                        <rect key="frame" x="56" y="0.0" width="56" height="30"/>
+                                        <rect key="frame" x="82" y="0.0" width="82" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                         <state key="normal" title="Friends">
                                             <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -184,6 +182,21 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sot-vA-Y9h" firstAttribute="top" secondItem="hQb-tY-vBx" secondAttribute="bottom" constant="8" id="0PL-O7-dbr"/>
+                            <constraint firstItem="NHj-ua-sKX" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="44" id="14z-qu-VEL"/>
+                            <constraint firstItem="sot-vA-Y9h" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="4FE-O1-Dsm"/>
+                            <constraint firstItem="hQb-tY-vBx" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="66" id="7LV-bK-brB"/>
+                            <constraint firstItem="NHj-ua-sKX" firstAttribute="top" secondItem="gYz-nj-jVc" secondAttribute="bottom" id="8Fo-O4-whI"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="sot-vA-Y9h" secondAttribute="trailing" constant="20" id="ABg-I3-MUN"/>
+                            <constraint firstItem="hQb-tY-vBx" firstAttribute="top" secondItem="NHj-ua-sKX" secondAttribute="bottom" constant="12" id="CtP-9Z-SeV"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="hQb-tY-vBx" secondAttribute="trailing" constant="66" id="DgM-xS-m2r"/>
+                            <constraint firstItem="gYz-nj-jVc" firstAttribute="top" secondItem="auh-yt-3WH" secondAttribute="top" constant="8" id="RzK-Ok-XdK"/>
+                            <constraint firstItem="gYz-nj-jVc" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="125" id="S3f-hf-fuw"/>
+                            <constraint firstItem="sot-vA-Y9h" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="20" id="WPz-se-7Sa"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="gYz-nj-jVc" secondAttribute="trailing" constant="125" id="bZz-2F-Ceb"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="NHj-ua-sKX" secondAttribute="trailing" constant="44" id="wyu-il-oI9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="auh-yt-3WH"/>
                     </view>
                     <navigationItem key="navigationItem" title="SuShare" id="o76-Gu-QoD">
