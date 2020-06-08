@@ -7,17 +7,32 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ExploreViewController: UIViewController {
     
-    @IBAction func exploreSegementedControl(_ sender: UISegmentedControl) {
-    }
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var exploreButton: UIButton!
+    @IBOutlet weak var friendsButton: UIButton!
     
-    var originalSusus = [SuShare]()
-    var currentSusus = [SuShare]()
+    var suShareListener: ListenerRegistration?
+    var boldFont: UIFont?
+    var thinFont: UIFont?
+    var originalSusus = [SuShare]() {
+        didSet {
+            if currentSusus.isEmpty {
+                currentSusus = originalSusus
+            }
+        }
+    }
+    
+    var currentSusus = [SuShare]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     var currentTags = [Int]()
     var currentQuery = "" {
         didSet {
@@ -30,8 +45,57 @@ class ExploreViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBar.delegate = self
+        toggleExplore()
+        boldFont = exploreButton.titleLabel?.font
+        thinFont = friendsButton.titleLabel?.font
+        setSuShareListener()
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        suShareListener?.remove()
+    }
+    
+    private func toggleExplore() {
+        exploreButton.isEnabled = false
+        friendsButton.isEnabled = true
+        exploreButton.underline()
+        
+    }
+    
+    private func setSuShareListener() {
+        suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener( { [weak self] (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error getting favorites", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                let suShareData = snapshot.documents.map { $0.data() }
+                let suShares = suShareData.map { SuShare($0)}
+                self?.originalSusus = suShares
+                
+        }
+    }
+        )
+    }
+    @IBAction func exploreButtonPressed(_ sender: UIButton) {
+        friendsButton.removeLine()
+        exploreButton.titleLabel?.font = boldFont
+        friendsButton.titleLabel?.font = thinFont
+        toggleExplore()
+    }
+    
+    @IBAction func friendsButtonPressed(_ sender: UIButton) {
+        friendsButton.isEnabled.toggle()
+        exploreButton.isEnabled.toggle()
+        exploreButton.titleLabel?.font = thinFont
+        friendsButton.titleLabel?.font = boldFont
+        exploreButton.removeLine()
+        friendsButton.underline()
+    }
+    
+    
     @IBAction func tagButtonPressed(_ sender: UIButton) {
         tagFilter(tag: sender.tag)
     }
@@ -53,13 +117,16 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        currentSusus.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
             fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
         }
+        let suShare = currentSusus[indexPath.row]
+        
+        cell.configureCell(suShare: suShare)
         return cell
         
     }
@@ -81,6 +148,6 @@ extension ExploreViewController: UISearchBarDelegate {
         guard let query = searchBar.text, !query.isEmpty else {
             return
         }
-        currentQuery = query
+        currentSusus = originalSusus.filter { $0.description.contains(query) || $0.susuTitle.contains(query)}
     }
 }
