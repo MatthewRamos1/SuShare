@@ -22,15 +22,24 @@ class CreateSusuViewController: UIViewController {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var paymentLabel: UILabel!
     @IBOutlet weak var numberOfParticipaintLabel: UILabel!
-    
+    @IBOutlet weak var dropDownButton: UIButton!
     
     //  @IBOutlet weak var numberLabel: UILabel!
     
+    
+    @IBOutlet weak var tableviewheight: NSLayoutConstraint!
+    
+    
+    
     // the actual items
+    
     @IBOutlet weak var SusuImage: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var potAmount: UITextField!
+    @IBOutlet weak var categoryOutlet: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var sliderForParticipaints: UISlider!
     @IBOutlet weak var stepperForparticipaints: UIStepper!
     
@@ -41,22 +50,27 @@ class CreateSusuViewController: UIViewController {
     // the default number is 5
     private var amountOfParticipants: Int?
     private var schedule: String?
-    
+    private var categoryList = [   "technology" , "payments" , "travel" , "furniture", "renovations" , "miscellaneous"]
     // will it change when they click it.
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureController()
-       configureSlider()
+    
         
     }
    
     // helper functions
     private func configureController(){
-        // the delegates and the data source
-      
 
+        // tableView configuration
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.isHidden = true
+        tableviewheight.constant = 0
+
+        // Stepper configuration
                stepperForparticipaints.value = 4.0
                stepperForparticipaints.minimumValue = 2.0
                stepperForparticipaints.maximumValue = 10.0
@@ -64,15 +78,42 @@ class CreateSusuViewController: UIViewController {
 
         numberLabel.text = "\(stepperForparticipaints.value)"
  
+        // Slider Configuration
+        sliderForParticipaints.minimumValue = 2.0
+                            sliderForParticipaints.maximumValue = 10.0
+                            sliderForParticipaints.value = 4.0
     }
     
-    func configureSlider(){
-        sliderForParticipaints.minimumValue = 2.0
-                      sliderForParticipaints.maximumValue = 10.0
-                      sliderForParticipaints.value = 4.0
-    }
+    
     
    
+    
+    @IBAction func WhenClickedDropDownButton(_ sender: UIButton) {
+        
+        if tableView.isHidden {
+            animate(toogle: true)
+        } else {
+            animate(toogle: false)
+        }
+        
+    }
+    
+    private func animate(toogle: Bool) {
+       
+     if toogle {
+        UIView.animate(withDuration: 0.5) {
+            self.tableView.isHidden = false
+            self.tableviewheight.constant = 200
+        }
+     } else {
+        UIView.animate(withDuration: 0.5) {
+            self.tableView.isHidden = true
+            self.tableviewheight.constant = 0
+        }
+        }
+    }
+    
+    
     
     @IBAction func participantSlider(_ sender: UISlider) {
         // change the number label
@@ -99,7 +140,6 @@ class CreateSusuViewController: UIViewController {
         sliderForParticipaints?.value = Float(amount)
               stepperForparticipaints?.value = amount
         amountOfParticipants = Int(amount) // need to change it
-         
     }
     
     
@@ -115,9 +155,7 @@ class CreateSusuViewController: UIViewController {
         default :
             print("the alert should show that they didnt pick one. ")
         }
-        
     }
-    
     
     private func addSusu(){
         // call the datasource function here to add this susu
@@ -182,3 +220,27 @@ class CreateSusuViewController: UIViewController {
 
 //extensions...
 
+extension CreateSusuViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return categoryList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
+        
+        //let item = tableView[indexPath.row]
+        
+        cell.textLabel?.text = categoryList[indexPath.row]
+        
+        return cell
+    }
+    
+    
+    
+}
+
+extension CreateSusuViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // how would I get it if multiple things are seleted 
+    }
+}
