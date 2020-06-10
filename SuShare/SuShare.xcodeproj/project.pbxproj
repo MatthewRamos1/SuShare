@@ -44,6 +44,15 @@
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
+		30945CAB2491529600AAB687 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CAA2491529600AAB687 /* Friends.storyboard */; };
+		30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CAC249152B000AAB687 /* UserFriendsViewController.swift */; };
+		30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB1249153F500AAB687 /* SettingsViewController.swift */; };
+		30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB2249153F500AAB687 /* UserSettings.storyboard */; };
+		30945CBA2491553B00AAB687 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB62491553B00AAB687 /* HomeViewController.swift */; };
+		30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB72491553B00AAB687 /* SlideInTransition.swift */; };
+		30945CBC2491553B00AAB687 /* MenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenueViewController.swift */; };
+		30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB92491553B00AAB687 /* SideView.storyboard */; };
+		30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E0E52491442700E6E95D /* GoogleService-Info.plist */; };
 		3E23EC122484B710007C3013 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC112484B710007C3013 /* HeaderView.swift */; };
 		3E23EC142484CA21007C3013 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */; };
 		3E23EC1624892F70007C3013 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */; };
@@ -51,7 +60,6 @@
 		3E23EC1A248ADC90007C3013 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC19248ADC8F007C3013 /* UIButton+Extensions.swift */; };
 		3E23EC1C248ADCA2007C3013 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1B248ADCA2007C3013 /* UILabel+Extensions.swift */; };
 		3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1D248ADCAF007C3013 /* EmptyView.swift */; };
-		3E23EC25248AE05D007C3013 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E23EC24248AE05D007C3013 /* GoogleService-Info.plist */; };
 		3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */; };
 		3E23EC29248B1F7B007C3013 /* DetailAddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */; };
 		3E23EC2B248B1FA2007C3013 /* DetailAddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */; };
@@ -110,6 +118,15 @@
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		30945CAA2491529600AAB687 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
+		30945CAC249152B000AAB687 /* UserFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsViewController.swift; sourceTree = "<group>"; };
+		30945CB1249153F500AAB687 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		30945CB2249153F500AAB687 /* UserSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
+		30945CB62491553B00AAB687 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		30945CB72491553B00AAB687 /* SlideInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
+		30945CB82491553B00AAB687 /* MenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenueViewController.swift; sourceTree = "<group>"; };
+		30945CB92491553B00AAB687 /* SideView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
+		30E4E0E52491442700E6E95D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E23EC112484B710007C3013 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +134,6 @@
 		3E23EC19248ADC8F007C3013 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		3E23EC1B248ADCA2007C3013 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		3E23EC1D248ADCAF007C3013 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		3E23EC24248AE05D007C3013 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendViewController.swift; sourceTree = "<group>"; };
 		3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendView.swift; sourceTree = "<group>"; };
@@ -173,7 +189,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				3E23EC24248AE05D007C3013 /* GoogleService-Info.plist */,
+				30E4E0E52491442700E6E95D /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
 				0CB1DA95247A23BB00713BF5 /* Shaniya */,
@@ -219,6 +235,7 @@
 				0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */,
 				302B3725247E1D2C00FC6E6B /* DesignableView.swift */,
 				0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */,
+				30945CA9249150DE00AAB687 /* SideView */,
 			);
 			path = Jaheed;
 			sourceTree = "<group>";
@@ -281,6 +298,37 @@
 				0CB1DABF247C1BCC00713BF5 /* Comment.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		30945CA9249150DE00AAB687 /* SideView */ = {
+			isa = PBXGroup;
+			children = (
+				30945CB92491553B00AAB687 /* SideView.storyboard */,
+				30945CB62491553B00AAB687 /* HomeViewController.swift */,
+				30945CB82491553B00AAB687 /* MenueViewController.swift */,
+				30945CB72491553B00AAB687 /* SlideInTransition.swift */,
+				30945CAE249152B800AAB687 /* Friends */,
+				30945CB5249154CC00AAB687 /* Settings */,
+			);
+			path = SideView;
+			sourceTree = "<group>";
+		};
+		30945CAE249152B800AAB687 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				30945CAA2491529600AAB687 /* Friends.storyboard */,
+				30945CAC249152B000AAB687 /* UserFriendsViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		30945CB5249154CC00AAB687 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				30945CB2249153F500AAB687 /* UserSettings.storyboard */,
+				30945CB1249153F500AAB687 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		3E23EC1F248ADF01007C3013 /* SupportingFiles */ = {
@@ -400,7 +448,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30945CAB2491529600AAB687 /* Friends.storyboard in Resources */,
 				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
+				30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */,
 				0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */,
 				0CB1DA9D247A24DC00713BF5 /* CreateSusu.storyboard in Resources */,
 				0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */,
@@ -408,7 +458,8 @@
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */,
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
-				3E23EC25248AE05D007C3013 /* GoogleService-Info.plist in Resources */,
+				30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */,
+				30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
 			);
@@ -530,10 +581,14 @@
 				0CB1DAB3247C1A7100713BF5 /* ExploreCell.swift in Sources */,
 				302B3728247E315C00FC6E6B /* StorageService.swift in Sources */,
 				0CB1DAA3247A253300713BF5 /* PersonalView.swift in Sources */,
+				30945CBC2491553B00AAB687 /* MenueViewController.swift in Sources */,
+				30945CBA2491553B00AAB687 /* HomeViewController.swift in Sources */,
 				302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */,
 				3E23EC122484B710007C3013 /* HeaderView.swift in Sources */,
+				30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */,
 				3E23EC1824892FB2007C3013 /* AddFriendView.swift in Sources */,
 				0CB1DA8B247A22DB00713BF5 /* TabController.swift in Sources */,
+				30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */,
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
 				3E23EC2B248B1FA2007C3013 /* DetailAddFriendView.swift in Sources */,
 				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
@@ -544,6 +599,7 @@
 				3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */,
 				302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */,
 				0CB1DAAF247C1A3600713BF5 /* PersonalCell.swift in Sources */,
+				30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
