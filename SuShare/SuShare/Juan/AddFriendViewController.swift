@@ -88,10 +88,9 @@ extension AddFriendViewController: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailAddFriendVC = DetailAddFriendViewController()
-        let user = allUsersSorted[indexPath.row]
-        detailAddFriendVC.user = user
-        navigationController?.pushViewController(detailAddFriendVC, animated: true)
+        let personalVC = PersonalViewController()
+        personalVC.user = allUsersSorted[indexPath.row]
+        navigationController?.pushViewController(personalVC, animated: true)
     }
 }
 

@@ -8,9 +8,14 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import Kingfisher
 
 class PersonalViewController: UIViewController {
+    
+    var user: User?
+    var db = DatabaseService()
+    var profileHeaderView: ProfileHeaderView?
 
     let authSession = AuthenticationSession()
     
@@ -42,6 +47,45 @@ class PersonalViewController: UIViewController {
         suShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
+        configureFriendsButton()
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        print("add friend")
+        guard let currentUser = Auth.auth().currentUser else    {
+            fatalError()
+        }
+        guard let selectedUser = user else  {
+            fatalError()
+        }
+        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("new friend")
+                DispatchQueue.main.async {
+                    self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                    self.profileHeaderView?.addFriendButton.isEnabled = false
+                }
+            }
+        }
+    }
+    
+    func configureFriendsButton()  {
+        guard let selectedUser = user else  {
+            return
+        }
+        
+        db.checkForFriendship(user: selectedUser) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error)
+            case .success:
+                self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                self.profileHeaderView?.addFriendButton.isEnabled = false
+            }
+        }
     }
 
 }
@@ -74,11 +118,31 @@ extension PersonalViewController: UICollectionViewDataSource    {
         
         let section = indexPath.section
         if section == 0 {
-            guard let profileHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeader", for: indexPath) as? ProfileHeaderView   else    {
-                fatalError()
+            profileHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeader", for: indexPath) as? ProfileHeaderView
+            
+            profileHeaderView?.backgroundColor = .white
+            
+            guard let searchedUser = user
+                else    {
+                    guard let currentUser = Auth.auth().currentUser else    {
+                        fatalError()
+                    }
+                    user = User(username: currentUser.displayName ?? "", email: currentUser.email ?? "", userId: currentUser.uid)
+                    guard let verifiedCurrentUser = user    else    {
+                        fatalError()
+                    }
+                    profileHeaderView?.determineUserUI(user: verifiedCurrentUser)
+                    profileHeaderView?.addFriendButton.isHidden = true
+
+                    return profileHeaderView!
             }
-            profileHeaderView.backgroundColor = .white
-            return profileHeaderView
+            
+            // take current user or user from table view to populate ui
+            profileHeaderView?.determineUserUI(user: searchedUser)
+            profileHeaderView?.addFriendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+            
+            return profileHeaderView!
+            
         }   else  {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? HeaderView   else    {
                 fatalError()

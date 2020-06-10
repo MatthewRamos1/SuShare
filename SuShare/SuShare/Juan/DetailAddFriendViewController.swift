@@ -28,16 +28,13 @@ class DetailAddFriendViewController: UIViewController {
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
-        
         print("add friend")
         guard let currentUser = Auth.auth().currentUser else    {
             fatalError()
         }
-        
         guard let selectedUser = user else  {
             fatalError()
         }
-        
         db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId) { (result) in
             switch result   {
             case .failure(let error):
@@ -49,10 +46,7 @@ class DetailAddFriendViewController: UIViewController {
                     self.detailAddFriendView.addFriendButton.isEnabled = false
                 }
             }
-            
         }
-        
-        // conditions for already friend missing
     }
     
     func configureUI()  {
