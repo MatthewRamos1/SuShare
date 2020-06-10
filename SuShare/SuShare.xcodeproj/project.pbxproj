@@ -39,10 +39,11 @@
 		0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAC5247C1C8A00713BF5 /* AuthenticationSession.swift */; };
 		0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */; };
 		21E6711AEBCFA58A73D4D1A9 /* Pods_SuShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B590E058777444C01A78528 /* Pods_SuShare.framework */; };
-		300F67B9247C55D90081DD3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 300F67B8247C55D80081DD3B /* GoogleService-Info.plist */; };
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
+		553FA9C22481A64100E14306 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 553FA9C12481A64100E14306 /* GoogleService-Info.plist */; };
+		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,11 +94,12 @@
 		0CB1DAC3247C1C1500713BF5 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		0CB1DAC5247C1C8A00713BF5 /* AuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSession.swift; sourceTree = "<group>"; };
 		0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		300F67B8247C55D80081DD3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
+		553FA9C12481A64100E14306 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
 		D089DF1BC033B820349FB779 /* Pods-SuShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.debug.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,7 +154,7 @@
 				0C57A7E12475B1EE00DF437B /* Assets.xcassets */,
 				0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				300F67B8247C55D80081DD3B /* GoogleService-Info.plist */,
+				553FA9C12481A64100E14306 /* GoogleService-Info.plist */,
 				0CB1DA8A247A22DB00713BF5 /* TabController.swift */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
@@ -224,6 +226,7 @@
 		0CB1DABE247C1B2B00713BF5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */,
 				0CB1DAC1247C1BF000713BF5 /* UIViewController + Alerts.swift */,
 				0CB1DAC3247C1C1500713BF5 /* UIImage + Extensions.swift */,
 				0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */,
@@ -363,7 +366,7 @@
 				0CB1DAB5247C1A8900713BF5 /* LoginView.storyboard in Resources */,
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
-				300F67B9247C55D90081DD3B /* GoogleService-Info.plist in Resources */,
+				553FA9C22481A64100E14306 /* GoogleService-Info.plist in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
 			);
@@ -466,6 +469,7 @@
 			files = (
 				0CB1DAB9247C1AF300713BF5 /* SuShare.swift in Sources */,
 				0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */,
+				554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */,
 				0CB1DAC4247C1C1500713BF5 /* UIImage + Extensions.swift in Sources */,
 				0CB1DAB7247C1ACF00713BF5 /* LoginViewController.swift in Sources */,
 				0CB1DA9B247A24B200713BF5 /* HighlightsViewController.swift in Sources */,
