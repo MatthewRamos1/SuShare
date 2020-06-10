@@ -83,7 +83,13 @@ class CreateSusuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerKeyboardNotifications()
         configureController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        unregisterKeyboardNotifcation()
     }
     
     // MARK: helper functions
@@ -91,8 +97,11 @@ class CreateSusuViewController: UIViewController {
     private func configureController(){
         // image picker configuration
         showingAllCategories = false // should show users categories, which at this point should be empty
+        
+        // for the image
         SusuImage.isUserInteractionEnabled = true
         SusuImage.addGestureRecognizer(longPressGesture)
+        
         // tableView configuration
         tableView.dataSource = self
         tableView.delegate = self
@@ -104,7 +113,6 @@ class CreateSusuViewController: UIViewController {
         stepperForparticipaints.minimumValue = 2.0
         stepperForparticipaints.maximumValue = 10.0
         stepperForparticipaints.stepValue = 1
-        
         numberLabel.text = "\(stepperForparticipaints.value)"
         
         // Slider Configuration
@@ -141,9 +149,7 @@ class CreateSusuViewController: UIViewController {
     
     @IBAction func WhenClickedDropDownButton(_ sender: UIButton) {
         // toggle to see more categories
-        if  showingAllCategories! { // when it is false it should toggle and change it to true
-            
-//            if tableView.isHidden  {
+        if  showingAllCategories! {
             animate(toogle: false) // show tableview
 //            } else {
 //                animate(toogle: false)
@@ -171,11 +177,13 @@ class CreateSusuViewController: UIViewController {
             UIView.animate(withDuration: 0.5) {
                 self.tableView.isHidden = false // showing collection view
                 self.showingAllCategories = true
+                self.tableView.reloadData()
                self.tableviewheight.constant = 200 // need this
             }
         } else { // when they click the button a second time, it should show the users selected categories
             UIView.animate(withDuration: 0.5) {
              //   self.tableView.isHidden = true // hide the collect
+                self.tableView.reloadData()
                 self.showingAllCategories = false // only the users categories
                 //self.tableviewheight.constant = 0
             }
@@ -226,6 +234,45 @@ class CreateSusuViewController: UIViewController {
         }
     }
     
+    private func registerKeyboardNotifications(){
+          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+          
+          NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+      }
+      
+      private func unregisterKeyboardNotifcation(){
+          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+      }
+      
+      @objc
+      private func keyboardWillShow(_ notification: Notification){
+          // get info through a dictionary...
+          // when the keyboard is on screen we wanna adjust the constraints
+        //  print(notification.userInfo ?? "")// all the keys from the user info...
+          // print this and then look in the console log and you should see UIKeyboardBoundsUserInfoKey
+          guard let keyboardFrame = notification.userInfo?["UIKeyboardBoundsUserInfoKey"] as? CGRect
+              else {
+                  // casting it as a CGRect...
+              return
+          }
+          // adjust container bottom constraint
+        //  containerBottomConstraint.constant = (keyboardFrame.height - view.safeAreaInsets.bottom)
+          //want the text field to key the height that we input..
+      }
+      
+      @objc
+      private func keyboardWillHide(_ notification: Notification){
+          dismissKeyboard()
+      }
+      
+      @objc private func dismissKeyboard() {
+        //  containerBottomConstraint.constant = originalValueForConstraint
+         // commentTextField.resignFirstResponder()
+        titleTextField.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
+        potAmount.resignFirstResponder()
+      }
 // should I do a function to convert the added string values into their corresponding categories
      
     
@@ -269,9 +316,7 @@ class CreateSusuViewController: UIViewController {
         // categories can be empty or left nil so that is okay.
         let resizeImage = UIImage.resizeImage(originalImage: selectedImage, rect: SusuImage.bounds)
     
-    /*
-        db.createASusu(sushare: SuShare(securityState: type, susuTitle: susuTitle, susuImage: resizeImage, description: description, potAmount: num, numOfParticipants: amountOfParticipants!, paymentSchedule: paymentSchedule, userId: "nil", category: [Category(rawValue: selectedCategories.first ?? 0)!
-            ], createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: type, susuTitle: susuTitle, susuImage: resizeImage, description: description, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedCategories, createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
@@ -285,7 +330,7 @@ class CreateSusuViewController: UIViewController {
                 
             }
         })
- */
+ 
         
     }
     
@@ -340,7 +385,9 @@ class CreateSusuViewController: UIViewController {
     // Actions
     @IBAction func addSusu(_ sender: UIButton) {
         print("button has been pressed")
+         dismissKeyboard()
         addSusu()
+       
         // dismiss controller
         print("function done")
     }
@@ -362,7 +409,15 @@ extension CreateSusuViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)  as UITableViewCell
+        
+//        let categoryIndex = Category.allCases[indexPath.row]
+//        //fromRaw(indexPath.row) {
+//        cell.textLabel!.text = categoryIndex.categoryName()
+//              //  cell.imageView.image = categoryIndex.minionImage()
+//
+//        return cell
+
         
         //let item = tableView[indexPath.row]
         if showingAllCategories! == false{ // if it is false then im showing based on users categories
@@ -371,7 +426,7 @@ extension CreateSusuViewController: UITableViewDataSource {
         } else {
             // when it should show the category list
             
-            let section = Category.allCases[indexPath.section]
+            let section = Category.allCases[indexPath.row]
                    switch section {
                        
                    case .technology:
