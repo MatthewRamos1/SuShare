@@ -35,9 +35,14 @@ enum Category: Int, CaseIterable {
            if let categoryName = Category.categoryNames[self] {
                return categoryName
            } else {
-               return "Minion"
+               return "Minion inside of category enum"
            }
        }
+    
+    // how to make it return the category num
+//    func categoryNum() -> Int {
+//        return UIImage(named: "Minion\(minionName())")
+//    }
         
 }
 
