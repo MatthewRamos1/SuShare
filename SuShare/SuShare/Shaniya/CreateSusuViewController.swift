@@ -248,14 +248,16 @@ class CreateSusuViewController: UIViewController {
         
         
         amountOfParticipants = Int(amount)
-                numberOfParticipaintLabel.text = String(format: "%0.f", Int(amount))
+             
+        //numberOfParticipaintLabel.text = String(format: "%0.f", Int(amount))
         // numberLabel.text = "\(amount)"
         // sampleSizeLabel.text = "The size is now\(sender.value)"
         
        // sender.setValue(sender.value.rounded(.down), animated: true)
           // print(sender.value)
          //String(format: "%0.f", sliderControl.value)
-      //  numberLabel.text = String(format: "%0.f", sliderForParticipaints.value)
+        print(amount)
+        numberLabel.text = String(format: "%0.f", amount)
     }
     
     
@@ -268,7 +270,7 @@ class CreateSusuViewController: UIViewController {
         sliderForParticipaints?.value = Float(amount)
         stepperForparticipaints?.value = amount
         amountOfParticipants = Int(amount) // need to change it
-         numberOfParticipaintLabel.text = String(format: "%0.f", Int(amount))
+         numberOfParticipaintLabel.text = String(format: "%0.f", amount)
     }
     
     
