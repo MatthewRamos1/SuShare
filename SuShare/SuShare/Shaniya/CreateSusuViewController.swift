@@ -275,13 +275,16 @@ class CreateSusuViewController: UIViewController {
     
     
     @IBAction func paymentSchedule(_ sender: UIButton) {
-        
+        // TODO: make it so that the user can only click on one button
         switch sender.restorationIdentifier {
         case "weekly":
+            sender.backgroundColor = .systemGray
             schedule = sender.restorationIdentifier
         case "bi-weekly":
+            sender.backgroundColor = .systemGray
             schedule = sender.restorationIdentifier
         case "monthly":
+            sender.backgroundColor = .systemGray
             schedule = sender.restorationIdentifier
         default :
             print("the alert should show that they didnt pick one. ")
@@ -359,8 +362,8 @@ class CreateSusuViewController: UIViewController {
             let selectedImage = selectedImage,
             let securitySetting = isItPrivate
                     else {
-                //TODO
-                 showAlert(title: "Missing Fields", message: "All fields are required, along with a photo")
+                //TODO: if possible add in a alert(custom) to show user what field is missing
+                        showAlert(title: "Missing Fields", message: "All fields are required, ")
                // print("error ")
                 return
                 
@@ -370,7 +373,7 @@ class CreateSusuViewController: UIViewController {
         let resizeImage = UIImage.resizeImage(originalImage: selectedImage, rect: SusuImage.bounds)
 
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
-        db.createASusu(sushare: SuShare(securityState: securitySetting, susuTitle: susuTitle, susuImage: resizeImage, description: description, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedCategories, createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, description: description, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedCategories, createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in

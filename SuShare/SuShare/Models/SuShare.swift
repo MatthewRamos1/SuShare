@@ -47,7 +47,7 @@ enum Category: Int, CaseIterable {
 }
 
 struct SuShare{
-    let securityState: Security
+    let securityState: String
     let susuTitle: String
     let susuImage: UIImage
     let description: String
