@@ -106,6 +106,7 @@ class CreateSusuViewController: UIViewController {
         super.viewDidLoad()
        // registerKeyboardNotifications()
         configureController()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -117,7 +118,7 @@ class CreateSusuViewController: UIViewController {
         // configure all the elements
     private func configureController(){
         
-        hideKeyboard() 
+        hideKeyboard()
         
         // image picker configuration
         showingAllCategories = false // should show users categories, which at this point should be empty
@@ -134,7 +135,8 @@ class CreateSusuViewController: UIViewController {
         // tableView configuration
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.isHidden = true
+        //tableView.isHidden = true
+        tableView.tableFooterView = UIView() 
         tableviewheight.constant = 0
         
         // Stepper configuration
@@ -208,6 +210,7 @@ class CreateSusuViewController: UIViewController {
                 self.tableView.isHidden = false // showing collection view
                 self.showingAllCategories = true
                self.tableviewheight.constant = 200 // need this
+                // MARK: adjust the height of tableView based on amount cells
             }
         } else { // when they click the button a second time, it should show the users selected categories
             UIView.animate(withDuration: 0.5) {
@@ -277,6 +280,9 @@ class CreateSusuViewController: UIViewController {
     
     @IBAction func paymentSchedule(_ sender: UIButton) {
         // TODO: make it so that the user can only click on one button
+        
+        // TOGGLE the buttons for on and off
+        
         switch sender.restorationIdentifier {
         case "weekly":
             sender.backgroundColor = .systemGray
@@ -367,14 +373,14 @@ class CreateSusuViewController: UIViewController {
                         showAlert(title: "Missing Fields", message: "All fields are required, ")
                // print("error ")
                 return
-                
         }
-        
         // categories can be empty or left nil so that is okay.
         let resizeImage = UIImage.resizeImage(originalImage: selectedImage, rect: SusuImage.bounds)
 
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, description: description, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedCategories, createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
+        let selectedIntValue = selectedCategories.map { $0.rawValue }
+        
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
@@ -385,11 +391,8 @@ class CreateSusuViewController: UIViewController {
                 print("it was successfully added\(docId)")
                 // need to do storage services for to add image by docId.
                 self.uploadPhoto(photo: resizeImage, documentId: docId)
-                
             }
         })
- 
-        
     }
     
     private func uploadPhoto(photo: UIImage, documentId: String){
@@ -403,16 +406,12 @@ class CreateSusuViewController: UIViewController {
                 self.updateItemURL(url, documentId: documentId)
             }
         }
-        
-        
     }
-    
     
     private func updateItemURL(_ url: URL, documentId: String){
         // update an exisiting doc on firebase
         Firestore.firestore().collection(DatabaseService.suShareCollection).document(documentId).updateData(["imageURL": url.absoluteString]) { [weak self]
             // firebase only accepts a string
-            //
             (error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -429,16 +428,6 @@ class CreateSusuViewController: UIViewController {
             }
         }
     }
-    
-    // the slider action
-    
-    
-    // the stepper action
-    
-    
-    
-    
-    
     
     // Actions
     @IBAction func addSusu(_ sender: UIButton) {
@@ -482,18 +471,10 @@ extension CreateSusuViewController: UITableViewDataSource {
         //let item = tableView[indexPath.row]
         if showingAllCategories! == false{ // if it is false then im showing based on users categories
          //  let selected = selectedCategories[indexPath.row]
-            
-            
-            
-            for category in selectedCategories {
-                let selected = category.categoryName()
-                  cell.textLabel?.text = selected
-                // filter the same array
                 
-              //  let newCell =  categoryList.filter(selectedCategories)
+                let newCell =  selectedCategories[indexPath.row]
+                cell.textLabel?.text = newCell.categoryName()
 
-            }
-          
             return cell
         } else {
             // when it should show the category list
@@ -508,12 +489,8 @@ extension CreateSusuViewController: UITableViewDataSource {
         }
 //        cell.tag = currentTag
 //        currentTag += 1
-        
        
     }
-    
-  
-    
     
 }
 
@@ -532,24 +509,24 @@ extension CreateSusuViewController: UITableViewDelegate{
         
         // TODO - guard against adding multiple inside of array
         
-        for item in selectedCategories {
-            print("selectedCategory has ")
-            print(selectedCategories.count)
         
-                if selectedCategories.contains(item) {
+        let item = Category.allCases[indexPath.row]
+        
+        if !selectedCategories.contains(item) {
+            selectedCategories.append(item)
                     print("alert that this category is being removed from the suShare")
-                    selectedCategories.firstIndex(of: item)
+                   
                     print("\(item) was removed")
-                    
-                }
-             else {
-                selectedCategories.append(Category(rawValue: indexPath.row)!)
-            }
-            print("selectedCategory final count is ")
-            print(selectedCategories.count)
-            print("this is the one printed: \(Category(rawValue: indexPath.row)!)")
-                   print("the is only the index path: \(indexPath.row)")
-        }
+                } else {
+                    if let index = selectedCategories.firstIndex(of: item) {
+                        selectedCategories.remove(at: index)
+                    }
+           }
+//            print("selectedCategory final count is ")
+//            print(selectedCategories.count)
+//            print("this is the one printed: \(Category(rawValue: indexPath.row)!)")
+//                   print("the is only the index path: \(indexPath.row)")
+        
         
     //    selectedCategories.append(Category(rawValue: indexPath.row)!)
        
