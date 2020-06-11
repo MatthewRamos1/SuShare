@@ -39,10 +39,10 @@ enum Category: Int, CaseIterable {
            }
        }
     
-    // how to make it return the category num
-//    func categoryNum() -> Int {
-//        return UIImage(named: "Minion\(minionName())")
-//    }
+    static func getCategoriesRawValue() -> [Int] {
+        Category.allCases.map { $0.rawValue }
+      }
+    
         
 }
 
@@ -59,7 +59,7 @@ struct SuShare{
     
     let userId: String
     
-    let category: [Category]
+    let category: [Int]
     
     let createdDate: String
     
