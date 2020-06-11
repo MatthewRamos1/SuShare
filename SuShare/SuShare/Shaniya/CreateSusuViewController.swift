@@ -117,6 +117,7 @@ class CreateSusuViewController: UIViewController {
         // configure all the elements
     private func configureController(){
         
+        hideKeyboard() 
         
         // image picker configuration
         showingAllCategories = false // should show users categories, which at this point should be empty
@@ -592,5 +593,17 @@ extension CreateSusuViewController: UIImagePickerControllerDelegate, UINavigatio
         selectedImage = image
         // want it to dismiss once its finished
         dismiss(animated: true)
+    }
+}
+
+extension UIViewController {
+    func hideKeyboard() {
+        let tap: UIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
 }
