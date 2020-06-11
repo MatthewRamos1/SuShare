@@ -8,10 +8,15 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import Kingfisher
 
 class PersonalViewController: UIViewController {
-
+    
+    var user: User?
+    var db = DatabaseService()
+    var profileHeaderView: ProfileHeaderView?
+    
     let authSession = AuthenticationSession()
     
     let personalView = PersonalView()
@@ -38,12 +43,52 @@ class PersonalViewController: UIViewController {
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
-        personalView.personalCollectionView.register(PersonalCell.self, forCellWithReuseIdentifier: "personalCell")
+        //personalView.personalCollectionView.register(PersonalCell.self, forCellWithReuseIdentifier: "personalCell")
+        personalView.personalCollectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
         suShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
+        configureFriendsButton()
     }
-
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        print("add friend")
+        guard let currentUser = Auth.auth().currentUser else    {
+            fatalError()
+        }
+        guard let selectedUser = user else  {
+            fatalError()
+        }
+        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("new friend")
+                DispatchQueue.main.async {
+                    self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                    self.profileHeaderView?.addFriendButton.isEnabled = false
+                }
+            }
+        }
+    }
+    
+    func configureFriendsButton()  {
+        guard let selectedUser = user else  {
+            return
+        }
+        
+        db.checkForFriendship(user: selectedUser) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error)
+            case .success:
+                self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                self.profileHeaderView?.addFriendButton.isEnabled = false
+            }
+        }
+    }
+    
 }
 
 extension PersonalViewController: UICollectionViewDataSource    {
@@ -60,13 +105,21 @@ extension PersonalViewController: UICollectionViewDataSource    {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "personalCell", for: indexPath) as? PersonalCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "highlightsCell", for: indexPath) as? HighlightsCell else {
             fatalError()
         }
+        
         // configure cell
-        cell.backgroundColor = .systemBackground
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 1
+        //cell.backgroundColor = .systemBackground
+        cell.layer.borderColor = UIColor.systemGray6.cgColor
+        cell.layer.cornerRadius = 5.0
+        cell.layer.borderWidth = 0.0
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.layer.shadowRadius = 5.0
+        cell.layer.shadowOpacity = 0.3
+        cell.layer.masksToBounds = false
+        //cell.layer.borderWidth = 1
         return cell
     }
     
@@ -74,11 +127,31 @@ extension PersonalViewController: UICollectionViewDataSource    {
         
         let section = indexPath.section
         if section == 0 {
-            guard let profileHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeader", for: indexPath) as? ProfileHeaderView   else    {
-                fatalError()
+            profileHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeader", for: indexPath) as? ProfileHeaderView
+            
+            profileHeaderView?.backgroundColor = .white
+            
+            guard let searchedUser = user
+                else    {
+                    guard let currentUser = Auth.auth().currentUser else    {
+                        fatalError()
+                    }
+                    user = User(username: currentUser.displayName ?? "", email: currentUser.email ?? "", userId: currentUser.uid)
+                    guard let verifiedCurrentUser = user    else    {
+                        fatalError()
+                    }
+                    profileHeaderView?.determineUserUI(user: verifiedCurrentUser)
+                    profileHeaderView?.addFriendButton.isHidden = true
+                    
+                    return profileHeaderView!
             }
-            profileHeaderView.backgroundColor = .white
-            return profileHeaderView
+            
+            // take current user or user from table view to populate ui
+            profileHeaderView?.determineUserUI(user: searchedUser)
+            profileHeaderView?.addFriendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+            
+            return profileHeaderView!
+            
         }   else  {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? HeaderView   else    {
                 fatalError()
@@ -102,15 +175,20 @@ extension PersonalViewController: UICollectionViewDataSource    {
 extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.84
-        let itemHeight: CGFloat = maxSize.height * 0.5
+        let height = UIScreen.main.bounds.size.height / 3
+        let width =
+            UIScreen.main.bounds.size.width * 0.84
+        return CGSize(width: width, height: height * 2)
+//        let maxSize: CGSize = UIScreen.main.bounds.size
+//        let itemWidth: CGFloat = maxSize.width * 0.84
+//        let itemHeight: CGFloat = maxSize.height * 0.3
+//
+//        return CGSize(width: itemWidth, height: itemHeight)
         
-        return CGSize(width: itemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

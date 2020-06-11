@@ -32,21 +32,21 @@ class DetailAddFriendViewController: UIViewController {
         guard let currentUser = Auth.auth().currentUser else    {
             fatalError()
         }
-        
         guard let selectedUser = user else  {
             fatalError()
         }
-        
         db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId) { (result) in
             switch result   {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success:
                 print("new friend")
+                DispatchQueue.main.async {
+                    self.detailAddFriendView.addFriendButton.setTitle("friends", for: .normal)
+                    self.detailAddFriendView.addFriendButton.isEnabled = false
+                }
             }
         }
-        
-        // conditions for already friend missing
     }
     
     func configureUI()  {
@@ -55,6 +55,16 @@ class DetailAddFriendViewController: UIViewController {
         }
         detailAddFriendView.usernameLabel.text = selectedUser.username
         detailAddFriendView.emailLabel.text = selectedUser.email
+        
+        db.checkForFriendship(user: selectedUser) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error)
+            case .success:
+                self.detailAddFriendView.addFriendButton.setTitle("friends", for: .normal)
+                self.detailAddFriendView.addFriendButton.isEnabled = false
+            }
+        }
     }
 
 }

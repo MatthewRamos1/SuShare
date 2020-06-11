@@ -19,53 +19,28 @@ class ProfileHeaderView: UICollectionReusableView  {
         profilePictureImageView.layer.borderColor = UIColor.black.cgColor
     }
     
-//    public func setupProfileUI()  {
-//        guard let currentUser = Auth.auth().currentUser else    {
-//            fatalError("No Current User")
-//        }
-//
-//        if let currentUserDisplayName = currentUser.displayName, let currentUserProfilePhotoURL = currentUser.photoURL {
-//            usernameLabel.text = currentUserDisplayName
-//            profilePictureImageView.kf.setImage(with: currentUserProfilePhotoURL)
-//        }   else    {
-//            usernameLabel.text = currentUser.email
-//            profilePictureImageView.image = UIImage(systemName: "person.fill")
-//        }
-//    }
+    public func determineUserUI(user: User)  {
+        usernameLabel.text = user.username
+    }
     
     public lazy var profilePictureImageView: UIImageView =  {
-        guard let currentUser = Auth.auth().currentUser else    {
-            fatalError("No Current User")
-        }
-        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: (UIScreen.main.bounds.size.height * 0.085), height: (UIScreen.main.bounds.size.height * 0.085)))
-        
-        if let currentUserProfilePhotoURL = currentUser.photoURL {
-            imageView.kf.setImage(with: currentUserProfilePhotoURL)
-        }   else    {
             imageView.image = UIImage(systemName: "person.fill")
-        }
-        
         imageView.backgroundColor = .systemTeal
         imageView.layoutSubviews()
         return imageView
     }()
     
     public lazy var usernameLabel: UILabel =   {
-        guard let currentUser = Auth.auth().currentUser else    {
-            fatalError("No Current User")
-        }
-        
         let label = UILabel()
-        
-        if let currentUserDisplayName = currentUser.displayName {
-            label.text = currentUserDisplayName
-        }   else    {
-            label.text = currentUser.email
-        }
-        
         label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
+    }()
+    
+    public lazy var addFriendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Add Friend", for: .normal)
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -81,6 +56,7 @@ class ProfileHeaderView: UICollectionReusableView  {
     private func commonInit()   {
         setupProfilePictureImageViewConstraints()
         setupUsernameLabelConstraints()
+        setupAddFriendButtonConstraints()
     }
     
     private func setupProfilePictureImageViewConstraints() {
@@ -98,6 +74,14 @@ class ProfileHeaderView: UICollectionReusableView  {
         usernameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(profilePictureImageView.snp.right).offset(11)
             make.centerY.equalTo(profilePictureImageView.snp.centerY)
+        }
+    }
+    
+    private func setupAddFriendButtonConstraints()  {
+        addSubview(addFriendButton)
+        addFriendButton.snp.makeConstraints { (make) in
+            make.top.equalTo(usernameLabel.snp.bottom).offset(8)
+            make.left.equalTo(profilePictureImageView.snp.right).offset(11)
         }
     }
     

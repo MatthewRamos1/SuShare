@@ -90,6 +90,21 @@ class DatabaseService{
         }
     }
     
+    public func checkForFriendship(user: User, completion: @escaping (Result<Bool, Error>) -> ())    {
+        db.collection(DatabaseService.friendsCollection).whereField("friend", isEqualTo: user.userId).getDocuments { (snapshot, error) in
+            if let error = error    {
+                completion(.failure(error))
+            }
+            else    {
+                if let snapshot = snapshot  {
+                    if snapshot.count > 0   {
+                        completion(.success(true))
+                    }
+                }
+            }
+        }
+    }
+    
     func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         

@@ -38,7 +38,7 @@ class TabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [exploreViewController, UINavigationController(rootViewController: personalViewController), AddFriendViewController()]
+        viewControllers = [exploreViewController, UINavigationController(rootViewController: personalViewController), UINavigationController(rootViewController: AddFriendViewController())]
     }
     
 }
