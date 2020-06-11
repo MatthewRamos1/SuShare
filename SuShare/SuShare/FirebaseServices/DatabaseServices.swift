@@ -34,14 +34,16 @@ class DatabaseService{
             print("docRef is \(docRef)")
         
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
+            "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
+            "susuImage": sushare.susuImage,
             "description": sushare.description,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
             "paymentSchedule": sushare.paymentSchedule,
             "userId": user.uid,
             "createdDate": Timestamp(date: Date()),
-            "category": [sushare.category.first!.rawValue],
+            "category": sushare.category,
             "iD": docRef.documentID
         
         ]) { (error) in

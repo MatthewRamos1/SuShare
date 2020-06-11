@@ -33,8 +33,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pot Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PT1-Mi-nfg">
-                                                <rect key="frame" x="20" y="653" width="99" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pot Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PT1-Mi-nfg">
+                                                <rect key="frame" x="20" y="653" width="194" height="21"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -116,6 +116,9 @@
                                                 <rect key="frame" x="182.5" y="1140" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="thumbTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <connections>
+                                                    <action selector="PrivacySwitch:" destination="76s-yQ-bmx" eventType="valueChanged" id="Lgi-R8-x5H"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cs-dI-8uY">
                                                 <rect key="frame" x="197" y="1117" width="0.0" height="0.0"/>
@@ -125,12 +128,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number Of Participaints" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wR-lb-RMY">
-                                                <rect key="frame" x="20" y="1221" width="224" height="21"/>
+                                                <rect key="frame" x="20" y="1221" width="294" height="21"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Setting: Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCn-HI-hy1">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Setting: OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCn-HI-hy1">
                                                 <rect key="frame" x="20" y="1099" width="274" height="21"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
@@ -227,7 +230,7 @@
                                             <constraint firstItem="Fed-ey-TAV" firstAttribute="top" secondItem="rWx-Bh-1Ol" secondAttribute="bottom" constant="15" id="Hav-Mv-sFX"/>
                                             <constraint firstItem="aR3-cp-r9U" firstAttribute="top" secondItem="0nv-yh-mjh" secondAttribute="bottom" constant="50" id="KxV-Tr-eQm"/>
                                             <constraint firstItem="Cpl-qa-JHn" firstAttribute="top" secondItem="TQa-ng-ebV" secondAttribute="bottom" constant="20" id="Oak-Hq-T5U"/>
-                                            <constraint firstAttribute="trailing" secondItem="PT1-Mi-nfg" secondAttribute="trailing" constant="295" id="PjP-2r-SfU"/>
+                                            <constraint firstAttribute="trailing" secondItem="PT1-Mi-nfg" secondAttribute="trailing" constant="200" id="PjP-2r-SfU"/>
                                             <constraint firstItem="rWx-Bh-1Ol" firstAttribute="top" secondItem="JmL-Zi-JHN" secondAttribute="bottom" constant="50" id="Qng-SP-20M"/>
                                             <constraint firstItem="6Ma-JM-lUd" firstAttribute="leading" secondItem="d6f-cf-Tda" secondAttribute="leading" constant="100" id="SPO-ul-m9F"/>
                                             <constraint firstItem="d6C-QB-4fq" firstAttribute="leading" secondItem="d6f-cf-Tda" secondAttribute="leading" constant="100" id="Sbj-5k-Cec"/>
@@ -248,7 +251,7 @@
                                             <constraint firstAttribute="bottom" secondItem="d6C-QB-4fq" secondAttribute="bottom" constant="65.5" id="dtx-87-CTf"/>
                                             <constraint firstItem="FgP-DT-gur" firstAttribute="top" secondItem="6Ma-JM-lUd" secondAttribute="bottom" constant="20" id="fhZ-eA-mu7"/>
                                             <constraint firstItem="Hid-wz-sZ2" firstAttribute="leading" secondItem="d6f-cf-Tda" secondAttribute="leading" constant="81" id="gHL-0M-EKr"/>
-                                            <constraint firstAttribute="trailing" secondItem="3wR-lb-RMY" secondAttribute="trailing" constant="170" id="gru-Hz-Nqc"/>
+                                            <constraint firstAttribute="trailing" secondItem="3wR-lb-RMY" secondAttribute="trailing" constant="100" id="gru-Hz-Nqc"/>
                                             <constraint firstAttribute="trailing" secondItem="3st-5n-JCp" secondAttribute="trailing" constant="290" id="iRh-Yv-ELH"/>
                                             <constraint firstItem="Ttr-Zd-LBZ" firstAttribute="top" secondItem="d6f-cf-Tda" secondAttribute="top" constant="8" id="jJq-QB-l9o"/>
                                             <constraint firstAttribute="trailing" secondItem="aR3-cp-r9U" secondAttribute="trailing" constant="131" id="jhr-hs-o6s"/>
@@ -299,13 +302,18 @@
                     </view>
                     <size key="freeformSize" width="414" height="1800"/>
                     <connections>
+                        <outlet property="PrivacySettingsLabel" destination="XCn-HI-hy1" id="Qyj-ZF-N9a"/>
                         <outlet property="SusuImage" destination="JmL-Zi-JHN" id="iLa-3s-o74"/>
+                        <outlet property="bottomContraintForDescription" destination="cbh-vg-ORm" id="acA-t8-49r"/>
+                        <outlet property="bottomContraintForPotAmount" destination="KxV-Tr-eQm" id="jHU-wS-B9M"/>
+                        <outlet property="bottomContraintForTitle" destination="HEc-Qe-nf2" id="lTe-57-h3T"/>
+                        <outlet property="categoryLabel" destination="aR3-cp-r9U" id="f55-tt-PC2"/>
                         <outlet property="categoryOutlet" destination="9w0-X3-57V" id="3gd-6H-gqn"/>
                         <outlet property="descriptionLabel" destination="3st-5n-JCp" id="YLI-ku-Ndt"/>
                         <outlet property="descriptionTextView" destination="RWx-tN-aol" id="QTT-gz-VUc"/>
                         <outlet property="dropDownButton" destination="9w0-X3-57V" id="2u0-k8-URW"/>
                         <outlet property="numberLabel" destination="ynX-q5-RdV" id="rld-1H-yqN"/>
-                        <outlet property="numberOfParticipaintLabel" destination="aR3-cp-r9U" id="IsW-kP-GFg"/>
+                        <outlet property="numberOfParticipaintLabel" destination="ynX-q5-RdV" id="uwn-gA-abR"/>
                         <outlet property="paymentLabel" destination="TQa-ng-ebV" id="ssL-jr-an9"/>
                         <outlet property="potAmount" destination="0nv-yh-mjh" id="J3t-Y3-Lzi"/>
                         <outlet property="potLabel" destination="PT1-Mi-nfg" id="EWf-NN-NBn"/>
