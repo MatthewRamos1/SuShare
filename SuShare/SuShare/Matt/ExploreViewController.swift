@@ -23,9 +23,11 @@ class ExploreViewController: UIViewController {
     
     //------------------------
     //Jaheed
+    var sideMenuOpen = false
     let transiton = SlideInTransition()
     var topView: UIView?
     var didTapMenuType: ((MenuType) -> Void)?
+    var gesture = UITapGestureRecognizer()
     //------------------------
     
     var originalSusus = [SuShare]() {
@@ -58,31 +60,48 @@ class ExploreViewController: UIViewController {
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
+        //------------------------
+        // JAHEED
+        
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
+//        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
+        
+        
+        //------------------------
+        
     }
     
+    //---------------------------------------------------------------------------------------------------------
+    // JAHEED
     @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
         guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController else{return}
         menuViewController.didTapMenuType = { menuType in
             self.transitionToNew(menuType)
         }
-
+        
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
+        
     }
     
-    func transitionToNew(_ menuType: MenuType) {
+    
+   
+     func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
         self.title = title
-
+        
         topView?.removeFromSuperview()
         switch menuType {
         case .username:
-            let view = UIView()
-            view.backgroundColor = .systemYellow
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
-            self.topView = view
+//            let view = UIView()
+//            view.backgroundColor = .systemYellow
+//            view.frame = self.view.bounds
+//            self.view.addSubview(view)
+            //UIViewController.showVC(viewcontroller: PersonalViewController())
+            //self.topView = view
+            break
         case .friends:
             let view = UIView()
             view.backgroundColor = .systemBlue
@@ -90,15 +109,25 @@ class ExploreViewController: UIViewController {
             self.view.addSubview(view)
             self.topView = view
         case .search:
-            let view = UIView()
-            view.backgroundColor = .systemPurple
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
-            self.topView = view
+//            let view = UIView()
+//            view.backgroundColor = .systemPurple
+//            view.frame = self.view.bounds
+//            self.view.addSubview(view)
+//            self.topView = view
+            UIViewController.showVC(viewcontroller: UINavigationController(rootViewController: AddFriendViewController()))
         case .settings:
             UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        let touch = touches.first
+        if touch?.view != self.topView
+        { self.dismiss(animated: true, completion: nil) }
+    }
+    
+    //---------------------------------------------------------------------------------------------------------
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -123,8 +152,8 @@ class ExploreViewController: UIViewController {
                 let suShares = suShareData.map { SuShare($0)}
                 self?.originalSusus = suShares
                 
-        }
-    }
+            }
+            }
         )
     }
     @IBAction func exploreButtonPressed(_ sender: UIButton) {
@@ -159,7 +188,7 @@ class ExploreViewController: UIViewController {
         }
         
         currentSusus = originalSusus
-            //.filter { currentTags.contains($0.category.rawValue)}
+        //.filter { currentTags.contains($0.category.rawValue)}
     }
 }
 

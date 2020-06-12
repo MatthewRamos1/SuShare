@@ -403,10 +403,29 @@
                             <outlet property="delegate" destination="IG7-YB-cZe" id="3yh-q3-nud"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="yRG-1y-jqe"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FJ-6F-ybt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="129"/>
+            <point key="canvasLocation" x="1009" y="1043"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gfJ-ns-8XL">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhl-92-Pcz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X1O-wz-gFD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yaG-zc-5uw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IG7-YB-cZe" kind="relationship" relationship="rootViewController" id="YCe-Ar-gYz"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="262" y="1043"/>
         </scene>
     </scenes>
     <resources>
