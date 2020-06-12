@@ -63,16 +63,16 @@ class ExploreViewController: UIViewController {
         //------------------------
         // JAHEED
         
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
-//        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
+        //        NotificationCenter.default.addObserver(self,
+        //                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        //        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
         
         
         //------------------------
         
     }
     
-    //---------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------
     // JAHEED
     @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
         guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController else{return}
@@ -87,36 +87,32 @@ class ExploreViewController: UIViewController {
     }
     
     
-   
-     func transitionToNew(_ menuType: MenuType) {
+    
+    func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
         self.title = title
         
         topView?.removeFromSuperview()
         switch menuType {
         case .username:
-//            let view = UIView()
-//            view.backgroundColor = .systemYellow
-//            view.frame = self.view.bounds
-//            self.view.addSubview(view)
-            //UIViewController.showVC(viewcontroller: PersonalViewController())
-            //self.topView = view
-            break
+            print("tapped")
         case .friends:
-            let view = UIView()
-            view.backgroundColor = .systemBlue
-            view.frame = self.view.bounds
-            self.view.addSubview(view)
-            self.topView = view
+            let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
+            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(settingsVC, animated: true)
         case .search:
-//            let view = UIView()
-//            view.backgroundColor = .systemPurple
-//            view.frame = self.view.bounds
-//            self.view.addSubview(view)
-//            self.topView = view
-            UIViewController.showVC(viewcontroller: UINavigationController(rootViewController: AddFriendViewController()))
+            //            let view = UIView()
+            //            view.backgroundColor = .systemPurple
+            //            view.frame = self.view.bounds
+            //            self.view.addSubview(view)
+            //            self.topView = view
+            //            UIViewController.showVC(viewcontroller: UINavigationController(rootViewController: AddFriendViewController()))
+            self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
-            UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+            //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+            self.navigationController?.pushViewController(settingsVC, animated: true)
         }
     }
     
@@ -127,11 +123,12 @@ class ExploreViewController: UIViewController {
         { self.dismiss(animated: true, completion: nil) }
     }
     
-    //---------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         suShareListener?.remove()
+        
     }
     
     private func toggleExplore() {
@@ -229,6 +226,8 @@ extension ExploreViewController: UISearchBarDelegate {
     }
 }
 
+//---------------------------------------------------------------------------------
+// Jaheed
 
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
