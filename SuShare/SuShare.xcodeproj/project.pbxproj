@@ -14,7 +14,6 @@
 		0C57A7F02475B1EE00DF437B /* SuShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7EF2475B1EE00DF437B /* SuShareTests.swift */; };
 		0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C8CA5C5248C5BD60069109A /* DataProjection.storyboard */; };
 		0C8CA5C8248C5CEE0069109A /* DataProjectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */; };
-		0CB1DA8B247A22DB00713BF5 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8A247A22DB00713BF5 /* TabController.swift */; };
 		0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8C247A233700713BF5 /* Highlights.storyboard */; };
 		0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8E247A235800713BF5 /* ExploreTab.storyboard */; };
 		0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DA96247A248100713BF5 /* ExploreViewController.swift */; };
@@ -44,7 +43,7 @@
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
-		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
+		30891417249414A300525DC6 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30891416249414A300525DC6 /* TabController.swift */; };
 		30945CAB2491529600AAB687 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CAA2491529600AAB687 /* Friends.storyboard */; };
 		30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CAC249152B000AAB687 /* UserFriendsViewController.swift */; };
 		30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB1249153F500AAB687 /* SettingsViewController.swift */; };
@@ -64,6 +63,7 @@
 		3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */; };
 		3E23EC29248B1F7B007C3013 /* DetailAddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */; };
 		3E23EC2B248B1FA2007C3013 /* DetailAddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */; };
+		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,7 +90,6 @@
 		0C57A7F12475B1EE00DF437B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C8CA5C5248C5BD60069109A /* DataProjection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataProjection.storyboard; sourceTree = "<group>"; };
 		0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProjectionViewController.swift; sourceTree = "<group>"; };
-		0CB1DA8A247A22DB00713BF5 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		0CB1DA8C247A233700713BF5 /* Highlights.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Highlights.storyboard; sourceTree = "<group>"; };
 		0CB1DA8E247A235800713BF5 /* ExploreTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExploreTab.storyboard; sourceTree = "<group>"; };
 		0CB1DA96247A248100713BF5 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +118,7 @@
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		30891416249414A300525DC6 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabController.swift; path = ../TabController.swift; sourceTree = "<group>"; };
 		30945CAA2491529600AAB687 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		30945CAC249152B000AAB687 /* UserFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsViewController.swift; sourceTree = "<group>"; };
 		30945CB1249153F500AAB687 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +139,6 @@
 		3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendViewController.swift; sourceTree = "<group>"; };
 		3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendView.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
-		553FA9C12481A64100E14306 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,7 +191,6 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				0CB1DA8A247A22DB00713BF5 /* TabController.swift */,
 				30E4E0E52491442700E6E95D /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
@@ -343,7 +341,7 @@
 				0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */,
 				0C57A7E12475B1EE00DF437B /* Assets.xcassets */,
 				0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */,
-				0CB1DA8A247A22DB00713BF5 /* TabController.swift */,
+				30891416249414A300525DC6 /* TabController.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -570,6 +568,7 @@
 				0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */,
 				554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */,
 				3E23EC1A248ADC90007C3013 /* UIButton+Extensions.swift in Sources */,
+				30891417249414A300525DC6 /* TabController.swift in Sources */,
 				0CB1DAC4247C1C1500713BF5 /* UIImage + Extensions.swift in Sources */,
 				3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */,
 				0CB1DAB7247C1ACF00713BF5 /* LoginViewController.swift in Sources */,
@@ -593,7 +592,6 @@
 				3E23EC122484B710007C3013 /* HeaderView.swift in Sources */,
 				30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */,
 				3E23EC1824892FB2007C3013 /* AddFriendView.swift in Sources */,
-				0CB1DA8B247A22DB00713BF5 /* TabController.swift in Sources */,
 				30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */,
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
 				3E23EC2B248B1FA2007C3013 /* DetailAddFriendView.swift in Sources */,

@@ -67,6 +67,7 @@ struct SuShare{
 
 extension SuShare {
     init(_ dictionary: [String: Any]) {
+        self.securityState = dictionary["securityState"] as? String ?? "No securityState"
         self.susuTitle = dictionary["susuTitle"] as? String ?? "No Title"
         self.susuImage = nil
         self.description = dictionary["description"] as? String ?? "No Description"
@@ -74,8 +75,9 @@ extension SuShare {
         self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0
         self.paymentSchedule = dictionary["paymentSchedule"] as? String ?? ""
         self.userId = dictionary["userId"] as? String ?? ""
+        self.category = dictionary["category"] as? [Int] ?? []
         self.createdDate = dictionary["createdDate"] as? String ?? ""
-        self.iD = dictionary["iD"] as? String ?? ""
+        self.suShareId = dictionary["suShareId"] as? String ?? ""
         self.favId = dictionary["favId"] as? String ?? ""
     }
 }

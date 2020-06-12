@@ -101,12 +101,6 @@ class ExploreViewController: UIViewController {
             let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
             self.navigationController?.pushViewController(settingsVC, animated: true)
         case .search:
-            //            let view = UIView()
-            //            view.backgroundColor = .systemPurple
-            //            view.frame = self.view.bounds
-            //            self.view.addSubview(view)
-            //            self.topView = view
-            //            UIViewController.showVC(viewcontroller: UINavigationController(rootViewController: AddFriendViewController()))
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
             //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
