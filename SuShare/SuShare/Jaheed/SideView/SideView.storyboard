@@ -20,9 +20,6 @@
                     <navigationItem key="navigationItem" title="Sushare" id="WR8-W9-JtD">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="7Iu-TJ-GMJ">
                             <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <action selector="diTapMenu:" destination="lcs-SK-fvh" id="ETU-D9-6lq"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -30,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="882.60869565217399" y="41.517857142857139"/>
         </scene>
-        <!--Menue View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="IXR-K6-eB4">
             <objects>
-                <tableViewController storyboardIdentifier="MenueViewController" id="iS3-M7-vBH" customClass="MenueViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iS3-M7-vBH" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Jm3-fF-Rmb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -20,8 +20,8 @@ class HomeViewController: UIViewController {
     }
     
 
-    @IBAction func diTapMenu(_ sender: UIBarButtonItem) {
-        guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenueViewController") as? MenueViewController else{return}
+    @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+        guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController else{return}
         menuViewController.didTapMenuType = { menuType in
             self.transitionToNew(menuType)
         }
