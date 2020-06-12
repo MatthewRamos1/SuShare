@@ -17,7 +17,7 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var exploreButton: UIButton!
     @IBOutlet weak var friendsButton: UIButton!
     
-    
+    // shaniya
     @IBOutlet weak var createSuShare: UIButton!
     
     var suShareListener: ListenerRegistration?
@@ -33,6 +33,7 @@ class ExploreViewController: UIViewController {
     var gesture = UITapGestureRecognizer()
     //------------------------
     
+    // Shaniya
     private let transitionCircle = CircularTransition()
     
     var originalSusus = [SuShare]() {
@@ -65,6 +66,7 @@ class ExploreViewController: UIViewController {
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
+        // shaniya
          createSuShare.layer.cornerRadius = createSuShare.frame.size.width / 2
         //------------------------
         // JAHEED
@@ -79,6 +81,7 @@ class ExploreViewController: UIViewController {
     }
     
     
+    // Shaniya
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
           if segue.identifier == "goToCreateSusu" {
               guard let createVC = segue.destination as? CreateSusuViewController else { return }
@@ -121,7 +124,12 @@ class ExploreViewController: UIViewController {
             let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
             self.navigationController?.pushViewController(settingsVC, animated: true)
         case .search:
-            self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
+            // MARK: Shaniya edits here
+            guard let addFriendsVC = storyboard!.instantiateViewController(identifier: "SettingsViewController") as? AddFriendViewController else {
+                fatalError("could not access friends controller")
+            }
+                // +++++++++
+            self.navigationController?.pushViewController( addFriendsVC, animated: true)
         case .settings:
             //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
             let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
@@ -269,15 +277,36 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if (animationController(forDismissed: CreateSusuViewController() ) != nil) {
+//        guard let createVC = storyboard?.instantiateViewController(identifier: "CreateSusu") as? CreateSusuViewController else {
+//            fatalError("is not working")
+//        }
+        
+//        guard let vc = storyboard.instantiateViewController(identifier: "HighlightsViewController") as? HighlightsViewController else{
+//                     fatalError("Couldnt instantiate ViewController")
+//                 }
+//
+//        let createVC: UIViewController = {
+//                  let storyboard = UIStoryboard(name: "CreateSusu", bundle: nil)
+//                  guard let vc = storyboard.instantiateViewController(identifier: "CreateSusu") as? CreateSusuViewController else{
+//                      fatalError("Couldnt instantiate ViewController")
+//                  }
+//                  vc.tabBarItem = UITabBarItem(title: "Spotlight", image: UIImage(systemName: "globe"), tag: 2)
+//                  return vc
+//              }()
+//
+       //  guard let createVC = segue.destination as? CreateSusuViewController else { return }
+        
+       // guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController else{ fatalError("help me ") }
+//
+//        if !(animationController(forDismissed: menuViewController ) != nil) {
             transitionCircle.transitionMode = .dismiss
                                  transitionCircle.startingPoint = createSuShare.center
                                  transitionCircle.circleColor = createSuShare.backgroundColor!
             return transitionCircle
-        } else {
-              transiton.isPresenting = false
-                return transiton
-        }
+//        } else {
+//              transiton.isPresenting = false
+//                return transiton
+        //}
                      
     }
 }
