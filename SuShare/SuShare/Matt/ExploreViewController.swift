@@ -82,8 +82,11 @@ class ExploreViewController: UIViewController {
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
           if segue.identifier == "goToCreateSusu" {
               guard let createVC = segue.destination as? CreateSusuViewController else { return }
+                 createVC.modalPresentationStyle = .custom
+            
               createVC.transitioningDelegate = self
-              createVC.modalPresentationStyle = .custom
+         
+          //  present(createVC,animated: true)
           }
       }
       
@@ -251,27 +254,30 @@ extension ExploreViewController: UISearchBarDelegate {
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
+        if source.modalPresentationStyle == .custom {
             transitionCircle.transitionMode = .present
-                           transitionCircle.startingPoint = createSuShare.center
-                           transitionCircle.circleColor = createSuShare.backgroundColor!
-                        
-                    return transitionCircle
+                                    transitionCircle.startingPoint = createSuShare.center
+                                    transitionCircle.circleColor = createSuShare.backgroundColor!
+                                 
+                             return transitionCircle
 
-                
-       // transiton.isPresenting = true
-      //  return transiton
+        } else {
+        transiton.isPresenting = true
+        return transiton
     
-    
+        }
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
-                       transitionCircle.transitionMode = .dismiss
-                       transitionCircle.startingPoint = createSuShare.center
-                       transitionCircle.circleColor = createSuShare.backgroundColor!
-                   
-             
-      //  transiton.isPresenting = false
-        return transitionCircle
+        if (animationController(forDismissed: CreateSusuViewController() ) != nil) {
+            transitionCircle.transitionMode = .dismiss
+                                 transitionCircle.startingPoint = createSuShare.center
+                                 transitionCircle.circleColor = createSuShare.backgroundColor!
+            return transitionCircle
+        } else {
+              transiton.isPresenting = false
+                return transiton
+        }
+                     
     }
 }
