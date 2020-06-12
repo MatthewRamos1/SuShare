@@ -50,7 +50,7 @@
 		30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB2249153F500AAB687 /* UserSettings.storyboard */; };
 		30945CBA2491553B00AAB687 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB62491553B00AAB687 /* HomeViewController.swift */; };
 		30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB72491553B00AAB687 /* SlideInTransition.swift */; };
-		30945CBC2491553B00AAB687 /* MenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenueViewController.swift */; };
+		30945CBC2491553B00AAB687 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenuViewController.swift */; };
 		30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB92491553B00AAB687 /* SideView.storyboard */; };
 		30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E0E52491442700E6E95D /* GoogleService-Info.plist */; };
 		3E23EC122484B710007C3013 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC112484B710007C3013 /* HeaderView.swift */; };
@@ -124,7 +124,7 @@
 		30945CB2249153F500AAB687 /* UserSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
 		30945CB62491553B00AAB687 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		30945CB72491553B00AAB687 /* SlideInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
-		30945CB82491553B00AAB687 /* MenueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenueViewController.swift; sourceTree = "<group>"; };
+		30945CB82491553B00AAB687 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30945CB92491553B00AAB687 /* SideView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
 		30E4E0E52491442700E6E95D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E23EC112484B710007C3013 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 			children = (
 				30945CB92491553B00AAB687 /* SideView.storyboard */,
 				30945CB62491553B00AAB687 /* HomeViewController.swift */,
-				30945CB82491553B00AAB687 /* MenueViewController.swift */,
+				30945CB82491553B00AAB687 /* MenuViewController.swift */,
 				30945CB72491553B00AAB687 /* SlideInTransition.swift */,
 				30945CAE249152B800AAB687 /* Friends */,
 				30945CB5249154CC00AAB687 /* Settings */,
@@ -581,7 +581,7 @@
 				0CB1DAB3247C1A7100713BF5 /* ExploreCell.swift in Sources */,
 				302B3728247E315C00FC6E6B /* StorageService.swift in Sources */,
 				0CB1DAA3247A253300713BF5 /* PersonalView.swift in Sources */,
-				30945CBC2491553B00AAB687 /* MenueViewController.swift in Sources */,
+				30945CBC2491553B00AAB687 /* MenuViewController.swift in Sources */,
 				30945CBA2491553B00AAB687 /* HomeViewController.swift in Sources */,
 				302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */,
 				3E23EC122484B710007C3013 /* HeaderView.swift in Sources */,

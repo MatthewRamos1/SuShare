@@ -20,6 +20,14 @@ class ExploreViewController: UIViewController {
     var suShareListener: ListenerRegistration?
     var boldFont: UIFont?
     var thinFont: UIFont?
+    
+    //------------------------
+    //Jaheed
+    let transiton = SlideInTransition()
+    var topView: UIView?
+    var didTapMenuType: ((MenuType) -> Void)?
+    //------------------------
+    
     var originalSusus = [SuShare]() {
         didSet {
             if currentSusus.isEmpty {
@@ -50,6 +58,46 @@ class ExploreViewController: UIViewController {
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
+    }
+    
+    @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+        guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController else{return}
+        menuViewController.didTapMenuType = { menuType in
+            self.transitionToNew(menuType)
+        }
+
+        menuViewController.modalPresentationStyle = .overCurrentContext
+        menuViewController.transitioningDelegate = self
+        present(menuViewController, animated: true)
+    }
+    
+    func transitionToNew(_ menuType: MenuType) {
+        let title = String(describing: menuType).capitalized
+        self.title = title
+
+        topView?.removeFromSuperview()
+        switch menuType {
+        case .username:
+            let view = UIView()
+            view.backgroundColor = .systemYellow
+            view.frame = self.view.bounds
+            self.view.addSubview(view)
+            self.topView = view
+        case .friends:
+            let view = UIView()
+            view.backgroundColor = .systemBlue
+            view.frame = self.view.bounds
+            self.view.addSubview(view)
+            self.topView = view
+        case .search:
+            let view = UIView()
+            view.backgroundColor = .systemPurple
+            view.frame = self.view.bounds
+            self.view.addSubview(view)
+            self.topView = view
+        case .settings:
+            UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -149,5 +197,18 @@ extension ExploreViewController: UISearchBarDelegate {
             return
         }
         currentSusus = originalSusus.filter { $0.description.contains(query) || $0.susuTitle.contains(query)}
+    }
+}
+
+
+extension ExploreViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transiton.isPresenting = true
+        return transiton
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transiton.isPresenting = false
+        return transiton
     }
 }
