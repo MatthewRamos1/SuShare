@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -47,8 +47,12 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGQ-Kz-yym">
-                                <rect key="frame" x="322" y="832" width="72" height="22"/>
-                                <state key="normal" title="Button" image="google.png"/>
+                                <rect key="frame" x="322" y="789" width="72" height="34"/>
+                                <color key="backgroundColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="7oh-c7-2XN" eventType="touchUpInside" id="EsH-7m-in8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -62,7 +66,7 @@
                             <constraint firstItem="oRH-ah-Hz7" firstAttribute="leading" secondItem="u0h-An-Bcp" secondAttribute="leading" id="UBW-Ic-L6Q"/>
                             <constraint firstItem="oRH-ah-Hz7" firstAttribute="top" secondItem="Hnf-LD-rmv" secondAttribute="bottom" constant="20" id="dG7-Oa-yqJ"/>
                             <constraint firstItem="u0h-An-Bcp" firstAttribute="trailing" secondItem="oRH-ah-Hz7" secondAttribute="trailing" id="orC-cV-Byg"/>
-                            <constraint firstItem="oRH-ah-Hz7" firstAttribute="baseline" secondItem="lGQ-Kz-yym" secondAttribute="firstBaseline" constant="13" symbolType="layoutAnchor" id="tVI-7F-G1I"/>
+                            <constraint firstItem="oRH-ah-Hz7" firstAttribute="baseline" secondItem="lGQ-Kz-yym" secondAttribute="firstBaseline" constant="50" id="tVI-7F-G1I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u0h-An-Bcp"/>
                     </view>
@@ -73,11 +77,23 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="oRH-ah-Hz7" id="675-G0-Adn"/>
+                        <outlet property="createButton" destination="lGQ-Kz-yym" id="PFh-iF-fyO"/>
+                        <segue destination="rDD-A4-IEY" kind="show" identifier="goToCreateSusu" id="77c-Gh-scm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qR2-Ml-0Cq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-52.173913043478265" y="174.77678571428569"/>
+        </scene>
+        <!--CreateSusu-->
+        <scene sceneID="XZa-WM-hBA">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CreateSusu" storyboardName="CreateSusu" referencedIdentifier="CreateSusu" id="rDD-A4-IEY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8hV-bh-c52"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Wq-r5-QHq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="251" y="-234"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="mye-03-laK">

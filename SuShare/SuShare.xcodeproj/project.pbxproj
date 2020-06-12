@@ -44,6 +44,7 @@
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
+		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
 		30945CAB2491529600AAB687 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CAA2491529600AAB687 /* Friends.storyboard */; };
 		30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CAC249152B000AAB687 /* UserFriendsViewController.swift */; };
 		30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB1249153F500AAB687 /* SettingsViewController.swift */; };
@@ -138,6 +139,8 @@
 		3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendViewController.swift; sourceTree = "<group>"; };
 		3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendView.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
+		553FA9C12481A64100E14306 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
 		D089DF1BC033B820349FB779 /* Pods-SuShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.debug.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
+				0CB1DA8A247A22DB00713BF5 /* TabController.swift */,
 				30E4E0E52491442700E6E95D /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
@@ -271,6 +275,7 @@
 		0CB1DABE247C1B2B00713BF5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */,
 				3E23EC1B248ADCA2007C3013 /* UILabel+Extensions.swift */,
 				3E23EC19248ADC8F007C3013 /* UIButton+Extensions.swift */,
 				0CB1DAC1247C1BF000713BF5 /* UIViewController + Alerts.swift */,
@@ -563,6 +568,7 @@
 				3E23EC142484CA21007C3013 /* ProfileHeaderView.swift in Sources */,
 				0CB1DAB9247C1AF300713BF5 /* SuShare.swift in Sources */,
 				0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */,
+				554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */,
 				3E23EC1A248ADC90007C3013 /* UIButton+Extensions.swift in Sources */,
 				0CB1DAC4247C1C1500713BF5 /* UIImage + Extensions.swift in Sources */,
 				3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */,

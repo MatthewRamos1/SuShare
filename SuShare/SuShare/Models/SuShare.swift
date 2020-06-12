@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 enum Security: String, CaseIterable{
     
     case privateState = "privateState"
@@ -22,35 +21,48 @@ enum Category: Int, CaseIterable {
     case furniture = 3
     case renovations = 4
     case miscellaneous = 5
+    
+    static let categoryNames = [
+        technology : "technology",
+        payments : "payments",
+        travel : "travel",
+        furniture : "furniture",
+        renovations : "renovations",
+        miscellaneous : "miscellaneous"
+    ]
+    
+       func categoryName() -> String {
+           if let categoryName = Category.categoryNames[self] {
+               return categoryName
+           } else {
+               return "Minion inside of category enum"
+           }
+       }
+    
+    static func getCategoriesRawValue() -> [Int] {
+        Category.allCases.map { $0.rawValue }
+      }
+    
+        
 }
 
 
-
-struct SuShare {
-    
-    // let securityState: Security
+struct SuShare{
+  
+    let securityState: String
     let susuTitle: String
     let susuImage: UIImage?
     let description: String
     let potAmount: Double
-    
     let numOfParticipants: Int
-    
     let paymentSchedule: String
-    
     let userId: String
-    
-    // let category: Category
-    
+    let category: [Int]
     let createdDate: String
-    
-    let iD: String
-    
+    let suShareId: String
     
     // after creation
-    let favId: String
-    
-    
+    let favId: String?
 }
 
 extension SuShare {

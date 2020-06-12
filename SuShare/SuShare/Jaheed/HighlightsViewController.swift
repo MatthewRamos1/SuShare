@@ -10,13 +10,18 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class HighlightsViewController: UIViewController {
+class HighlightsViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var createButton: UIButton!
     
     private var databaseService = DatabaseService()
     
     private var authSession = AuthenticationSession()
+    
+   private let transition = CircularTransition()
+
     
     private var listener: ListenerRegistration?
     
@@ -34,6 +39,7 @@ class HighlightsViewController: UIViewController {
         super.viewDidLoad()
         //authSession.signOutExistingUser()
         view.backgroundColor = .systemTeal
+         createButton.layer.cornerRadius = createButton.frame.size.width / 2
 //
 //        collectionView.delegate = self
 //        collectionView.dataSource = self
@@ -61,8 +67,32 @@ class HighlightsViewController: UIViewController {
         // no longer listening for changes from Firebase
         listener?.remove()
     }
+
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToCreateSusu", sender: self)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCreateSusu" {
+            guard let createVC = segue.destination as? CreateSusuViewController else { return }
+            createVC.transitioningDelegate = self
+            createVC.modalPresentationStyle = .custom
+        }
+    }
     
+       func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+              transition.transitionMode = .present
+              transition.startingPoint = createButton.center
+              transition.circleColor = createButton.backgroundColor!
+              return transition
+          }
+          
+          func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+              transition.transitionMode = .dismiss
+              transition.startingPoint = createButton.center
+              transition.circleColor = createButton.backgroundColor!
+              return transition
+          }
     
 }
 
