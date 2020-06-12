@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9b-ow-g19">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9b-ow-g19">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -182,8 +182,26 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XSx-Dp-txd">
+                                <rect key="frame" x="274" y="807" width="120" height="43"/>
+                                <color key="backgroundColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="f6v-HN-Ktn"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createASuShare:" destination="KyG-UW-c42" eventType="touchUpInside" id="Brf-zZ-caL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XSx-Dp-txd" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="274" id="71W-yr-R1s"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="bottom" secondItem="XSx-Dp-txd" secondAttribute="bottom" constant="12" id="9cK-DW-iNJ"/>
+                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="XSx-Dp-txd" secondAttribute="trailing" constant="20" id="KLE-fz-BDg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="auh-yt-3WH"/>
                     </view>
                     <navigationItem key="navigationItem" title="SuShare" id="o76-Gu-QoD">
@@ -196,14 +214,26 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="sot-vA-Y9h" id="ddU-Wr-9qi"/>
+                        <outlet property="createSuShare" destination="XSx-Dp-txd" id="oab-11-8ZG"/>
                         <outlet property="exploreButton" destination="J82-V6-Cck" id="NKP-ir-89w"/>
                         <outlet property="friendsButton" destination="3IT-W6-DPS" id="t9h-aZ-xBL"/>
                         <outlet property="searchBar" destination="NHj-ua-sKX" id="0ml-Pk-zkZ"/>
+                        <segue destination="moK-Tp-dil" kind="show" identifier="goToCreateSusu" id="VQC-91-mow"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuT-Q0-HUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1008.6956521739131" y="128.57142857142856"/>
+        </scene>
+        <!--CreateSusu-->
+        <scene sceneID="mtx-te-EJk">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CreateSusu" storyboardName="CreateSusu" id="moK-Tp-dil" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Wtw-N3-DWR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gqI-4Q-yS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="-246"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yaY-I0-fXl">
@@ -412,7 +442,6 @@
         <!--Navigation Controller-->
         <scene sceneID="gfJ-ns-8XL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uhl-92-Pcz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X1O-wz-gFD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yaG-zc-5uw">
@@ -424,6 +453,7 @@
                         <segue destination="IG7-YB-cZe" kind="relationship" relationship="rootViewController" id="YCe-Ar-gYz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhl-92-Pcz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="262" y="1043"/>
         </scene>

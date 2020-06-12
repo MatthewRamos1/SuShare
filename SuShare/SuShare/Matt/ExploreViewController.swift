@@ -17,6 +17,9 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var exploreButton: UIButton!
     @IBOutlet weak var friendsButton: UIButton!
     
+    
+    @IBOutlet weak var createSuShare: UIButton!
+    
     var suShareListener: ListenerRegistration?
     var boldFont: UIFont?
     var thinFont: UIFont?
@@ -29,6 +32,8 @@ class ExploreViewController: UIViewController {
     var didTapMenuType: ((MenuType) -> Void)?
     var gesture = UITapGestureRecognizer()
     //------------------------
+    
+    private let transition = CircularTransition()
     
     var originalSusus = [SuShare]() {
         didSet {
@@ -71,6 +76,17 @@ class ExploreViewController: UIViewController {
         //------------------------
         
     }
+    
+    
+      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "goToCreateSusu" {
+              guard let createVC = segue.destination as? CreateSusuViewController else { return }
+              createVC.transitioningDelegate = self
+              createVC.modalPresentationStyle = .custom
+          }
+      }
+      
+        
     
     //---------------------------------------------------------------------------------
     // JAHEED
@@ -181,6 +197,12 @@ class ExploreViewController: UIViewController {
         currentSusus = originalSusus
         //.filter { currentTags.contains($0.category.rawValue)}
     }
+    
+    
+    @IBAction func createASuShare(_ sender: UIButton) {
+         performSegue(withIdentifier: "goToCreateSusu", sender: self)
+    }
+    
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -225,11 +247,23 @@ extension ExploreViewController: UISearchBarDelegate {
 
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    
+                       transition.transitionMode = .present
+                       transition.startingPoint = createSuShare.center
+                       transition.circleColor = createSuShare.backgroundColor!
+                    
+                
         transiton.isPresenting = true
         return transiton
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+                       transition.transitionMode = .dismiss
+                       transition.startingPoint = createSuShare.center
+                       transition.circleColor = createSuShare.backgroundColor!
+                   
+             
         transiton.isPresenting = false
         return transiton
     }
