@@ -33,7 +33,7 @@ class ExploreViewController: UIViewController {
     var gesture = UITapGestureRecognizer()
     //------------------------
     
-    private let transition = CircularTransition()
+    private let transitionCircle = CircularTransition()
     
     var originalSusus = [SuShare]() {
         didSet {
@@ -65,6 +65,7 @@ class ExploreViewController: UIViewController {
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
+         createSuShare.layer.cornerRadius = createSuShare.frame.size.width / 2
         //------------------------
         // JAHEED
         
@@ -200,7 +201,9 @@ class ExploreViewController: UIViewController {
     
     
     @IBAction func createASuShare(_ sender: UIButton) {
+        
          performSegue(withIdentifier: "goToCreateSusu", sender: self)
+        
     }
     
 }
@@ -247,24 +250,28 @@ extension ExploreViewController: UISearchBarDelegate {
 
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    
-                       transition.transitionMode = .present
-                       transition.startingPoint = createSuShare.center
-                       transition.circleColor = createSuShare.backgroundColor!
-                    
+        
+            transitionCircle.transitionMode = .present
+                           transitionCircle.startingPoint = createSuShare.center
+                           transitionCircle.circleColor = createSuShare.backgroundColor!
+                        
+                    return transitionCircle
+
                 
-        transiton.isPresenting = true
-        return transiton
+       // transiton.isPresenting = true
+      //  return transiton
+    
+    
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-                       transition.transitionMode = .dismiss
-                       transition.startingPoint = createSuShare.center
-                       transition.circleColor = createSuShare.backgroundColor!
+                       transitionCircle.transitionMode = .dismiss
+                       transitionCircle.startingPoint = createSuShare.center
+                       transitionCircle.circleColor = createSuShare.backgroundColor!
                    
              
-        transiton.isPresenting = false
-        return transiton
+      //  transiton.isPresenting = false
+        return transitionCircle
     }
 }

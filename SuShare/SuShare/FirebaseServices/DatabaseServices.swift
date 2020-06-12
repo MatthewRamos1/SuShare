@@ -38,7 +38,7 @@ class DatabaseService{
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
-            "susuImage": sushare.susuImage,
+          //  "susuImage": sushare.susuImage,
             "description": sushare.description,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
