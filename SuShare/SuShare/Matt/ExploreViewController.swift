@@ -277,6 +277,8 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        //__________________________________________
 //        guard let createVC = storyboard?.instantiateViewController(identifier: "CreateSusu") as? CreateSusuViewController else {
 //            fatalError("is not working")
 //        }
@@ -299,13 +301,16 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
        // guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") as? MenuViewController else{ fatalError("help me ") }
 //
 //        if !(animationController(forDismissed: menuViewController ) != nil) {
-            transitionCircle.transitionMode = .dismiss
-                                 transitionCircle.startingPoint = createSuShare.center
-                                 transitionCircle.circleColor = createSuShare.backgroundColor!
-            return transitionCircle
+//            transitionCircle.transitionMode = .dismiss
+//                                 transitionCircle.startingPoint = createSuShare.center
+//                                 transitionCircle.circleColor = createSuShare.backgroundColor!
+//            return transitionCircle
 //        } else {
-//              transiton.isPresenting = false
-//                return transiton
+        
+        //_____________________________________
+        
+              transiton.isPresenting = false
+                return transiton
         //}
                      
     }
