@@ -37,7 +37,7 @@ class HighlightsViewController: UIViewController, UIViewControllerTransitioningD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // authSession.signOutExistingUser()
+        //authSession.signOutExistingUser()
         view.backgroundColor = .systemTeal
          createButton.layer.cornerRadius = createButton.frame.size.width / 2
 //

@@ -15,14 +15,14 @@ class TabController: UITabBarController {
         guard let vc = storyboard.instantiateInitialViewController() else {
             fatalError("Couldn't instantiateInitialViewController")
         }
-        vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "gear"), tag: 1)
+        vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "globe"), tag: 0)
         return vc
     }()
     
 
     lazy var personalViewController: UIViewController = {
         let vc = PersonalViewController()
-        vc.tabBarItem = UITabBarItem(title: "Personal", image: UIImage(systemName: "person.fill"), tag: 2)
+        vc.tabBarItem = UITabBarItem(title: "Personal", image: UIImage(systemName: "person.fill"), tag: 1)
         return vc
     }()
         
@@ -31,14 +31,14 @@ class TabController: UITabBarController {
         guard let vc = storyboard.instantiateViewController(identifier: "HighlightsViewController") as? HighlightsViewController else{
             fatalError("Couldnt instantiate ViewController")
         }
-        vc.tabBarItem = UITabBarItem(title: "Spotlight", image: UIImage(systemName: "globe"), tag: 0)
+        vc.tabBarItem = UITabBarItem(title: "Spotlight", image: UIImage(systemName: "globe"), tag: 2)
         return vc
     }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [highlightsViewController,exploreViewController, UINavigationController(rootViewController: personalViewController)]
+        viewControllers = [exploreViewController, UINavigationController(rootViewController: personalViewController)]
     }
     
 }

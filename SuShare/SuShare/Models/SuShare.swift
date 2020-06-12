@@ -46,25 +46,36 @@ enum Category: Int, CaseIterable {
         
 }
 
+
 struct SuShare{
+  
     let securityState: String
     let susuTitle: String
-    let susuImage: UIImage
+    let susuImage: UIImage?
     let description: String
     let potAmount: Double
-    
     let numOfParticipants: Int
-    
     let paymentSchedule: String
-    
     let userId: String
-    
     let category: [Int]
-    
     let createdDate: String
-    
     let suShareId: String
     
     // after creation
     let favId: String?
+}
+
+extension SuShare {
+    init(_ dictionary: [String: Any]) {
+        self.susuTitle = dictionary["susuTitle"] as? String ?? "No Title"
+        self.susuImage = nil
+        self.description = dictionary["description"] as? String ?? "No Description"
+        self.potAmount = dictionary["potAmount"] as? Double ?? 0.0
+        self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0
+        self.paymentSchedule = dictionary["paymentSchedule"] as? String ?? ""
+        self.userId = dictionary["userId"] as? String ?? ""
+        self.createdDate = dictionary["createdDate"] as? String ?? ""
+        self.iD = dictionary["iD"] as? String ?? ""
+        self.favId = dictionary["favId"] as? String ?? ""
+    }
 }
