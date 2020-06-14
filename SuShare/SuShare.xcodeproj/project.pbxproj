@@ -52,7 +52,6 @@
 		30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB72491553B00AAB687 /* SlideInTransition.swift */; };
 		30945CBC2491553B00AAB687 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenuViewController.swift */; };
 		30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB92491553B00AAB687 /* SideView.storyboard */; };
-		30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E0E52491442700E6E95D /* GoogleService-Info.plist */; };
 		3E23EC122484B710007C3013 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC112484B710007C3013 /* HeaderView.swift */; };
 		3E23EC142484CA21007C3013 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */; };
 		3E23EC1624892F70007C3013 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */; };
@@ -61,8 +60,7 @@
 		3E23EC1C248ADCA2007C3013 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1B248ADCA2007C3013 /* UILabel+Extensions.swift */; };
 		3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1D248ADCAF007C3013 /* EmptyView.swift */; };
 		3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */; };
-		3E23EC29248B1F7B007C3013 /* DetailAddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */; };
-		3E23EC2B248B1FA2007C3013 /* DetailAddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */; };
+		3EEDA6852496C0790081AFDF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EEDA6842496C0790081AFDF /* GoogleService-Info.plist */; };
 		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
@@ -127,7 +125,6 @@
 		30945CB72491553B00AAB687 /* SlideInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		30945CB82491553B00AAB687 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30945CB92491553B00AAB687 /* SideView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
-		30E4E0E52491442700E6E95D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E23EC112484B710007C3013 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
@@ -136,8 +133,7 @@
 		3E23EC1B248ADCA2007C3013 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		3E23EC1D248ADCAF007C3013 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
-		3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendViewController.swift; sourceTree = "<group>"; };
-		3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAddFriendView.swift; sourceTree = "<group>"; };
+		3EEDA6842496C0790081AFDF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -191,7 +187,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				30E4E0E52491442700E6E95D /* GoogleService-Info.plist */,
+				3EEDA6842496C0790081AFDF /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
 				0CB1DA95247A23BB00713BF5 /* Shaniya */,
@@ -252,8 +248,6 @@
 				0CB1DAA0247A250800713BF5 /* PersonalViewController.swift */,
 				3E23EC1724892FB2007C3013 /* AddFriendView.swift */,
 				3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */,
-				3E23EC2A248B1FA2007C3013 /* DetailAddFriendView.swift */,
-				3E23EC28248B1F7B007C3013 /* DetailAddFriendViewController.swift */,
 				3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */,
 				3E23EC1D248ADCAF007C3013 /* EmptyView.swift */,
 				0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */,
@@ -461,10 +455,10 @@
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */,
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
-				30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */,
 				30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
+				3EEDA6852496C0790081AFDF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +571,6 @@
 				0CB1DABB247C1B0200713BF5 /* User.swift in Sources */,
 				0CB1DAB1247C1A5300713BF5 /* HighlightsCell.swift in Sources */,
 				0CB1DABD247C1B1000713BF5 /* DatabaseServices.swift in Sources */,
-				3E23EC29248B1F7B007C3013 /* DetailAddFriendViewController.swift in Sources */,
 				0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */,
 				0CB1DAC2247C1BF000713BF5 /* UIViewController + Alerts.swift in Sources */,
 				0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */,
@@ -594,7 +587,6 @@
 				3E23EC1824892FB2007C3013 /* AddFriendView.swift in Sources */,
 				30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */,
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
-				3E23EC2B248B1FA2007C3013 /* DetailAddFriendView.swift in Sources */,
 				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
 				0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */,
 				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,

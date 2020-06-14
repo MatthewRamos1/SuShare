@@ -12,7 +12,7 @@ import FirebaseFirestore
 import Kingfisher
 
 class PersonalViewController: UIViewController {
-    
+
     var user: User?
     var db = DatabaseService()
     var profileHeaderView: ProfileHeaderView?
@@ -37,13 +37,24 @@ class PersonalViewController: UIViewController {
         view = personalView
     }
     
+    //-------------------------------------------------
+    var sideMenuOpen = false
+    let transiton = SlideInTransition()
+    var topView: UIView?
+    var didTapMenuType: ((MenuType) -> Void)?
+    var gesture = UITapGestureRecognizer()
+    //-------------------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightbarButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(didTapMenu))
+        rightbarButton.tintColor = #colorLiteral(red: 0, green: 0.5178381205, blue: 0.4835408926, alpha: 1)
+        navigationItem.rightBarButtonItem = rightbarButton
         view.backgroundColor = .systemBackground
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
-        //personalView.personalCollectionView.register(PersonalCell.self, forCellWithReuseIdentifier: "personalCell")
+        
         personalView.personalCollectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
         suShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
@@ -51,6 +62,45 @@ class PersonalViewController: UIViewController {
         configureFriendsButton()
     }
     
+    //-----------------------------------------------------------------
+    @objc func didTapMenu(_ sender: UIBarButtonItem) {
+        print("tab bar")
+        let mainView: UIStoryboard = UIStoryboard(name: "ExploreTab", bundle: nil)
+        let menuViewController = mainView.instantiateViewController(identifier: "MenuViewController") as! MenuViewController
+        menuViewController.didTapMenuType = { menuType in
+            self.transitionToNew(menuType)
+        }
+    
+        menuViewController.modalPresentationStyle = .overCurrentContext
+        menuViewController.transitioningDelegate = self
+        present(menuViewController, animated: true)
+    }
+    
+    // and delegate at bottom to transition
+    func transitionToNew(_ menuType: MenuType) {
+        let title = String(describing: menuType).capitalized
+        self.title = title
+        
+        topView?.removeFromSuperview()
+        switch menuType {
+        case .username:
+            print("tapped")
+        case .friends:
+            let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
+            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(settingsVC, animated: true)
+        case .search:
+            self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
+        case .settings:
+            //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+            self.navigationController?.pushViewController(settingsVC, animated: true)
+        }
+    }
+    //-----------------------------------------------------------------
+    
+        
     @objc private func buttonTapped(_ sender: UIButton) {
         print("add friend")
         guard let currentUser = Auth.auth().currentUser else    {
@@ -108,9 +158,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "highlightsCell", for: indexPath) as? HighlightsCell else {
             fatalError()
         }
-        
-        // configure cell
-        //cell.backgroundColor = .systemBackground
+    
         cell.layer.borderColor = UIColor.systemGray6.cgColor
         cell.layer.cornerRadius = 5.0
         cell.layer.borderWidth = 0.0
@@ -119,7 +167,6 @@ extension PersonalViewController: UICollectionViewDataSource    {
         cell.layer.shadowRadius = 5.0
         cell.layer.shadowOpacity = 0.3
         cell.layer.masksToBounds = false
-        //cell.layer.borderWidth = 1
         return cell
     }
     
@@ -146,7 +193,6 @@ extension PersonalViewController: UICollectionViewDataSource    {
                     return profileHeaderView!
             }
             
-            // take current user or user from table view to populate ui
             profileHeaderView?.determineUserUI(user: searchedUser)
             profileHeaderView?.addFriendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
             
@@ -179,11 +225,6 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
         let width =
             UIScreen.main.bounds.size.width * 0.84
         return CGSize(width: width, height: height * 2)
-//        let maxSize: CGSize = UIScreen.main.bounds.size
-//        let itemWidth: CGFloat = maxSize.width * 0.84
-//        let itemHeight: CGFloat = maxSize.height * 0.3
-//
-//        return CGSize(width: itemWidth, height: itemHeight)
         
     }
     
@@ -196,3 +237,17 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     }
     
 }
+
+//----------------------------------------------------------------------------
+extension PersonalViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transiton.isPresenting = true
+        return transiton
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transiton.isPresenting = false
+        return transiton
+    }
+}
+//----------------------------------------------------------------------------
