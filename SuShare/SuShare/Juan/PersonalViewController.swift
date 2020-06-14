@@ -48,8 +48,11 @@ class PersonalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let rightbarButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(didTapMenu))
+        // temp fix for if loads from search
+        if user != nil  {
+            navigationItem.rightBarButtonItem = nil
+        } else {navigationItem.rightBarButtonItem = rightbarButton}
         rightbarButton.tintColor = #colorLiteral(red: 0, green: 0.5178381205, blue: 0.4835408926, alpha: 1)
-        navigationItem.rightBarButtonItem = rightbarButton
         view.backgroundColor = .systemBackground
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
@@ -124,6 +127,7 @@ class PersonalViewController: UIViewController {
     }
     
     func configureFriendsButton()  {
+
         guard let selectedUser = user else  {
             return
         }
