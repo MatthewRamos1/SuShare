@@ -31,7 +31,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="highlightsCell" id="t4s-iu-Zd0" customClass="HighlightsCell" customModule="SuShare" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="exploreCell" id="t4s-iu-Zd0" customClass="ExploreCell" customModule="SuShare" customModuleProvider="target">
                                         <rect key="frame" x="-23" y="0.0" width="420" height="550"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ucY-Gl-CWq">
@@ -174,18 +174,9 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="420" height="550"/>
                                         <connections>
-                                            <outlet property="commitsLabel" destination="yKM-j2-hHe" id="vhH-mI-NIy"/>
-                                            <outlet property="daysRemainLabel" destination="bjx-6W-Umk" id="7JQ-Xo-DFq"/>
-                                            <outlet property="descriptionLabel" destination="4Lq-Nk-PVG" id="gL5-ux-55d"/>
-                                            <outlet property="numCommitsLabel" destination="swR-BH-sWC" id="Utv-Zt-Bn2"/>
-                                            <outlet property="numPercentageBackedLabel" destination="RK0-dD-8Es" id="Ghy-Zk-cl7"/>
-                                            <outlet property="numdaysRemainLabel" destination="lQG-yq-07e" id="bvZ-uQ-9PY"/>
-                                            <outlet property="percentageBackedLabel" destination="qAG-At-fc5" id="LsH-fS-tN6"/>
-                                            <outlet property="progressView" destination="Km3-VW-1dg" id="5bF-of-CqP"/>
-                                            <outlet property="susuImageView" destination="wTj-ee-dwe" id="dCi-dS-fR3"/>
-                                            <outlet property="tagImageView" destination="w0W-EP-vo4" id="WDz-Ka-hkO"/>
-                                            <outlet property="tagLabel" destination="CC7-DP-oWG" id="4Az-C1-Kzy"/>
-                                            <outlet property="titleLabel" destination="hfY-lj-hT1" id="iU2-jF-kbp"/>
+                                            <outlet property="descriptionLabel" destination="4Lq-Nk-PVG" id="liN-KA-VHw"/>
+                                            <outlet property="fundingProgressView" destination="Km3-VW-1dg" id="V55-PM-wQz"/>
+                                            <outlet property="susuImageView" destination="wTj-ee-dwe" id="LJA-EB-AFY"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
