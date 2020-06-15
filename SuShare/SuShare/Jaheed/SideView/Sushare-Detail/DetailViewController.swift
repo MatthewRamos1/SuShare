@@ -23,7 +23,11 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    public var susu: SuShare?
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    
+    public var sushare: SuShare
     
     private var isFavorite = false {
         didSet{
@@ -34,18 +38,33 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    init?(coder: NSCoder, sushare: SuShare) {
+        self.sushare = sushare
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
+    @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
+        print("button pressed")
+    }
+    
+    
     private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
-        guard let susu = susu else {
-            showAlert(title: "Error", message: "Could not load Sushares")
-            fatalError()
-        }
+         let susu = sushare
+//        else {
+//            self.showAlert(title: "Error", message: "Could not load Sushares")
+//            fatalError()
+//        }
         imageView.kf.setImage(with: URL(string: imageURL))
         titleLabel.text = title
         userProfileImage.kf.setImage(with: URL(string: profileImage))

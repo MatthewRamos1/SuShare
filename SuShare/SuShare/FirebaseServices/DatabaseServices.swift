@@ -21,17 +21,17 @@ class DatabaseService{
     
     static let shared = DatabaseService()
     
-  
+    
     public func createASusu(
         sushare: SuShare,
-      //  susuTitle: String, description: String, potAmount: Double, numOfParticipants: Int, paymentSchedule: String, category: [String],
-                        //  displayName: String,
+        //  susuTitle: String, description: String, potAmount: Double, numOfParticipants: Int, paymentSchedule: String, category: [String],
+        //  displayName: String,
         completion: @escaping (Result <String, Error>) -> () ) {
         
         guard let user = Auth.auth().currentUser else {
-           return
-                }
-
+            return
+        }
+        
         let docRef = db.collection(DatabaseService.suShareCollection).document()
         print("docRef is \(docRef)")
         
@@ -60,13 +60,13 @@ class DatabaseService{
     } // end of create func
     
     public func delete(susu: SuShare, completion: @escaping (Result<Bool, Error>) -> ()) {
-
+        
         db.collection(DatabaseService.suShareCollection).document(susu.suShareId).delete { (error) in
-                  if let error = error {
-                      completion(.failure(error))
-                  } else {
-                      completion(.success(true))
-                  }}} // end of delete
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }}} // end of delete
     
     
     public func createDatabaseUser(authDataResult: AuthDataResult, completion: @escaping (Result<Bool, Error>) -> ()) {
@@ -147,6 +147,39 @@ class DatabaseService{
                     completion(.success(user))
                 }
             }
+        }
+    }
+    
+    public func postComment(sushare: SuShare, comment: String,
+                            completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser,
+            
+            let displayName = user.displayName else {
+                print("missing user data")
+                return
+        }
+        
+        // getting a new document
+        let docRef = db.collection(DatabaseService.suShareCollection)
+            .document(sushare.suShareId)
+            .collection(DatabaseService.commentCollection).document()
+        
+        // using the new document from above to write its contents to firebase
+        db.collection(DatabaseService.suShareCollection)
+            .document(sushare.suShareId)
+            .collection(DatabaseService.commentCollection)
+            .document(docRef.documentID).setData(
+                ["comment" : comment,
+                 "commentDate": Timestamp(date: Date()),
+                 "susuName": sushare.susuTitle,
+                 "susuId": sushare.suShareId,
+                 "creatorName": sushare.userId,
+                 "commentedBy": displayName]) { (error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(true))
+                    }
         }
     }
     
