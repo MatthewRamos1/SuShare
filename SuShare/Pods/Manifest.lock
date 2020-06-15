@@ -367,6 +367,7 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.8)
   - SnapKit (5.0.1)
+  - Stripe (19.2.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -377,6 +378,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - Kingfisher
   - SnapKit
+  - Stripe
 
 SPEC REPOS:
   trunk:
@@ -408,6 +410,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SnapKit
+    - Stripe
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -438,7 +441,8 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Stripe: d481c2dab9a892fd923f097f854661217f70dc7f
 
-PODFILE CHECKSUM: 83a0e6c43ea7068c5fad1108b10278558066f3cd
+PODFILE CHECKSUM: 9b87484276fc5913990b58a9b4a2cb040ce6ee0a
 
 COCOAPODS: 1.9.0
