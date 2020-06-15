@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C12C6252495F6FD00128D06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C12C6242495F6FD00128D06 /* GoogleService-Info.plist */; };
 		0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7D82475B1EC00DF437B /* AppDelegate.swift */; };
 		0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */; };
 		0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E12475B1EE00DF437B /* Assets.xcassets */; };
@@ -52,7 +53,6 @@
 		30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB72491553B00AAB687 /* SlideInTransition.swift */; };
 		30945CBC2491553B00AAB687 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenuViewController.swift */; };
 		30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB92491553B00AAB687 /* SideView.storyboard */; };
-		30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E4E0E52491442700E6E95D /* GoogleService-Info.plist */; };
 		3E23EC122484B710007C3013 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC112484B710007C3013 /* HeaderView.swift */; };
 		3E23EC142484CA21007C3013 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */; };
 		3E23EC1624892F70007C3013 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */; };
@@ -79,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		0B590E058777444C01A78528 /* Pods_SuShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C12C6242495F6FD00128D06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C57A7D52475B1EC00DF437B /* SuShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7D82475B1EC00DF437B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,7 +128,6 @@
 		30945CB72491553B00AAB687 /* SlideInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		30945CB82491553B00AAB687 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30945CB92491553B00AAB687 /* SideView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
-		30E4E0E52491442700E6E95D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E23EC112484B710007C3013 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		3E23EC1524892F6F007C3013 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				30E4E0E52491442700E6E95D /* GoogleService-Info.plist */,
+				0C12C6242495F6FD00128D06 /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
 				0CB1DA95247A23BB00713BF5 /* Shaniya */,
@@ -461,10 +461,10 @@
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */,
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
-				30E4E0E62491442700E6E95D /* GoogleService-Info.plist in Resources */,
 				30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
+				0C12C6252495F6FD00128D06 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
