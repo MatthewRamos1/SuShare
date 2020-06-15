@@ -25,7 +25,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </containerView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ssLogo" translatesAutoresizingMaskIntoConstraints="NO" id="LhT-jh-z0q" customClass="DesignableImageView" customModule="SuShare" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suShareLogo-White-eggShell" translatesAutoresizingMaskIntoConstraints="NO" id="LhT-jh-z0q" customClass="DesignableImageView" customModule="SuShare" customModuleProvider="target">
                                 <rect key="frame" x="169" y="144" width="75" height="75"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -123,7 +123,7 @@
                                     <constraint firstAttribute="height" constant="40" id="rNE-Gq-WGW"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hX1-BX-84s">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hX1-BX-84s">
                                 <rect key="frame" x="20" y="259" width="374" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -191,6 +191,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ssLogo" width="1246" height="1246"/>
+        <image name="suShareLogo-White-eggShell" width="1245" height="1245"/>
     </resources>
 </document>

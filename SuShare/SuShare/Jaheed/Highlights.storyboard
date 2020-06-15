@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -314,17 +314,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1050"/>
-                    <connections>
-                        <outlet property="descriptionLabel" destination="OjQ-bO-Q3g" id="RZI-u7-toz"/>
-                        <outlet property="durationLabel" destination="c8I-Zj-u3U" id="rBG-Yk-IIP"/>
-                        <outlet property="imageView" destination="fM0-w7-zBE" id="mHW-3i-IfO"/>
-                        <outlet property="paymentLabel" destination="qAY-V8-mUZ" id="ASr-dz-h8C"/>
-                        <outlet property="potLabel" destination="6WC-sK-F33" id="Fa5-3q-qb2"/>
-                        <outlet property="progressView" destination="K87-Jf-GS7" id="ijl-Pe-UGO"/>
-                        <outlet property="titleLabel" destination="PNy-cQ-hoF" id="voP-7T-LbR"/>
-                        <outlet property="userProfileImage" destination="pGg-8P-2cG" id="0dM-JX-RI9"/>
-                        <outlet property="usernameLabel" destination="NOx-Hg-bva" id="plU-Jb-q7U"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zBy-nD-nDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

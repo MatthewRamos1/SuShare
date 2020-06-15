@@ -15,7 +15,7 @@ struct Comment {
  let susuId: String
  let susuName: String
  let creatorName: String
- let text: String
+ let comment: String
 }
 extension Comment {
  // we use this initializer when converting a snapshot firebase data object to our Swift model (Comment)
@@ -25,6 +25,6 @@ extension Comment {
   self.susuId = dictionary["itemId"] as? String ?? "no susuId"
   self.susuName = dictionary["itemName"] as? String ?? "no susuName"
   self.creatorName = dictionary["sellerName"] as? String ?? "no creatorName"
-  self.text = dictionary["text"] as? String ?? "no text"
+  self.comment = dictionary["comment"] as? String ?? "no comment"
  }
 }
