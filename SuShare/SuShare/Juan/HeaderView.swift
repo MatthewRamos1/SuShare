@@ -100,7 +100,6 @@ class HeaderView: UICollectionReusableView  {
         setupBackedButtonConstraints()
         setupFavoritedButtonConstraints()
         setupCreatedButtonConstraints()
-        //setupSegmentedControlConstraints()
     }
     
     private func setupBackedButtonConstraints() {
@@ -124,17 +123,6 @@ class HeaderView: UICollectionReusableView  {
         createdButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-22)
-        }
-    }
-    
-    private func setupSegmentedControlConstraints() {
-        addSubview(segmentedControl)
-        segmentedControl.snp.makeConstraints { (make) in
-            make.left.equalTo(self.snp.left)
-            make.right.equalTo(self.snp.right)
-            make.top.equalTo(self.snp.top)
-            make.bottom.equalTo(self.snp.bottom).offset(-8)
-            //make.height.equalTo(self.snp.height)
         }
     }
     

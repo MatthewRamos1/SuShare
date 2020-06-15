@@ -47,6 +47,7 @@ class AddFriendViewController: UIViewController {
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
+        self.tabBarController?.tabBar.items?[1].title = "Personal"
         configureUsers()
     }
     
