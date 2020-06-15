@@ -44,11 +44,7 @@ class ExploreViewController: UIViewController {
         }
     }
     var currentTags = [Int]()
-    var currentQuery = "" {
-        didSet {
-            currentSusus = currentSusus.filter { $0.description.contains(currentQuery) }
-        }
-    }
+    var currentQuery = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -213,10 +209,11 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
 
 extension ExploreViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text, !query.isEmpty else {
+        guard let query = searchBar.text?.lowercased(), !query.isEmpty else {
+            currentSusus = originalSusus
             return
         }
-        currentSusus = originalSusus.filter { $0.description.contains(query) || $0.susuTitle.contains(query)}
+        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
     }
 }
 
