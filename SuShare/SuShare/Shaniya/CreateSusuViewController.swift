@@ -422,9 +422,9 @@ class CreateSusuViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.dismiss(animated: true)
                     //TODO: need to add  the closing circle animation
-                    
+                     print("all went well with the update")
                 }
-                print("all went well with the update")
+               
             }
         }
     }
@@ -434,7 +434,7 @@ class CreateSusuViewController: UIViewController {
         print("button has been pressed")
          //dismissKeyboard()
         addSusu()
-       
+        dismiss(animated: true)
         // dismiss controller
         print("function done")
     }
