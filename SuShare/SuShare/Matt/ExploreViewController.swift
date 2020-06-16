@@ -22,6 +22,9 @@ class ExploreViewController: UIViewController {
     var boldFont: UIFont?
     var thinFont: UIFont?
     
+    
+     private let circularTransition = CircularTransition()
+    
     //------------------------
     //Jaheed
     var sideMenuOpen = false
@@ -56,7 +59,11 @@ class ExploreViewController: UIViewController {
         boldFont = exploreButton.titleLabel?.font
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
+        
+        
         createButton.layer.cornerRadius = createButton.frame.size.width / 2
+        
+      
         //
         //------------------------
         // JAHEED
@@ -183,16 +190,25 @@ class ExploreViewController: UIViewController {
     // createSuShare segue
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToCreateSusu", sender: self)
+       // performSegue(withIdentifier: "goToCreateSusu", sender: self)
+         
+        let vc = UIStoryboard(name: "CreateSusu", bundle: nil).instantiateViewController(withIdentifier: "CreateSusu") as? CreateSusuViewController
+        
+        
+        self.show(vc!, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.identifier == "goToCreateSusu" {
                guard let createVC = segue.destination as? CreateSusuViewController else { return }
              //  createVC.transitioningDelegate = self
-            //createVC.modalPresentationStyle = .popover
+           // createVC.modalPresentationStyle = .popover
            // navigationController?.pushViewController(createVC, animated: true)
-            present(createVC, animated: true)
+            
+//            createVC.transitioningDelegate = self
+//            createVC.modalPresentationStyle = .custom
+//            navigationController?.pushViewController(createVC, animated: true)
+        //    present(createVC, animated: true)
            }
        }
     
@@ -208,6 +224,7 @@ extension ExploreViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
             fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
         }
+        
         let suShare = currentSusus[indexPath.row]
         
         cell.configureCell(suShare: suShare)
@@ -233,7 +250,7 @@ extension ExploreViewController: UISearchBarDelegate {
             currentSusus = originalSusus
             return
         }
-        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+        currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
     }
 }
 
@@ -242,8 +259,19 @@ extension ExploreViewController: UISearchBarDelegate {
 
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transiton.isPresenting = true
-        return transiton
+        
+        if source.modalPresentationStyle == .custom {
+           circularTransition.transitionMode = .present
+                       //circularTransition.startingPoint = createButton.center
+                      // circularTransition.circleColor = createButton.backgroundColor!
+            
+            return circularTransition
+        } else {
+            transiton.isPresenting = true
+                 return transiton
+        }
+        
+     
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {

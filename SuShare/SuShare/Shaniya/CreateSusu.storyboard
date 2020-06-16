@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="76s-yQ-bmx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wAh-xa-R0b">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -278,7 +278,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.76470588240000004" green="0.74509803919999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="d6f-cf-Tda" secondAttribute="trailing" id="164-Fq-dfG"/>
                                     <constraint firstItem="d6f-cf-Tda" firstAttribute="width" secondItem="Mgs-hP-fjT" secondAttribute="width" id="7Qr-Bu-jHI"/>
@@ -300,6 +300,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g5r-wq-wyh"/>
                     </view>
+                    <navigationItem key="navigationItem" id="h3r-PT-RT6">
+                        <barButtonItem key="leftBarButtonItem" title="cancel" id="GjD-Dd-c7O"/>
+                    </navigationItem>
                     <size key="freeformSize" width="414" height="1800"/>
                     <connections>
                         <outlet property="PrivacySettingsLabel" destination="XCn-HI-hy1" id="Qyj-ZF-N9a"/>
@@ -326,6 +329,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0M2-cZ-cbd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="228.98550724637684" y="-66.294642857142861"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IaN-hc-Vdc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wAh-xa-R0b" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="u1f-SM-AJp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="76s-yQ-bmx" kind="relationship" relationship="rootViewController" id="xk1-qZ-l7X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nkr-ga-QfF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-681.15942028985512" y="-66.294642857142861"/>
         </scene>

@@ -326,7 +326,7 @@
                         <outlet property="exploreButton" destination="J82-V6-Cck" id="NKP-ir-89w"/>
                         <outlet property="friendsButton" destination="3IT-W6-DPS" id="t9h-aZ-xBL"/>
                         <outlet property="searchBar" destination="NHj-ua-sKX" id="0ml-Pk-zkZ"/>
-                        <segue destination="PjD-Su-LDI" kind="show" identifier="goToCreateSusu" id="9nD-WM-bhb"/>
+                        <segue destination="PjD-Su-LDI" kind="presentation" identifier="goToCreateSusu" id="myd-MX-2tu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cuT-Q0-HUO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -106,6 +106,7 @@ class CreateSusuViewController: UIViewController {
         super.viewDidLoad()
        // registerKeyboardNotifications()
         configureController()
+        configureBarButtons()
         
     }
     
@@ -144,13 +145,19 @@ class CreateSusuViewController: UIViewController {
         stepperForparticipaints.minimumValue = 2.0
         stepperForparticipaints.maximumValue = 10.0
         stepperForparticipaints.stepValue = 1
-        numberLabel.text = "\(stepperForparticipaints.value)"
+        numberLabel.text = "\(Int(stepperForparticipaints.value))"
         
         // Slider Configuration
         sliderForParticipaints.isContinuous = false
         sliderForParticipaints.minimumValue = 2.0
         sliderForParticipaints.maximumValue = 10.0
         sliderForParticipaints.value = 4.0
+    }
+    
+    private func configureBarButtons(){
+        let cancelButton = UIButton(type: .close)
+        cancelButton.tintColor = .green
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
     }
     
     // what parts of the camera is avaiable based on device
@@ -380,7 +387,7 @@ class CreateSusuViewController: UIViewController {
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
         let selectedIntValue = selectedCategories.map { $0.rawValue }
         
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: "nil", suShareId: "nil", users: [""], favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: "nil", suShareId: "nil", usersInTheSuShare: [""], favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
