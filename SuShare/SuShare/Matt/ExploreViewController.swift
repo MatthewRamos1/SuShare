@@ -16,6 +16,7 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var exploreButton: UIButton!
     @IBOutlet weak var friendsButton: UIButton!
+    @IBOutlet weak var createButton: UIButton!
     
     var suShareListener: ListenerRegistration?
     var boldFont: UIFont?
@@ -55,7 +56,8 @@ class ExploreViewController: UIViewController {
         boldFont = exploreButton.titleLabel?.font
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
-        
+        createButton.layer.cornerRadius = createButton.frame.size.width / 2
+        //
         //------------------------
         // JAHEED
         
@@ -177,6 +179,24 @@ class ExploreViewController: UIViewController {
         currentSusus = originalSusus
         //.filter { currentTags.contains($0.category.rawValue)}
     }
+    
+    // createSuShare segue
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToCreateSusu", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if segue.identifier == "goToCreateSusu" {
+               guard let createVC = segue.destination as? CreateSusuViewController else { return }
+             //  createVC.transitioningDelegate = self
+            //createVC.modalPresentationStyle = .popover
+           // navigationController?.pushViewController(createVC, animated: true)
+            present(createVC, animated: true)
+           }
+       }
+    
+    
 }
 
 extension ExploreViewController: UICollectionViewDataSource {

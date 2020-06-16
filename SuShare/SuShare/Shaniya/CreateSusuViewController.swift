@@ -380,7 +380,7 @@ class CreateSusuViewController: UIViewController {
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
         let selectedIntValue = selectedCategories.map { $0.rawValue }
         
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: "nil", suShareId: "nil", favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: "nil", suShareId: "nil", users: [""], favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in

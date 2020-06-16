@@ -60,6 +60,8 @@ struct SuShare{
     let category: [Int]
     let createdDate: String
     let suShareId: String
+    let users: [String]
+    
     
     // after creation
     let favId: String?
@@ -78,6 +80,7 @@ extension SuShare {
         self.category = dictionary["category"] as? [Int] ?? []
         self.createdDate = dictionary["createdDate"] as? String ?? ""
         self.suShareId = dictionary["suShareId"] as? String ?? ""
+        self.users = dictionary["users"] as? [String] ?? [""]
         self.favId = dictionary["favId"] as? String ?? ""
     }
 }
