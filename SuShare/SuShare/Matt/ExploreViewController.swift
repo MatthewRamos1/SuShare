@@ -198,10 +198,10 @@ extension ExploreViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-        guard let detailVC = storyboard.instantiateInitialViewController() else {
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
              return
         }
-        present(detailVC, animated: true)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     

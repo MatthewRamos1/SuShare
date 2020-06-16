@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     
     
     
-    public var sushare: SuShare
+    public var sushare: SuShare?
     
     private var isFavorite = false {
         didSet{
@@ -39,14 +39,6 @@ class DetailViewController: UIViewController {
         }
     }
     
-    init?(coder: NSCoder, sushare: SuShare) {
-        self.sushare = sushare
-        super.init(coder: coder)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

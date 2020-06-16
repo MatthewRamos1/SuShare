@@ -10,7 +10,7 @@
         <!--Detail View Controller-->
         <scene sceneID="H7M-81-Wrr">
             <objects>
-                <viewController id="w6c-1b-cNX" customClass="DetailViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="w6c-1b-cNX" customClass="DetailViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z3y-92-GZK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1050"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
