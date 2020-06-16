@@ -156,18 +156,15 @@ class CreateSusuViewController: UIViewController {
     }
     
     private func configureBarButtons(){
-        
       //  let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack))
-
        let cancelButton = UIButton(type: .close)
-       
         cancelButton.tintColor = .green
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(goBack))
         //cancelButton
     }
     
     @objc private func goBack() {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // what parts of the camera is avaiable based on device
