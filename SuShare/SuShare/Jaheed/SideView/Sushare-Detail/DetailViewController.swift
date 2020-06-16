@@ -55,7 +55,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
-        print("button pressed")
+        navigationController?.pushViewController(PaymentViewController(), animated: true)
     }
     
     

@@ -191,8 +191,17 @@ extension ExploreViewController: UICollectionViewDataSource {
         let suShare = currentSusus[indexPath.row]
         
         cell.configureCell(suShare: suShare)
+        cell.shadowConfig()
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+        guard let detailVC = storyboard.instantiateInitialViewController() else {
+             return
+        }
+        present(detailVC, animated: true)
     }
     
     
@@ -205,6 +214,10 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
             UIScreen.main.bounds.size.width - 100
         return CGSize(width: width, height: height * 2)
     }
+    
+    //need insets
+    
+    
 }
 
 extension ExploreViewController: UISearchBarDelegate {
