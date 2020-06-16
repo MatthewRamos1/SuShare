@@ -300,9 +300,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g5r-wq-wyh"/>
                     </view>
-                    <navigationItem key="navigationItem" id="h3r-PT-RT6">
-                        <barButtonItem key="leftBarButtonItem" title="cancel" id="GjD-Dd-c7O"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="h3r-PT-RT6"/>
                     <size key="freeformSize" width="414" height="1800"/>
                     <connections>
                         <outlet property="PrivacySettingsLabel" destination="XCn-HI-hy1" id="Qyj-ZF-N9a"/>

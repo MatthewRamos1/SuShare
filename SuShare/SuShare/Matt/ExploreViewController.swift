@@ -192,8 +192,11 @@ class ExploreViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
        // performSegue(withIdentifier: "goToCreateSusu", sender: self)
          
+        //https://stackoverflow.com/questions/18777627/segue-from-one-storyboard-to-a-different-storyboard
         let vc = UIStoryboard(name: "CreateSusu", bundle: nil).instantiateViewController(withIdentifier: "CreateSusu") as? CreateSusuViewController
         
+      //  https://www.appcoda.com/ios-programming-101-how-to-hide-tab-bar-navigation-controller/#:~:text=When%20it's%20set%20to%20YES,the%20RecipeDetailViewController%20to%20%E2%80%9CYES%E2%80%9D.
+        vc?.hidesBottomBarWhenPushed = true // hides the botton tab bar
         
         self.show(vc!, sender: self)
     }

@@ -118,6 +118,7 @@ class CreateSusuViewController: UIViewController {
     // MARK: helper functions
         // configure all the elements
     private func configureController(){
+        navigationController?.title = "Create a SuShare"
         
         hideKeyboard()
         
@@ -155,9 +156,18 @@ class CreateSusuViewController: UIViewController {
     }
     
     private func configureBarButtons(){
-        let cancelButton = UIButton(type: .close)
+        
+      //  let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack))
+
+       let cancelButton = UIButton(type: .close)
+       
         cancelButton.tintColor = .green
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(goBack))
+        //cancelButton
+    }
+    
+    @objc private func goBack() {
+        dismiss(animated: true)
     }
     
     // what parts of the camera is avaiable based on device
@@ -183,6 +193,12 @@ class CreateSusuViewController: UIViewController {
         alertController.addAction(photoLibrary)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
+    }
+    
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        // show alert that everything they did will be lost 
+        dismiss(animated: true)
     }
     
     
