@@ -42,7 +42,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="420" height="420"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ssLogo" translatesAutoresizingMaskIntoConstraints="NO" id="wTj-ee-dwe">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suShareLogo-noStroke" translatesAutoresizingMaskIntoConstraints="NO" id="wTj-ee-dwe">
                                                     <rect key="frame" x="0.0" y="0.0" width="420" height="250"/>
                                                     <color key="backgroundColor" red="0.66580978234935073" green="1" blue="0.81535414156813113" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
@@ -545,6 +545,6 @@
         <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
-        <image name="ssLogo" width="1246" height="1246"/>
+        <image name="suShareLogo-noStroke" width="1245" height="1245"/>
     </resources>
 </document>
