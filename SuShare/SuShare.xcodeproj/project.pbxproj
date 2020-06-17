@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C12C6252495F6FD00128D06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C12C6242495F6FD00128D06 /* GoogleService-Info.plist */; };
 		0C12C62F249894E400128D06 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12C62E249894E400128D06 /* PaymentViewController.swift */; };
 		0C12C63324989B7F00128D06 /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */; };
 		0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7D82475B1EC00DF437B /* AppDelegate.swift */; };
@@ -65,6 +64,8 @@
 		3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC1D248ADCAF007C3013 /* EmptyView.swift */; };
 		3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */; };
 		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
+		55505BB2249A5F950063AC66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55505BB1249A5F940063AC66 /* GoogleService-Info.plist */; };
+		55505BB4249AA1CF0063AC66 /* createSushare-wPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 55505BB3249AA1CF0063AC66 /* createSushare-wPlus.png */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +81,6 @@
 
 /* Begin PBXFileReference section */
 		0B590E058777444C01A78528 /* Pods_SuShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C12C6242495F6FD00128D06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C12C62E249894E400128D06 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		0C57A7D52475B1EC00DF437B /* SuShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +142,8 @@
 		3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
+		55505BB1249A5F940063AC66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55505BB3249AA1CF0063AC66 /* createSushare-wPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "createSushare-wPlus.png"; path = "../../../../../../Downloads/createSushare-wPlus.png"; sourceTree = "<group>"; };
 		6B15F7A9509A2193B424D82F /* Pods-SuShareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.debug.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FDDBC8696F214CCFA3FC4C /* Pods-SuShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.release.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.release.xcconfig"; sourceTree = "<group>"; };
 		D089DF1BC033B820349FB779 /* Pods-SuShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShare.debug.xcconfig"; path = "Target Support Files/Pods-SuShare/Pods-SuShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,7 +195,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				0C12C6242495F6FD00128D06 /* GoogleService-Info.plist */,
+				55505BB1249A5F940063AC66 /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
 				0CB1DA95247A23BB00713BF5 /* Shaniya */,
@@ -348,6 +350,7 @@
 		3E23EC1F248ADF01007C3013 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				55505BB3249AA1CF0063AC66 /* createSushare-wPlus.png */,
 				0C57A7D82475B1EC00DF437B /* AppDelegate.swift */,
 				0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */,
 				0C57A7E12475B1EE00DF437B /* Assets.xcassets */,
@@ -463,7 +466,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				30945CAB2491529600AAB687 /* Friends.storyboard in Resources */,
+				55505BB4249AA1CF0063AC66 /* createSushare-wPlus.png in Resources */,
 				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
+				55505BB2249A5F950063AC66 /* GoogleService-Info.plist in Resources */,
 				30C704B02497C48900B12578 /* SushareDetail.storyboard in Resources */,
 				30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */,
 				0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */,
@@ -476,7 +481,6 @@
 				30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
-				0C12C6252495F6FD00128D06 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
