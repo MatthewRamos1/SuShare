@@ -38,15 +38,17 @@ class DatabaseService{
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
-            "susuImage": sushare.susuImage!,
+            "susuImage": sushare.susuImage,
             "description": sushare.suShareDescription,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
             "paymentSchedule": sushare.paymentSchedule,
             "userId": user.uid,
-            "createdDate": Timestamp(date: Date()),
             "category": sushare.category,
-            "iD": docRef.documentID
+            "createdDate": sushare.createdDate,
+            "iD": docRef.documentID,
+            "usersApartOfSuShare": sushare.usersInTheSuShare,
+            "favId": sushare.favId
             
         ]) { (error) in
             if let error = error {
