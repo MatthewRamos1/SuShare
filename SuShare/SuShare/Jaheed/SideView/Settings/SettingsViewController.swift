@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Kingfisher
 
 enum SettingsType{
     case username
@@ -39,8 +40,16 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateUI()
         view.backgroundColor = .systemBackground
+    }
+    
+    private func updateUI(){
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        imageView.kf.setImage(with: user.photoURL)
+        usernameLabel.text = user.displayName
     }
     
     @IBAction func updateImagePressed(_ sender: UIButton) {
@@ -63,6 +72,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func signOutButtonPressed(_ sender: UIBarButtonItem) {
+        print("button pressed")
         do {
             try Auth.auth().signOut()
             UIViewController.showViewController(storyBoardName: "LoginView", viewControllerId: "LoginViewController")

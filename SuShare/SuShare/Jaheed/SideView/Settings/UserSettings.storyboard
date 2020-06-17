@@ -28,9 +28,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDa-8v-TOl">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sDa-8v-TOl">
                                 <rect key="frame" x="0.0" y="264" width="414" height="632"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="GPr-iD-RYa">
@@ -58,9 +57,13 @@
                             <constraint firstItem="n5s-CW-DrM" firstAttribute="centerX" secondItem="yPA-RL-j5A" secondAttribute="centerX" id="3vA-iB-lb4"/>
                             <constraint firstItem="n5s-CW-DrM" firstAttribute="top" secondItem="yPA-RL-j5A" secondAttribute="bottom" constant="8" id="6QU-ys-sXT"/>
                             <constraint firstItem="uNk-KB-IuI" firstAttribute="top" secondItem="1M7-I7-W6R" secondAttribute="top" constant="74" id="Bv8-A9-vCf"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="leading" secondItem="1M7-I7-W6R" secondAttribute="leading" id="K7g-6p-mZD"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="top" secondItem="n5s-CW-DrM" secondAttribute="bottom" constant="8" id="KLs-hH-gYW"/>
                             <constraint firstItem="n5s-CW-DrM" firstAttribute="leading" secondItem="1M7-I7-W6R" secondAttribute="leading" constant="38" id="OJO-wh-21s"/>
                             <constraint firstItem="1M7-I7-W6R" firstAttribute="trailing" secondItem="uNk-KB-IuI" secondAttribute="trailing" constant="20" id="Poz-uQ-4Vc"/>
+                            <constraint firstAttribute="bottom" secondItem="sDa-8v-TOl" secondAttribute="bottom" id="SBQ-eo-ZSw"/>
                             <constraint firstItem="yPA-RL-j5A" firstAttribute="top" secondItem="1M7-I7-W6R" secondAttribute="top" constant="30" id="YB5-gE-taX"/>
+                            <constraint firstItem="sDa-8v-TOl" firstAttribute="trailing" secondItem="1M7-I7-W6R" secondAttribute="trailing" id="xcr-kC-tGG"/>
                             <constraint firstItem="uNk-KB-IuI" firstAttribute="leading" secondItem="yPA-RL-j5A" secondAttribute="trailing" constant="10" id="zk9-qp-rMA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1M7-I7-W6R"/>
