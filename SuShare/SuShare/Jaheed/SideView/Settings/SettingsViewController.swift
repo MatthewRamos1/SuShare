@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController {
         present(alertController, animated: true)
     }
     
-    @IBAction func signOutButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func signOutButtonPressed(_ sender: UIButton) {
         print("button pressed")
         do {
             try Auth.auth().signOut()

@@ -95,7 +95,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zvC-pB-8jd">
-                                <rect key="frame" x="115" y="593" width="182.5" height="27"/>
+                                <rect key="frame" x="115" y="593" width="199" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7m5-gD-aFO">
                                         <rect key="frame" x="0.0" y="0.0" width="132.5" height="27"/>
@@ -104,7 +104,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QlR-tj-5rD">
-                                        <rect key="frame" x="137.5" y="0.0" width="45" height="27"/>
+                                        <rect key="frame" x="137.5" y="0.0" width="61.5" height="27"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" red="0.62055844069999999" green="0.92358344790000002" blue="0.75684303050000001" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
@@ -114,15 +114,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                            </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUb-8C-sR1" customClass="GIDSignInButton">
-                                <rect key="frame" x="35" y="700" width="344" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="344" id="HbG-wV-K1n"/>
-                                    <constraint firstAttribute="height" constant="40" id="rNE-Gq-WGW"/>
+                                    <constraint firstItem="QlR-tj-5rD" firstAttribute="leading" secondItem="7m5-gD-aFO" secondAttribute="trailing" constant="5" id="pv2-uc-Rjt"/>
                                 </constraints>
-                            </view>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hX1-BX-84s">
                                 <rect key="frame" x="20" y="259" width="374" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -133,7 +128,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="fD4-yh-797" secondAttribute="trailing" constant="20" id="4qb-Sz-uE6"/>
-                            <constraint firstItem="JUb-8C-sR1" firstAttribute="top" secondItem="zvC-pB-8jd" secondAttribute="bottom" constant="80" id="DMO-Vl-H4C"/>
                             <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="LhT-jh-z0q" secondAttribute="trailing" constant="170" id="FY9-Yg-Pbk"/>
                             <constraint firstItem="hX1-BX-84s" firstAttribute="leading" secondItem="v1k-wc-ckD" secondAttribute="leading" constant="20" id="GwA-aO-BHV"/>
                             <constraint firstItem="zvC-pB-8jd" firstAttribute="leading" secondItem="v1k-wc-ckD" secondAttribute="leading" constant="115" id="Jdd-SD-KCc"/>
@@ -141,14 +135,12 @@
                             <constraint firstItem="LhT-jh-z0q" firstAttribute="leading" secondItem="v1k-wc-ckD" secondAttribute="leading" constant="169" id="Ont-g0-WDL"/>
                             <constraint firstItem="fD4-yh-797" firstAttribute="top" secondItem="7W7-P9-gTc" secondAttribute="bottom" constant="50" id="QO3-nH-ACB"/>
                             <constraint firstItem="7W7-P9-gTc" firstAttribute="top" secondItem="LhT-jh-z0q" secondAttribute="bottom" constant="80" id="URs-NV-Kpq"/>
-                            <constraint firstItem="JUb-8C-sR1" firstAttribute="leading" secondItem="v1k-wc-ckD" secondAttribute="leading" constant="35" id="XOG-Tc-Ewq"/>
                             <constraint firstItem="fD4-yh-797" firstAttribute="leading" secondItem="v1k-wc-ckD" secondAttribute="leading" constant="20" id="bJY-rp-n0k"/>
                             <constraint firstItem="hX1-BX-84s" firstAttribute="top" secondItem="LhT-jh-z0q" secondAttribute="bottom" constant="40" id="hqi-d5-xkc"/>
                             <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="7W7-P9-gTc" secondAttribute="trailing" constant="20" id="ncO-gN-PPs"/>
                             <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="hX1-BX-84s" secondAttribute="trailing" constant="20" id="pEN-Fl-2yX"/>
-                            <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="JUb-8C-sR1" secondAttribute="trailing" constant="35" id="rQf-AE-aY5"/>
                             <constraint firstItem="zvC-pB-8jd" firstAttribute="top" secondItem="fD4-yh-797" secondAttribute="bottom" constant="40" id="rmJ-ux-rZ9"/>
-                            <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="zvC-pB-8jd" secondAttribute="trailing" constant="116.5" id="t5L-kr-taC"/>
+                            <constraint firstItem="v1k-wc-ckD" firstAttribute="trailing" secondItem="zvC-pB-8jd" secondAttribute="trailing" constant="100" id="t5L-kr-taC"/>
                             <constraint firstItem="LhT-jh-z0q" firstAttribute="top" secondItem="v1k-wc-ckD" secondAttribute="top" constant="100" id="tcQ-0o-CWg"/>
                             <constraint firstItem="7W7-P9-gTc" firstAttribute="top" secondItem="hX1-BX-84s" secondAttribute="bottom" constant="8" id="zke-pm-8fF"/>
                         </constraints>
@@ -164,7 +156,6 @@
                         <outlet property="errorLabel" destination="hX1-BX-84s" id="9Ks-UG-oT4"/>
                         <outlet property="loginButton" destination="fD4-yh-797" id="X1X-Sw-hqe"/>
                         <outlet property="passwordTextfield" destination="3P2-tI-dhE" id="IRy-8V-5m8"/>
-                        <outlet property="signInButton" destination="JUb-8C-sR1" id="QqV-YL-g6G"/>
                         <outlet property="usernameTextField" destination="fqv-1d-sY9" id="i4L-IN-O2s"/>
                     </connections>
                 </viewController>

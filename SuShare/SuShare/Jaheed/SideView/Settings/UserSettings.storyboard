@@ -76,10 +76,10 @@
                                 <state key="normal" title="Sign Out">
                                     <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOutButtonPressed:" destination="tEk-eH-ios" eventType="touchUpInside" id="tce-zZ-Oh5"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="signOutButtonPressed:" destination="tEk-eH-ios" id="yLW-hY-OCk"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
