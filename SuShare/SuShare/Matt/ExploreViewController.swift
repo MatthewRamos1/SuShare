@@ -63,18 +63,6 @@ class ExploreViewController: UIViewController {
         
         createButton.layer.cornerRadius = createButton.frame.size.width / 2
         
-      
-        //
-        //------------------------
-        // JAHEED
-        
-        //        NotificationCenter.default.addObserver(self,
-        //                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
-        //        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
-        
-        
-        //------------------------
-        
     }
     
     //---------------------------------------------------------------------------------
@@ -85,6 +73,9 @@ class ExploreViewController: UIViewController {
             self.transitionToNew(menuType)
         }
         
+         let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
+        transiton.dimmingView.addGestureRecognizer(tap)
+
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
@@ -92,6 +83,9 @@ class ExploreViewController: UIViewController {
     }
     
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+           dismiss(animated: true, completion: nil)
+       }
     
     func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
@@ -113,13 +107,6 @@ class ExploreViewController: UIViewController {
             let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
             self.navigationController?.pushViewController(settingsVC, animated: true)
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        let touch = touches.first
-        if touch?.view != self.topView
-        { self.dismiss(animated: true, completion: nil) }
     }
     
     //---------------------------------------------------------------------------------

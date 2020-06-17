@@ -32,4 +32,11 @@ class MenuViewController: UITableViewController {
             self?.didTapMenuType?(menuType)
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        let touch = touches.first
+        if touch?.view != self
+        { self.dismiss(animated: true, completion: nil) }
+    }
 }
