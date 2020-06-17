@@ -232,6 +232,9 @@
                     <navigationItem key="navigationItem" id="fZV-1C-jGn">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" id="6d1-4M-jLq">
                             <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="favoriteButtonPressed:" destination="w6c-1b-cNX" id="Xrc-k3-fkA"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1050"/>
