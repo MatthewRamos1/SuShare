@@ -160,7 +160,7 @@
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hid-wz-sZ2">
                                                 <rect key="frame" x="81" y="849" width="252" height="200"/>
-                                                <color key="backgroundColor" red="0.88835757969999996" green="0.5663116574" blue="0.085880495609999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <color key="tintColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="64y-1m-zvf"/>
@@ -309,7 +309,6 @@
                         <outlet property="bottomContraintForPotAmount" destination="KxV-Tr-eQm" id="jHU-wS-B9M"/>
                         <outlet property="bottomContraintForTitle" destination="HEc-Qe-nf2" id="lTe-57-h3T"/>
                         <outlet property="categoryLabel" destination="aR3-cp-r9U" id="f55-tt-PC2"/>
-                        <outlet property="categoryOutlet" destination="9w0-X3-57V" id="3gd-6H-gqn"/>
                         <outlet property="descriptionLabel" destination="3st-5n-JCp" id="YLI-ku-Ndt"/>
                         <outlet property="descriptionTextView" destination="RWx-tN-aol" id="QTT-gz-VUc"/>
                         <outlet property="dropDownButton" destination="9w0-X3-57V" id="2u0-k8-URW"/>
