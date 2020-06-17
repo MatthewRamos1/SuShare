@@ -217,7 +217,7 @@ class DatabaseService{
         
     }
     
-    func updateDatabaseUserImage(
+    public func updateDatabaseUserImage(
         photoURL: String,
         completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
