@@ -9,11 +9,18 @@
 import UIKit
 
 class PaymentViewController: UIViewController {
-
+    
+    public var suShare: SuShare?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "Checkout"
         view.backgroundColor = .systemGreen
     }
    
+}
+
+class PaymentView: UIView {
+    
 }

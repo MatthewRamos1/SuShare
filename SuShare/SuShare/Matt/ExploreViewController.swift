@@ -161,22 +161,30 @@ class ExploreViewController: UIViewController {
     
     
     @IBAction func tagButtonPressed(_ sender: UIButton) {
-        tagFilter(tag: sender.tag)
+        let wasPressed = tagFilter(tag: sender.tag)
+        switch wasPressed {
+        case true:
+            sender.backgroundColor = .systemGray4
+        case false:
+            sender.backgroundColor = .systemGray6
+        }
     }
     
-    private func tagFilter(tag: Int) {
+    private func tagFilter(tag: Int) -> Bool {
+        var wasPressed = false
         if !currentTags.contains(tag) {
             currentTags.append(tag)
+            wasPressed.toggle()
         } else {
             guard let index = currentTags.firstIndex(of: tag) else {
-                return
+                return wasPressed
             }
             currentTags.remove(at: index)
         }
-        
-        currentSusus = originalSusus
-        //.filter { currentTags.contains($0.category.rawValue)}
+        currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+        return wasPressed
     }
+    //need to add case for returning to 0 tags, with query
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -197,11 +205,13 @@ extension ExploreViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
-             return
-        }
-        navigationController?.pushViewController(detailVC, animated: true)
+//        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+//        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
+//             return
+//        }
+//        detailVC.sushare = currentSusus[indexPath.row]
+//        navigationController?.pushViewController(detailVC, animated: true)
+        navigationController?.pushViewController(PaymentViewController(), animated: true)
     }
     
     
@@ -223,9 +233,14 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
 extension ExploreViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text?.lowercased(), !query.isEmpty else {
-            currentSusus = originalSusus
+            if !currentTags.isEmpty {
+                currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+            } else {
+                currentSusus = originalSusus
+            }
             return
         }
+        currentQuery = query
         currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
     }
 }
