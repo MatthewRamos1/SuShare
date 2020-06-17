@@ -202,8 +202,8 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="icu-n5-JcW"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="0ZV-2T-N1K"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYQ-SK-Kin" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
-                                <rect key="frame" x="55" y="980" width="305" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYQ-SK-Kin" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
+                                <rect key="frame" x="20" y="980" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.29347142580000002" green="0.64742952590000002" blue="0.611764431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Join SuShare">
@@ -221,7 +221,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="SdN-99-bqH" firstAttribute="centerX" secondItem="BYQ-SK-Kin" secondAttribute="centerX" id="FSm-Im-BeP"/>
+                            <constraint firstItem="xbu-Vy-Ua9" firstAttribute="trailing" secondItem="BYQ-SK-Kin" secondAttribute="trailing" constant="20" id="LXZ-rv-btq"/>
+                            <constraint firstItem="BYQ-SK-Kin" firstAttribute="leading" secondItem="xbu-Vy-Ua9" secondAttribute="leading" constant="20" id="Mz6-KQ-jVZ"/>
                             <constraint firstItem="SdN-99-bqH" firstAttribute="leading" secondItem="z3y-92-GZK" secondAttribute="leading" id="PTq-hf-UqO"/>
                             <constraint firstItem="BYQ-SK-Kin" firstAttribute="top" secondItem="SdN-99-bqH" secondAttribute="bottom" constant="16" id="eXI-uF-qaR"/>
                             <constraint firstItem="SdN-99-bqH" firstAttribute="top" secondItem="xbu-Vy-Ua9" secondAttribute="top" id="yzY-f0-Mmg"/>
