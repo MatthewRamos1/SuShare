@@ -103,8 +103,8 @@ class ExploreViewController: UIViewController {
             print("tapped")
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+            let friendsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:

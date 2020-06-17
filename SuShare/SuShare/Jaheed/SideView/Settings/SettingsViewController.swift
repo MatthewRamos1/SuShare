@@ -40,6 +40,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.tabBarController?.tabBar.items?[0].title = "Explore"
+         self.tabBarController?.tabBar.items?[1].title = "Personal"
+        self.navigationController?.navigationBar.topItem?.title = "SuShare"
         updateUI()
         view.backgroundColor = .systemBackground
     }

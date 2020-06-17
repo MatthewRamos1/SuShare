@@ -39,15 +39,19 @@ class AddFriendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.items?[0].title = "Explore"
+        self.tabBarController?.tabBar.items?[1].title = "Personal"
+        self.navigationController?.navigationBar.topItem?.title = "SuShare"
+        
         view.backgroundColor = .systemBackground
         addFriendView.tableView.dataSource = self
         addFriendView.tableView.delegate = self
         addFriendView.searchBar.delegate = self
         addFriendView.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "friendsToAddCell")
-        navigationItem.title = "SuShare"
+        navigationItem.title = "Search"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
-        self.tabBarController?.tabBar.items?[1].title = "Personal"
+        //self.tabBarController?.tabBar.items?[1].title = "Personal"
         configureUsers()
     }
     
