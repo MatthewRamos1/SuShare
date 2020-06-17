@@ -25,18 +25,15 @@ class MenuViewController: UITableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let menuType = MenuType(rawValue: indexPath.row) else {return}
         dismiss(animated: true) { [weak self] in
             print("Dismissing: \(menuType)")
             self?.didTapMenuType?(menuType)
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        let touch = touches.first
-        if touch?.view != self
-        { self.dismiss(animated: true, completion: nil) }
     }
 }
