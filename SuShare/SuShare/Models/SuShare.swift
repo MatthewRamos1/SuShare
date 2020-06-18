@@ -63,6 +63,7 @@ struct SuShare{
     let createdDate: Timestamp
     let suShareId: String
     let usersInTheSuShare: [String]
+    let isTheSuShareFlagged: Bool
     
     
     // after creation
@@ -85,5 +86,6 @@ extension SuShare {
         self.suShareId = dictionary["suShareId"] as? String ?? ""
         self.usersInTheSuShare = dictionary["users"] as? [String] ?? [""]
         self.favId = dictionary["favId"] as? String ?? ""
+        self.isTheSuShareFlagged = dictionary["isTheSuShareFlagged"] as? Bool ?? false
     }
 }

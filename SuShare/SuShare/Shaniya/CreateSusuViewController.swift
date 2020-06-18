@@ -410,7 +410,7 @@ class CreateSusuViewController: UIViewController {
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
         let selectedIntValue = selectedCategories.map { $0.rawValue }
         
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: [""], favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: [""], isTheSuShareFlagged: false, favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
@@ -426,7 +426,7 @@ class CreateSusuViewController: UIViewController {
     }
     
     private func uploadPhoto(photo: UIImage, documentId: String){
-        ss.uploadPhoto(userId: "k", sushareId: documentId, image: photo) { (result) in
+        ss.uploadPhoto(sushareId: documentId, image: photo){ (result) in
             switch result {
             case .failure(let error):
                 self.showAlert(title: "Error uploading photo", message: "\(error.localizedDescription)")
@@ -448,7 +448,8 @@ class CreateSusuViewController: UIViewController {
             } else {
                 // everything went okay
                 DispatchQueue.main.async {
-                    self?.dismiss(animated: true)
+                    self?.navigationController?.popViewController(animated: true)
+                    
                     //TODO: need to add  the closing circle animation
                 }
                 print("all went well with the update")
