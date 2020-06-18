@@ -71,8 +71,9 @@ class PersonalViewController: UIViewController {
         configureSuShares()
     }
     
-        func configureSuShares()    {
-            db.getCreatedSuShares { (result) in
+    func configureSuShares()    {
+        if let selectedUser = user  {
+            db.getCreatedSuShares(user: selectedUser) { (result) in
                 switch result   {
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -81,6 +82,56 @@ class PersonalViewController: UIViewController {
                 }
             }
         }
+        else {
+            db.getCreatedSuSharesForCurrentUser { (result) in
+                switch result   {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let dbSuShares):
+                    self.suShares = dbSuShares
+                }
+            }
+        }
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        print("add friend")
+        guard let currentUser = Auth.auth().currentUser else    {
+            fatalError()
+        }
+        guard let selectedUser = user else  {
+            fatalError()
+        }
+        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId, friendUsername: selectedUser.username) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("new friend")
+                DispatchQueue.main.async {
+                    self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                    self.profileHeaderView?.addFriendButton.isEnabled = false
+                }
+            }
+        }
+    }
+    
+    func configureFriendsButton()  {
+
+        guard let selectedUser = user else  {
+            return
+        }
+        
+        db.checkForFriendship(user: selectedUser) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error)
+            case .success:
+                self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                self.profileHeaderView?.addFriendButton.isEnabled = false
+            }
+        }
+    }
     
     //-----------------------------------------------------------------
     @objc func didTapMenu(_ sender: UIBarButtonItem) {
@@ -127,46 +178,6 @@ class PersonalViewController: UIViewController {
     }
     //-----------------------------------------------------------------
     
-        
-    @objc private func buttonTapped(_ sender: UIButton) {
-        print("add friend")
-        guard let currentUser = Auth.auth().currentUser else    {
-            fatalError()
-        }
-        guard let selectedUser = user else  {
-            fatalError()
-        }
-        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId, friendUsername: selectedUser.username) { (result) in
-            switch result   {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success:
-                print("new friend")
-                DispatchQueue.main.async {
-                    self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
-                    self.profileHeaderView?.addFriendButton.isEnabled = false
-                }
-            }
-        }
-    }
-    
-    func configureFriendsButton()  {
-
-        guard let selectedUser = user else  {
-            return
-        }
-        
-        db.checkForFriendship(user: selectedUser) { (result) in
-            switch result   {
-            case .failure(let error):
-                print(error)
-            case .success:
-                self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
-                self.profileHeaderView?.addFriendButton.isEnabled = false
-            }
-        }
-    }
-    
 }
 
 extension PersonalViewController: UICollectionViewDataSource    {
@@ -196,6 +207,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
         cell.layer.shadowOpacity = 0.3
         cell.layer.masksToBounds = false
         let suShare = suShares[indexPath.row]
+        
         cell.configureCell(for: suShare)
         return cell
     }
