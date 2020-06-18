@@ -180,8 +180,10 @@ class ExploreViewController: UIViewController {
         switch wasPressed {
         case true:
             sender.backgroundColor = .systemGray4
+            sender.tintColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         case false:
             sender.backgroundColor = .systemGray6
+            sender.tintColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
         }
     }
     

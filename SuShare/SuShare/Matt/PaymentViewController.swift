@@ -48,8 +48,10 @@ extension PaymentViewController: UITableViewDataSource {
         case 1:
             return tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath)
         case 2:
-            return
-            tableView.dequeueReusableCell(withIdentifier: "subscribeCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "subscribeCell", for: indexPath)
+            cell.isUserInteractionEnabled = false
+            return cell
+            
         default:
             return UITableViewCell()
         }
@@ -79,7 +81,20 @@ extension PaymentViewController: STPPaymentContextDelegate {
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
-        return
+        let alertController = UIAlertController(
+            title: "Error",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            _ = self.navigationController?.popViewController(animated: true)
+        })
+        let retry = UIAlertAction(title: "Retry", style: .default, handler: { action in
+            self.paymentContext.retryLoading()
+        })
+        alertController.addAction(cancel)
+        alertController.addAction(retry)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
