@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ExploreCell: UICollectionViewCell {
     
@@ -17,7 +18,10 @@ class ExploreCell: UICollectionViewCell {
     
     public func configureCell(suShare: SuShare) {
         titleLabel.text = suShare.susuTitle
-        descriptionLabel.text = suShare.category.first?.description
+        let suShareCategory = suShare.category.first?.description
+        descriptionLabel.text = suShareCategory
+        let url = URL(string: suShare.susuImage)
+        susuImageView.kf.setImage(with: url)
         fundingProgressView.progress = Float(suShare.usersInTheSuShare.count / suShare.numOfParticipants) + 0.01
         
     }
