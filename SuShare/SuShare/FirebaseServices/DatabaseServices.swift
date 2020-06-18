@@ -138,6 +138,25 @@ class DatabaseService{
         }
     }
     
+    // add refresher, or refactor to use listener
+    func getCreatedSuShares(completion: @escaping (Result<[SuShare], Error>) -> ())  {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        db.collection(DatabaseService.suShareCollection).whereField("userId", isEqualTo: user.uid).getDocuments { (snapshot, error) in
+            if let error = error    {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot  {
+                    let suShares = snapshot.documents.map {SuShare($0.data())}
+                    let suSharesSorted = suShares.sorted {$0.susuTitle.lowercased() < $1.susuTitle.lowercased()}
+                    completion(.success(suSharesSorted))
+                }
+            }
+        }
+    }
+    
     func getSingleUser(userEmail: String, completion: @escaping (Result<User, Error>) -> ()) {
         db.collection(DatabaseService.userCollection).document(userEmail).getDocument { (document, error) in
             if let error = error    {

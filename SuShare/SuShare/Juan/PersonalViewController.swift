@@ -62,8 +62,25 @@ class PersonalViewController: UIViewController {
         suShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
+        configureSuShares()
         configureFriendsButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureSuShares()
+    }
+    
+        func configureSuShares()    {
+            db.getCreatedSuShares { (result) in
+                switch result   {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let dbSuShares):
+                    self.suShares = dbSuShares
+                }
+            }
+        }
     
     //-----------------------------------------------------------------
     @objc func didTapMenu(_ sender: UIBarButtonItem) {
@@ -157,7 +174,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
         if section == 0 {
             return 0
         }   else    {
-            return 5
+            return suShares.count
         }
     }
     
@@ -178,6 +195,8 @@ extension PersonalViewController: UICollectionViewDataSource    {
         cell.layer.shadowRadius = 5.0
         cell.layer.shadowOpacity = 0.3
         cell.layer.masksToBounds = false
+        let suShare = suShares[indexPath.row]
+        cell.configureCell(for: suShare)
         return cell
     }
     
