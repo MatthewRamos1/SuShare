@@ -257,17 +257,17 @@ extension ExploreViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-//        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
-//             return
-//        }
-//        detailVC.sushare = currentSusus[indexPath.row]
-//        navigationController?.pushViewController(detailVC, animated: true)
-        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
-            return
+        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
+             return
         }
-        navigationController?.pushViewController(vc, animated: true)
+        detailVC.sushare = currentSusus[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+//        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
+//        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+//            return
+//        }
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     
