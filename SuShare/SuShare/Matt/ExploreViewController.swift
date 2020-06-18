@@ -18,6 +18,7 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var friendsButton: UIButton!
     
     var suShareListener: ListenerRegistration?
+    var emptyView = EmptyView(title: "No SuShares Available", message: "Enter valid input or try a different query")
     var boldFont: UIFont?
     var thinFont: UIFont?
     
@@ -41,6 +42,11 @@ class ExploreViewController: UIViewController {
     var currentSusus = [SuShare]() {
         didSet {
             collectionView.reloadData()
+            if currentSusus.isEmpty {
+                collectionView.backgroundView = emptyView
+            } else {
+                collectionView.backgroundView = nil
+            }
         }
     }
     var currentTags = [Int]()
@@ -180,6 +186,10 @@ class ExploreViewController: UIViewController {
                 return wasPressed
             }
             currentTags.remove(at: index)
+            if currentTags.isEmpty && currentQuery == "" {
+                currentSusus = originalSusus
+                return wasPressed
+            }
         }
         currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
         return wasPressed
@@ -226,6 +236,18 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
     }
     
     //need insets
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
     
     
 }
