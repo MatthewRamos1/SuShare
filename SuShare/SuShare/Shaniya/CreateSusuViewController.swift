@@ -453,6 +453,7 @@ class CreateSusuViewController: UIViewController {
             } else {
                 // everything went okay
                 DispatchQueue.main.async {
+                    self?.showAlert(title: "successfully added ", message: "you added a SuShare")
                     self?.navigationController?.popViewController(animated: true)
                     
                     //TODO: need to add  the closing circle animation
