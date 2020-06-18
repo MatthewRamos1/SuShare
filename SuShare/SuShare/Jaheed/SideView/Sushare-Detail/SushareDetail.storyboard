@@ -23,9 +23,8 @@
                                     <constraint firstAttribute="width" constant="414" id="Wwf-NA-Jkl"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYQ-SK-Kin" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
-                                <rect key="frame" x="20" y="510" width="374" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYQ-SK-Kin" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
+                                <rect key="frame" x="20" y="512" width="374" height="36"/>
                                 <color key="backgroundColor" red="0.29347142580000002" green="0.64742952590000002" blue="0.611764431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Join SuShare">
@@ -37,6 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="joinSushareButtonPressed:" destination="W9X-79-dEz" eventType="touchUpInside" id="5op-tg-cjI"/>
                                     <action selector="joinSushareButtonPressed:" destination="w6c-1b-cNX" eventType="touchUpInside" id="Lu6-0B-Z7G"/>
                                 </connections>
                             </button>
@@ -44,12 +44,25 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="wiR-7N-lM3" firstAttribute="top" secondItem="Ffd-QL-xu5" secondAttribute="top" id="9gQ-bQ-9Cj"/>
+                            <constraint firstItem="BYQ-SK-Kin" firstAttribute="top" secondItem="wiR-7N-lM3" secondAttribute="bottom" constant="10" id="BDt-LC-jFI"/>
                             <constraint firstItem="wiR-7N-lM3" firstAttribute="leading" secondItem="Ffd-QL-xu5" secondAttribute="leading" id="IA2-Mj-Glf"/>
                             <constraint firstItem="wiR-7N-lM3" firstAttribute="trailing" secondItem="Ffd-QL-xu5" secondAttribute="trailing" id="g5t-1B-hTw"/>
+                            <constraint firstItem="Ffd-QL-xu5" firstAttribute="trailing" secondItem="BYQ-SK-Kin" secondAttribute="trailing" constant="20" id="hJv-Ij-xGQ"/>
+                            <constraint firstItem="BYQ-SK-Kin" firstAttribute="leading" secondItem="Ffd-QL-xu5" secondAttribute="leading" constant="20" id="u3p-Yv-OVp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ffd-QL-xu5"/>
                     </view>
-                    <navigationItem key="navigationItem" id="96T-19-zll"/>
+                    <navigationItem key="navigationItem" id="96T-19-zll">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" id="MVc-y5-n1W">
+                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="favoriteButtonPressed:" destination="W9X-79-dEz" id="paO-SK-cM9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="wiR-7N-lM3" id="xE7-ci-Q07"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Svf-3c-T7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
