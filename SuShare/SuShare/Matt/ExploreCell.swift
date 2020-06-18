@@ -15,7 +15,6 @@ class ExploreCell: UICollectionViewCell {
     @IBOutlet weak var fundingProgressView: UIProgressView!
     
     public func configureCell(suShare: SuShare) {
-        descriptionLabel.text = suShare.suShareDescription
+        descriptionLabel.text = suShare.category.first?.description
     }
-    
 }
