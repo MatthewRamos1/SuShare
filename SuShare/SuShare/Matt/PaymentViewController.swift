@@ -11,6 +11,9 @@ import Stripe
 
 class PaymentViewController: UIViewController {
     
+    @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var paymentTableView: UITableView!
+    
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
     private var paymentView = PaymentView()
@@ -19,14 +22,84 @@ class PaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Checkout"
-        paymentView.backgroundColor = .white
-        view = paymentView
+        subscribeButton.layer.cornerRadius = 8
+        subscribeButton.layer.shadowColor = UIColor.black.cgColor
+        subscribeButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        subscribeButton.layer.shadowRadius = 7
+        subscribeButton.layer.shadowOpacity = 0.4
+        paymentTableView.dataSource = self
+        paymentTableView.delegate = self
+        paymentContext.delegate = self
+        
         
     }
    
 }
 
+extension PaymentViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            return tableView.dequeueReusableCell(withIdentifier: "suShareCell", for: indexPath)
+        case 1:
+            return tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath)
+        case 2:
+            return
+            tableView.dequeueReusableCell(withIdentifier: "subscribeCell", for: indexPath)
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    
+}
+
+extension PaymentViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return 162
+        case 1:
+            return 110
+        case 2:
+            return 400
+        default:
+            return 1
+        }
+    }
+}
+
+extension PaymentViewController: STPPaymentContextDelegate {
+    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        return
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
+        return
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+        return
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+        return
+    }
+    
+    
+}
+
 class PaymentView: UIView {
+    
+    private lazy var paymentTable: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = .white
+        return tv
+    }()
     
     
     private lazy var joinSuShareButton: UIButton = {
@@ -58,9 +131,15 @@ class PaymentView: UIView {
     }
     
     private func setupConstraints() {
+        addSubview(paymentTable)
         addSubview(joinSuShareButton)
+        paymentTable.translatesAutoresizingMaskIntoConstraints = false
         joinSuShareButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            paymentTable.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            paymentTable.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            paymentTable.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            paymentTable.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             joinSuShareButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12),
             joinSuShareButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -12),
             joinSuShareButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12),

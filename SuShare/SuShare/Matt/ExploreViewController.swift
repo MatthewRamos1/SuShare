@@ -261,7 +261,11 @@ extension ExploreViewController: UICollectionViewDataSource {
 //        }
 //        detailVC.sushare = currentSusus[indexPath.row]
 //        navigationController?.pushViewController(detailVC, animated: true)
-        navigationController?.pushViewController(PaymentViewController(), animated: true)
+        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+            return
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -269,7 +273,7 @@ extension ExploreViewController: UICollectionViewDataSource {
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = UIScreen.main.bounds.size.height / 3
+        let height = collectionView.bounds.height / 3
         let width =
             UIScreen.main.bounds.size.width - 100
         return CGSize(width: width, height: height * 2)
@@ -277,16 +281,13 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
     
     //need insets
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        40
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        40
     }
     
     
@@ -303,7 +304,7 @@ extension ExploreViewController: UISearchBarDelegate {
             return
         }
         currentQuery = query
-        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+        currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
 
     }
 }
