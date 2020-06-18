@@ -73,10 +73,17 @@ class PersonalViewController: UIViewController {
         menuViewController.didTapMenuType = { menuType in
             self.transitionToNew(menuType)
         }
+        
+        let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
+        transiton.dimmingView.addGestureRecognizer(tap)
     
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        dismiss(animated: true, completion: nil)
     }
     
     // and delegate at bottom to transition

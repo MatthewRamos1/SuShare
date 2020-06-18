@@ -152,6 +152,9 @@ class DatabaseService{
         }
     }
     
+    //---------------------------------------------------------------------
+    //MARK: JAHEED
+    
     public func postComment(sushare: SuShare, comment: String,
                             completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser,
@@ -182,6 +185,51 @@ class DatabaseService{
                     } else {
                         completion(.success(true))
                     }
+        }
+    }
+    
+    public func addToFavorites(item: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoriteCollection).document(item.suShareId).setData(
+            ["susuTitle":item.susuTitle,
+             "susuImage": item.susuImage ?? UIImage(named: "suShareLogo-White-eggShell")! ,
+             "favortieDate": Timestamp(date: Date()),
+             "suShareId": item.suShareId
+        ]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            }else{
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    public func removeFromFavorite(item: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoriteCollection).document(item.suShareId).delete(){ (error) in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    public func updateDatabaseUserImage(
+        photoURL: String,
+        completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.userCollection)
+            .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(true))
+                }
         }
     }
     

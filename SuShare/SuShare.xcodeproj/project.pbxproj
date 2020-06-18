@@ -45,6 +45,7 @@
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
+		307A7AAA2499C3CD003E3E8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */; };
 		30891417249414A300525DC6 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30891416249414A300525DC6 /* TabController.swift */; };
 		30945CAB2491529600AAB687 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CAA2491529600AAB687 /* Friends.storyboard */; };
 		30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CAC249152B000AAB687 /* UserFriendsViewController.swift */; };
@@ -122,6 +123,7 @@
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30891416249414A300525DC6 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabController.swift; path = ../TabController.swift; sourceTree = "<group>"; };
 		30945CAA2491529600AAB687 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		30945CAC249152B000AAB687 /* UserFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsViewController.swift; sourceTree = "<group>"; };
@@ -195,7 +197,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
-				55505BB1249A5F940063AC66 /* GoogleService-Info.plist */,
+				307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
 				0CB1DA95247A23BB00713BF5 /* Shaniya */,
@@ -468,7 +470,7 @@
 				30945CAB2491529600AAB687 /* Friends.storyboard in Resources */,
 				55505BB4249AA1CF0063AC66 /* createSushare-wPlus.png in Resources */,
 				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
-				55505BB2249A5F950063AC66 /* GoogleService-Info.plist in Resources */,
+				307A7AAA2499C3CD003E3E8C /* GoogleService-Info.plist in Resources */,
 				30C704B02497C48900B12578 /* SushareDetail.storyboard in Resources */,
 				30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */,
 				0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */,

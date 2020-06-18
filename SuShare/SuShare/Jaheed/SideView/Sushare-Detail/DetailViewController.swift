@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import FirebaseFirestore
 
 class DetailViewController: UIViewController {
     
@@ -25,7 +26,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
+    private var databaseService = DatabaseService()
+    private var listener: ListenerRegistration?
     
     public var sushare: SuShare?
     
@@ -48,6 +50,39 @@ class DetailViewController: UIViewController {
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
         navigationController?.pushViewController(PaymentViewController(), animated: true)
+    }
+    
+    
+    @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        if isFavorite{
+            databaseService.removeFromFavorite(item: sushare!) {[weak self] (result) in
+                switch result{
+                case.failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                    }
+                case.success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Item removed from favorites", message: "")
+                        self?.isFavorite = false
+                    }
+                }
+            }
+        }else{
+            databaseService.addToFavorites(item: sushare!) { [weak self] (result) in
+                switch result{
+                case.failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error", message: error.localizedDescription)
+                    }
+                case.success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Favorited", message: "")
+                        self?.isFavorite = true
+                    }
+                }
+            }
+        }
     }
     
     

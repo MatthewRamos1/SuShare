@@ -19,6 +19,7 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var createButton: UIButton!
     
     var suShareListener: ListenerRegistration?
+    var emptyView = EmptyView(title: "No SuShares Available", message: "Enter valid input or try a different query")
     var boldFont: UIFont?
     var thinFont: UIFont?
     
@@ -45,6 +46,11 @@ class ExploreViewController: UIViewController {
     var currentSusus = [SuShare]() {
         didSet {
             collectionView.reloadData()
+            if currentSusus.isEmpty {
+                collectionView.backgroundView = emptyView
+            } else {
+                collectionView.backgroundView = nil
+            }
         }
     }
     var currentTags = [Int]()
@@ -64,18 +70,6 @@ class ExploreViewController: UIViewController {
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         
         
-      
-        //
-        //------------------------
-        // JAHEED
-        
-        //        NotificationCenter.default.addObserver(self,
-        //                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
-        //        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
-        
-        
-        //------------------------
-        
     }
     
     //---------------------------------------------------------------------------------
@@ -86,6 +80,9 @@ class ExploreViewController: UIViewController {
             self.transitionToNew(menuType)
         }
         
+         let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
+        transiton.dimmingView.addGestureRecognizer(tap)
+
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
@@ -93,6 +90,9 @@ class ExploreViewController: UIViewController {
     }
     
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+           dismiss(animated: true, completion: nil)
+       }
     
     func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
@@ -104,8 +104,8 @@ class ExploreViewController: UIViewController {
             print("tapped")
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+            let friendsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
@@ -114,13 +114,6 @@ class ExploreViewController: UIViewController {
             let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
             self.navigationController?.pushViewController(settingsVC, animated: true)
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        let touch = touches.first
-        if touch?.view != self.topView
-        { self.dismiss(animated: true, completion: nil) }
     }
     
     //---------------------------------------------------------------------------------
@@ -171,22 +164,35 @@ class ExploreViewController: UIViewController {
     
     
     @IBAction func tagButtonPressed(_ sender: UIButton) {
-        tagFilter(tag: sender.tag)
+        let wasPressed = tagFilter(tag: sender.tag)
+        switch wasPressed {
+        case true:
+            sender.backgroundColor = .systemGray4
+        case false:
+            sender.backgroundColor = .systemGray6
+        }
     }
     
-    private func tagFilter(tag: Int) {
+    private func tagFilter(tag: Int) -> Bool {
+        var wasPressed = false
         if !currentTags.contains(tag) {
             currentTags.append(tag)
+            wasPressed.toggle()
         } else {
             guard let index = currentTags.firstIndex(of: tag) else {
-                return
+                return wasPressed
             }
             currentTags.remove(at: index)
+            if currentTags.isEmpty && currentQuery == "" {
+                currentSusus = originalSusus
+                return wasPressed
+            }
         }
-        
-        currentSusus = originalSusus
-        //.filter { currentTags.contains($0.category.rawValue)}
+        currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+        return wasPressed
     }
+
+    //need to add case for returning to 0 tags, with query
     
     // createSuShare segue
     
@@ -215,8 +221,7 @@ class ExploreViewController: UIViewController {
         //    present(createVC, animated: true)
            }
        }
-    
-    
+
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -238,11 +243,13 @@ extension ExploreViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
-             return
-        }
-        navigationController?.pushViewController(detailVC, animated: true)
+//        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+//        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
+//             return
+//        }
+//        detailVC.sushare = currentSusus[indexPath.row]
+//        navigationController?.pushViewController(detailVC, animated: true)
+        navigationController?.pushViewController(PaymentViewController(), animated: true)
     }
     
     
@@ -258,16 +265,34 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
     
     //need insets
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+    
     
 }
 
 extension ExploreViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text?.lowercased(), !query.isEmpty else {
-            currentSusus = originalSusus
+            if !currentTags.isEmpty {
+                currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+            } else {
+                currentSusus = originalSusus
+            }
             return
         }
-        currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+        currentQuery = query
+        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+
     }
 }
 
