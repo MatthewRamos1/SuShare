@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C12C62F249894E400128D06 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12C62E249894E400128D06 /* PaymentViewController.swift */; };
 		0C12C63324989B7F00128D06 /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */; };
+		0C12C635249B0C6700128D06 /* PaymentSegment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */; };
 		0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7D82475B1EC00DF437B /* AppDelegate.swift */; };
 		0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */; };
 		0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E12475B1EE00DF437B /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		0B590E058777444C01A78528 /* Pods_SuShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C12C62E249894E400128D06 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
+		0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentSegment.storyboard; sourceTree = "<group>"; };
 		0C57A7D52475B1EC00DF437B /* SuShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7D82475B1EC00DF437B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				0C8CA5C5248C5BD60069109A /* DataProjection.storyboard */,
 				0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */,
 				0C12C62E249894E400128D06 /* PaymentViewController.swift */,
+				0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */,
 			);
 			path = Matt;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30945CAB2491529600AAB687 /* Friends.storyboard in Resources */,
+				0C12C635249B0C6700128D06 /* PaymentSegment.storyboard in Resources */,
 				30FCE3CE249AF782008B3933 /* createSushare-wPlus.png in Resources */,
 				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
 				307A7AAA2499C3CD003E3E8C /* GoogleService-Info.plist in Resources */,

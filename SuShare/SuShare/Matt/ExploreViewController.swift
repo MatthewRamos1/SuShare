@@ -173,8 +173,10 @@ class ExploreViewController: UIViewController {
         switch wasPressed {
         case true:
             sender.backgroundColor = .systemGray4
+            sender.tintColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         case false:
             sender.backgroundColor = .systemGray6
+            sender.tintColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
         }
     }
     
@@ -248,13 +250,17 @@ extension ExploreViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-//        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
-//             return
+        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
+             return
+        }
+        detailVC.sushare = currentSusus[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+//        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
+//        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+//            return
 //        }
-//        detailVC.sushare = currentSusus[indexPath.row]
-//        navigationController?.pushViewController(detailVC, animated: true)
-        navigationController?.pushViewController(PaymentViewController(), animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -262,7 +268,7 @@ extension ExploreViewController: UICollectionViewDataSource {
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = UIScreen.main.bounds.size.height / 3
+        let height = collectionView.bounds.height / 3
         let width =
             UIScreen.main.bounds.size.width - 100
         return CGSize(width: width, height: height * 2)
@@ -270,16 +276,13 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
     
     //need insets
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        40
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        40
     }
     
     
