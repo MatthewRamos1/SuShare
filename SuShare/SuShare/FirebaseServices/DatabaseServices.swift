@@ -110,7 +110,7 @@ class DatabaseService{
         }
     }
     
-    func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+   public func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
         db.collection(DatabaseService.userCollection).document(user.uid).updateData(["username": username]) { (error) in
