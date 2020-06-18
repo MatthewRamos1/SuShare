@@ -108,7 +108,7 @@ extension HighlightsViewController: UICollectionViewDataSource{
         }
         let item = susu[indexPath.row]
        // cell.susuImageView.image = item.susuImage
-        cell.commitsLabel.text = item.createdDate
+        //cell.commitsLabel.text = item.createdDate
         return cell
     }
     

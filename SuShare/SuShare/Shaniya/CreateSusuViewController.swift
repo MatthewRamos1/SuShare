@@ -101,6 +101,15 @@ class CreateSusuViewController: UIViewController {
         return gesture
     }()
 
+    private lazy var slideDownGesture: UISwipeGestureRecognizer = {
+      let slide =  UISwipeGestureRecognizer()
+        slide.addTarget(self, action: #selector(respondToSwipeGesture))
+              //UIViewController.dismissKeyboard))
+                      slide.direction = .down
+          slide.cancelsTouchesInView = false
+         // view.addGestureRecognizer(slide)
+        return slide
+      }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +127,9 @@ class CreateSusuViewController: UIViewController {
     // MARK: helper functions
         // configure all the elements
     private func configureController(){
+       // dropDownButton.titleLabel?.text = "ljol"
+        //titleLabel?.text = "select a category"
+
         navigationController?.title = "Create a SuShare"
         
         hideKeyboard()
@@ -128,6 +140,9 @@ class CreateSusuViewController: UIViewController {
         // for the image
         SusuImage.isUserInteractionEnabled = true
         SusuImage.addGestureRecognizer(longPressGesture)
+        
+        // gesture to dismiss keyboard when scrolling.
+        view.addGestureRecognizer(slideDownGesture)
         
         // for the textfields
         titleTextField.delegate = self
@@ -163,7 +178,13 @@ class CreateSusuViewController: UIViewController {
         //cancelButton
     }
     
+     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+                dismissKeyboard()
+//view.endEditing(true)
+    }
+    
     @objc private func goBack() {
+        // have a pop up and if they select ok then it dismisses otherwise it will stay on the screen
         navigationController?.popViewController(animated: true)
     }
     
@@ -229,7 +250,9 @@ class CreateSusuViewController: UIViewController {
             UIView.animate(withDuration: 0.5) {
                 self.tableView.isHidden = false // showing collection view
                 self.showingAllCategories = true
-               self.tableviewheight.constant = 200 // need this
+               self.tableviewheight.constant = 200
+                //     self.dropDownButton.titleLabel?.text = "select a category"
+                // need this
                 // MARK: adjust the height of tableView based on amount cells
             }
         } else { // when they click the button a second time, it should show the users selected categories
@@ -237,6 +260,7 @@ class CreateSusuViewController: UIViewController {
              //   self.tableView.isHidden = true // hide the collect
                 self.showingAllCategories = false // only the users categories
                 //self.tableviewheight.constant = 0
+            //    self.dropDownButton.titleLabel?.text = "The categories you selected are below"
             }
         }
     }
@@ -253,11 +277,7 @@ class CreateSusuViewController: UIViewController {
         } else { // if the switch is off then
             isItPrivate = Security.publicState
             PrivacySettingsLabel.text = "Privacy Setting: OFF"
-
         }
-     
-           
-        
     }
     
     
@@ -269,18 +289,10 @@ class CreateSusuViewController: UIViewController {
         
         sliderForParticipaints?.value = amount
         stepperForparticipaints?.value = Double(amount)
-        
-        
+    
         amountOfParticipants = Int(amount)
-             
-        //numberOfParticipaintLabel.text = String(format: "%0.f", Int(amount))
-        // numberLabel.text = "\(amount)"
-        // sampleSizeLabel.text = "The size is now\(sender.value)"
+
         
-       // sender.setValue(sender.value.rounded(.down), animated: true)
-          // print(sender.value)
-         //String(format: "%0.f", sliderControl.value)
-        print(amount)
         numberLabel.text = String(format: "%0.f", amount)
     }
     
@@ -288,9 +300,7 @@ class CreateSusuViewController: UIViewController {
     @IBAction func participantStepper(_ sender: UIStepper) {
         
         let amount = sender.value
-     //   numberLabel.text = "\(amountOfParticipants))"
-        
-        //sampleSizeLabel.text = "The size is now\(sender.value)"
+   
         sliderForParticipaints?.value = Float(amount)
         stepperForparticipaints?.value = amount
         amountOfParticipants = Int(amount) // need to change it
@@ -400,7 +410,7 @@ class CreateSusuViewController: UIViewController {
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
         let selectedIntValue = selectedCategories.map { $0.rawValue }
         
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: resizeImage, suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: "nil", suShareId: "nil", usersInTheSuShare: [""], favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: [""], isTheSuShareFlagged: false, favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
@@ -416,19 +426,17 @@ class CreateSusuViewController: UIViewController {
     }
     
     private func uploadPhoto(photo: UIImage, documentId: String){
-        // because we set the parameters to nil when the function is called again it is  not necessary to use the parameter, like below we only want the itemID because that is the only thing avaliable in this controller.. we dont have access to userID here. .
-        ss.uploadPhoto(userId: "k", sushareId: documentId, image: photo) { (result) in
+        ss.uploadPhoto(sushareId: documentId, image: photo){ (result) in
             switch result {
             case .failure(let error):
                 self.showAlert(title: "Error uploading photo", message: "\(error.localizedDescription)")
             case .success(let url):
-                // when the item is CREATED we do not have access to the url yet
-                self.updateItemURL(url, documentId: documentId)
+                self.updateSuShareURL(url, documentId: documentId)
             }
         }
     }
     
-    private func updateItemURL(_ url: URL, documentId: String){
+    private func updateSuShareURL(_ url: URL, documentId: String){
         // update an exisiting doc on firebase
         Firestore.firestore().collection(DatabaseService.suShareCollection).document(documentId).updateData(["imageURL": url.absoluteString]) { [weak self]
             // firebase only accepts a string
@@ -440,9 +448,9 @@ class CreateSusuViewController: UIViewController {
             } else {
                 // everything went okay
                 DispatchQueue.main.async {
-                    self?.dismiss(animated: true)
-                    //TODO: need to add  the closing circle animation
+                    self?.navigationController?.popViewController(animated: true)
                     
+                    //TODO: need to add  the closing circle animation
                 }
                 print("all went well with the update")
             }
@@ -451,12 +459,7 @@ class CreateSusuViewController: UIViewController {
     
     // Actions
     @IBAction func addSusu(_ sender: UIButton) {
-        print("button has been pressed")
-         //dismissKeyboard()
         addSusu()
-       
-        // dismiss controller
-        print("function done")
     }
     
     
@@ -535,8 +538,6 @@ extension CreateSusuViewController: UITableViewDelegate{
         if !selectedCategories.contains(item) {
             selectedCategories.append(item)
                     print("alert that this category is being removed from the suShare")
-                   
-                    print("\(item) was removed")
                 } else {
                     if let index = selectedCategories.firstIndex(of: item) {
                         selectedCategories.remove(at: index)
@@ -599,8 +600,14 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
+//
+//    let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+//       swipeDown.direction = .down
+//       self.view.addGestureRecognizer(swipeDown)
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }
+
+    
 }

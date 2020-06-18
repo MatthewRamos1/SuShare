@@ -26,8 +26,8 @@ class StorageService {
     
     if let userId = userId { // coming from PersonalViewController
       photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
-    } else if let itemId = sushareId { // coming from CreateSusuViewController
-      photoReference = storageRef.child("SuSharePhotos/\(itemId).jpg")
+    } else if let sushareId = sushareId { // coming from CreateSusuViewController
+      photoReference = storageRef.child("SuSharePhotos/\(sushareId).jpg")
     }
     
     // configuring metatdata for the object being uploaded

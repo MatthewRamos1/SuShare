@@ -67,7 +67,8 @@ class ExploreViewController: UIViewController {
         setSuShareListener()
         
         
-        createButton.layer.cornerRadius = createButton.frame.size.width / 2
+        createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
+        
         
     }
     
