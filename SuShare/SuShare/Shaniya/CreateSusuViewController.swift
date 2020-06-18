@@ -404,13 +404,18 @@ class CreateSusuViewController: UIViewController {
                // print("error ")
                 return
         }
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
         // categories can be empty or left nil so that is okay.
         let resizeImage = UIImage.resizeImage(originalImage: selectedImage, rect: SusuImage.bounds)
 
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
         let selectedIntValue = selectedCategories.map { $0.rawValue }
         
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: [""], isTheSuShareFlagged: false, favId: "nil"), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: ["\(user.uid)"], isTheSuShareFlagged: false, favId: "nil"), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
