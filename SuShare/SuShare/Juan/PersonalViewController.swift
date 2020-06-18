@@ -119,7 +119,7 @@ class PersonalViewController: UIViewController {
         guard let selectedUser = user else  {
             fatalError()
         }
-        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId) { (result) in
+        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId, friendUsername: selectedUser.username) { (result) in
             switch result   {
             case .failure(let error):
                 print(error.localizedDescription)

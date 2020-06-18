@@ -85,8 +85,8 @@ class DatabaseService{
         }
     }
     
-    public func createDatabaseFriend(user: String, friend: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        db.collection(DatabaseService.friendsCollection).document().setData(["currentUser": user, "friend": friend]) { (error) in
+    public func createDatabaseFriend(user: String, friend: String, friendUsername: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        db.collection(DatabaseService.friendsCollection).document().setData(["currentUser": user, "friend": friend, "friendUsername": friendUsername]) { (error) in
             if let error = error    {
                 completion(.failure(error))
             } else  {
@@ -230,6 +230,26 @@ class DatabaseService{
                 } else {
                     completion(.success(true))
                 }
+        }
+    }
+    
+    public func updateUserFriend( completion: @escaping
+        (Result<[String], Error>) -> ())    {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        db.collection(DatabaseService.friendsCollection).whereField("currentUser", isEqualTo: user.uid).getDocuments { (snapshot, error) in
+            if let error = error    {
+                completion(.failure(error))
+            }
+            else    {
+                if let snapshot = snapshot  {
+                    let users = snapshot.documents.map {$0.get("friendUsername") as! String} 
+                    //let usersSorted = users.sorted  {$0.username.lowercased() < $1.username.lowercased()}
+                    
+                    completion(.success(users))
+                }
+            }
         }
     }
     
