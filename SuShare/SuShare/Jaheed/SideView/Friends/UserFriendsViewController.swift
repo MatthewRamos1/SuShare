@@ -11,8 +11,6 @@ import FirebaseFirestore
 
 class UserFriendsViewController: UIViewController {
     
-    
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     let database = DatabaseService()
@@ -30,18 +28,18 @@ class UserFriendsViewController: UIViewController {
     }
     
     
-    var searchQuery = "" {
-        didSet {
-            database.getAllUsers { (result) in
-                switch result {
-                case.failure(let error):
-                    self.showAlert(title: "Error", message: "\(error.localizedDescription)")
-                case.success(let friends):
-                    self.userFriend = friends.filter{$0.username.lowercased().contains(self.searchQuery.lowercased())}
-                }
-            }
-        }
-    }
+//    var searchQuery = "" {
+//        didSet {
+//            database.getAllUsers { (result) in
+//                switch result {
+//                case.failure(let error):
+//                    self.showAlert(title: "Error", message: "\(error.localizedDescription)")
+//                case.success(let friends):
+//                    self.userFriend = friends.filter{$0.username.lowercased().contains(self.searchQuery.lowercased())}
+//                }
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +81,7 @@ class UserFriendsViewController: UIViewController {
     func configureDataDelegates(){
         tableView.dataSource = self
         tableView.delegate = self
-        searchBar.delegate = self
+     
     }
     
     
@@ -118,20 +116,21 @@ extension UserFriendsViewController: UITableViewDelegate{
     }
 }
 
-extension UserFriendsViewController: UISearchBarDelegate{
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else {
-            configureFriendNames()
-            return
-        }
-        searchQuery = searchText
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-}
+
+//extension UserFriendsViewController: UISearchBarDelegate{
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.resignFirstResponder()
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        guard !searchText.isEmpty else {
+//            configureFriendNames()
+//            return
+//        }
+//        searchQuery = searchText
+//    }
+//
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        searchBar.resignFirstResponder()
+//    }
+//}
