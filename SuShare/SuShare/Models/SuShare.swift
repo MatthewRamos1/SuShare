@@ -52,7 +52,7 @@ struct SuShare{
     let securityState: String
     let susuTitle: String
     let susuImage: UIImage?
-    let description: String
+    let suShareDescription: String
     let potAmount: Double
     let numOfParticipants: Int
     let paymentSchedule: String
@@ -60,6 +60,8 @@ struct SuShare{
     let category: [Int]
     let createdDate: String
     let suShareId: String
+    let usersInTheSuShare: [String]
+    
     
     // after creation
     let favId: String?
@@ -70,7 +72,7 @@ extension SuShare {
         self.securityState = dictionary["securityState"] as? String ?? "No securityState"
         self.susuTitle = dictionary["susuTitle"] as? String ?? "No Title"
         self.susuImage = nil
-        self.description = dictionary["description"] as? String ?? "No Description"
+        self.suShareDescription = dictionary["suShareDescription"] as? String ?? "No Description"
         self.potAmount = dictionary["potAmount"] as? Double ?? 0.0
         self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0
         self.paymentSchedule = dictionary["paymentSchedule"] as? String ?? ""
@@ -78,6 +80,7 @@ extension SuShare {
         self.category = dictionary["category"] as? [Int] ?? []
         self.createdDate = dictionary["createdDate"] as? String ?? ""
         self.suShareId = dictionary["suShareId"] as? String ?? ""
+        self.usersInTheSuShare = dictionary["users"] as? [String] ?? [""]
         self.favId = dictionary["favId"] as? String ?? ""
     }
 }

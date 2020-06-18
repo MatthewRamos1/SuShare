@@ -16,11 +16,15 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var exploreButton: UIButton!
     @IBOutlet weak var friendsButton: UIButton!
+    @IBOutlet weak var createButton: UIButton!
     
     var suShareListener: ListenerRegistration?
     var emptyView = EmptyView(title: "No SuShares Available", message: "Enter valid input or try a different query")
     var boldFont: UIFont?
     var thinFont: UIFont?
+    
+    
+     private let circularTransition = CircularTransition()
     
     //------------------------
     //Jaheed
@@ -62,6 +66,11 @@ class ExploreViewController: UIViewController {
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
+        
+        createButton.layer.cornerRadius = createButton.frame.size.width / 2
+        
+      
+        //
         //------------------------
         // JAHEED
         
@@ -194,7 +203,37 @@ class ExploreViewController: UIViewController {
         currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
         return wasPressed
     }
+
     //need to add case for returning to 0 tags, with query
+    
+    // createSuShare segue
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+       // performSegue(withIdentifier: "goToCreateSusu", sender: self)
+         
+        //https://stackoverflow.com/questions/18777627/segue-from-one-storyboard-to-a-different-storyboard
+        let vc = UIStoryboard(name: "CreateSusu", bundle: nil).instantiateViewController(withIdentifier: "CreateSusu") as? CreateSusuViewController
+        
+      //  https://www.appcoda.com/ios-programming-101-how-to-hide-tab-bar-navigation-controller/#:~:text=When%20it's%20set%20to%20YES,the%20RecipeDetailViewController%20to%20%E2%80%9CYES%E2%80%9D.
+        vc?.hidesBottomBarWhenPushed = true // hides the botton tab bar
+        
+        self.show(vc!, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if segue.identifier == "goToCreateSusu" {
+               guard let createVC = segue.destination as? CreateSusuViewController else { return }
+             //  createVC.transitioningDelegate = self
+           // createVC.modalPresentationStyle = .popover
+           // navigationController?.pushViewController(createVC, animated: true)
+            
+//            createVC.transitioningDelegate = self
+//            createVC.modalPresentationStyle = .custom
+//            navigationController?.pushViewController(createVC, animated: true)
+        //    present(createVC, animated: true)
+           }
+       }
+
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -206,6 +245,7 @@ extension ExploreViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
             fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
         }
+        
         let suShare = currentSusus[indexPath.row]
         
         cell.configureCell(suShare: suShare)
@@ -264,6 +304,7 @@ extension ExploreViewController: UISearchBarDelegate {
         }
         currentQuery = query
         currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+
     }
 }
 
@@ -272,8 +313,19 @@ extension ExploreViewController: UISearchBarDelegate {
 
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transiton.isPresenting = true
-        return transiton
+        
+        if source.modalPresentationStyle == .custom {
+           circularTransition.transitionMode = .present
+                       //circularTransition.startingPoint = createButton.center
+                      // circularTransition.circleColor = createButton.backgroundColor!
+            
+            return circularTransition
+        } else {
+            transiton.isPresenting = true
+                 return transiton
+        }
+        
+     
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {

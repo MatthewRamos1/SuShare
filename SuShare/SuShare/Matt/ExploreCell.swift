@@ -17,5 +17,4 @@ class ExploreCell: UICollectionViewCell {
     public func configureCell(suShare: SuShare) {
         descriptionLabel.text = suShare.category.first?.description
     }
-    
 }
