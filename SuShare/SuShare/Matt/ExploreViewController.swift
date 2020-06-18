@@ -291,7 +291,7 @@ extension ExploreViewController: UISearchBarDelegate {
             return
         }
         currentQuery = query
-        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+        currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
 
     }
 }
