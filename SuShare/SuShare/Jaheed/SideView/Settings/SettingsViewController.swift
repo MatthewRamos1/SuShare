@@ -37,6 +37,14 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    private lazy var longPressGesture: UILongPressGestureRecognizer = {
+           let gesture = UILongPressGestureRecognizer()
+           // tells the gesture what is should do when the action happens
+           gesture.addTarget(self, action: #selector(showPhotoOptions))
+           return gesture
+       }()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +53,9 @@ class SettingsViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = "SuShare"
         updateUI()
         view.backgroundColor = .systemBackground
+        
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(longPressGesture)
     }
     
     private func updateUI(){
@@ -55,23 +66,32 @@ class SettingsViewController: UIViewController {
         usernameLabel.text = user.displayName
     }
     
+    @objc private func showPhotoOptions() {
+           let alertController = UIAlertController(title: "Choose photo Option", message: nil, preferredStyle: .actionSheet)
+           
+           let cameraAction = UIAlertAction(title: "Camera", style: .default) {
+               alertAction in
+               self.imagePickerController.sourceType = .camera
+               self.present(self.imagePickerController, animated: true)
+           }
+           
+           let photoLibrary = UIAlertAction(title: "photoLibrary", style: .default) {
+               actionAlert in
+               self.imagePickerController.sourceType = .photoLibrary
+               self.present(self.imagePickerController, animated: true)
+           }
+           let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
+           if UIImagePickerController.isSourceTypeAvailable(.camera){
+               // if there is no camera avaiable then the camera option is not avaialble either
+               alertController.addAction(cameraAction)
+           }
+           alertController.addAction(photoLibrary)
+           alertController.addAction(cancelAction)
+           present(alertController, animated: true)
+       }
+    
     @IBAction func updateImagePressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { alertAction in
-            self.imagePickerController.sourceType = .camera
-            self.present(self.imagePickerController, animated: true)
-        }
-        let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { alertAction in
-            self.imagePickerController.sourceType = .photoLibrary
-            self.present(self.imagePickerController, animated: true)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            alertController.addAction(cameraAction)
-        }
-        alertController.addAction(photoLibraryAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+        
     }
     
     @IBAction func signOutButtonPressed(_ sender: UIButton) {
@@ -85,18 +105,20 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
+ 
     private func updateDatabaseUser(photoURL: String) {
         databaseService.updateDatabaseUserImage(photoURL: photoURL) { (result) in
             switch result {
             case .failure(let error):
                 print("failed to update db user: \(error.localizedDescription)")
-            case .success:
-                print("successfully updated db user")
+            case .success(let docId):
+               //print("successfully updated db user")
+                break
             }
         }
     }
 }
+
 
 
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

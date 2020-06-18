@@ -101,7 +101,10 @@ class ExploreViewController: UIViewController {
         topView?.removeFromSuperview()
         switch menuType {
         case .username:
-            print("tapped")
+           // print("tapped")
+            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+                   let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+                   self.navigationController?.pushViewController(settingsVC, animated: true)
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
             let friendsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
@@ -110,9 +113,11 @@ class ExploreViewController: UIViewController {
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
             //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
-            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+//            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+//            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+//            self.navigationController?.pushViewController(settingsVC, animated: true)
+            
+            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
     }
     
@@ -291,7 +296,7 @@ extension ExploreViewController: UISearchBarDelegate {
             return
         }
         currentQuery = query
-        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+        currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
 
     }
 }
