@@ -91,8 +91,58 @@ class SettingsViewController: UIViewController {
        }
     
     @IBAction func updateImagePressed(_ sender: UIButton) {
+        // storage service first to save image
+        // then database to updaet the changes
+        guard let user = Auth.auth().currentUser, let image = selectedImage else {
+            return
+        }
+        
+        updateStorageServices(userId: user.uid, image: image)
         
     }
+    
+    private func updateStorageServices(userId: String, image: UIImage){
+        storageService.uploadPhoto(userId: userId, image: image) {
+            [weak self]
+            (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "cant access storage right now", message: "please try again \(error.localizedDescription)")
+                }
+            case .success(let imageURl):
+                self?.updateDatabaseUser(photoURL: imageURl.absoluteString)
+            }
+        }
+    }
+    
+    private func updateDatabaseUser(photoURL: String) {
+           databaseService.updateDatabaseUserImage(photoURL: photoURL) { (result) in
+               switch result {
+               case .failure(let error):
+                   print("failed to update db user: \(error.localizedDescription)")
+               case .success:
+                  //print("successfully updated db user")
+                self.requestChangesToDatabase(url: URL(fileURLWithPath: photoURL))
+               }
+           }
+       }
+    
+    private func requestChangesToDatabase(url: URL) {
+        let request = Auth.auth().currentUser?.createProfileChangeRequest()
+       request?.photoURL = url
+        request?.commitChanges(completion: { (error) in
+            if let error = error {
+                print("this aint work \(error.localizedDescription)")
+            } else {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Photo Update successful", message: "your profile has updated the photo properly")
+                }
+            }
+        })
+    }
+    
+    
     
     @IBAction func signOutButtonPressed(_ sender: UIButton) {
         print("button pressed")
@@ -106,17 +156,7 @@ class SettingsViewController: UIViewController {
         }
     }
  
-    private func updateDatabaseUser(photoURL: String) {
-        databaseService.updateDatabaseUserImage(photoURL: photoURL) { (result) in
-            switch result {
-            case .failure(let error):
-                print("failed to update db user: \(error.localizedDescription)")
-            case .success(let docId):
-               //print("successfully updated db user")
-                break
-            }
-        }
-    }
+   
 }
 
 
