@@ -285,13 +285,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-PJ-LDe">
-                                <rect key="frame" x="290" y="818" width="104" height="44"/>
-                                <color key="backgroundColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-PJ-LDe">
+                                <rect key="frame" x="290" y="818" width="44" height="44"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="3DU-I7-0eg"/>
                                     <constraint firstAttribute="height" constant="44" id="dOL-dZ-EPn"/>
                                 </constraints>
-                                <state key="normal" title="create ">
+                                <state key="normal" title="create " image="createSushare-wPlus.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -310,7 +311,6 @@
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="hQb-tY-vBx" secondAttribute="trailing" constant="20" id="PW2-Wo-Meo"/>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="UyV-hZ-H9u"/>
                             <constraint firstItem="gYz-nj-jVc" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="100" id="VNz-J8-Bm6"/>
-                            <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="S7r-PJ-LDe" secondAttribute="trailing" constant="20" id="W0i-ax-itC"/>
                             <constraint firstItem="gYz-nj-jVc" firstAttribute="top" secondItem="auh-yt-3WH" secondAttribute="top" constant="8" id="glm-zf-Lof"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="sot-vA-Y9h" secondAttribute="trailing" constant="20" id="lks-Ug-Sel"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="gYz-nj-jVc" secondAttribute="trailing" constant="100" id="slx-nb-cip"/>
@@ -579,6 +579,7 @@
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
         <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
+        <image name="createSushare-wPlus.png" width="470" height="470"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>

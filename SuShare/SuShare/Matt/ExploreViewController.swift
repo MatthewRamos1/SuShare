@@ -67,19 +67,8 @@ class ExploreViewController: UIViewController {
         setSuShareListener()
         
         
-        createButton.layer.cornerRadius = createButton.frame.size.width / 2
+        createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         
-      
-        //
-        //------------------------
-        // JAHEED
-        
-        //        NotificationCenter.default.addObserver(self,
-        //                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
-        //        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
-        
-        
-        //------------------------
         
     }
     
@@ -91,6 +80,9 @@ class ExploreViewController: UIViewController {
             self.transitionToNew(menuType)
         }
         
+         let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
+        transiton.dimmingView.addGestureRecognizer(tap)
+
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
@@ -98,6 +90,9 @@ class ExploreViewController: UIViewController {
     }
     
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+           dismiss(animated: true, completion: nil)
+       }
     
     func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
@@ -106,26 +101,24 @@ class ExploreViewController: UIViewController {
         topView?.removeFromSuperview()
         switch menuType {
         case .username:
-            print("tapped")
+           // print("tapped")
+            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+                   let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+                   self.navigationController?.pushViewController(settingsVC, animated: true)
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+            let friendsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
             //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
-            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+//            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+//            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+//            self.navigationController?.pushViewController(settingsVC, animated: true)
+            
+            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        let touch = touches.first
-        if touch?.view != self.topView
-        { self.dismiss(animated: true, completion: nil) }
     }
     
     //---------------------------------------------------------------------------------

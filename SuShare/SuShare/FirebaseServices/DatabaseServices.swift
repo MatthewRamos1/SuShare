@@ -38,15 +38,17 @@ class DatabaseService{
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
-            "susuImage": sushare.susuImage!,
+            "susuImage": sushare.susuImage,
             "description": sushare.suShareDescription,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
             "paymentSchedule": sushare.paymentSchedule,
             "userId": user.uid,
-            "createdDate": Timestamp(date: Date()),
             "category": sushare.category,
-            "iD": docRef.documentID
+            "createdDate": sushare.createdDate,
+            "iD": docRef.documentID,
+            "usersApartOfSuShare": sushare.usersInTheSuShare,
+            "favId": sushare.favId
             
         ]) { (error) in
             if let error = error {
@@ -83,8 +85,8 @@ class DatabaseService{
         }
     }
     
-    public func createDatabaseFriend(user: String, friend: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-        db.collection(DatabaseService.friendsCollection).document().setData(["currentUser": user, "friend": friend]) { (error) in
+    public func createDatabaseFriend(user: String, friend: String, friendUsername: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        db.collection(DatabaseService.friendsCollection).document().setData(["currentUser": user, "friend": friend, "friendUsername": friendUsername]) { (error) in
             if let error = error    {
                 completion(.failure(error))
             } else  {
@@ -108,7 +110,7 @@ class DatabaseService{
         }
     }
     
-    func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+   public func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
         db.collection(DatabaseService.userCollection).document(user.uid).updateData(["username": username]) { (error) in
@@ -150,6 +152,9 @@ class DatabaseService{
         }
     }
     
+    //---------------------------------------------------------------------
+    //MARK: JAHEED
+    
     public func postComment(sushare: SuShare, comment: String,
                             completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser,
@@ -180,6 +185,71 @@ class DatabaseService{
                     } else {
                         completion(.success(true))
                     }
+        }
+    }
+    
+    public func addToFavorites(item: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoriteCollection).document(item.suShareId).setData(
+            ["susuTitle":item.susuTitle,
+             "susuImage": item.susuImage ?? UIImage(named: "suShareLogo-White-eggShell")! ,
+             "favortieDate": Timestamp(date: Date()),
+             "suShareId": item.suShareId
+        ]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            }else{
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    public func removeFromFavorite(item: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoriteCollection).document(item.suShareId).delete(){ (error) in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    public func updateDatabaseUserImage(
+        photoURL: String,
+        completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.userCollection)
+            .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(true))
+                }
+        }
+    }
+    
+    public func updateUserFriend( completion: @escaping
+        (Result<[String], Error>) -> ())    {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        db.collection(DatabaseService.friendsCollection).whereField("currentUser", isEqualTo: user.uid).getDocuments { (snapshot, error) in
+            if let error = error    {
+                completion(.failure(error))
+            }
+            else    {
+                if let snapshot = snapshot  {
+                    let users = snapshot.documents.map {$0.get("friendUsername") as! String} 
+                    //let usersSorted = users.sorted  {$0.username.lowercased() < $1.username.lowercased()}
+                    
+                    completion(.success(users))
+                }
+            }
         }
     }
     
