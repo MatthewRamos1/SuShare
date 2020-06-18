@@ -49,7 +49,11 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
-        navigationController?.pushViewController(PaymentViewController(), animated: true)
+        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
+        guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+             return
+        }
+        navigationController?.present(paymentVC, animated: true)
     }
     
     
