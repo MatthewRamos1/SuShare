@@ -62,7 +62,75 @@ class PersonalViewController: UIViewController {
         suShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
+        configureSuShares()
         configureFriendsButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureSuShares()
+    }
+    
+    func configureSuShares()    {
+        if let selectedUser = user  {
+            db.getCreatedSuShares(user: selectedUser) { (result) in
+                switch result   {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let dbSuShares):
+                    self.suShares = dbSuShares
+                }
+            }
+        }
+        else {
+            db.getCreatedSuSharesForCurrentUser { (result) in
+                switch result   {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let dbSuShares):
+                    self.suShares = dbSuShares
+                }
+            }
+        }
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        print("add friend")
+        guard let currentUser = Auth.auth().currentUser else    {
+            fatalError()
+        }
+        guard let selectedUser = user else  {
+            fatalError()
+        }
+        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId, friendUsername: selectedUser.username) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("new friend")
+                DispatchQueue.main.async {
+                    self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                    self.profileHeaderView?.addFriendButton.isEnabled = false
+                }
+            }
+        }
+    }
+    
+    func configureFriendsButton()  {
+
+        guard let selectedUser = user else  {
+            return
+        }
+        
+        db.checkForFriendship(user: selectedUser) { (result) in
+            switch result   {
+            case .failure(let error):
+                print(error)
+            case .success:
+                self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
+                self.profileHeaderView?.addFriendButton.isEnabled = false
+            }
+        }
     }
     
     //-----------------------------------------------------------------
@@ -110,46 +178,6 @@ class PersonalViewController: UIViewController {
     }
     //-----------------------------------------------------------------
     
-        
-    @objc private func buttonTapped(_ sender: UIButton) {
-        print("add friend")
-        guard let currentUser = Auth.auth().currentUser else    {
-            fatalError()
-        }
-        guard let selectedUser = user else  {
-            fatalError()
-        }
-        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId, friendUsername: selectedUser.username) { (result) in
-            switch result   {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success:
-                print("new friend")
-                DispatchQueue.main.async {
-                    self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
-                    self.profileHeaderView?.addFriendButton.isEnabled = false
-                }
-            }
-        }
-    }
-    
-    func configureFriendsButton()  {
-
-        guard let selectedUser = user else  {
-            return
-        }
-        
-        db.checkForFriendship(user: selectedUser) { (result) in
-            switch result   {
-            case .failure(let error):
-                print(error)
-            case .success:
-                self.profileHeaderView?.addFriendButton.setTitle("friends", for: .normal)
-                self.profileHeaderView?.addFriendButton.isEnabled = false
-            }
-        }
-    }
-    
 }
 
 extension PersonalViewController: UICollectionViewDataSource    {
@@ -157,7 +185,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
         if section == 0 {
             return 0
         }   else    {
-            return 5
+            return suShares.count
         }
     }
     
@@ -178,6 +206,9 @@ extension PersonalViewController: UICollectionViewDataSource    {
         cell.layer.shadowRadius = 5.0
         cell.layer.shadowOpacity = 0.3
         cell.layer.masksToBounds = false
+        let suShare = suShares[indexPath.row]
+        
+        cell.configureCell(for: suShare)
         return cell
     }
     
