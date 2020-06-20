@@ -10,6 +10,8 @@
 		0C12C62F249894E400128D06 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12C62E249894E400128D06 /* PaymentViewController.swift */; };
 		0C12C63324989B7F00128D06 /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */; };
 		0C12C635249B0C6700128D06 /* PaymentSegment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */; };
+		0C576F6C249DC79F001DD47F /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C576F6B249DC79F001DD47F /* MyAPIClient.swift */; };
+		0C576F6E249EAFAB001DD47F /* CardPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C576F6D249EAFAB001DD47F /* CardPaymentView.swift */; };
 		0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7D82475B1EC00DF437B /* AppDelegate.swift */; };
 		0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */; };
 		0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E12475B1EE00DF437B /* Assets.xcassets */; };
@@ -85,6 +87,8 @@
 		0C12C62E249894E400128D06 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaymentSegment.storyboard; sourceTree = "<group>"; };
+		0C576F6B249DC79F001DD47F /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
+		0C576F6D249EAFAB001DD47F /* CardPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPaymentView.swift; sourceTree = "<group>"; };
 		0C57A7D52475B1EC00DF437B /* SuShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7D82475B1EC00DF437B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 				0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */,
 				0C12C62E249894E400128D06 /* PaymentViewController.swift */,
 				0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */,
+				0C576F6B249DC79F001DD47F /* MyAPIClient.swift */,
+				0C576F6D249EAFAB001DD47F /* CardPaymentView.swift */,
 			);
 			path = Matt;
 			sourceTree = "<group>";
@@ -600,6 +606,7 @@
 				0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */,
 				0CB1DAC2247C1BF000713BF5 /* UIViewController + Alerts.swift in Sources */,
 				0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */,
+				0C576F6C249DC79F001DD47F /* MyAPIClient.swift in Sources */,
 				0C8CA5C8248C5CEE0069109A /* DataProjectionViewController.swift in Sources */,
 				3E23EC1624892F70007C3013 /* AddFriendViewController.swift in Sources */,
 				0CB1DAB3247C1A7100713BF5 /* ExploreCell.swift in Sources */,
@@ -616,6 +623,7 @@
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
 				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
 				0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */,
+				0C576F6E249EAFAB001DD47F /* CardPaymentView.swift in Sources */,
 				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,
 				0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */,
 				0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */,

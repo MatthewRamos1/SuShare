@@ -17,6 +17,7 @@ class PaymentViewController: UIViewController {
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
     private var paymentView = PaymentView()
+    private var cardPaymentView = CardPaymentView()
     
     
     override func viewDidLoad() {
@@ -29,8 +30,14 @@ class PaymentViewController: UIViewController {
         subscribeButton.layer.shadowOpacity = 0.4
         paymentTableView.dataSource = self
         paymentTableView.delegate = self
+        let client = MyAPIClient.sharedClient
+        client.baseURLString = "https://stripe-backend-demo309.herokuapp.com"
+        let customerContext = STPCustomerContext(keyProvider: client)
+        paymentContext = STPPaymentContext(customerContext: customerContext)
+        paymentContext.paymentAmount = 5000
         paymentContext.delegate = self
-        
+        paymentContext.hostViewController = self
+        paymentContext.addCardViewControllerFooterView = cardPaymentView
         
     }
    
@@ -54,6 +61,13 @@ extension PaymentViewController: UITableViewDataSource {
             
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            paymentContext.requestPayment()
+            paymentContext.pushPaymentOptionsViewController()
         }
     }
     
