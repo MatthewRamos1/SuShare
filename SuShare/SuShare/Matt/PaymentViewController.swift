@@ -17,6 +17,7 @@ class PaymentViewController: UIViewController {
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
     private var paymentView = PaymentView()
+    private var cardPaymentView = CardPaymentView()
     
     
     override func viewDidLoad() {
@@ -36,6 +37,7 @@ class PaymentViewController: UIViewController {
         paymentContext.paymentAmount = 5000
         paymentContext.delegate = self
         paymentContext.hostViewController = self
+        paymentContext.addCardViewControllerFooterView = cardPaymentView
         
     }
    
