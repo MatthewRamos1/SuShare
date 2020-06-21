@@ -19,6 +19,7 @@ class CardPaymentView: UIView {
         }
     }
     
+    
     private let theme = STPTheme.default()
 
     public lazy var textLabel: UILabel = {
