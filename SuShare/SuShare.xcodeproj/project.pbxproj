@@ -201,6 +201,7 @@
 			children = (
 				3E23EC1F248ADF01007C3013 /* SupportingFiles */,
 				0C57A7E62475B1EE00DF437B /* Info.plist */,
+				0C576F6D249EAFAB001DD47F /* CardPaymentView.swift */,
 				307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */,
 				0CB1DAC8247C1CC100713BF5 /* Models */,
 				0CB1DAC7247C1CA900713BF5 /* FirebaseServices */,
@@ -234,7 +235,6 @@
 				0C12C62E249894E400128D06 /* PaymentViewController.swift */,
 				0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */,
 				0C576F6B249DC79F001DD47F /* MyAPIClient.swift */,
-				0C576F6D249EAFAB001DD47F /* CardPaymentView.swift */,
 			);
 			path = Matt;
 			sourceTree = "<group>";
