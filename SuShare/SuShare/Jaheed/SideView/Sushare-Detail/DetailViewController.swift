@@ -44,20 +44,22 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        updateHeartUI()
     }
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController")
-        navigationController?.pushViewController(vc, animated: true)
+        guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+             return
+        }
+        navigationController?.present(paymentVC, animated: true)
     }
     
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        print("favorite")
         if isFavorite{
-            databaseService.removeFromFavorite(item: sushare!) {[weak self] (result) in
+            databaseService.removeFromFavorite(suShare: sushare!) {[weak self] (result) in
                 switch result{
                 case.failure(let error):
                     DispatchQueue.main.async {
@@ -71,7 +73,7 @@ class DetailViewController: UIViewController {
                 }
             }
         }else{
-            databaseService.addToFavorites(item: sushare!) { [weak self] (result) in
+            databaseService.addToFavorites(suShare: sushare!) { [weak self] (result) in
                 switch result{
                 case.failure(let error):
                     DispatchQueue.main.async {
@@ -83,6 +85,19 @@ class DetailViewController: UIViewController {
                         self?.isFavorite = true
                     }
                 }
+            }
+        }
+    }
+    
+    private func updateHeartUI()    {
+        databaseService.isSuShareFavorite(suShare: sushare!) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let isFavoriteDB):
+                if isFavoriteDB {
+                    self.isFavorite = true
+                } else {self.isFavorite = false}
             }
         }
     }

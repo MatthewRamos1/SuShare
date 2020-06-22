@@ -12,16 +12,44 @@ import FirebaseFirestore
 import Kingfisher
 
 class PersonalViewController: UIViewController {
-
+    
+    // favorites, backed
+    // logic based on header button
+    
     var user: User?
     var db = DatabaseService()
     var profileHeaderView: ProfileHeaderView?
+    var headerView = HeaderView()
     
     let authSession = AuthenticationSession()
     
     let personalView = PersonalView()
     
     var suShares = [SuShare]()   {
+        didSet  {
+            personalView.personalCollectionView.reloadData()
+            if suShares.isEmpty {
+                personalView.personalCollectionView.backgroundView = EmptyView.init(title: "Collection Empty", message: "There are currently no saved Sushare's")
+            } else {
+                personalView.personalCollectionView.reloadData()
+                personalView.personalCollectionView.backgroundView = nil
+            }
+        }
+    }
+    
+    var favSuShares = [SuShare]()   {
+        didSet  {
+            personalView.personalCollectionView.reloadData()
+            if suShares.isEmpty {
+                personalView.personalCollectionView.backgroundView = EmptyView.init(title: "Collection Empty", message: "There are currently no saved Sushare's")
+            } else {
+                personalView.personalCollectionView.reloadData()
+                personalView.personalCollectionView.backgroundView = nil
+            }
+        }
+    }
+    
+    var createdSuShares = [SuShare]()   {
         didSet  {
             personalView.personalCollectionView.reloadData()
             if suShares.isEmpty {
@@ -57,9 +85,10 @@ class PersonalViewController: UIViewController {
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
-        
         personalView.personalCollectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
         suShares = [SuShare]()
+        favSuShares = [SuShare]()
+        createdSuShares = [SuShare]()
         personalView.personalCollectionView.dataSource = self
         personalView.personalCollectionView.delegate = self
         configureSuShares()
@@ -81,8 +110,7 @@ class PersonalViewController: UIViewController {
                     self.suShares = dbSuShares
                 }
             }
-        }
-        else {
+        } else {
             db.getCreatedSuSharesForCurrentUser { (result) in
                 switch result   {
                 case .failure(let error):
@@ -117,7 +145,7 @@ class PersonalViewController: UIViewController {
     }
     
     func configureFriendsButton()  {
-
+        
         guard let selectedUser = user else  {
             return
         }
@@ -144,7 +172,7 @@ class PersonalViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
         transiton.dimmingView.addGestureRecognizer(tap)
-    
+        
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
@@ -197,7 +225,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "highlightsCell", for: indexPath) as? HighlightsCell else {
             fatalError()
         }
-    
+        
         cell.layer.borderColor = UIColor.systemGray6.cgColor
         cell.layer.cornerRadius = 5.0
         cell.layer.borderWidth = 0.0
@@ -245,6 +273,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
                 fatalError()
             }
             headerView.backgroundColor = .white
+            headerView.delegate = self
             return headerView
         }
         
@@ -263,7 +292,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
 extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = UIScreen.main.bounds.size.height / 3
+        let height = UIScreen.main.bounds.size.height / 4
         let width =
             UIScreen.main.bounds.size.width * 0.84
         return CGSize(width: width, height: height * 2)
@@ -293,3 +322,60 @@ extension PersonalViewController: UIViewControllerTransitioningDelegate {
     }
 }
 //----------------------------------------------------------------------------
+
+extension PersonalViewController: HeaderDelegate    {
+    func selectedHeader(tag: Int) {
+        if let selectedUser = user  {
+            switch tag {
+            case 0:
+              db.getCreatedSuShares(user: selectedUser) { (result) in
+                    switch result   {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .success(let dbSuShares):
+                        self.suShares = dbSuShares
+                    }
+                }
+            case 1:
+                db.getAllFavorites(user: selectedUser) { (result) in
+                    switch result   {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .success(let dbSuShare):
+                        self.suShares = dbSuShare
+                    }
+                }
+            case 2:
+                suShares = [SuShare]()
+            default:
+                print("error")
+            }
+            
+        } else {
+            switch tag {
+            case 0:
+                db.getCreatedSuSharesForCurrentUser { (result) in
+                    switch result   {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .success(let dbSuShares):
+                        self.suShares = dbSuShares
+                    }
+                }
+            case 1:
+                db.getAllFavoritesCurrent() { (result) in
+                    switch result   {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .success(let dbSuShare):
+                        self.suShares = dbSuShare
+                    }
+                }
+            case 2:
+                suShares = [SuShare]()
+            default:
+                print("error")
+            }
+        }
+    }
+}

@@ -67,7 +67,7 @@ struct SuShare{
     
     
     // after creation
-    let favId: String
+    let fav: Bool
 }
 
 extension SuShare {
@@ -83,9 +83,9 @@ extension SuShare {
         self.category = dictionary["category"] as? [Int] ?? []
         self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
             //dictionary["createdDate"] as? String ?? ""
-        self.suShareId = dictionary["suShareId"] as? String ?? ""
+        self.suShareId = dictionary["iD"] as? String ?? ""
         self.usersInTheSuShare = dictionary["users"] as? [String] ?? [""]
-        self.favId = dictionary["favId"] as? String ?? ""
+        self.fav = dictionary["favId"] as? Bool ?? false
         self.isTheSuShareFlagged = dictionary["isTheSuShareFlagged"] as? Bool ?? false
     }
 }

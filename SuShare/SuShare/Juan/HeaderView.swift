@@ -9,22 +9,35 @@
 import UIKit
 import SnapKit
 
+public enum PersonalType {
+    case backed
+    case created
+    case favorites
+}
+
+protocol HeaderDelegate: AnyObject {
+    func selectedHeader(tag: Int)
+}
+
 class HeaderView: UICollectionReusableView  {
     
-    private lazy var backedButton: UIButton =   {
+    var pt: PersonalType = .backed
+    weak var delegate: HeaderDelegate?
+    
+    public lazy var createdButton: UIButton =   {
         let button = UIButton()
-        button.setTitle("Backed", for: .normal)
+        button.setTitle("Created", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.tag = 0
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.underline()
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
     
-    private lazy var favoritedButton: UIButton =   {
+    public lazy var favoritedButton: UIButton =   {
         let button = UIButton()
-        button.setTitle("Favorited", for: .normal)
+        button.setTitle("Favorites", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.tag = 1
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
@@ -33,12 +46,12 @@ class HeaderView: UICollectionReusableView  {
         return button
     }()
     
-    private lazy var createdButton: UIButton =   {
+    public lazy var backedButton: UIButton =   {
         let button = UIButton()
-        button.setTitle("Created", for: .normal)
+        button.setTitle("Backed", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.tag = 2
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.tag = 2
         button.removeLine()
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
@@ -47,17 +60,24 @@ class HeaderView: UICollectionReusableView  {
     @objc private func buttonTapped(_ sender: UIButton) {
         switch sender.tag   {
         case 0:
-            backedButton.underline()
+            createdButton.underline()
+            backedButton.removeLine()
             favoritedButton.removeLine()
-            createdButton.removeLine()
+            delegate?.selectedHeader(tag: 0)
+            pt = .created
+            print("i do this in view")
         case 1:
             favoritedButton.underline()
             backedButton.removeLine()
             createdButton.removeLine()
+            delegate?.selectedHeader(tag: 1)
+            pt = .favorites
         case 2:
-            createdButton.underline()
-            backedButton.removeLine()
+            backedButton.underline()
             favoritedButton.removeLine()
+            createdButton.removeLine()
+            delegate?.selectedHeader(tag: 2)
+            pt = .backed
         default:
             print("Button Error")
         }
@@ -65,14 +85,13 @@ class HeaderView: UICollectionReusableView  {
     
     public lazy var segmentedControl: UISegmentedControl =  {
         let sc = UISegmentedControl()
-        sc.insertSegment(withTitle: "Backed", at: 0, animated: false)
-        sc.insertSegment(withTitle: "Favorited", at: 1, animated: false)
-        sc.insertSegment(withTitle: "Created", at: 2, animated: false)
+        sc.insertSegment(withTitle: "Created", at: 0, animated: false)
+        sc.insertSegment(withTitle: "Favorites", at: 1, animated: false)
+        sc.insertSegment(withTitle: "Backed", at: 2, animated: false)
         sc.selectedSegmentIndex = 0
         sc.backgroundColor = .clear
         sc.tintColor = .white
         sc.selectedSegmentTintColor = .white
-        
         
         sc.setTitleTextAttributes([
             NSAttributedString.Key.font : UIFont(name: "DINCondensed-Bold", size: 16) ?? 16,
@@ -97,14 +116,14 @@ class HeaderView: UICollectionReusableView  {
     }
     
     private func commonInit()   {
-        setupBackedButtonConstraints()
-        setupFavoritedButtonConstraints()
         setupCreatedButtonConstraints()
+        setupFavoritedButtonConstraints()
+        setupBackedButtonConstraints()
     }
     
-    private func setupBackedButtonConstraints() {
-        addSubview(backedButton)
-        backedButton.snp.makeConstraints { (make) in
+    private func setupCreatedButtonConstraints() {
+        addSubview(createdButton)
+        createdButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(22)
         }
@@ -118,9 +137,9 @@ class HeaderView: UICollectionReusableView  {
         }
     }
     
-    private func setupCreatedButtonConstraints() {
-        addSubview(createdButton)
-        createdButton.snp.makeConstraints { (make) in
+    private func setupBackedButtonConstraints() {
+        addSubview(backedButton)
+        backedButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-22)
         }
