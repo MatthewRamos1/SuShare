@@ -48,7 +48,7 @@ class DatabaseService{
             "createdDate": sushare.createdDate,
             "iD": docRef.documentID,
             "usersApartOfSuShare": sushare.usersInTheSuShare,
-            "favId": sushare.favId
+            "favId": sushare.fav
             
         ]) { (error) in
             if let error = error {
@@ -222,31 +222,75 @@ class DatabaseService{
         }
     }
     
-    public func addToFavorites(item: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
-        guard let user = Auth.auth().currentUser else {return}
+    public func addToFavorites(suShare: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        //guard let user = Auth.auth().currentUser else {return}
         
-        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoriteCollection).document(item.suShareId).setData(
-            ["susuTitle":item.susuTitle,
-             "susuImage": item.susuImage ?? UIImage(named: "suShareLogo-White-eggShell")! ,
-             "favortieDate": Timestamp(date: Date()),
-             "suShareId": item.suShareId
-        ]) { (error) in
+        // how do i know which sushare im favoriting in sushare collection
+        // detail vc is being sent the current sushare
+        
+        // set fav to true/false
+        // remove, get id set to false
+        // grab all favs,
+        
+        db.collection(DatabaseService.suShareCollection).document(suShare.suShareId).updateData(["favId" : true]) { (error) in
             if let error = error {
                 completion(.failure(error))
-            }else{
+            } else {
                 completion(.success(true))
             }
         }
         
     }
     
-    public func removeFromFavorite(item: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
-        guard let user = Auth.auth().currentUser else {return}
-        
-        db.collection(DatabaseService.userCollection).document(user.uid).collection(DatabaseService.favoriteCollection).document(item.suShareId).delete(){ (error) in
-            if let error = error{
+    public func isSuShareFavorite(suShare: SuShare, completion: @escaping (Result<Bool, Error>) -> ())   {
+        db.collection(DatabaseService.suShareCollection).document(suShare.suShareId).getDocument { (snapshot, error) in
+            if let error = error {
                 completion(.failure(error))
-            }else{
+            } else {
+                if let snapshot = snapshot {
+                    let isFavorite = snapshot.get("favId") as? Bool
+                    completion(.success(isFavorite ?? false))
+                }
+            }
+        }
+    }
+    
+    public func getAllFavorites(user: User, completion: @escaping (Result<[SuShare], Error>) -> ()) {
+        db.collection(DatabaseService.suShareCollection).whereField("favId", isEqualTo: true).whereField("userId", isEqualTo: user.userId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    let favSuShares = snapshot.documents.map {SuShare($0.data())}
+                    completion(.success(favSuShares))
+                }
+            }
+        }
+    }
+    
+    public func getAllFavoritesCurrent(completion: @escaping (Result<[SuShare], Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else {
+            fatalError()
+        }
+        
+        db.collection(DatabaseService.suShareCollection).whereField("favId", isEqualTo: true).whereField("userId", isEqualTo: user.uid).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    let favSuShares = snapshot.documents.map {SuShare($0.data())}
+                    completion(.success(favSuShares))
+                }
+            }
+        }
+    }
+    
+    public func removeFromFavorite(suShare: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        
+        db.collection(DatabaseService.suShareCollection).document(suShare.suShareId).updateData(["favId": false]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
                 completion(.success(true))
             }
         }
