@@ -234,7 +234,10 @@ class PersonalViewController: UIViewController {
         topView?.removeFromSuperview()
         switch menuType {
         case .username:
-            print("tapped")
+            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+            self.navigationController?.pushViewController(settingsVC, animated: true)
+            
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
             let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
@@ -242,9 +245,7 @@ class PersonalViewController: UIViewController {
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
-            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
     }
     //-----------------------------------------------------------------
