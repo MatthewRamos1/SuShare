@@ -31,7 +31,6 @@
 		0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA4247A256500713BF5 /* ExploreCell.xib */; };
 		0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */; };
 		0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */; };
-		0CB1DAAF247C1A3600713BF5 /* PersonalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAAE247C1A3600713BF5 /* PersonalCell.swift */; };
 		0CB1DAB1247C1A5300713BF5 /* HighlightsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB0247C1A5300713BF5 /* HighlightsCell.swift */; };
 		0CB1DAB3247C1A7100713BF5 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB2247C1A7100713BF5 /* ExploreCell.swift */; };
 		0CB1DAB5247C1A8900713BF5 /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */; };
@@ -112,7 +111,6 @@
 		0CB1DAA4247A256500713BF5 /* ExploreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreCell.xib; sourceTree = "<group>"; };
 		0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HighlightsCell.xib; sourceTree = "<group>"; };
 		0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalCell.xib; sourceTree = "<group>"; };
-		0CB1DAAE247C1A3600713BF5 /* PersonalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCell.swift; sourceTree = "<group>"; };
 		0CB1DAB0247C1A5300713BF5 /* HighlightsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCell.swift; sourceTree = "<group>"; };
 		0CB1DAB2247C1A7100713BF5 /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				0CB1DAA2247A253300713BF5 /* PersonalView.swift */,
-				0CB1DAAE247C1A3600713BF5 /* PersonalCell.swift */,
 				3E23EC112484B710007C3013 /* HeaderView.swift */,
 				3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */,
 				0CB1DAA0247A250800713BF5 /* PersonalViewController.swift */,
@@ -630,7 +627,6 @@
 				3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */,
 				302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */,
 				0C12C63324989B7F00128D06 /* UICollectionViewCell + Extensions.swift in Sources */,
-				0CB1DAAF247C1A3600713BF5 /* PersonalCell.swift in Sources */,
 				30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
