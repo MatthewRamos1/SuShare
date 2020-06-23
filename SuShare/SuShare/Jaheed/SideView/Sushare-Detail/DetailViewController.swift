@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import FirebaseFirestore
+import FirebaseAuth
 
 class DetailViewController: UIViewController {
     
@@ -55,7 +56,6 @@ class DetailViewController: UIViewController {
         navigationController?.present(paymentVC, animated: true)
     }
     
-    
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         print("favorite")
         if isFavorite{
@@ -97,7 +97,12 @@ class DetailViewController: UIViewController {
             case .success(let isFavoriteDB):
                 if isFavoriteDB {
                     self.isFavorite = true
-                } else {self.isFavorite = false}
+                } else {
+                    if self.sushare?.userId == Auth.auth().currentUser?.uid {
+                        self.navigationItem.rightBarButtonItem = nil 
+                    }
+                    self.isFavorite = false
+                }
             }
         }
     }

@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import Kingfisher
 
 class PersonalViewController: UIViewController {
     
@@ -189,7 +190,6 @@ class PersonalViewController: UIViewController {
     }
     
     func configureFriendsButton()  {
-        
         guard let selectedUser = user else  {
             return
         }
@@ -293,19 +293,22 @@ extension PersonalViewController: UICollectionViewDataSource    {
             
             guard let searchedUser = user
                 else    {
-                    guard let currentUser = Auth.auth().currentUser else    {
-                        fatalError()
+                    db.getCurrentUser { (result) in
+                        switch result   {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .success(let user):
+                            let photoURL = URL(string: user.profilePhoto)
+                            self.profileHeaderView.profilePictureImageView.kf.setImage(with: photoURL)
+                            self.profileHeaderView.determineUserUI(user: user)
+                            self.profileHeaderView.addFriendButton.isHidden = true
+                        }
                     }
-                    user = User(username: currentUser.displayName ?? "", email: currentUser.email ?? "", userId: currentUser.uid)
-                    guard let verifiedCurrentUser = user    else    {
-                        fatalError()
-                    }
-                    profileHeaderView.determineUserUI(user: verifiedCurrentUser)
-                    profileHeaderView.addFriendButton.isHidden = true
-                    
                     return profileHeaderView
             }
             
+            let photoURL = URL(string: searchedUser.profilePhoto)
+            profileHeaderView.profilePictureImageView.kf.setImage(with: photoURL)
             profileHeaderView.determineUserUI(user: searchedUser)
             profileHeaderView.addFriendButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
             
@@ -345,7 +348,12 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // segue
+        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
+             return
+        }
+        detailVC.sushare = suShares[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }
