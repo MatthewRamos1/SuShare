@@ -115,30 +115,30 @@ extension PaymentViewController: STPPaymentContextDelegate {
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-//        let data: [String: Any] = ["total": paymentContext.paymentAmount, "customerId": "1234", "idempotency": UUID().uuidString]
-//        Functions.functions().httpsCallable("<span>createStripeCharge</span>").call(data) { (result, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else {
-//                return
-//            }
-//          }
-//           print("success")
-//
-        return
+        let data: [String: Any] = ["total": paymentContext.paymentAmount, "customerId": "1234", "idempotency": UUID().uuidString]
+        Functions.functions().httpsCallable("createStripeCharge").call(data) { (result, error) in
+            if let error = error {
+                print(error.localizedDescription + "cool")
+            } else {
+                return
+            }
+          }
+           print("success")
+
+   
     }
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-//        switch status {
-//        case .error:
-//            showAlert(title: "Error", message: error?.localizedDescription ?? "")
-//        case .success:
-//            showAlert(title: "Success!", message: "Your first payment has been processed.")
-//        default:
-//            return
-//    }
-        return
+        switch status {
+        case .error:
+            showAlert(title: "Error", message: error?.localizedDescription ?? "")
+        case .success:
+            showAlert(title: "Success!", message: "Your first payment has been processed.")
+        default:
+            return
+    }
+     
     
     
 }

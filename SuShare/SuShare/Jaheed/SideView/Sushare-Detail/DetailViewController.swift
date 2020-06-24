@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
         guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
              return
         }
-        navigationController?.present(paymentVC, animated: true)
+        navigationController?.pushViewController(paymentVC, animated: true)
     }
     
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {

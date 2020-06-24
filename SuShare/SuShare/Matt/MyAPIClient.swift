@@ -72,33 +72,34 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
         task.resume()
     }
     
-    func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
-        let url = self.baseURL.appendingPathComponent("ephemeral_keys")
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        urlComponents.queryItems = [URLQueryItem(name: "api_version", value: apiVersion)]
-        var request = URLRequest(url: urlComponents.url!)
-        request.httpMethod = "POST"
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            guard let response = response as? HTTPURLResponse,
-                response.statusCode == 200,
-                let data = data,
-                let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]) as [String : Any]??) else {
-                completion(nil, error)
-                return
-            }
-            completion(json, nil)
-            print("nice")
-        })
-        task.resume()
-    }
-
 //    func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
-//        Functions.functions().httpsCallable("createEphemeralKey").call([ "api_version": apiVersion,"customer_id": "1234" ]) { (result, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let result = result?.data as? [String: Any] {
-//                completion(result, nil)
-//                print("nice!")
+//        let url = self.baseURL.appendingPathComponent("ephemeral_keys")
+//        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+//        urlComponents.queryItems = [URLQueryItem(name: "api_version", value: apiVersion)]
+//        var request = URLRequest(url: urlComponents.url!)
+//        request.httpMethod = "POST"
+//        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+//            guard let response = response as? HTTPURLResponse,
+//                response.statusCode == 200,
+//                let data = data,
+//                let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]) as [String : Any]??) else {
+//                completion(nil, error)
+//                return
 //            }
-//}
+//            completion(json, nil)
+//            print("nice")
+//        })
+//        task.resume()
+//    }
+
+    func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
+        Functions.functions().httpsCallable("createEphemeralKey").call([ "api_version": apiVersion,"customer_id": "1234" ]) { (result, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let result = result?.data as? [String: Any] {
+                completion(result, nil)
+                print("nice!")
+            }
+}
+}
 }
