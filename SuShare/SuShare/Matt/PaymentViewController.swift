@@ -8,6 +8,7 @@
 
 import UIKit
 import Stripe
+import FirebaseFunctions
 
 class PaymentViewController: UIViewController {
     
@@ -16,7 +17,6 @@ class PaymentViewController: UIViewController {
     
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
-    private var paymentView = PaymentView()
     private var cardPaymentView = CardPaymentView()
     
     
@@ -41,6 +41,9 @@ class PaymentViewController: UIViewController {
         
     }
    
+    @IBAction func subscribeButtonPressed(_ sender: UIButton) {
+        paymentContext.requestPayment()
+    }
 }
 
 extension PaymentViewController: UITableViewDataSource {
@@ -66,7 +69,6 @@ extension PaymentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
-            paymentContext.requestPayment()
             paymentContext.pushPaymentOptionsViewController()
         }
     }
@@ -94,6 +96,7 @@ extension PaymentViewController: STPPaymentContextDelegate {
         return
     }
     
+    
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         let alertController = UIAlertController(
             title: "Error",
@@ -112,68 +115,31 @@ extension PaymentViewController: STPPaymentContextDelegate {
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+//        let data: [String: Any] = ["total": paymentContext.paymentAmount, "customerId": "1234", "idempotency": UUID().uuidString]
+//        Functions.functions().httpsCallable("<span>createStripeCharge</span>").call(data) { (result, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                return
+//            }
+//          }
+//           print("success")
+//
         return
     }
     
+    
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+//        switch status {
+//        case .error:
+//            showAlert(title: "Error", message: error?.localizedDescription ?? "")
+//        case .success:
+//            showAlert(title: "Success!", message: "Your first payment has been processed.")
+//        default:
+//            return
+//    }
         return
-    }
     
     
 }
-
-class PaymentView: UIView {
-    
-    private lazy var paymentTable: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = .white
-        return tv
-    }()
-    
-    
-    private lazy var joinSuShareButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Subscribe", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 25)
-        button.backgroundColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 5, height: 5)
-        button.layer.shadowRadius = 7
-        button.layer.shadowOpacity = 0.4
-        return button
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        addSubview(paymentTable)
-        addSubview(joinSuShareButton)
-        paymentTable.translatesAutoresizingMaskIntoConstraints = false
-        joinSuShareButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            paymentTable.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            paymentTable.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            paymentTable.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            paymentTable.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            joinSuShareButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12),
-            joinSuShareButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -12),
-            joinSuShareButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            joinSuShareButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-            
-    }
 }

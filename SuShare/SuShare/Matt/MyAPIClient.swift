@@ -8,6 +8,8 @@
 
 import Foundation
 import Stripe
+import Alamofire
+import FirebaseFunctions
 
 struct Product {
     let emoji: String
@@ -69,7 +71,7 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
         })
         task.resume()
     }
-
+    
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let url = self.baseURL.appendingPathComponent("ephemeral_keys")
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
@@ -85,8 +87,18 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
                 return
             }
             completion(json, nil)
+            print("nice")
         })
         task.resume()
     }
 
+//    func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
+//        Functions.functions().httpsCallable("createEphemeralKey").call([ "api_version": apiVersion,"customer_id": "1234" ]) { (result, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else if let result = result?.data as? [String: Any] {
+//                completion(result, nil)
+//                print("nice!")
+//            }
+//}
 }
