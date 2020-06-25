@@ -25,7 +25,9 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentsButtonLabel: UILabel!
+    
+    @IBOutlet weak var numOfCommentsLabel: UILabel!
     
     private var databaseService = DatabaseService()
     private var listener: ListenerRegistration?
@@ -46,6 +48,13 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateHeartUI()
+        tabBarController?.tabBar.isHidden = true
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
@@ -88,6 +97,13 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func commentsButtonPressed(_ sender: UIButton) {
+//        let commentVC = CommentsViewController(coder: )
+//        self.navigationController?.pushViewController(CommentsViewController() , animated: true)
+        
+            }
+    
     
     private func updateHeartUI()    {
         databaseService.isSuShareFavorite(suShare: sushare!) { (result) in
