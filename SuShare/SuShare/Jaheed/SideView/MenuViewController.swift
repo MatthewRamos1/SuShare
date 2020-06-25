@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import FirebaseFirestore
 
 enum MenuType: Int {
     case username
@@ -19,11 +21,20 @@ class MenuViewController: UITableViewController {
     
     var didTapMenuType: ((MenuType) -> Void)?
     
+    var database = DatabaseService()
+    
+    var menu: MenuType?
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         self.dismiss(animated: true, completion: nil)
@@ -36,4 +47,7 @@ class MenuViewController: UITableViewController {
             self?.didTapMenuType?(menuType)
         }
     }
+    
 }
+
+
