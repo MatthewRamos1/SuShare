@@ -313,14 +313,14 @@
             <objects>
                 <viewController id="uyG-uc-5nY" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z9U-wV-sWa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="875"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWU-wv-UmQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="920"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="795"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysl-oh-VdI" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="920"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="795"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.haze" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mWu-Ol-Oz5">
                                                 <rect key="frame" x="8" y="39.5" width="398" height="400"/>
@@ -508,7 +508,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="ryR-1h-F89"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRg-Cl-AuT">
-                                <rect key="frame" x="0.0" y="920" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="795" width="414" height="80"/>
                                 <color key="backgroundColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="ttm-N0-g9g"/>
@@ -531,7 +531,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xez-Cc-CVJ"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="875"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hb8-i3-nxG" sceneMemberID="firstResponder"/>
             </objects>
