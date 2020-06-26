@@ -26,6 +26,7 @@ class MenuViewController: UITableViewController {
     
     var menu: MenuType?
     var user: User?
+    var userCell: UserCell?
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -34,7 +35,7 @@ class MenuViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //usernameLabel.text = "something"
-        //tableView.delegate = self
+        tableView.delegate = self
         registerCell()
         
     }
@@ -47,7 +48,7 @@ class MenuViewController: UITableViewController {
             return
         }
         self.userImageView.kf.setImage(with: url)
-        self.usernameLabel.text = "Something"
+        self.usernameLabel.text = displayName
 
     }
     
@@ -74,14 +75,19 @@ class MenuViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SideViewUserCell") as? UserCell else {
-            fatalError()
+        if indexPath.row == 0 {
+           registerCell()
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SideViewUserCell") as? UserCell else {
+                        fatalError()
+                    }
+            return cell
+        } else{
+        return UITableViewCell()
         }
-        //updateUI()
-        return cell
+        
+        
+        //return cell
     }
-    
-  
     
 }
 

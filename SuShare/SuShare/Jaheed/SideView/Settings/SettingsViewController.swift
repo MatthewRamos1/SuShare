@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController {
         return gesture
     }()
     
-    func configureUserImageSettings(){
+    private func configureUserImageSettings(){
         databaseService.getCurrentUser { [weak self](result) in
             switch result{
             case.failure(let error):

@@ -26,9 +26,11 @@ class UserCell: UITableViewCell {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     //let user: User?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         updateUI()
+        imageSetup()
     }
     
     private func updateUI(){
@@ -38,9 +40,15 @@ class UserCell: UITableViewCell {
         else {
             return
         }
-       // self.sideViewImage.kf.setImage(with: url)
+       
+        self.sideViewImage.kf.setImage(with: url)
         self.sideViewUsername.text = displayName
 
     }
+    
+    func imageSetup(){
+        sideViewImage.layer.borderWidth = 0.75
+        sideViewImage.layer.cornerRadius = sideViewImage.frame.height / 2
+        sideViewImage.layer.borderColor = UIColor.systemGray2.cgColor    }
     
 }

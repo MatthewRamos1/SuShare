@@ -44,12 +44,12 @@ class DetailViewController: UIViewController {
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateHeartUI()
         tabBarController?.tabBar.isHidden = true
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,7 +60,7 @@ class DetailViewController: UIViewController {
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
         guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
-             return
+            return
         }
         navigationController?.present(paymentVC, animated: true)
     }
@@ -103,12 +103,19 @@ class DetailViewController: UIViewController {
             return
         }
         let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-       let commentVC = storyboard.instantiateViewController(identifier: "CommentsViewController") { coder in
-         return CommentsViewController(coder: coder, sushare: sushare)
-       }
-        
-        self.navigationController?.pushViewController(commentVC, animated: true)
+        let commentVC = storyboard.instantiateViewController(identifier: "CommentsViewController") { coder in
+            return CommentsViewController(coder: coder, sushare: sushare)
+        }
+        databaseService.getCurrentUser { [weak self](result) in
+            switch result{
+            case.failure(let error):
+                print("ERROR: \(error.localizedDescription)")
+            case.success(let user):
+                commentVC.user = user
             }
+        }
+        navigationController?.pushViewController(commentVC, animated: true)
+    }
     
     
     private func updateHeartUI()    {
@@ -131,11 +138,11 @@ class DetailViewController: UIViewController {
     
     
     private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
-         let susu = sushare
-//        else {
-//            self.showAlert(title: "Error", message: "Could not load Sushares")
-//            fatalError()
-//        }
+        let susu = sushare
+        //        else {
+        //            self.showAlert(title: "Error", message: "Could not load Sushares")
+        //            fatalError()
+        //        }
         imageView.kf.setImage(with: URL(string: imageURL))
         titleLabel.text = title
         userProfileImage.kf.setImage(with: URL(string: profileImage))
@@ -148,9 +155,9 @@ class DetailViewController: UIViewController {
         
     }
     
-
     
-
+    
+    
 }
 
 
