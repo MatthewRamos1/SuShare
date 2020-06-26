@@ -298,6 +298,18 @@ class DatabaseService{
         }
     }
     
+    public func addBackingUser()    {
+        
+    }
+    
+    public func removeBackingUser() {
+        
+    }
+    
+    public func getSuSharesBacked() {
+        
+    }
+    
     public func updateDatabaseUserImage(
         photoURL: String,
         completion: @escaping (Result<Bool, Error>) -> ()) {
