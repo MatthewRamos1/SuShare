@@ -41,7 +41,6 @@ class DetailViewController: UIViewController {
             }
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,16 +72,14 @@ class DetailViewController: UIViewController {
                 }
             }
         }else{
-            databaseService.addToFavorites(suShare: sushare!) { [weak self] (result) in
-                switch result{
-                case.failure(let error):
+            databaseService.addToFavorites(sushare: sushare!) { (result) in
+                switch result   {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success:
                     DispatchQueue.main.async {
-                        self?.showAlert(title: "Error", message: error.localizedDescription)
-                    }
-                case.success:
-                    DispatchQueue.main.async {
-                        self?.showAlert(title: "Favorited", message: "")
-                        self?.isFavorite = true
+                        self.showAlert(title: "Favorited", message: "")
+                        self.isFavorite = true
                     }
                 }
             }
@@ -99,7 +96,7 @@ class DetailViewController: UIViewController {
                     self.isFavorite = true
                 } else {
                     if self.sushare?.userId == Auth.auth().currentUser?.uid {
-                        self.navigationItem.rightBarButtonItem = nil 
+                        self.navigationItem.rightBarButtonItem = nil
                     }
                     self.isFavorite = false
                 }
@@ -123,7 +120,7 @@ class DetailViewController: UIViewController {
         paymentLabel.text = payment
         durationLabel.text = duration
         
-        
+
     }
     
 
