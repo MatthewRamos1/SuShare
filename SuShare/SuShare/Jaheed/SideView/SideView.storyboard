@@ -39,7 +39,7 @@
                         <sections>
                             <tableViewSection id="qSX-NK-feO">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="Eej-8r-1Xs">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideViewUserCell" rowHeight="80" id="Eej-8r-1Xs" customClass="UserCell" customModule="SuShare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="18" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eej-8r-1Xs" id="eZk-xm-qqR">
@@ -203,10 +203,6 @@
                             <outlet property="delegate" destination="iS3-M7-vBH" id="mk0-Vc-qz0"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="imageView" destination="Tta-Dy-Zuh" id="wLk-qu-Rq3"/>
-                        <outlet property="usernameLabel" destination="gKJ-Nn-1GU" id="gqg-rV-Ay0"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v9E-LN-djF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -99,9 +99,15 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func commentsButtonPressed(_ sender: UIButton) {
-//        let commentVC = CommentsViewController(coder: )
-//        self.navigationController?.pushViewController(CommentsViewController() , animated: true)
+        guard let sushare = sushare else {
+            return
+        }
+        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+       let commentVC = storyboard.instantiateViewController(identifier: "CommentsViewController") { coder in
+         return CommentsViewController(coder: coder, sushare: sushare)
+       }
         
+        self.navigationController?.pushViewController(commentVC, animated: true)
             }
     
     
