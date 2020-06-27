@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.clientID = "952790559118-iahita7ifbfbfrm0v6bplp55tdm0mea3.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
         STPTheme.default().accentColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
+        Stripe.setDefaultPublishableKey("pk_test_51GryzXAPBA6SjrmolJPfilMdykNqfRYZTPewUgSzvin70EdHDGykQvbJRwbkIB9SNAcDwTIbFLVjD2uX5IUuHyPc00W6hzHMaL")
         return true
     }
     

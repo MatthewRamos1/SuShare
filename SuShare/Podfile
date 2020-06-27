@@ -17,6 +17,7 @@ target 'SuShare' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Functions'
   pod 'Stripe'
+  pod 'Alamofire'
   
 
   target 'SuShareTests' do

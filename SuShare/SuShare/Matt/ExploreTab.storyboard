@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9b-ow-g19">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9b-ow-g19">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -285,14 +285,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-PJ-LDe">
-                                <rect key="frame" x="290" y="818" width="44" height="44"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-PJ-LDe" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
+                                <rect key="frame" x="310" y="777" width="70" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="3DU-I7-0eg"/>
-                                    <constraint firstAttribute="height" constant="44" id="dOL-dZ-EPn"/>
+                                    <constraint firstAttribute="width" constant="70" id="3DU-I7-0eg"/>
+                                    <constraint firstAttribute="height" constant="70" id="dOL-dZ-EPn"/>
                                 </constraints>
-                                <state key="normal" title="create " image="createSushare-wPlus.png">
+                                <state key="normal" title="create " image="createSushare-wPlus-Light">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -304,9 +304,9 @@
                         <constraints>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="top" secondItem="hQb-tY-vBx" secondAttribute="bottom" constant="8" id="0bV-t7-RUW"/>
                             <constraint firstItem="hQb-tY-vBx" firstAttribute="top" secondItem="NHj-ua-sKX" secondAttribute="bottom" constant="12" id="7IV-Oj-Zgt"/>
-                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="290" id="9D1-Nj-wpL"/>
+                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="310" id="9D1-Nj-wpL"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="NHj-ua-sKX" secondAttribute="trailing" constant="44" id="DR5-vs-2e0"/>
-                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="EVK-Zz-n57"/>
+                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" constant="-15" id="EVK-Zz-n57"/>
                             <constraint firstItem="NHj-ua-sKX" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="44" id="JOn-ib-jSy"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="hQb-tY-vBx" secondAttribute="trailing" constant="20" id="PW2-Wo-Meo"/>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="UyV-hZ-H9u"/>
@@ -577,7 +577,7 @@
     <resources>
         <image name="airplane" catalog="system" width="128" height="115"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
-        <image name="createSushare-wPlus.png" width="470" height="470"/>
+        <image name="createSushare-wPlus-Light" width="470" height="470"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
         <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
         <image name="gear" catalog="system" width="128" height="119"/>

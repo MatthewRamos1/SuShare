@@ -17,7 +17,7 @@ class SuShareTests: XCTestCase {
     func testUploadImageToStorage(){
        
         let exp = XCTestExpectation(description: "suShare photo upload")
-        let queryPath = Bundle.main.path(forResource: "createSushare-wPlus", ofType: "png")
+        let queryPath = Bundle.main.path(forResource: "createSushare-wPlus-Light", ofType: "png")
         
         guard let path = queryPath else {
             XCTFail("could not access the path")

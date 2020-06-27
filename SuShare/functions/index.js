@@ -4,49 +4,64 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 const logging = require('@google-cloud/logging');
-const stripe = require('stripe')(functions.config().stripe.token);
+const stripe = require('stripe')(functions.config().stripe.secret, {
+  apiVersion: '2020-03-02',
+});
+//check in on token-- Matt
 const currency = functions.config().stripe.currency || 'USD';
 
 // [START chargecustomer]
-// Charge the Stripe customer whenever an amount is written to the Realtime database
-exports.createStripeCharge = functions.database.ref('/stripe_customers/{userId}/charges/{id}')
-    .onCreate((snap, context) => {
-      const val = snap.val();
-      // Look up the Stripe customer id written in createStripeCustomer
-      return admin.database().ref(`/stripe_customers/${context.params.userId}/customer_id`)
-          .once('value').then((snapshot) => {
-            return snapshot.val();
-          }).then((customer) => {
-            // Create a charge using the pushId as the idempotency key
-            // protecting against double charges
-            const amount = val.amount;
-            const idempotencyKey = context.params.id;
-            const charge = {amount, currency, customer};
-            if (val.source !== null) {
-              charge.source = val.source;
-            }
-            return stripe.charges.create(charge, {idempotency_key: idempotencyKey});
-          }).then((response) => {
-            // If the result is successful, write it back to the database
-            return snap.ref.set(response);
-          }).catch((error) => {
-            // We want to capture errors and render them in a user-friendly way, while
-            // still logging an exception with StackDriver
-            return snap.ref.child('error').set(userFacingMessage(error));
-          }).then(() => {
-            return reportError(error, {user: context.params.userId});
-          });
-        });
+exports.createStripeCharge = functions.https.onCall(async (data, context) => {
+
+            const amount = data.total;
+            const idempotencyKey = data.idempotency;
+            const customerId = data.customerId;
+            
+            const charge = await stripe.charges.create({ 
+              amount: amount, 
+              currency: 'usd',
+              customer: customerId
+          }, {
+          idempotencyKey: idempotencyKey
+        }); 
+        return charge; 
+});
 // [END chargecustomer]]
 
-// When a user is created, register them with Stripe
-exports.createStripeCustomer = functions.auth.user().onCreate((user) => {
-  return stripe.customers.create({
-    email: user.email,
-  }).then((customer) => {
-    return admin.database().ref(`/stripe_customers/${user.uid}/customer_id`).set(customer.id);
-  });
+exports.createChargeFunction = functions.https.onCall(async (data, context) => {
+const amount = data.amount;
+const paymentIntent = await stripe.paymentIntents.create({
+  amount: amount,
+  currency: 'usd',
 });
+const clientSecret = paymentIntent.client_secret
+return clientSecret;
+});
+
+exports.getStripeEphemeralKeys = functions.https.onCall(async (data, context) => {
+    const api_version = data.api_version;
+    const customer_id = data.customer_id;
+    const key = await stripe.ephemeralKeys.create(
+        {customer: customer_id},
+        {apiVersion: api_version}
+    );
+    return key;
+});
+
+exports.createStripeCustomer = functions.https.onCall(async (data, context) => {
+    const full_name = data.full_name;
+    const email = data.email;
+    const customer = await stripe.customers.create({
+        email: email,
+        name: full_name,
+        description: full_name
+    });
+    console.log('new customer created: ', customer.id)
+    return {
+        customer_id: customer.id
+    }
+});
+
 
 // Add a payment source (card) for a user by writing a stripe payment source token to Realtime database
 exports.addPaymentSource = functions.database

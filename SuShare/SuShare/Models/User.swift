@@ -13,6 +13,7 @@ struct User {
     let email: String
     let userId: String
     let profilePhoto: String
+    
 }
 
 extension User {
