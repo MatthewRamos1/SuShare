@@ -286,7 +286,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-PJ-LDe" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
-                                <rect key="frame" x="310" y="792" width="70" height="70"/>
+                                <rect key="frame" x="310" y="777" width="70" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="3DU-I7-0eg"/>
@@ -306,7 +306,7 @@
                             <constraint firstItem="hQb-tY-vBx" firstAttribute="top" secondItem="NHj-ua-sKX" secondAttribute="bottom" constant="12" id="7IV-Oj-Zgt"/>
                             <constraint firstItem="S7r-PJ-LDe" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="310" id="9D1-Nj-wpL"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="NHj-ua-sKX" secondAttribute="trailing" constant="44" id="DR5-vs-2e0"/>
-                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="EVK-Zz-n57"/>
+                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" constant="-15" id="EVK-Zz-n57"/>
                             <constraint firstItem="NHj-ua-sKX" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="44" id="JOn-ib-jSy"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="hQb-tY-vBx" secondAttribute="trailing" constant="20" id="PW2-Wo-Meo"/>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" id="UyV-hZ-H9u"/>
