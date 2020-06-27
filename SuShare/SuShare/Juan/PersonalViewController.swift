@@ -47,6 +47,7 @@ class PersonalViewController: UIViewController {
     var topView: UIView?
     var didTapMenuType: ((MenuType) -> Void)?
     var gesture = UITapGestureRecognizer()
+    
     //-------------------------------------------------
     
     override func viewDidLoad() {
