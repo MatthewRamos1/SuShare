@@ -92,14 +92,16 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
 //        task.resume()
 //    }
     
-    func createDummyUser() {
+    func createDummyUser(fullName: String, completion: @escaping (Result <String, Error>) -> () ) {
+       // var customer_id = ""
         Functions.functions().httpsCallable("createStripeCustomer").call(["full_name" : "John Doe", "email" : "johndoe420-69@gmail.com"]) { (response, error) in
                    if let error = error {
                        print(error)
-                   }
+                   } else {
                    if let response = (response?.data as? [String: Any]) {
-                       let customer_id = response["customer_id"] as! String?
-                       print(customer_id)
+                   let customer_id = response["customer_id"] as! String?
+                   
+                    completion(.success(customer_id!))
 //                       print(publishable_key)
 //                       Stripe.setDefaultPublishableKey(publishable_key!)
 //                       profile.stripe_customer_id = customer_id!
@@ -116,6 +118,7 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
                        }
                    }
                }
+        }
     }
 
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
