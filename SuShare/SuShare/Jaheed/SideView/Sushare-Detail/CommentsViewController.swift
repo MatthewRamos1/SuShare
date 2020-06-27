@@ -160,8 +160,8 @@ extension CommentsViewController: UITableViewDataSource {
         let dateString = comment.commentDate.dateValue().dateString()
         cell.textLabel?.text = comment.comment
         cell.detailTextLabel?.text = "@" + comment.commentedBy + " " + dateString
-        cell.imageView?.layer.borderWidth = 0.75
-        cell.imageView?.layer.cornerRadius = cell.imageView?.frame.height ?? 1 / 5
+        cell.imageView?.layer.borderWidth = 0.25
+        cell.imageView?.layer.cornerRadius = cell.imageView?.frame.height ?? 1 / 20
         cell.imageView?.layer.borderColor = UIColor.systemGray2.cgColor
         let url = URL(string: user!.profilePhoto)
         cell.imageView!.kf.setImage(with: url)

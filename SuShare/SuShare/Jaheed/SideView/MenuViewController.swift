@@ -44,18 +44,18 @@ class MenuViewController: UITableViewController {
         guard let user = Auth.auth().currentUser,
             let url = user.photoURL,
             let displayName = user.displayName
-        else {
-            return
+            else {
+                return
         }
         self.userImageView.kf.setImage(with: url)
         self.usernameLabel.text = displayName
-
+        
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.viewWillAppear(true)
-//        updateUI()
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        self.viewWillAppear(true)
+    //        updateUI()
+    //    }
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,21 +72,38 @@ class MenuViewController: UITableViewController {
     
     func registerCell(){
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "SideViewUserCell")
+        tableView.register(UINib(nibName: "FriendsSideViewCell", bundle: nil), forCellReuseIdentifier: "FriendsSideViewCell")
+        tableView.register(UINib(nibName: "SearchSideViewCell", bundle: nil), forCellReuseIdentifier: "SearchSideViewCell")
+        tableView.register(UINib(nibName: "SettingsSideViewCell", bundle: nil), forCellReuseIdentifier: "SettingsSideViewCell")
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-           registerCell()
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "SideViewUserCell") as? UserCell else {
-                        fatalError()
-                    }
+            registerCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SideViewUserCell") as? UserCell else {
+                fatalError()
+            }
             return cell
-        } else{
-        return UITableViewCell()
+        }else if indexPath.row == 1{
+            registerCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsSideViewCell") as? FriendsSideViewCell else {
+                fatalError()
+            }
+            return cell
+        }else if indexPath.row == 2{
+            registerCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchSideViewCell") as? SearchSideViewCell else {
+                fatalError()
+            }
+            return cell
+        }else if indexPath.row == 3{
+            registerCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSideViewCell") as? SettingsSideViewCell else {
+                fatalError()
+            }
+            return cell
         }
-        
-        
-        //return cell
+        return UITableViewCell()
     }
     
 }

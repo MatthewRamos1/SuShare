@@ -47,7 +47,7 @@ class UserCell: UITableViewCell {
     }
     
     func imageSetup(){
-        sideViewImage.layer.borderWidth = 0.75
+        sideViewImage.layer.borderWidth = 0.10
         sideViewImage.layer.cornerRadius = sideViewImage.frame.height / 2
         sideViewImage.layer.borderColor = UIColor.systemGray2.cgColor    }
     
