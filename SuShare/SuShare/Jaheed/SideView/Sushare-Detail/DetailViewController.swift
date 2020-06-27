@@ -48,7 +48,6 @@ class DetailViewController: UIViewController {
         loadUI()
         tabBarController?.tabBar.isHidden = true
     
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
