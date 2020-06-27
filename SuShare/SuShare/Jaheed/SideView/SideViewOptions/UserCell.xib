@@ -9,20 +9,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="SideViewUserCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideViewUserCell" id="KGk-i7-Jjw" customClass="UserCell" customModule="SuShare" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="SideViewUserCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideViewUserCell" rowHeight="96" id="KGk-i7-Jjw" customClass="UserCell" customModule="SuShare" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFg-H6-3zy">
-                        <rect key="frame" x="100" y="27" width="294" height="30"/>
+                        <rect key="frame" x="283" y="27" width="111" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eYS-o9-iUS">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eYS-o9-iUS">
                         <rect key="frame" x="20" y="8.5" width="65" height="64"/>
                         <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -33,7 +33,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="OFg-H6-3zy" secondAttribute="trailing" constant="20" id="4pz-Di-Vd8"/>
-                    <constraint firstItem="OFg-H6-3zy" firstAttribute="leading" secondItem="eYS-o9-iUS" secondAttribute="trailing" constant="15" id="EAT-bR-2jy"/>
                     <constraint firstItem="eYS-o9-iUS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Vvz-e7-nmx"/>
                     <constraint firstItem="eYS-o9-iUS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="aOF-hv-2SO"/>
                     <constraint firstItem="OFg-H6-3zy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="z0k-No-Uev"/>
@@ -41,10 +40,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="sideViewImage" destination="eYS-o9-iUS" id="bnd-U6-Zss"/>
+                <outlet property="sideViewImage" destination="eYS-o9-iUS" id="5Yi-Ba-iaM"/>
                 <outlet property="sideViewUsername" destination="OFg-H6-3zy" id="sEc-Wv-g0j"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
+            <point key="canvasLocation" x="137.68115942028987" y="54.241071428571423"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -83,6 +83,10 @@ class MenuViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "SideViewUserCell") as? UserCell else {
                 fatalError()
             }
+            //sideViewImage.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+            
+            
+          
             return cell
         }else if indexPath.row == 1{
             registerCell()
