@@ -21,7 +21,7 @@ class PaymentViewController: UIViewController {
 
     private var cardPaymentView = CardPaymentView()
 
-    private var paymentView = PaymentView()
+   
  //   private var cardPaymentView = CardPaymentView()
 
     
