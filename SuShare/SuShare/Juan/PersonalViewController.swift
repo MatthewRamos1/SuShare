@@ -19,6 +19,7 @@ class PersonalViewController: UIViewController {
     var profileHeaderView = ProfileHeaderView()
     var headerView = HeaderView()
     var headerTag: Int?
+    private var listener: ListenerRegistration?
     
     let authSession = AuthenticationSession()
     
@@ -70,9 +71,17 @@ class PersonalViewController: UIViewController {
         configureFriendsButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        //configureSuShares()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        listener = Firestore.firestore().collection(DatabaseService.favoriteCollection).addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    
+                }
+            }
+        })
     }
     
     private func configureRefreshControl()  {
