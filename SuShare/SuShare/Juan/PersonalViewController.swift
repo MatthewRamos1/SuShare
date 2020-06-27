@@ -19,6 +19,8 @@ class PersonalViewController: UIViewController {
     var profileHeaderView = ProfileHeaderView()
     var headerView = HeaderView()
     var headerTag: Int?
+    private var favListener: ListenerRegistration?
+    private var createListner: ListenerRegistration?
     
     let authSession = AuthenticationSession()
     
@@ -46,6 +48,7 @@ class PersonalViewController: UIViewController {
     var topView: UIView?
     var didTapMenuType: ((MenuType) -> Void)?
     var gesture = UITapGestureRecognizer()
+    
     //-------------------------------------------------
     
     override func viewDidLoad() {
@@ -70,9 +73,50 @@ class PersonalViewController: UIViewController {
         configureFriendsButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        //configureSuShares()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        favListener = Firestore.firestore().collection(DatabaseService.favoriteCollection).addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: currentUser.uid)
+                    snapshotQuery.getDocuments { (snapshot, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            if let snapshot = snapshot {
+                                let favorites = snapshot.documents.map {SuShare($0.data())}
+                                self.suShares = favorites
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        
+        createListner = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: currentUser.uid)
+                    _ = snapshotQuery.getDocuments { (snapshot, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            if let snapshot = snapshot {
+                                let shares = snapshot.documents.map {SuShare($0.data())}
+                                self.suShares = shares
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     
     private func configureRefreshControl()  {
@@ -175,7 +219,7 @@ class PersonalViewController: UIViewController {
         guard let selectedUser = user else  {
             fatalError()
         }
-        db.createDatabaseFriend(user: currentUser.uid, friend: selectedUser.userId, friendUsername: selectedUser.username) { (result) in
+        db.databaseAddFriend(user: selectedUser) { (result) in
             switch result   {
             case .failure(let error):
                 print(error.localizedDescription)

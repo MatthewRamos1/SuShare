@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import Kingfisher
 
 enum SettingsType{
@@ -20,10 +21,10 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     
     private let databaseService = DatabaseService()
     private let storageService = StorageService()
+    private let refreshControl = UIRefreshControl()
     
     private lazy var imagePickerController: UIImagePickerController = {
         let ip = UIImagePickerController()
@@ -38,24 +39,49 @@ class SettingsViewController: UIViewController {
     }
     
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
-           let gesture = UILongPressGestureRecognizer()
-           // tells the gesture what is should do when the action happens
-           gesture.addTarget(self, action: #selector(showPhotoOptions))
-           return gesture
-       }()
-
+        let gesture = UILongPressGestureRecognizer()
+        // tells the gesture what is should do when the action happens
+        gesture.addTarget(self, action: #selector(showPhotoOptions))
+        return gesture
+    }()
     
+    private func configureUserImageSettings(){
+        databaseService.getCurrentUser { [weak self](result) in
+            switch result{
+            case.failure(let error):
+                DispatchQueue.main.async {
+                    print("ERROR: \(error.localizedDescription)")
+                }
+            case.success(let user):
+                self?.usernameLabel.text = user.username
+                let url = URL(string: user.profilePhoto)
+                self?.imageView.kf.setImage(with: url)
+                
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.tabBarController?.tabBar.items?[0].title = "Explore"
-         self.tabBarController?.tabBar.items?[1].title = "Personal"
-        self.navigationController?.navigationBar.topItem?.title = "SuShare"
+        tabBarSetup()
         updateUI()
         view.backgroundColor = .systemBackground
-        
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(longPressGesture)
+        setUpImageView()
+        configureUserImageSettings()
+    }
+    
+    private func setUpImageView(){
+        imageView.layer.borderWidth = 0.75
+        imageView.layer.cornerRadius = imageView.frame.height / 2
+        imageView.layer.borderColor = UIColor.systemGray2.cgColor
+    }
+    
+    private func tabBarSetup(){
+        self.tabBarController?.tabBar.items?[0].title = "Explore"
+        self.tabBarController?.tabBar.items?[1].title = "Personal"
+        self.navigationController?.navigationBar.topItem?.title = "SuShare"
     }
     
     private func updateUI(){
@@ -67,38 +93,37 @@ class SettingsViewController: UIViewController {
     }
     
     @objc private func showPhotoOptions() {
-           let alertController = UIAlertController(title: "Choose photo Option", message: nil, preferredStyle: .actionSheet)
-           
-           let cameraAction = UIAlertAction(title: "Camera", style: .default) {
-               alertAction in
-               self.imagePickerController.sourceType = .camera
-               self.present(self.imagePickerController, animated: true)
-           }
-           
-           let photoLibrary = UIAlertAction(title: "photoLibrary", style: .default) {
-               actionAlert in
-               self.imagePickerController.sourceType = .photoLibrary
-               self.present(self.imagePickerController, animated: true)
-           }
-           let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
-           if UIImagePickerController.isSourceTypeAvailable(.camera){
-               // if there is no camera avaiable then the camera option is not avaialble either
-               alertController.addAction(cameraAction)
-           }
-           alertController.addAction(photoLibrary)
-           alertController.addAction(cancelAction)
-           present(alertController, animated: true)
-       }
+        let alertController = UIAlertController(title: "Choose photo Option", message: nil, preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) {
+            alertAction in
+            self.imagePickerController.sourceType = .camera
+            self.present(self.imagePickerController, animated: true)
+        }
+        
+        let photoLibrary = UIAlertAction(title: "photoLibrary", style: .default) {
+            actionAlert in
+            self.imagePickerController.sourceType = .photoLibrary
+            self.present(self.imagePickerController, animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            // if there is no camera avaiable then the camera option is not avaialble either
+            alertController.addAction(cameraAction)
+        }
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+        
+        
+    }
     
     @IBAction func updateImagePressed(_ sender: UIButton) {
-        // storage service first to save image
-        // then database to updaet the changes
         guard let user = Auth.auth().currentUser, let image = selectedImage else {
             return
         }
-        
         updateStorageServices(userId: user.uid, image: image)
-        
     }
     
     private func updateStorageServices(userId: String, image: UIImage){
@@ -117,20 +142,20 @@ class SettingsViewController: UIViewController {
     }
     
     private func updateDatabaseUser(photoURL: String) {
-           databaseService.updateDatabaseUserImage(photoURL: photoURL) { (result) in
-               switch result {
-               case .failure(let error):
-                   print("failed to update db user: \(error.localizedDescription)")
-               case .success:
-                  //print("successfully updated db user")
+        databaseService.updateDatabaseUserImage(photoURL: photoURL) { (result) in
+            switch result {
+            case .failure(let error):
+                print("failed to update db user: \(error.localizedDescription)")
+            case .success:
+                //print("successfully updated db user")
                 self.requestChangesToDatabase(url: URL(fileURLWithPath: photoURL))
-               }
-           }
-       }
+            }
+        }
+    }
     
     private func requestChangesToDatabase(url: URL) {
         let request = Auth.auth().currentUser?.createProfileChangeRequest()
-       request?.photoURL = url
+        request?.photoURL = url
         request?.commitChanges(completion: { (error) in
             if let error = error {
                 print("this aint work \(error.localizedDescription)")
@@ -155,8 +180,7 @@ class SettingsViewController: UIViewController {
             }
         }
     }
- 
-   
+    
 }
 
 

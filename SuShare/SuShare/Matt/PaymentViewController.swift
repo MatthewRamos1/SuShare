@@ -18,7 +18,12 @@ class PaymentViewController: UIViewController {
     
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
+
     private var cardPaymentView = CardPaymentView()
+
+    private var paymentView = PaymentView()
+ //   private var cardPaymentView = CardPaymentView()
+
     
     
     override func viewDidLoad() {
@@ -37,8 +42,25 @@ class PaymentViewController: UIViewController {
         paymentContext.paymentAmount = 50
         paymentContext.delegate = self
         paymentContext.hostViewController = self
-        paymentContext.addCardViewControllerFooterView = cardPaymentView
         
+        
+        let infoForFooter = CardPaymentView(text: """
+This card will be saved under settings as your default payment method
+    you can access your settings to change the card later
+"""
+)
+       // paymentContext.paymentOptionsViewControllerFooterView = infoForFooter
+      //    let addCardFooter = CardPaymentView(text: "You can add custom footer views to the add card screen.")
+        
+        paymentContext.addCardViewControllerFooterView = infoForFooter
+        /*
+         paymentSelectionFooter.theme = settings.theme
+         paymentContext.paymentOptionsViewControllerFooterView = paymentSelectionFooter
+         */
+        
+       // paymentContext.addCardViewControllerFooterView =  cardPaymentView
+       // paymentContext.addCardViewControllerFooterView.backgroundColor = .blue
+        //paymentTableView.tableFooterView?.backgroundColor = .blue
     }
    
     @IBAction func subscribeButtonPressed(_ sender: UIButton) {
@@ -84,11 +106,38 @@ extension PaymentViewController: UITableViewDelegate {
         case 1:
             return 110
         case 2:
-            return 400
+            return 100
         default:
             return 1
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+       // let paymentInfoView = CardPaymentView(text: "now will it work???!??!")
+        let vw  = UIView()
+          vw.backgroundColor = UIColor.clear
+          let titleLabel = UILabel(frame: CGRect(x:10,y: 5 ,width:350,height:150))
+          titleLabel.numberOfLines = 0;
+          titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.textColor = .gray
+          titleLabel.backgroundColor = UIColor.clear
+          titleLabel.font = UIFont(name: "Montserrat-Regular", size: 10)
+          titleLabel.text  = """
+        Thank you for selecting this SuShare
+            some things to remember:
+               - The amount above is what you will be contributing to this sushare.
+               - payments are taken from your account like a subscription service
+               - Opting out of this suShare will result in delaying future enrollement in other SuShares
+               - Please be kind
+        """
+          vw.addSubview(titleLabel)
+          return vw
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 150
+    }
+    
 }
 
 extension PaymentViewController: STPPaymentContextDelegate {

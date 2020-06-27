@@ -33,6 +33,13 @@ class ExploreViewController: UIViewController {
     var topView: UIView?
     var didTapMenuType: ((MenuType) -> Void)?
     var gesture = UITapGestureRecognizer()
+    func updateButtonShadow(){
+        createButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        createButton.layer.shadowColor = UIColor.lightGray.cgColor
+        createButton.layer.shadowOpacity = 1
+        createButton.layer.shadowRadius = 5
+        createButton.layer.masksToBounds = false
+    }
     //------------------------
     
     var originalSusus = [SuShare]() {
@@ -68,6 +75,7 @@ class ExploreViewController: UIViewController {
         
         
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
+        updateButtonShadow()
         
         
     }

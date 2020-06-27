@@ -15,6 +15,7 @@ class CommentsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var profileImage: UIImageView!
     
     private var databaseService = DatabaseService()
     
@@ -23,6 +24,8 @@ class CommentsViewController: UIViewController {
     private var originalValueForConstraint: CGFloat = 0
     
     private var sushare: SuShare
+    
+    public var user: User?
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
@@ -38,8 +41,6 @@ class CommentsViewController: UIViewController {
         }
     }
     
-    
-    
     init?(coder: NSCoder, sushare: SuShare) {
         self.sushare = sushare
         super.init(coder: coder)
@@ -52,9 +53,12 @@ class CommentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.dataSource = self
+        commentTextField.delegate = self
         
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         registerKeyboardNotifications()
@@ -74,7 +78,6 @@ class CommentsViewController: UIViewController {
         })
     }
     
-    
     @IBAction func postCommentPressed(_ sender: UIButton) {
         dismissKeyboard()
         
@@ -87,7 +90,6 @@ class CommentsViewController: UIViewController {
         postComment(comment: commentText)
 
     }
-    
     
     private func postComment(comment: String){
         databaseService.postComment(sushare: sushare, comment: comment) { [weak self] (result) in
@@ -158,10 +160,13 @@ extension CommentsViewController: UITableViewDataSource {
         let dateString = comment.commentDate.dateValue().dateString()
         cell.textLabel?.text = comment.comment
         cell.detailTextLabel?.text = "@" + comment.commentedBy + " " + dateString
+        cell.imageView?.layer.borderWidth = 0.25
+        cell.imageView?.layer.cornerRadius = cell.imageView?.frame.height ?? 1 / 20
+        cell.imageView?.layer.borderColor = UIColor.systemGray2.cgColor
+        let url = URL(string: user!.profilePhoto)
+        cell.imageView!.kf.setImage(with: url)
         return cell
     }
-    
-    
 }
 
 extension CommentsViewController: UITextFieldDelegate {

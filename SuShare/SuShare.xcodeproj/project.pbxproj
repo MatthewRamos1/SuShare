@@ -47,6 +47,10 @@
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
+		3054972224A648B400DC3064 /* SearchSideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054972024A648B400DC3064 /* SearchSideViewCell.swift */; };
+		3054972324A648B500DC3064 /* SearchSideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3054972124A648B400DC3064 /* SearchSideViewCell.xib */; };
+		3054972624A64D0500DC3064 /* SettingsSideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054972424A64D0500DC3064 /* SettingsSideViewCell.swift */; };
+		3054972724A64D0500DC3064 /* SettingsSideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3054972524A64D0500DC3064 /* SettingsSideViewCell.xib */; };
 		307A7AAA2499C3CD003E3E8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */; };
 		30891417249414A300525DC6 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30891416249414A300525DC6 /* TabController.swift */; };
 		30945CAB2491529600AAB687 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CAA2491529600AAB687 /* Friends.storyboard */; };
@@ -58,6 +62,10 @@
 		30945CBC2491553B00AAB687 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenuViewController.swift */; };
 		30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB92491553B00AAB687 /* SideView.storyboard */; };
 		30C704B02497C48900B12578 /* SushareDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C704AF2497C48900B12578 /* SushareDetail.storyboard */; };
+		30F7700124A5710C00E1C246 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F76FFF24A5710C00E1C246 /* UserCell.swift */; };
+		30F7700224A5710C00E1C246 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30F7700024A5710C00E1C246 /* UserCell.xib */; };
+		30F7700524A5C8AC00E1C246 /* FriendsSideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F7700324A5C8AC00E1C246 /* FriendsSideViewCell.swift */; };
+		30F7700624A5C8AD00E1C246 /* FriendsSideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30F7700424A5C8AC00E1C246 /* FriendsSideViewCell.xib */; };
 		30FCE3CE249AF782008B3933 /* createSushare-wPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FCE3CD249AF782008B3933 /* createSushare-wPlus.png */; };
 		3E23EC122484B710007C3013 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC112484B710007C3013 /* HeaderView.swift */; };
 		3E23EC142484CA21007C3013 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */; };
@@ -126,6 +134,10 @@
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		3054972024A648B400DC3064 /* SearchSideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSideViewCell.swift; sourceTree = "<group>"; };
+		3054972124A648B400DC3064 /* SearchSideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSideViewCell.xib; sourceTree = "<group>"; };
+		3054972424A64D0500DC3064 /* SettingsSideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSideViewCell.swift; sourceTree = "<group>"; };
+		3054972524A64D0500DC3064 /* SettingsSideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSideViewCell.xib; sourceTree = "<group>"; };
 		307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30891416249414A300525DC6 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabController.swift; path = ../TabController.swift; sourceTree = "<group>"; };
 		30945CAA2491529600AAB687 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
@@ -137,6 +149,10 @@
 		30945CB82491553B00AAB687 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30945CB92491553B00AAB687 /* SideView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
 		30C704AF2497C48900B12578 /* SushareDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SushareDetail.storyboard; sourceTree = "<group>"; };
+		30F76FFF24A5710C00E1C246 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		30F7700024A5710C00E1C246 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		30F7700324A5C8AC00E1C246 /* FriendsSideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsSideViewCell.swift; sourceTree = "<group>"; };
+		30F7700424A5C8AC00E1C246 /* FriendsSideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsSideViewCell.xib; sourceTree = "<group>"; };
 		30FCE3CD249AF782008B3933 /* createSushare-wPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createSushare-wPlus.png"; sourceTree = "<group>"; };
 		3E23EC112484B710007C3013 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		3E23EC132484CA21007C3013 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -311,10 +327,26 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3054972824A64FB500DC3064 /* SideViewOptions */ = {
+			isa = PBXGroup;
+			children = (
+				30F76FFF24A5710C00E1C246 /* UserCell.swift */,
+				30F7700024A5710C00E1C246 /* UserCell.xib */,
+				30F7700324A5C8AC00E1C246 /* FriendsSideViewCell.swift */,
+				30F7700424A5C8AC00E1C246 /* FriendsSideViewCell.xib */,
+				3054972024A648B400DC3064 /* SearchSideViewCell.swift */,
+				3054972124A648B400DC3064 /* SearchSideViewCell.xib */,
+				3054972424A64D0500DC3064 /* SettingsSideViewCell.swift */,
+				3054972524A64D0500DC3064 /* SettingsSideViewCell.xib */,
+			);
+			path = SideViewOptions;
+			sourceTree = "<group>";
+		};
 		30945CA9249150DE00AAB687 /* SideView */ = {
 			isa = PBXGroup;
 			children = (
 				30945CB92491553B00AAB687 /* SideView.storyboard */,
+				3054972824A64FB500DC3064 /* SideViewOptions */,
 				30945CB62491553B00AAB687 /* HomeViewController.swift */,
 				30945CB82491553B00AAB687 /* MenuViewController.swift */,
 				30945CB72491553B00AAB687 /* SlideInTransition.swift */,
@@ -484,10 +516,14 @@
 				0CB1DAB5247C1A8900713BF5 /* LoginView.storyboard in Resources */,
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */,
+				3054972324A648B500DC3064 /* SearchSideViewCell.xib in Resources */,
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
+				30F7700224A5710C00E1C246 /* UserCell.xib in Resources */,
 				30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */,
+				3054972724A64D0500DC3064 /* SettingsSideViewCell.xib in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
+				30F7700624A5C8AD00E1C246 /* FriendsSideViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,14 +628,17 @@
 				554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */,
 				3E23EC1A248ADC90007C3013 /* UIButton+Extensions.swift in Sources */,
 				30891417249414A300525DC6 /* TabController.swift in Sources */,
+				3054972224A648B400DC3064 /* SearchSideViewCell.swift in Sources */,
 				0CB1DAC4247C1C1500713BF5 /* UIImage + Extensions.swift in Sources */,
 				3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */,
 				0CB1DAB7247C1ACF00713BF5 /* LoginViewController.swift in Sources */,
 				3E23EC1C248ADCA2007C3013 /* UILabel+Extensions.swift in Sources */,
 				0CB1DA9B247A24B200713BF5 /* HighlightsViewController.swift in Sources */,
+				30F7700524A5C8AC00E1C246 /* FriendsSideViewCell.swift in Sources */,
 				0CB1DABB247C1B0200713BF5 /* User.swift in Sources */,
 				0CB1DAB1247C1A5300713BF5 /* HighlightsCell.swift in Sources */,
 				0CB1DABD247C1B1000713BF5 /* DatabaseServices.swift in Sources */,
+				30F7700124A5710C00E1C246 /* UserCell.swift in Sources */,
 				0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */,
 				0CB1DAC2247C1BF000713BF5 /* UIViewController + Alerts.swift in Sources */,
 				0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */,
@@ -619,6 +658,7 @@
 				30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */,
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
 				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
+				3054972624A64D0500DC3064 /* SettingsSideViewCell.swift in Sources */,
 				0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */,
 				0C576F6E249EAFAB001DD47F /* CardPaymentView.swift in Sources */,
 				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,

@@ -48,7 +48,7 @@ class DatabaseService{
             "createdDate": sushare.createdDate,
             "iD": docRef.documentID,
             "usersApartOfSuShare": sushare.usersInTheSuShare,
-            "favId": sushare.fav
+            "favId": sushare.favId
             
         ]) { (error) in
             if let error = error {
@@ -110,7 +110,7 @@ class DatabaseService{
         }
     }
     
-   public func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func updateDatabaseUser(username: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
         db.collection(DatabaseService.userCollection).document(user.uid).updateData(["username": username]) { (error) in
@@ -207,31 +207,70 @@ class DatabaseService{
         }
     }
     
-    public func addToFavorites(suShare: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
-        db.collection(DatabaseService.suShareCollection).document(suShare.suShareId).updateData(["favId" : true]) { (error) in
+    public func addToFavorites(sushare: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        let docRef = db.collection(DatabaseService.suShareCollection).document()
+        print("docRef is \(docRef)")
+        guard let user = Auth.auth().currentUser else {return}
+        db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
+                                                                                               "susuTitle": sushare.susuTitle,
+                                                                                               "imageURL": sushare.susuImage,
+                                                                                               "description": sushare.suShareDescription,
+                                                                                               "potAmount": sushare.potAmount,
+                                                                                               "numOfParticipants": sushare.numOfParticipants,
+                                                                                               "paymentSchedule": sushare.paymentSchedule,
+                                                                                               "userId": user.uid,
+                                                                                               "category": sushare.category,
+                                                                                               "createdDate": sushare.createdDate,
+                                                                                               "iD": sushare.suShareId,
+                                                                                               "favId": docRef.documentID,
+                                                                                               "usersApartOfSuShare": sushare.usersInTheSuShare])
+        { (error) in
+            //
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(true))
+                print("added favorite")
+            }
+        }
+    }
+    
+    public func removeFromFavorite(suShare: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
+        guard let currentUser = Auth.auth().currentUser else {return}
+        db.collection(DatabaseService.favoriteCollection).whereField("userId", isEqualTo: currentUser.uid).whereField("iD", isEqualTo: suShare.suShareId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    snapshot.documents.forEach { (document) in
+                        document.reference.delete()
+                        completion(.success(true))
+                    }
+                }
             }
         }
     }
     
     public func isSuShareFavorite(suShare: SuShare, completion: @escaping (Result<Bool, Error>) -> ())   {
-        db.collection(DatabaseService.suShareCollection).document(suShare.suShareId).getDocument { (snapshot, error) in
+        guard let currentUser = Auth.auth().currentUser else {return}
+        db.collection(DatabaseService.favoriteCollection).whereField("iD", isEqualTo: suShare.suShareId).whereField("userId", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
                 if let snapshot = snapshot {
-                    let isFavorite = snapshot.get("favId") as? Bool
-                    completion(.success(isFavorite ?? false))
+                    if snapshot.count > 0 {
+                        completion(.success(true))
+                    } else {
+                        completion(.success(false))
+                    }
                 }
             }
         }
     }
     
     public func getAllFavorites(user: User, completion: @escaping (Result<[SuShare], Error>) -> ()) {
-        db.collection(DatabaseService.suShareCollection).whereField("favId", isEqualTo: true).whereField("userId", isEqualTo: user.userId).getDocuments { (snapshot, error) in
+        
+        db.collection(DatabaseService.favoriteCollection).whereField("userId", isEqualTo: user.userId).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -244,7 +283,10 @@ class DatabaseService{
     }
     
     public func getAllFavoritesCurrent(completion: @escaping (Result<[SuShare], Error>) -> ()) {
-        db.collection(DatabaseService.suShareCollection).whereField("favId", isEqualTo: true).getDocuments { (snapshot, error) in
+        
+        guard let currentUser = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.favoriteCollection).whereField("userId", isEqualTo: currentUser.uid).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -256,19 +298,7 @@ class DatabaseService{
         }
     }
     
-    public func removeFromFavorite(suShare: SuShare, completion: @escaping(Result<Bool,Error>) -> ()){
-        db.collection(DatabaseService.suShareCollection).document(suShare.suShareId).updateData(["favId": false]) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
-            }
-        }
-    }
-    
-    public func updateDatabaseUserImage(
-        photoURL: String,
-        completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func updateDatabaseUserImage(photoURL: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         db.collection(DatabaseService.userCollection)
             .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
@@ -280,25 +310,24 @@ class DatabaseService{
         }
     }
     
-    public func updateUserFriend(completion: @escaping
-        (Result<[String], Error>) -> ())    {
-        guard let user = Auth.auth().currentUser else {
-            return
+    public func updateUserFriend(completion: @escaping (Result<[String], Error>) -> ()){
+    guard let user = Auth.auth().currentUser else {
+        return
+    }
+    db.collection(DatabaseService.friendsCollection).whereField("currentUser", isEqualTo: user.uid).getDocuments { (snapshot, error) in
+        if let error = error    {
+            completion(.failure(error))
         }
-        db.collection(DatabaseService.friendsCollection).whereField("currentUser", isEqualTo: user.uid).getDocuments { (snapshot, error) in
-            if let error = error    {
-                completion(.failure(error))
-            }
-            else    {
-                if let snapshot = snapshot  {
-                    let users = snapshot.documents.map {$0.get("friendUsername") as! String} 
-                    //let usersSorted = users.sorted  {$0.username.lowercased() < $1.username.lowercased()}
-                    
-                    completion(.success(users))
-                }
+        else    {
+            if let snapshot = snapshot  {
+                let users = snapshot.documents.map {$0.get("friendUsername") as! String}
+                //let usersSorted = users.sorted  {$0.username.lowercased() < $1.username.lowercased()}
+                
+                completion(.success(users))
             }
         }
     }
+}
     
     public func getCurrentUser(completion: @escaping (Result<User, Error>) -> ())   {
         guard let currentUser = Auth.auth().currentUser else {
@@ -317,5 +346,32 @@ class DatabaseService{
         }
     }
     
+    public func databaseAddFriend(user: User, completion: @escaping (Result<Bool, Error>) -> ()){
+        let docRef = db.collection(DatabaseService.friendsCollection).document()
+        guard let currentUser = Auth.auth().currentUser else {return}
+        db.collection(DatabaseService.friendsCollection).document(docRef.documentID).setData(["userId": user.userId]) { (error) in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func databaseRemoveFriend(user: User, completion: @escaping(Result<Bool,Error>) -> ()){
+        guard let currentUser = Auth.auth().currentUser else {return}
+        db.collection(DatabaseService.friendsCollection).whereField("userId", isEqualTo: currentUser.uid).whereField("userId", isEqualTo: user.userId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    snapshot.documents.forEach { (document) in
+                        document.reference.delete()
+                        completion(.success(true))
+                    }
+                }
+            }
+        }
+    }
 } 
 
