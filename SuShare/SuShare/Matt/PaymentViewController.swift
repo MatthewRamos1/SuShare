@@ -12,6 +12,7 @@ import FirebaseFunctions
 
 class PaymentViewController: UIViewController {
     
+    
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var paymentTableView: UITableView!
     
@@ -31,10 +32,9 @@ class PaymentViewController: UIViewController {
         paymentTableView.dataSource = self
         paymentTableView.delegate = self
         let client = MyAPIClient.sharedClient
-        client.baseURLString = "https://stripe-backend-demo309.herokuapp.com"
         let customerContext = STPCustomerContext(keyProvider: client)
         paymentContext = STPPaymentContext(customerContext: customerContext)
-        paymentContext.paymentAmount = 5000
+        paymentContext.paymentAmount = 50
         paymentContext.delegate = self
         paymentContext.hostViewController = self
         paymentContext.addCardViewControllerFooterView = cardPaymentView
@@ -93,7 +93,7 @@ extension PaymentViewController: UITableViewDelegate {
 
 extension PaymentViewController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        return
+       
     }
     
     
@@ -112,20 +112,26 @@ extension PaymentViewController: STPPaymentContextDelegate {
         alertController.addAction(cancel)
         alertController.addAction(retry)
         self.present(alertController, animated: true, completion: nil)
+        return
     }
+
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-        let data: [String: Any] = ["total": paymentContext.paymentAmount, "customerId": "1234", "idempotency": UUID().uuidString]
-        Functions.functions().httpsCallable("createStripeCharge").call(data) { (result, error) in
+        
+        let tempData: [String: Any] = ["amount": paymentContext.paymentAmount]
+        var clientSecret = ""
+        Functions.functions().httpsCallable("createChargeFunction").call(tempData) {
+        (result, error) in
             if let error = error {
-                print(error.localizedDescription + "cool")
-            } else {
-                return
+                print(error.localizedDescription)
+            } else if let result = result {
+                clientSecret = result.data as! String
             }
-          }
-           print("success")
-
-   
+        }
+        guard let myCard = paymentResult.paymentMethod?.card else {
+            print("whoops1")
+            return
+        }
     }
     
     
@@ -142,4 +148,10 @@ extension PaymentViewController: STPPaymentContextDelegate {
     
     
 }
+}
+
+extension PaymentViewController: STPAuthenticationContext {
+    func authenticationPresentingViewController() -> UIViewController {
+        return self
+    }
 }
