@@ -8,16 +8,22 @@
 
 import UIKit
 import Stripe
+import FirebaseFunctions
 
 class PaymentViewController: UIViewController {
+    
     
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var paymentTableView: UITableView!
     
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
+
+    private var cardPaymentView = CardPaymentView()
+
     private var paymentView = PaymentView()
  //   private var cardPaymentView = CardPaymentView()
+
     
     
     override func viewDidLoad() {
@@ -31,10 +37,9 @@ class PaymentViewController: UIViewController {
         paymentTableView.dataSource = self
         paymentTableView.delegate = self
         let client = MyAPIClient.sharedClient
-        client.baseURLString = "https://stripe-backend-demo309.herokuapp.com"
         let customerContext = STPCustomerContext(keyProvider: client)
         paymentContext = STPPaymentContext(customerContext: customerContext)
-        paymentContext.paymentAmount = 5000
+        paymentContext.paymentAmount = 50
         paymentContext.delegate = self
         paymentContext.hostViewController = self
         
@@ -58,6 +63,9 @@ This card will be saved under settings as your default payment method
         //paymentTableView.tableFooterView?.backgroundColor = .blue
     }
    
+    @IBAction func subscribeButtonPressed(_ sender: UIButton) {
+        paymentContext.requestPayment()
+    }
 }
 
 extension PaymentViewController: UITableViewDataSource {
@@ -83,7 +91,6 @@ extension PaymentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
-            paymentContext.requestPayment()
             paymentContext.pushPaymentOptionsViewController()
         }
     }
@@ -135,8 +142,9 @@ extension PaymentViewController: UITableViewDelegate {
 
 extension PaymentViewController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        return
+       
     }
+    
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         let alertController = UIAlertController(
@@ -153,71 +161,46 @@ extension PaymentViewController: STPPaymentContextDelegate {
         alertController.addAction(cancel)
         alertController.addAction(retry)
         self.present(alertController, animated: true, completion: nil)
+        return
     }
+
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-        return
+        
+        let tempData: [String: Any] = ["amount": paymentContext.paymentAmount]
+        var clientSecret = ""
+        Functions.functions().httpsCallable("createChargeFunction").call(tempData) {
+        (result, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let result = result {
+                clientSecret = result.data as! String
+            }
+        }
+        guard let myCard = paymentResult.paymentMethod?.card else {
+            print("whoops1")
+            return
+        }
     }
     
+    
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        return
+        switch status {
+        case .error:
+            showAlert(title: "Error", message: error?.localizedDescription ?? "")
+        case .success:
+            showAlert(title: "Success!", message: "Your first payment has been processed.")
+        default:
+            return
     }
+     
     
     
 }
+}
 
-class PaymentView: UIView {
-    
-    private lazy var paymentTable: UITableView = {
-        let tv = UITableView()
-        tv.backgroundColor = .white
-        return tv
-    }()
-    
-    
-    private lazy var joinSuShareButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Subscribe", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 25)
-        button.backgroundColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 5, height: 5)
-        button.layer.shadowRadius = 7
-        button.layer.shadowOpacity = 0.4
-        return button
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
-        commonInit()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        addSubview(paymentTable)
-        addSubview(joinSuShareButton)
-        paymentTable.translatesAutoresizingMaskIntoConstraints = false
-        joinSuShareButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            paymentTable.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            paymentTable.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            paymentTable.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            paymentTable.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            joinSuShareButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12),
-            joinSuShareButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -12),
-            joinSuShareButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            joinSuShareButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-            
+extension PaymentViewController: STPAuthenticationContext {
+    func authenticationPresentingViewController() -> UIViewController {
+        return self
     }
 }

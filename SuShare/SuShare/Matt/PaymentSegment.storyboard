@@ -25,6 +25,9 @@
                                 <state key="normal" title="Subscribe">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="subscribeButtonPressed:" destination="qK8-0J-3LB" eventType="touchUpInside" id="eKJ-Xp-wvI"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CmU-HC-Ene">
                                 <rect key="frame" x="0.0" y="88" width="414" height="712"/>
