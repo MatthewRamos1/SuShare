@@ -22,17 +22,27 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var emailTextField: DesignableTextField!
+    
     @IBOutlet weak var passwordTextfield: DesignableTextField!
     @IBOutlet weak var confirmPasswordTextField: DesignableTextField!
+    
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameTextField: DesignableTextField!
+    
     @IBOutlet weak var loginButton: DesignableButton!
+    
     @IBOutlet weak var accountStateMessageLabel: UILabel!
     @IBOutlet weak var accountStateButton: UIButton!
-    @IBOutlet var signInButton: GIDSignInButton!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var firstNameTextField: DesignableTextField!
+    @IBOutlet weak var lastNameTextField: DesignableTextField!
+    
     
     private var accountState: AccountState = .existingUser
     private var authSession = AuthenticationSession()
     private var databaseService = DatabaseService()
+    private let apiClient = MyAPIClient.sharedClient
     
     let hidden = ""
     
@@ -70,7 +80,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func continueLoginFlow(email: String, password: String, username: String? = nil) {
+    private func continueLoginFlow(email: String, password: String, username: String? = nil, firstName: String? = nil, lastName: String? = nil) {
         if accountState == .existingUser {
             authSession.signExistingUser(email: email, password: password) { [weak self] (result) in
                 switch result {
@@ -118,6 +128,48 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func retieveUserEnteredData(){
+        guard let first = firstNameTextField.text, !first.isEmpty,
+            let last  = lastNameTextField.text, !last.isEmpty else {
+                showAlert(title: "missing fields", message: "please make sure all the fields are filled in")
+                return
+        }
+        
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        print(user)
+        let fullName = "\(first) \(last) "
+        
+        apiClient.createDummyUser(fullName: fullName) { (result) in
+            switch result{
+            case .failure(let error):
+                print("the error is: \(error.localizedDescription)")
+            case.success(let stripeCustomerID):
+                self.updateUserDataBaseInfo(fullName: fullName, stripeCustomerId: stripeCustomerID)
+            }
+        }
+        
+        
+    }
+    
+    
+    private func updateUserDataBaseInfo(fullName: String, stripeCustomerId: String) {
+        
+        databaseService.updateFireBaseUserWithStripeStuff(fullName: fullName, stripeCustomerId: stripeCustomerId) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error is: \(error.localizedDescription)")
+            case .success(let itWork):
+                print(itWork)
+                // dismiss to the main storyboard
+                // MARK: needs to navigate to the main storyboard
+                
+            }
+        }
+    }
+    
     private func createDatabaseUser(authDataResult: AuthDataResult) {
         databaseService.createDatabaseUser(authDataResult: authDataResult) { [weak self] (result) in
             switch result {
@@ -145,9 +197,20 @@ class LoginViewController: UIViewController {
     private func clearNewUserTextFields() {
         confirmPasswordTextField.isHidden = true
         usernameTextField.isHidden = true
+        usernameLabel.isHidden = true
+        nameLabel.isHidden = true
+        firstNameTextField.isHidden = true
+        lastNameTextField.isHidden = true
     }
     
-    
+    private func showNewUserTextFields(){
+        confirmPasswordTextField.isHidden = false
+        usernameTextField.isHidden = false
+        usernameLabel.isHidden = false
+        nameLabel.isHidden = false
+        firstNameTextField.isHidden = false
+        lastNameTextField.isHidden = false
+    }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
         // change the account login state
@@ -166,8 +229,9 @@ class LoginViewController: UIViewController {
         } else {
             UIView.transition(with: containerView, duration: duration, options: [.transitionCrossDissolve], animations: {
                 self.loginButton.setTitle("Sign Up", for: .normal)
-                self.confirmPasswordTextField.isHidden = false
-                self.usernameTextField.isHidden = false
+                self.showNewUserTextFields()
+                // self.confirmPasswordTextField.isHidden = false
+                //self.usernameTextField.isHidden = false
                 self.accountStateMessageLabel.text = "Already have an account ?"
                 self.accountStateButton.setTitle("LOGIN", for: .normal)
             }, completion: nil)
