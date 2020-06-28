@@ -20,8 +20,9 @@ class PaymentViewController: UIViewController {
     public var suShare: SuShare?
 
     private var cardPaymentView = CardPaymentView()
+    private var cardVC = STPAddCardViewController()
+    private var clientSecret = ""
 
-    private var paymentView = PaymentView()
  //   private var cardPaymentView = CardPaymentView()
 
     
@@ -41,6 +42,7 @@ class PaymentViewController: UIViewController {
         paymentContext = STPPaymentContext(customerContext: customerContext)
         paymentContext.paymentAmount = 50
         paymentContext.delegate = self
+        
         paymentContext.hostViewController = self
         
         
@@ -142,7 +144,17 @@ extension PaymentViewController: UITableViewDelegate {
 
 extension PaymentViewController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-       
+        
+    let data: [String: Any] = ["amount": paymentContext.paymentAmount]
+       Functions.functions().httpsCallable("createChargeFunction").call(data)  {
+       (result, error) in
+           if let error = error {
+            print(error.localizedDescription)
+           } else if let result = result {
+            self.clientSecret = result.data as! String
+            print(self.clientSecret)
+           }
+       }
     }
     
     
@@ -166,22 +178,26 @@ extension PaymentViewController: STPPaymentContextDelegate {
 
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+       
         
-        let tempData: [String: Any] = ["amount": paymentContext.paymentAmount]
-        var clientSecret = ""
-        Functions.functions().httpsCallable("createChargeFunction").call(tempData) {
-        (result, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let result = result {
-                clientSecret = result.data as! String
+        let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
+        paymentIntentParams.paymentMethodId = paymentResult.paymentMethod?.stripeId
+
+            // Confirm the PaymentIntent
+            STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: paymentContext) { status, paymentIntent, error in
+                switch status {
+                case .succeeded:
+                    // Your backend asynchronously fulfills the customer's order, e.g. via webhook
+                    completion(.success, nil)
+                case .failed:
+                    completion(.error, error) // Report error
+                case .canceled:
+                    completion(.userCancellation, nil) // Customer cancelled
+                @unknown default:
+                    completion(.error, nil)
+                }
             }
         }
-        guard let myCard = paymentResult.paymentMethod?.card else {
-            print("whoops1")
-            return
-        }
-    }
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
@@ -193,14 +209,34 @@ extension PaymentViewController: STPPaymentContextDelegate {
         default:
             return
     }
-     
-    
-    
 }
 }
 
-extension PaymentViewController: STPAuthenticationContext {
-    func authenticationPresentingViewController() -> UIViewController {
-        return self
-    }
-}
+//extension PaymentViewController: STPAddCardViewControllerDelegate {
+//
+//  func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+//    navigationController?.popViewController(animated: true)
+//  }
+//
+//  func addCardViewController(_ addCardViewController: STPAddCardViewController,
+//                             didCreateToken token: STPToken,
+//                             completion: @escaping STPErrorBlock) {
+//    print("yesssssss")
+//  }
+//}
+//
+//extension PaymentViewController: STPPaymentOptionsViewControllerDelegate {
+//    func paymentOptionsViewController(_ paymentOptionsViewController: STPPaymentOptionsViewController, didFailToLoadWithError error: Error) {
+//        return
+//    }
+//
+//    func paymentOptionsViewControllerDidFinish(_ paymentOptionsViewController: STPPaymentOptionsViewController) {
+//        return
+//    }
+//
+//    func paymentOptionsViewControllerDidCancel(_ paymentOptionsViewController: STPPaymentOptionsViewController) {
+//        print("cool")
+//    }
+//
+//
+//}
