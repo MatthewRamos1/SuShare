@@ -19,7 +19,7 @@ class NewUserViewController: UIViewController {
      these are fake iboutlets so I can code without errors
      */
     @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var LastNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
 //_______________________________________
 
     private let apiClient = MyAPIClient.sharedClient
@@ -36,7 +36,7 @@ class NewUserViewController: UIViewController {
     // MARK: Call this function inside the button for where they click done
     private func retieveUserEnteredData(){
         guard let first = firstNameTextField.text, !first.isEmpty,
-            let last  = LastNameTextField.text, !last.isEmpty else {
+            let last  = lastNameTextField.text, !last.isEmpty else {
                 showAlert(title: "missing fields", message: "please make sure all the fields are filled in")
                 return
         }
