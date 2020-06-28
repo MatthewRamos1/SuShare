@@ -52,7 +52,8 @@ class UserFriendsViewController: UIViewController {
     
     func configureNavItems(){
         self.tabBarController?.tabBar.items?[0].title = "Explore"
-        self.tabBarController?.tabBar.items?[1].title = "Personal"
+        self.tabBarController?.tabBar.items?[1].title = "Updates"
+        self.tabBarController?.tabBar.items?[2].title = "Personal"
         self.navigationController?.navigationBar.topItem?.title = "SuShare"
     }
     

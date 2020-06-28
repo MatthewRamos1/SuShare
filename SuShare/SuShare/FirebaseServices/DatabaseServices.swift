@@ -212,20 +212,19 @@ class DatabaseService{
         print("docRef is \(docRef)")
         guard let user = Auth.auth().currentUser else {return}
         db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
-                                                                                               "susuTitle": sushare.susuTitle,
-                                                                                               "imageURL": sushare.susuImage,
-                                                                                               "description": sushare.suShareDescription,
-                                                                                               "potAmount": sushare.potAmount,
-                                                                                               "numOfParticipants": sushare.numOfParticipants,
-                                                                                               "paymentSchedule": sushare.paymentSchedule,
-                                                                                               "userId": user.uid,
-                                                                                               "category": sushare.category,
-                                                                                               "createdDate": sushare.createdDate,
-                                                                                               "iD": sushare.suShareId,
-                                                                                               "favId": docRef.documentID,
-                                                                                               "usersApartOfSuShare": sushare.usersInTheSuShare])
+                      "susuTitle": sushare.susuTitle,
+                      "imageURL": sushare.susuImage,
+                      "description": sushare.suShareDescription,
+                      "potAmount": sushare.potAmount,
+                      "numOfParticipants": sushare.numOfParticipants,
+                      "paymentSchedule": sushare.paymentSchedule,
+                      "userId": user.uid,
+                      "category": sushare.category,
+                      "createdDate": sushare.createdDate,
+                      "iD": sushare.suShareId,
+                      "favId": docRef.documentID,
+                      "usersApartOfSuShare": sushare.usersInTheSuShare])
         { (error) in
-            //
             if let error = error {
                 completion(.failure(error))
             } else {
