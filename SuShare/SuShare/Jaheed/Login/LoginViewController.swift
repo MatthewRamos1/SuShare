@@ -180,7 +180,7 @@ class LoginViewController: UIViewController {
                 }
             case .success:
                 DispatchQueue.main.async {
-                    self?.navigateToMainView()
+                   print("stuff happened")// self?.navigateToMainView()
                 }
             }
         }
