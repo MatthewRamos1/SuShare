@@ -120,6 +120,7 @@ class LoginViewController: UIViewController {
                         case .failure(let error):
                             print(error.localizedDescription)
                         case .success:
+                            self?.retieveUserEnteredData()
                             print("update successful")
                         }
                     }
@@ -165,7 +166,7 @@ class LoginViewController: UIViewController {
                 print(itWork)
                 // dismiss to the main storyboard
                 // MARK: needs to navigate to the main storyboard
-                
+                self.navigateToMainView()
             }
         }
     }
