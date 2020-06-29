@@ -73,50 +73,15 @@ class PersonalViewController: UIViewController {
         configureFriendsButton()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        createListner?.remove()
+        favListener?.remove()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        favListener = Firestore.firestore().collection(DatabaseService.favoriteCollection).addSnapshotListener({ (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: currentUser.uid)
-                    snapshotQuery.getDocuments { (snapshot, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            if let snapshot = snapshot {
-                                let favorites = snapshot.documents.map {SuShare($0.data())}
-                                self.suShares = favorites
-                            }
-                        }
-                    }
-                }
-            }
-        })
         
-        createListner = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: currentUser.uid)
-                    _ = snapshotQuery.getDocuments { (snapshot, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            if let snapshot = snapshot {
-                                let shares = snapshot.documents.map {SuShare($0.data())}
-                                self.suShares = shares
-                            }
-                        }
-                    }
-                }
-            }
-        })
     }
     
     private func configureRefreshControl()  {
@@ -157,26 +122,55 @@ class PersonalViewController: UIViewController {
     }
     
     func configureSuShares2(tag: Int)   {
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
         if let selectedUser = user  {
             switch tag {
             case 0:
-              db.getCreatedSuShares(user: selectedUser) { (result) in
-                    switch result   {
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    case .success(let dbSuShares):
-                        self.suShares = dbSuShares
-                    }
-                }
+              createListner = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
+                  if let error = error {
+                      print(error.localizedDescription)
+                  } else {
+                      if let snapshot = snapshot {
+                        let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: selectedUser.userId)
+                          _ = snapshotQuery.getDocuments { (snapshot, error) in
+                              if let error = error {
+                                  print(error.localizedDescription)
+                              } else {
+                                  if let snapshot = snapshot {
+                                      let shares = snapshot.documents.map {SuShare($0.data())}
+                                      self.suShares = shares
+                                      print("triggered create")
+                                  }
+                              }
+                          }
+                      }
+                  }
+              })
             case 1:
-                db.getAllFavorites(user: selectedUser) { (result) in
-                    switch result   {
-                    case .failure(let error):
+                favListener = Firestore.firestore().collection(DatabaseService.favoriteCollection).addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
                         print(error.localizedDescription)
-                    case .success(let dbSuShare):
-                        self.suShares = dbSuShare
+                    } else {
+                        if let snapshot = snapshot {
+                            let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: selectedUser.userId)
+                            _ = snapshotQuery.getDocuments { (snapshot, error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    if let snapshot = snapshot {
+                                        let favorites = snapshot.documents.map {SuShare($0.data())}
+                                        self.suShares = favorites
+                                        print("triggered fav")
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
+                })
             case 2:
                 suShares = [SuShare]()
             default:
@@ -186,23 +180,47 @@ class PersonalViewController: UIViewController {
         } else {
             switch tag {
             case 0:
-                db.getCreatedSuSharesForCurrentUser { (result) in
-                    switch result   {
-                    case .failure(let error):
+                createListner = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
                         print(error.localizedDescription)
-                    case .success(let dbSuShares):
-                        self.suShares = dbSuShares
+                    } else {
+                        if let snapshot = snapshot {
+                            let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: currentUser.uid)
+                            _ = snapshotQuery.getDocuments { (snapshot, error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    if let snapshot = snapshot {
+                                        let shares = snapshot.documents.map {SuShare($0.data())}
+                                        self.suShares = shares
+                                        print("triggered create")
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
+                })
             case 1:
-                db.getAllFavoritesCurrent() { (result) in
-                    switch result   {
-                    case .failure(let error):
+                favListener = Firestore.firestore().collection(DatabaseService.favoriteCollection).addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
                         print(error.localizedDescription)
-                    case .success(let dbSuShare):
-                        self.suShares = dbSuShare
+                    } else {
+                        if let snapshot = snapshot {
+                            let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: currentUser.uid)
+                            _ = snapshotQuery.getDocuments { (snapshot, error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    if let snapshot = snapshot {
+                                        let favorites = snapshot.documents.map {SuShare($0.data())}
+                                        self.suShares = favorites
+                                        print("triggered fav")
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
+                })
             case 2:
                 suShares = [SuShare]()
             default:
@@ -284,11 +302,14 @@ class PersonalViewController: UIViewController {
             
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+            let friendsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
+            self.tabBarController?.tabBar.items?[0].title = "Explore"
+            self.tabBarController?.tabBar.items?[1].title = "Updates"
+            self.tabBarController?.tabBar.items?[2].title = "Personal"
             self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
     }

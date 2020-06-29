@@ -23,6 +23,7 @@ class PaymentViewController: UIViewController {
     private var cardVC = STPAddCardViewController()
     private var clientSecret = ""
 
+
  //   private var cardPaymentView = CardPaymentView()
 
     

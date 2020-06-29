@@ -123,6 +123,25 @@ class DatabaseService{
         }
     }
     
+    
+    
+   public func updateFireBaseUserWithStripeStuff(fullName: String, stripeCustomerId: String, completion: @escaping (Result<Bool, Error>) -> () ){
+           
+        guard let user = Auth.auth().currentUser
+            else { return }
+    
+        db.collection(DatabaseService.userCollection).document(user.uid).updateData([
+            "fullName": fullName,
+            "stripeCustomerId" : stripeCustomerId
+                ]) { (error) in
+            if let error  = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+                    }
+       }
+}
+    
     func getAllUsers(completion: @escaping (Result<[User], Error>) -> ())  {
         db.collection(DatabaseService.userCollection).getDocuments { (snapshot, error) in
             if let error = error    {
@@ -137,6 +156,8 @@ class DatabaseService{
             }
         }
     }
+    
+   
     
     // add refresher, or refactor to use listener
     func getCreatedSuSharesForCurrentUser(completion: @escaping (Result<[SuShare], Error>) -> ())  {
@@ -212,20 +233,19 @@ class DatabaseService{
         print("docRef is \(docRef)")
         guard let user = Auth.auth().currentUser else {return}
         db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
-                                                                                               "susuTitle": sushare.susuTitle,
-                                                                                               "imageURL": sushare.susuImage,
-                                                                                               "description": sushare.suShareDescription,
-                                                                                               "potAmount": sushare.potAmount,
-                                                                                               "numOfParticipants": sushare.numOfParticipants,
-                                                                                               "paymentSchedule": sushare.paymentSchedule,
-                                                                                               "userId": user.uid,
-                                                                                               "category": sushare.category,
-                                                                                               "createdDate": sushare.createdDate,
-                                                                                               "iD": sushare.suShareId,
-                                                                                               "favId": docRef.documentID,
-                                                                                               "usersApartOfSuShare": sushare.usersInTheSuShare])
+                      "susuTitle": sushare.susuTitle,
+                      "imageURL": sushare.susuImage,
+                      "description": sushare.suShareDescription,
+                      "potAmount": sushare.potAmount,
+                      "numOfParticipants": sushare.numOfParticipants,
+                      "paymentSchedule": sushare.paymentSchedule,
+                      "userId": user.uid,
+                      "category": sushare.category,
+                      "createdDate": sushare.createdDate,
+                      "iD": sushare.suShareId,
+                      "favId": docRef.documentID,
+                      "usersApartOfSuShare": sushare.usersInTheSuShare])
         { (error) in
-            //
             if let error = error {
                 completion(.failure(error))
             } else {

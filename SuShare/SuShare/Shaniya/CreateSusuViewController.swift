@@ -35,6 +35,8 @@ class CreateSusuViewController: UIViewController {
     @IBOutlet weak var numberOfParticipaintLabel: UILabel!
     @IBOutlet weak var dropDownButton: UIButton!
     
+    
+    
     //MARK: needed constraints
     @IBOutlet weak var tableviewheight: NSLayoutConstraint!
     @IBOutlet weak var bottomContraintForTitle: NSLayoutConstraint!
@@ -131,7 +133,8 @@ class CreateSusuViewController: UIViewController {
         //titleLabel?.text = "select a category"
 
         navigationController?.title = "Create a SuShare"
-        
+        dropDownButton.setTitle("select a category", for: .normal)
+            //.titleLabel?.text = "select a category"
         hideKeyboard()
         
         // image picker configuration
@@ -153,7 +156,7 @@ class CreateSusuViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         //tableView.isHidden = true
-        tableView.tableFooterView = UIView() 
+       // tableView.tableFooterView = UIView()
         tableviewheight.constant = 0
         
         // Stepper configuration
@@ -205,7 +208,6 @@ class CreateSusuViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
         if UIImagePickerController.isSourceTypeAvailable(.camera){
-            // if there is no camera avaiable then the camera option is not avaialble either
             alertController.addAction(cameraAction)
         }
         alertController.addAction(photoLibrary)
@@ -224,19 +226,8 @@ class CreateSusuViewController: UIViewController {
         // toggle to see more categories
         if  showingAllCategories! {
             animate(toogle: false) // show tableview
-//            } else {
-//                animate(toogle: false)
-//            }
+
         } else {
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//                a
-//                //                func viewWillLayoutSubviews() {
-//                //                      super.updateViewConstraints()
-//                //                      self.tableviewheight?.constant = self.tableView.contentSize.height
-//                //                  }
-//
-//            }
             animate(toogle: true) // hide table view
         }
     }
@@ -254,18 +245,26 @@ class CreateSusuViewController: UIViewController {
                 //     self.dropDownButton.titleLabel?.text = "select a category"
                 // need this
                 // MARK: adjust the height of tableView based on amount cells
+                self.dropDownButton.setTitle("select a category", for: .normal)
+               
             }
         } else { // when they click the button a second time, it should show the users selected categories
             UIView.animate(withDuration: 0.5) {
              //   self.tableView.isHidden = true // hide the collect
                 self.showingAllCategories = false // only the users categories
                 //self.tableviewheight.constant = 0
-            //    self.dropDownButton.titleLabel?.text = "The categories you selected are below"
+                self.dropDownButton.setTitle( "You selected ...", for: .normal)
+               
+                self.tableviewheight.constant = self.tableView.contentSize.height
             }
         }
+    
     }
     
-    
+    override func updateViewConstraints() {
+                             tableviewheight.constant = tableView.contentSize.height
+                             super.updateViewConstraints()
+                         }
     
     @IBAction func PrivacySwitch(_ sender: UISwitch) {
         
@@ -278,6 +277,8 @@ class CreateSusuViewController: UIViewController {
             isItPrivate = Security.publicState
             PrivacySettingsLabel.text = "Privacy Setting: OFF"
         }
+        
+        isItPrivate = Security.publicState
     }
     
     
