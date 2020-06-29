@@ -21,7 +21,7 @@ class TabController: UITabBarController {
        
 
     lazy var updatesViewController: UIViewController = {
-        let vc = PersonalViewController()
+        let vc = UpdatesViewController()
         vc.tabBarItem = UITabBarItem(title: "Updates", image: UIImage(systemName: "bell.fill"), tag: 1)
         return vc
     }()
