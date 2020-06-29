@@ -37,6 +37,7 @@ class WalkthroughViewController: UIViewController {
             }
         }
         updateUI()
+        navigateToMainView()
     }
     
     private func navigateToMainView() {

@@ -10,7 +10,7 @@
         <!--Walkthrough View Controller-->
         <scene sceneID="yCS-f7-8Ts">
             <objects>
-                <viewController storyboardIdentifier="WalkthroughViewController" id="XCJ-k4-124" customClass="WalkthroughViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkthroughViewController" modalPresentationStyle="fullScreen" id="XCJ-k4-124" customClass="WalkthroughViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ybi-au-wkd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
