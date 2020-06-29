@@ -84,7 +84,7 @@ extension SuShare {
         self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
             //dictionary["createdDate"] as? String ?? ""
         self.suShareId = dictionary["iD"] as? String ?? ""
-        self.usersInTheSuShare = dictionary["users"] as? [String] ?? [""]
+        self.usersInTheSuShare = dictionary["usersInTheSuShare"] as? [String] ?? [""]
         self.favId = dictionary["favId"] as? String ?? ""
         self.isTheSuShareFlagged = dictionary["isTheSuShareFlagged"] as? Bool ?? false
     }

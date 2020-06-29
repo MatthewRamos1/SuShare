@@ -16,11 +16,22 @@ class DatabaseService{
     static let commentCollection = "comments"
     static let favoriteCollection = "favorites"
     static let friendsCollection = "friends"
+    static let updatesCollection = "updates"
     
     private let db = Firestore.firestore()
     
     static let shared = DatabaseService()
     
+    
+    public func addUpdate(suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
+        db.collection(DatabaseService.updatesCollection).addDocument(data: ["userId": suShare.userId, "susuTitle": suShare.susuTitle]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     
     public func createASusu(
         sushare: SuShare,
@@ -47,7 +58,7 @@ class DatabaseService{
             "category": sushare.category,
             "createdDate": sushare.createdDate,
             "iD": docRef.documentID,
-            "usersApartOfSuShare": sushare.usersInTheSuShare,
+            "usersInTheSuShare": sushare.usersInTheSuShare,
             "favId": sushare.favId
             
         ]) { (error) in
@@ -244,7 +255,7 @@ class DatabaseService{
                       "createdDate": sushare.createdDate,
                       "iD": sushare.suShareId,
                       "favId": docRef.documentID,
-                      "usersApartOfSuShare": sushare.usersInTheSuShare])
+                      "usersInTheSuShare": sushare.usersInTheSuShare])
         { (error) in
             if let error = error {
                 completion(.failure(error))

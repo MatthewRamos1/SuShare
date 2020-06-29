@@ -81,7 +81,7 @@ class PersonalViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        configureSuShares2(tag: headerTag ?? 0)
     }
     
     private func configureRefreshControl()  {
