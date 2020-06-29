@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 enum Security: String, CaseIterable{
     
     case privateState = "privateState"
@@ -51,33 +53,39 @@ struct SuShare{
   
     let securityState: String
     let susuTitle: String
-    let susuImage: UIImage?
-    let description: String
+    let susuImage: String
+    let suShareDescription: String
     let potAmount: Double
     let numOfParticipants: Int
     let paymentSchedule: String
     let userId: String
     let category: [Int]
-    let createdDate: String
+    let createdDate: Timestamp
     let suShareId: String
+    let usersInTheSuShare: [String]
+    let isTheSuShareFlagged: Bool
+    
     
     // after creation
-    let favId: String?
+    let favId: String
 }
 
 extension SuShare {
     init(_ dictionary: [String: Any]) {
         self.securityState = dictionary["securityState"] as? String ?? "No securityState"
         self.susuTitle = dictionary["susuTitle"] as? String ?? "No Title"
-        self.susuImage = nil
-        self.description = dictionary["description"] as? String ?? "No Description"
+        self.susuImage = dictionary["imageURL"] as? String ?? " no image url"
+        self.suShareDescription = dictionary["suShareDescription"] as? String ?? "No Description"
         self.potAmount = dictionary["potAmount"] as? Double ?? 0.0
         self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0
         self.paymentSchedule = dictionary["paymentSchedule"] as? String ?? ""
         self.userId = dictionary["userId"] as? String ?? ""
         self.category = dictionary["category"] as? [Int] ?? []
-        self.createdDate = dictionary["createdDate"] as? String ?? ""
-        self.suShareId = dictionary["suShareId"] as? String ?? ""
+        self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
+            //dictionary["createdDate"] as? String ?? ""
+        self.suShareId = dictionary["iD"] as? String ?? ""
+        self.usersInTheSuShare = dictionary["users"] as? [String] ?? [""]
         self.favId = dictionary["favId"] as? String ?? ""
+        self.isTheSuShareFlagged = dictionary["isTheSuShareFlagged"] as? Bool ?? false
     }
 }

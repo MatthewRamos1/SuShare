@@ -12,6 +12,9 @@ struct User {
     let username: String
     let email: String
     let userId: String
+    let profilePhoto: String
+    let fullName: String
+    let stripeCustomerId: String
 }
 
 extension User {
@@ -19,5 +22,8 @@ extension User {
         self.username = dictionary["username"] as? String ?? "No username"
         self.email = dictionary["email"] as? String ?? "No Email"
         self.userId = dictionary["userId"] as? String ?? "No user id"
+        self.profilePhoto = dictionary["photoURL"] as? String ?? "No profile Photo"
+        self.fullName = dictionary["fullName"] as? String ?? "No full name avaiable"
+        self.stripeCustomerId = dictionary["stripeCustomerId"] as? String ?? "no Stripe Id has been made"
     }
 }

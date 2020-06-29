@@ -15,7 +15,10 @@ target 'SuShare' do
   pod 'GoogleSignIn'
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Functions'
   pod 'Stripe'
+  pod 'Alamofire'
+  
 
   target 'SuShareTests' do
     inherit! :search_paths

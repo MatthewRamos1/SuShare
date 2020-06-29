@@ -16,10 +16,15 @@ class ExploreViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var exploreButton: UIButton!
     @IBOutlet weak var friendsButton: UIButton!
+    @IBOutlet weak var createButton: UIButton!
     
     var suShareListener: ListenerRegistration?
+    var emptyView = EmptyView(title: "No SuShares Available", message: "Enter valid input or try a different query")
     var boldFont: UIFont?
     var thinFont: UIFont?
+    
+    
+     private let circularTransition = CircularTransition()
     
     //------------------------
     //Jaheed
@@ -28,6 +33,13 @@ class ExploreViewController: UIViewController {
     var topView: UIView?
     var didTapMenuType: ((MenuType) -> Void)?
     var gesture = UITapGestureRecognizer()
+    func updateButtonShadow(){
+        createButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        createButton.layer.shadowColor = UIColor.lightGray.cgColor
+        createButton.layer.shadowOpacity = 1
+        createButton.layer.shadowRadius = 5
+        createButton.layer.masksToBounds = false
+    }
     //------------------------
     
     var originalSusus = [SuShare]() {
@@ -41,6 +53,11 @@ class ExploreViewController: UIViewController {
     var currentSusus = [SuShare]() {
         didSet {
             collectionView.reloadData()
+            if currentSusus.isEmpty {
+                collectionView.backgroundView = emptyView
+            } else {
+                collectionView.backgroundView = nil
+            }
         }
     }
     var currentTags = [Int]()
@@ -56,15 +73,10 @@ class ExploreViewController: UIViewController {
         thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         
-        //------------------------
-        // JAHEED
         
-        //        NotificationCenter.default.addObserver(self,
-        //                                               selector: #selector(didTapMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
-        //        gesture = UITapGestureRecognizer(target: self, action: #selector(ExploreViewController().didTapMenu))
+        createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
+        updateButtonShadow()
         
-        
-        //------------------------
         
     }
     
@@ -76,6 +88,9 @@ class ExploreViewController: UIViewController {
             self.transitionToNew(menuType)
         }
         
+         let tap = UITapGestureRecognizer(target: self, action:    #selector(self.handleTap(_:)))
+        transiton.dimmingView.addGestureRecognizer(tap)
+
         menuViewController.modalPresentationStyle = .overCurrentContext
         menuViewController.transitioningDelegate = self
         present(menuViewController, animated: true)
@@ -83,6 +98,9 @@ class ExploreViewController: UIViewController {
     }
     
     
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+           dismiss(animated: true, completion: nil)
+       }
     
     func transitionToNew(_ menuType: MenuType) {
         let title = String(describing: menuType).capitalized
@@ -91,26 +109,26 @@ class ExploreViewController: UIViewController {
         topView?.removeFromSuperview()
         switch menuType {
         case .username:
-            print("tapped")
+           // print("tapped")
+            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+                   let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+                   self.navigationController?.pushViewController(settingsVC, animated: true)
         case .friends:
             let storyboard: UIStoryboard = UIStoryboard(name: "Friends", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+            let friendsVC = storyboard.instantiateViewController(identifier: "UserFriendsViewController")
+            self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         case .settings:
             //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
-            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
-            self.navigationController?.pushViewController(settingsVC, animated: true)
+//            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+//            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+//            self.navigationController?.pushViewController(settingsVC, animated: true)
+            self.tabBarController?.tabBar.items?[0].title = "Explore"
+            self.tabBarController?.tabBar.items?[1].title = "Updates"
+            self.tabBarController?.tabBar.items?[2].title = "Personal"
+            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        let touch = touches.first
-        if touch?.view != self.topView
-        { self.dismiss(animated: true, completion: nil) }
     }
     
     //---------------------------------------------------------------------------------
@@ -161,22 +179,66 @@ class ExploreViewController: UIViewController {
     
     
     @IBAction func tagButtonPressed(_ sender: UIButton) {
-        tagFilter(tag: sender.tag)
+        let wasPressed = tagFilter(tag: sender.tag)
+        switch wasPressed {
+        case true:
+            sender.backgroundColor = .systemGray4
+            sender.tintColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+        case false:
+            sender.backgroundColor = .systemGray6
+            sender.tintColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
+        }
     }
     
-    private func tagFilter(tag: Int) {
+    private func tagFilter(tag: Int) -> Bool {
+        var wasPressed = false
         if !currentTags.contains(tag) {
             currentTags.append(tag)
+            wasPressed.toggle()
         } else {
             guard let index = currentTags.firstIndex(of: tag) else {
-                return
+                return wasPressed
             }
             currentTags.remove(at: index)
+            if currentTags.isEmpty && currentQuery == "" {
+                currentSusus = originalSusus
+                return wasPressed
+            }
         }
-        
-        currentSusus = originalSusus
-        //.filter { currentTags.contains($0.category.rawValue)}
+        currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+        return wasPressed
     }
+
+    //need to add case for returning to 0 tags, with query
+    
+    // createSuShare segue
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+       // performSegue(withIdentifier: "goToCreateSusu", sender: self)
+         
+        //https://stackoverflow.com/questions/18777627/segue-from-one-storyboard-to-a-different-storyboard
+        let vc = UIStoryboard(name: "CreateSusu", bundle: nil).instantiateViewController(withIdentifier: "CreateSusu") as? CreateSusuViewController
+        
+      //  https://www.appcoda.com/ios-programming-101-how-to-hide-tab-bar-navigation-controller/#:~:text=When%20it's%20set%20to%20YES,the%20RecipeDetailViewController%20to%20%E2%80%9CYES%E2%80%9D.
+        vc?.hidesBottomBarWhenPushed = true // hides the botton tab bar
+        
+        self.show(vc!, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if segue.identifier == "goToCreateSusu" {
+               guard let createVC = segue.destination as? CreateSusuViewController else { return }
+             //  createVC.transitioningDelegate = self
+           // createVC.modalPresentationStyle = .popover
+           // navigationController?.pushViewController(createVC, animated: true)
+            
+//            createVC.transitioningDelegate = self
+//            createVC.modalPresentationStyle = .custom
+//            navigationController?.pushViewController(createVC, animated: true)
+        //    present(createVC, animated: true)
+           }
+       }
+
 }
 
 extension ExploreViewController: UICollectionViewDataSource {
@@ -188,11 +250,27 @@ extension ExploreViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "exploreCell", for: indexPath) as? ExploreCell else {
             fatalError("Couldn't downcast to ExploreCell, check cellForItemAt")
         }
+        
         let suShare = currentSusus[indexPath.row]
         
         cell.configureCell(suShare: suShare)
+        cell.shadowConfig()
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
+        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
+             return
+        }
+        detailVC.sushare = currentSusus[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+//        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
+//        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+//            return
+//        }
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     
@@ -200,20 +278,39 @@ extension ExploreViewController: UICollectionViewDataSource {
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = UIScreen.main.bounds.size.height / 3
+        let height = collectionView.bounds.height / 3
         let width =
             UIScreen.main.bounds.size.width - 100
         return CGSize(width: width, height: height * 2)
     }
+    
+    //need insets
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        40
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        40
+    }
+    
+    
 }
 
 extension ExploreViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text?.lowercased(), !query.isEmpty else {
-            currentSusus = originalSusus
+            if !currentTags.isEmpty {
+                currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+            } else {
+                currentSusus = originalSusus
+            }
             return
         }
-        currentSusus = originalSusus.filter { $0.description.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+        currentQuery = query
+        currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
+
     }
 }
 
@@ -222,8 +319,19 @@ extension ExploreViewController: UISearchBarDelegate {
 
 extension ExploreViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transiton.isPresenting = true
-        return transiton
+        
+        if source.modalPresentationStyle == .custom {
+           circularTransition.transitionMode = .present
+                       //circularTransition.startingPoint = createButton.center
+                      // circularTransition.circleColor = createButton.backgroundColor!
+            
+            return circularTransition
+        } else {
+            transiton.isPresenting = true
+                 return transiton
+        }
+        
+     
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {

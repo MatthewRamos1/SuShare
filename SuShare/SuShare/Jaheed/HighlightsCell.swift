@@ -25,7 +25,11 @@ class HighlightsCell: UICollectionViewCell {
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var tagLabel: UILabel!
     
-    
-   
+    public func configureCell(for suShare: SuShare) {
+        titleLabel.text = suShare.susuTitle
+        descriptionLabel.text = suShare.suShareDescription
+        let url = URL(string: suShare.susuImage)
+        susuImageView.kf.setImage(with: url)
+    }
     
 }

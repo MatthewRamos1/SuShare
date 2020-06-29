@@ -7,28 +7,55 @@
 //
 
 import XCTest
+import FirebaseStorage
+
 @testable import SuShare
 
 class SuShareTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+   //testing storage image
+    func testUploadImageToStorage(){
+       
+        let exp = XCTestExpectation(description: "suShare photo upload")
+        let queryPath = Bundle.main.path(forResource: "createSushare-wPlus-Light", ofType: "png")
+        
+        guard let path = queryPath else {
+            XCTFail("could not access the path")
+            return
         }
+        
+        //act
+        guard let jpgData = FileManager.default.contents(atPath: path) else {
+            XCTFail("failed because contents inside of path is nil")
+            return
+        }
+        
+        let storageRef = FirebaseStorage.Storage.storage().reference()
+        let photoRef = storageRef.child("Photo/appLogo")
+        
+        let metaData = StorageMetadata()
+               metaData.contentType = "photo/png"
+        
+        
+        // act
+               photoRef.putData(jpgData, metadata: metaData) {
+                   (metaData, error) in
+                   exp.fulfill()
+                   
+                   // assert
+                   if let error = error {
+                       XCTFail("failure to upload video \(error.localizedDescription)")
+                   }
+                   
+                   XCTAssert(true)
+               }
+                       
+               wait(for: [exp], timeout: 10)
+                 
+           }
+    
+    
     }
+    
 
-}
+
