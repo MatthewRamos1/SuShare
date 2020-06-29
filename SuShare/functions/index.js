@@ -16,11 +16,13 @@ exports.createStripeCharge = functions.https.onCall(async (data, context) => {
             const amount = data.total;
             const idempotencyKey = data.idempotency;
             const customerId = data.customerId;
+            const source = data.source;
             
             const charge = await stripe.charges.create({ 
               amount: amount, 
               currency: 'usd',
-              customer: customerId
+              customer: customerId,
+              source: source,
           }, {
           idempotencyKey: idempotencyKey
         }); 
@@ -33,6 +35,7 @@ const amount = data.amount;
 const paymentIntent = await stripe.paymentIntents.create({
   amount: amount,
   currency: 'usd',
+  customer: 'cus_HX9HpktQ2oKuNs',
 });
 const clientSecret = paymentIntent.client_secret
 return clientSecret;
