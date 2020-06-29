@@ -89,6 +89,7 @@ class SettingsViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
+        print("\(user.photoURL) SETTINGS HERE ")
         imageView.kf.setImage(with: user.photoURL)
         usernameLabel.text = user.displayName
     }

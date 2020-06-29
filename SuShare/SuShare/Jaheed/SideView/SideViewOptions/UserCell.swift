@@ -34,14 +34,17 @@ class UserCell: UITableViewCell {
     }
     
     private func updateUI(){
+        
         guard let user = Auth.auth().currentUser,
-            let url = user.photoURL,
+           // let url = user.photoURL,
             let displayName = user.displayName
         else {
             return
         }
-       
-        self.sideViewImage.kf.setImage(with: url)
+       //print(url)
+        //self.sideViewImage.kf.setImage(with: URL(string: "https://firebasestorage.googleapis.com/v0/b/sushare-54d09.appspot.com/o/UserProfilePhotos%2F1vOusbyPJpTU3BLvQeH5sOH6DLm1.jpg?alt=media&token=ee196a13-998e-4053-b24f-8b952acca884"))
+        print(user.photoURL)
+        self.sideViewImage.kf.setImage(with: user.photoURL)
         self.sideViewUsername.text = displayName
 
     }
