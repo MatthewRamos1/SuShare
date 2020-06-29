@@ -133,34 +133,34 @@ class DetailViewController: UIViewController {
     }
     
     
-    private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
-       guard let susu = sushare
-                else {
-                    self.showAlert(title: "Error", message: "Could not load Sushares")
-                    fatalError()
-                }
-        imageView.kf.setImage(with: URL(string: imageURL))
-        titleLabel.text = title
-        userProfileImage.kf.setImage(with: URL(string: profileImage))
-        usernameLabel.text = username
-        descriptionLabel.text = description
-        potLabel.text = pot
-        paymentLabel.text = payment
-        durationLabel.text = duration
-        
-
-    }
+//    private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
+//       guard let susu = sushare
+//                else {
+//                    self.showAlert(title: "Error", message: "Could not load Sushares")
+//                    fatalError()
+//                }
+//        imageView.kf.setImage(with: URL(string: imageURL))
+//        titleLabel.text = title
+//        userProfileImage.kf.setImage(with: URL(string: profileImage))
+//        usernameLabel.text = username
+//        descriptionLabel.text = description
+//        potLabel.text = pot
+//        paymentLabel.text = payment
+//        durationLabel.text = duration
+//        
+//
+//    }
     
     private func loadUI(){
-        guard let imageURL = sushare?.susuImage,
-            let userImage = user?.profilePhoto
+        guard let imageURL = sushare?.susuImage
+        //    let userImage = user?.profilePhoto
             else{
             imageView.image = UIImage(systemName: "sun")
             return
         }
         imageView.kf.setImage(with: URL(string: imageURL))
         titleLabel.text = sushare?.susuTitle
-        userProfileImage.kf.setImage(with: URL(string: userImage))
+   //     userProfileImage.kf.setImage(with: URL(string: userImage))
         usernameLabel.text = user?.username
         descriptionLabel.text = sushare?.suShareDescription
         potLabel.text = "Pot: \(String(describing: sushare?.potAmount))"
@@ -170,6 +170,15 @@ class DetailViewController: UIViewController {
         commentsButtonLabel.text = comment?.comment.count.description
     }
     
+//    private func getUser(){
+//        databaseService.getCurrentUser { (result) in
+//            switch result{
+//            case.failure(let error):
+//                fatalError()
+//                
+//            }
+//        }
+//    }
     
     
     

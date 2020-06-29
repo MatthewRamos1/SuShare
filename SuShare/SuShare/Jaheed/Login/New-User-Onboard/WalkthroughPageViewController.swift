@@ -19,8 +19,9 @@ class WalkthroughPageViewController: UIPageViewController {
     var walkThroughPageVC: WalkthroughPageViewController?
     
     var pageHeadings = ["Create", "Logo", "White Logo"]
-    var pageImages = ["createSushare-wPlus-Light", "suShareLogo-White-eggShell", "ssLogoNew"]
-    var pageSubHeadings = ["One", "Two", "Three"]
+    var pageImages = ["1", "2", "3","4"]
+    var pageSubHeadings = ["A su-su is an informal rotating savings club, where a group of people get together and contribute an equal amount of money into a fund weekly, bi-weekly or monthly. The total pot is then paid to one member of the club on a previously agreed-on schedule. The pool rotates until all members have received their share. SuShare is expanding the network of the savings club by allowing users to start and join su-su's virtually",
+                           "Two", "Three"]
     
     var currentIndex = 0
     
