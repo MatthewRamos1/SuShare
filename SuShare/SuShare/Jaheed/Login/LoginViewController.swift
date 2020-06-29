@@ -115,7 +115,7 @@ class LoginViewController: UIViewController {
                     })
                     // create a database user only from a new authenticated account
                     self?.createDatabaseUser(authDataResult: authDataResult)
-                    self?.databaseService.updateDatabaseUser(username: username ?? "") { (result) in
+                    self?.databaseService.updateDatabaseUser(username: username ?? "") { [weak self](result) in
                         switch result   {
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -151,8 +151,6 @@ class LoginViewController: UIViewController {
                 self.updateUserDataBaseInfo(fullName: fullName, stripeCustomerId: stripeCustomerID)
             }
         }
-        
-        
     }
     
     
@@ -163,10 +161,10 @@ class LoginViewController: UIViewController {
             case .failure(let error):
                 print("error is: \(error.localizedDescription)")
             case .success(let itWork):
+                self.navigateToNewUserFlow()
                 print(itWork)
                 // dismiss to the main storyboard
                 // MARK: needs to navigate to the main storyboard
-                self.navigateToMainView()
             }
         }
     }
@@ -187,8 +185,16 @@ class LoginViewController: UIViewController {
     }
     
     private func navigateToMainView() {
-        //UIViewController.showViewController(storyBoardName: "Highlights", viewControllerId: "HighlightsViewController")
         UIViewController.showVC(viewcontroller: TabController())
+    }
+    
+    private func navigateToNewUserFlow(){
+        let storyboard: UIStoryboard = UIStoryboard(name: "NewUser", bundle: nil)
+        guard  let newUser = storyboard.instantiateViewController(identifier: "WalkthroughViewController") as? WalkthroughViewController else {
+            return
+        }
+        self.show(newUser, sender: self)
+       //present(newUser, animated: true)
     }
     
     private func clearErrorLabel() {

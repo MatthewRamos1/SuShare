@@ -44,6 +44,10 @@
 		0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAC5247C1C8A00713BF5 /* AuthenticationSession.swift */; };
 		0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */; };
 		21E6711AEBCFA58A73D4D1A9 /* Pods_SuShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B590E058777444C01A78528 /* Pods_SuShare.framework */; };
+		3025943C24A9135A00B09F21 /* NewUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3025943B24A9135A00B09F21 /* NewUser.storyboard */; };
+		3025943E24A91C2200B09F21 /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025943D24A91C2200B09F21 /* WalkthroughPageViewController.swift */; };
+		3025944024A91CCC00B09F21 /* WalkthroughContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025943F24A91CCC00B09F21 /* WalkthroughContentViewController.swift */; };
+		3025944224A91DA200B09F21 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025944124A91DA200B09F21 /* WalkthroughViewController.swift */; };
 		302B3726247E1D2C00FC6E6B /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3725247E1D2C00FC6E6B /* DesignableView.swift */; };
 		302B3728247E315C00FC6E6B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3727247E315C00FC6E6B /* StorageService.swift */; };
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
@@ -132,6 +136,10 @@
 		0CB1DAC3247C1C1500713BF5 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
 		0CB1DAC5247C1C8A00713BF5 /* AuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationSession.swift; sourceTree = "<group>"; };
 		0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		3025943B24A9135A00B09F21 /* NewUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewUser.storyboard; sourceTree = "<group>"; };
+		3025943D24A91C2200B09F21 /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		3025943F24A91CCC00B09F21 /* WalkthroughContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughContentViewController.swift; sourceTree = "<group>"; };
+		3025944124A91DA200B09F21 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
 		302B3725247E1D2C00FC6E6B /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		302B3727247E315C00FC6E6B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +336,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3025944324A94A4D00B09F21 /* New-User-Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				3025943B24A9135A00B09F21 /* NewUser.storyboard */,
+				3025943F24A91CCC00B09F21 /* WalkthroughContentViewController.swift */,
+				3025943D24A91C2200B09F21 /* WalkthroughPageViewController.swift */,
+				3025944124A91DA200B09F21 /* WalkthroughViewController.swift */,
+			);
+			path = "New-User-Onboard";
+			sourceTree = "<group>";
+		};
 		3054972824A64FB500DC3064 /* SideViewOptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +401,7 @@
 				0CB1DAB4247C1A8900713BF5 /* LoginView.storyboard */,
 				0CB1DAB6247C1ACF00713BF5 /* LoginViewController.swift */,
 				30C5F11924A7E1F6000411E2 /* NewUserViewController.swift */,
+				3025944324A94A4D00B09F21 /* New-User-Onboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -516,6 +536,7 @@
 			files = (
 				30945CAB2491529600AAB687 /* Friends.storyboard in Resources */,
 				0C12C635249B0C6700128D06 /* PaymentSegment.storyboard in Resources */,
+				3025943C24A9135A00B09F21 /* NewUser.storyboard in Resources */,
 				30FCE3CE249AF782008B3933 /* createSushare-wPlus.png in Resources */,
 				0CB1DA8F247A235800713BF5 /* ExploreTab.storyboard in Resources */,
 				307A7AAA2499C3CD003E3E8C /* GoogleService-Info.plist in Resources */,
@@ -635,6 +656,7 @@
 			files = (
 				3E23EC142484CA21007C3013 /* ProfileHeaderView.swift in Sources */,
 				0CB1DAB9247C1AF300713BF5 /* SuShare.swift in Sources */,
+				3025944024A91CCC00B09F21 /* WalkthroughContentViewController.swift in Sources */,
 				0CB1DACA247C1D1200713BF5 /* Date+Extensions.swift in Sources */,
 				554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */,
 				3E23EC1A248ADC90007C3013 /* UIButton+Extensions.swift in Sources */,
@@ -675,11 +697,13 @@
 				0C576F6E249EAFAB001DD47F /* CardPaymentView.swift in Sources */,
 				0CB1DA99247A249800713BF5 /* DetailViewController.swift in Sources */,
 				0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */,
+				3025943E24A91C2200B09F21 /* WalkthroughPageViewController.swift in Sources */,
 				0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */,
 				3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */,
 				302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */,
 				0C12C63324989B7F00128D06 /* UICollectionViewCell + Extensions.swift in Sources */,
 				30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */,
+				3025944224A91DA200B09F21 /* WalkthroughViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
