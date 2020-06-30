@@ -18,7 +18,7 @@ class ExploreCell: UICollectionViewCell {
     
     public func configureCell(suShare: SuShare) {
         titleLabel.text = suShare.susuTitle
-        let suShareCategory = suShare.category.first?.description
+        let suShareCategory = suShare.suShareDescription
         descriptionLabel.text = suShareCategory
         let url = URL(string: suShare.susuImage)
         susuImageView.kf.setImage(with: url)

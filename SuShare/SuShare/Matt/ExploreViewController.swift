@@ -159,7 +159,7 @@ class ExploreViewController: UIViewController {
                 if let snapshot = snapshot {
                     let allShares = snapshot.documents.map {SuShare($0.data())}
                     let sortedAllShares = allShares.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
-                    self.currentSusus = sortedAllShares
+                    self.originalSusus = sortedAllShares
                 }
             }
         })
