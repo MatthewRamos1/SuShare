@@ -139,6 +139,11 @@ class ExploreViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setSuShareListener()
+    }
+    
     private func toggleExplore() {
         exploreButton.isEnabled = false
         friendsButton.isEnabled = true
@@ -147,20 +152,19 @@ class ExploreViewController: UIViewController {
     }
     
     private func setSuShareListener() {
-        suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener( { [weak self] (snapshot, error) in
+        suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
             if let error = error {
-                DispatchQueue.main.async {
-                    self?.showAlert(title: "Error getting favorites", message: "\(error.localizedDescription)")
+                print(error.localizedDescription)
+            } else {
+                if let snapshot = snapshot {
+                    let allShares = snapshot.documents.map {SuShare($0.data())}
+                    let sortedAllShares = allShares.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
+                    self.currentSusus = sortedAllShares
                 }
-            } else if let snapshot = snapshot {
-                let suShareData = snapshot.documents.map { $0.data() }
-                let suShares = suShareData.map { SuShare($0)}
-                self?.originalSusus = suShares
-                
             }
-            }
-        )
+        })
     }
+    
     @IBAction func exploreButtonPressed(_ sender: UIButton) {
         friendsButton.removeLine()
         exploreButton.titleLabel?.font = boldFont
