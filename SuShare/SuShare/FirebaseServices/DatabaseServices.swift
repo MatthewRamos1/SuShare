@@ -9,6 +9,13 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+import UIKit
+import FirebaseAuth
+//import LBTAComponents
+//import FirebaseDatabase
+//import FirebaseStorage
+//import JGProgressHUD
+
 class DatabaseService{
     
     static let suShareCollection = "suShare"
@@ -21,8 +28,25 @@ class DatabaseService{
     
     static let shared = DatabaseService()
     
+    // anothe way to get database user
+    private func anotherDatabaseUser(userId: String, completion: @escaping (Result<User, Error>) -> () ){
+        db.collection(DatabaseService.userCollection).whereField("userId", isEqualTo: userId).getDocuments {  (snapshot, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else if let snapshot = snapshot {
+                        
+                        let user = snapshot.documents
+                        
+                        // do sorted here
+                       // items.listedDate
+                        //completion(.success(items.sorted(by: { $0.listedDate.seconds > $1.listedDate.seconds
+                       // completion(.success(user))
+                    }
+                    }
+    }
+ 
     
-    public func createASusu(
+    public func createASuShare(
         sushare: SuShare,
         //  susuTitle: String, description: String, potAmount: Double, numOfParticipants: Int, paymentSchedule: String, category: [String],
         //  displayName: String,
@@ -38,7 +62,7 @@ class DatabaseService{
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
-            "susuImage": sushare.susuImage,
+            //"susuImage": sushare.susuImage,
             "description": sushare.suShareDescription,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
@@ -61,7 +85,7 @@ class DatabaseService{
         }
     } // end of create func
     
-    public func delete(susu: SuShare, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func deleteSuShare(susu: SuShare, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         db.collection(DatabaseService.suShareCollection).document(susu.suShareId).delete { (error) in
             if let error = error {
@@ -234,7 +258,7 @@ class DatabaseService{
         guard let user = Auth.auth().currentUser else {return}
         db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
                                                                                                "susuTitle": sushare.susuTitle,
-                                                                                               "imageURL": sushare.susuImage,
+                                                                                               "imageURL": sushare.imageURL,
                                                                                                "description": sushare.suShareDescription,
                                                                                                "potAmount": sushare.potAmount,
                                                                                                "numOfParticipants": sushare.numOfParticipants,
@@ -350,6 +374,7 @@ class DatabaseService{
     }
 }
     
+    // MARK: THE OTHER ONE
     public func getCurrentUser(completion: @escaping (Result<User, Error>) -> ())   {
         guard let currentUser = Auth.auth().currentUser else {
             fatalError()
@@ -366,6 +391,7 @@ class DatabaseService{
             }
         }
     }
+    
     
     public func databaseAddFriend(user: User, completion: @escaping (Result<Bool, Error>) -> ()){
         let docRef = db.collection(DatabaseService.friendsCollection).document()

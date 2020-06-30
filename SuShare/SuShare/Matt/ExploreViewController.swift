@@ -8,10 +8,12 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class ExploreViewController: UIViewController {
     
-    
+   // public var user: User?
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var exploreButton: UIButton!
@@ -23,6 +25,19 @@ class ExploreViewController: UIViewController {
     var boldFont: UIFont?
     var thinFont: UIFont?
     
+    let db = DatabaseService.self
+      
+    //    required init?(coder: NSCoder){
+//        //  _ user: User
+//                // self.user = user
+//                 //self.userPrefence = userPrefence
+//                 super.init(coder: coder)
+//               //self.userPrefence.delegate = self
+//    }
+//
+//    required init?(coder: NSCoder) {
+//              fatalError("init(coder:) has not been implemented")
+//           }
     
      private let circularTransition = CircularTransition()
     
@@ -63,6 +78,7 @@ class ExploreViewController: UIViewController {
     var currentTags = [Int]()
     var currentQuery = ""
     
+    private let user = (UIApplication.shared.delegate as! AppDelegate).user
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -77,9 +93,13 @@ class ExploreViewController: UIViewController {
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         updateButtonShadow()
         
+        print("this is user \(user)")
         
     }
     
+    // __________ gathering the suShareUser _____
+    
+ 
     //---------------------------------------------------------------------------------
     // JAHEED
     @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
@@ -136,6 +156,7 @@ class ExploreViewController: UIViewController {
         suShareListener?.remove()
         
     }
+    
     
     private func toggleExplore() {
         exploreButton.isEnabled = false
@@ -223,19 +244,11 @@ class ExploreViewController: UIViewController {
         self.show(vc!, sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           if segue.identifier == "goToCreateSusu" {
-               guard let createVC = segue.destination as? CreateSusuViewController else { return }
-             //  createVC.transitioningDelegate = self
-           // createVC.modalPresentationStyle = .popover
-           // navigationController?.pushViewController(createVC, animated: true)
-            
-//            createVC.transitioningDelegate = self
-//            createVC.modalPresentationStyle = .custom
-//            navigationController?.pushViewController(createVC, animated: true)
-        //    present(createVC, animated: true)
-           }
-       }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//           if segue.identifier == "goToCreateSusu" {
+//               guard let createVC = segue.destination as? CreateSusuViewController else { return }
+//           }
+       //}
 
 }
 
@@ -258,11 +271,17 @@ extension ExploreViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selected = currentSusus[indexPath.row]
+        
         let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
-        guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
-             return
+        
+        let detailVC = storyboard.instantiateViewController(identifier: "DetailViewController"){ (coder) in
+            return DetailViewController(coder: coder, sushare: selected, user: self.user!)
         }
-        detailVC.sushare = currentSusus[indexPath.row]
+        
+     //   detailVC.sushare = currentSusus[indexPath.row]
+        
         navigationController?.pushViewController(detailVC, animated: true)
 //        let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
 //        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {

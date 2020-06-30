@@ -9,11 +9,16 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+
 import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
+    private let db = DatabaseService.self
+
+    public private (set) var user : User? // cannot be set again 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -21,9 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.delegate = self
         STPTheme.default().accentColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
         Stripe.setDefaultPublishableKey("pk_test_51GryzXAPBA6SjrmolJPfilMdykNqfRYZTPewUgSzvin70EdHDGykQvbJRwbkIB9SNAcDwTIbFLVjD2uX5IUuHyPc00W6hzHMaL")
+        
+        getUser()
+        
         return true
     }
     
+    private func getUser() {
+         // singleUser.currentUserrr.username = getUser()
+
+            db.shared.getCurrentUser { (result) in
+                switch result {
+                case .failure(let error):
+                    print("the error is located inside the getUsers inside of the explore view controller \(error.localizedDescription)")
+                case .success(let user):
+                   // a call back
+                    self.user = user
+                }
+            }
+        }
+      
+    
+  
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         print("User email: \(user.profile.email ?? "No Email")")
     }

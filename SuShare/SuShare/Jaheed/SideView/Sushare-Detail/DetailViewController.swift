@@ -28,8 +28,8 @@ class DetailViewController: UIViewController {
     private var databaseService = DatabaseService()
     private var listener: ListenerRegistration?
     
-    public var sushare: SuShare?
-    private var user: User?
+    //public var sushare: SuShare?
+   //private var user: User?
     private var comment: Comment?
     
     private var isFavorite = false {
@@ -40,6 +40,20 @@ class DetailViewController: UIViewController {
                 navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
             }
         }
+    }
+    
+    private var sushare: SuShare
+    private var user: User
+    // encapsulation is included in object oriented programming
+    init?(coder: NSCoder, sushare: SuShare, user: User){
+        // we are coming from a storyboard so a coder is required.
+        self.user = user
+        self.sushare = sushare
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -66,7 +80,7 @@ class DetailViewController: UIViewController {
     @IBAction func favoriteButtonPressed(_ sender: UIBarButtonItem) {
         print("favorite")
         if isFavorite{
-            databaseService.removeFromFavorite(suShare: sushare!) {[weak self] (result) in
+            databaseService.removeFromFavorite(suShare: sushare) {[weak self] (result) in
                 switch result{
                 case.failure(let error):
                     DispatchQueue.main.async {
@@ -80,7 +94,7 @@ class DetailViewController: UIViewController {
                 }
             }
         }else{
-            databaseService.addToFavorites(sushare: sushare!) { (result) in
+            databaseService.addToFavorites(sushare: sushare) { (result) in
                 switch result   {
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -95,12 +109,14 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func commentsButtonPressed(_ sender: UIButton) {
-        guard let sushare = sushare else {
-            return
-        }
+      //  guard let sushare = sushare else {
+         //   return
+       // }
+        
+       // let sushare = sushare
         let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
         let commentVC = storyboard.instantiateViewController(identifier: "CommentsViewController") { coder in
-            return CommentsViewController(coder: coder, sushare: sushare)
+            return CommentsViewController(coder: coder, sushare: self.sushare)
         }
         databaseService.getCurrentUser { (result) in
             switch result{
@@ -115,7 +131,7 @@ class DetailViewController: UIViewController {
     
     
     private func updateHeartUI()  {
-        databaseService.isSuShareFavorite(suShare: sushare!) { (result) in
+        databaseService.isSuShareFavorite(suShare: sushare) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -123,7 +139,7 @@ class DetailViewController: UIViewController {
                 if isFavoriteDB {
                     self.isFavorite = true
                 } else {
-                    if self.sushare?.userId == Auth.auth().currentUser?.uid {
+                    if self.sushare.userId == Auth.auth().currentUser?.uid {
                         self.navigationItem.rightBarButtonItem = nil
                     }
                     self.isFavorite = false
@@ -134,39 +150,45 @@ class DetailViewController: UIViewController {
     
     
     private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
-       guard let susu = sushare
-                else {
-                    self.showAlert(title: "Error", message: "Could not load Sushares")
-                    fatalError()
-                }
-        imageView.kf.setImage(with: URL(string: imageURL))
-        titleLabel.text = title
-        userProfileImage.kf.setImage(with: URL(string: profileImage))
-        usernameLabel.text = username
-        descriptionLabel.text = description
-        potLabel.text = pot
-        paymentLabel.text = payment
-        durationLabel.text = duration
+//       guard let susu = sushare else {
+//                    self.showAlert(title: "Error", message: "Could not load Sushares")
+//                    fatalError() }
+        let susu = sushare
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        //imageView.kf.setImage(with: susu.imageURL)
+        titleLabel.text = susu.susuTitle
+        userProfileImage.kf.setImage(with: user.photoURL)
+        usernameLabel.text = user.displayName
+        descriptionLabel.text = susu.suShareDescription
+        potLabel.text = susu.potAmount.description
+        paymentLabel.text = susu.paymentSchedule
+        durationLabel.text = "what is duration suppose to be... how long its suppose to last?"
         
 
     }
     
     private func loadUI(){
-        guard let imageURL = sushare?.susuImage,
-            let userImage = user?.profilePhoto
-            else{
-            imageView.image = UIImage(systemName: "sun")
-            return
-        }
-        imageView.kf.setImage(with: URL(string: imageURL))
-        titleLabel.text = sushare?.susuTitle
+//        guard
+//            //let imageURL = sushare?.susuImage,
+//            //let userImage = user.profilePhoto
+//            else{
+//            imageView.image = UIImage(systemName: "sun")
+//            return
+//        }
+        let userImage = user.profilePhoto
+
+       // imageView.kf.setImage(with: URL(string: imageURL))
+        titleLabel.text = sushare.susuTitle
         userProfileImage.kf.setImage(with: URL(string: userImage))
-        usernameLabel.text = user?.username
-        descriptionLabel.text = sushare?.suShareDescription
-        potLabel.text = "Pot: \(String(describing: sushare?.potAmount))"
-        paymentLabel.text = sushare?.paymentSchedule
+        usernameLabel.text = user.username
+        descriptionLabel.text = sushare.suShareDescription
+        potLabel.text = "Pot: \(String(describing: sushare.potAmount))"
+        paymentLabel.text = sushare.paymentSchedule
         durationLabel.text = "Duration Number here"
-        progressView.progress = Float((sushare?.usersInTheSuShare.count)! / sushare!.numOfParticipants) + 0.01
+        progressView.progress = Float((sushare.usersInTheSuShare.count) / sushare.numOfParticipants) + 0.01
         commentsButtonLabel.text = comment?.comment.count.description
     }
     

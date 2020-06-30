@@ -6,7 +6,17 @@
 //  Copyright © 2020 Matthew Ramos. All rights reserved.
 //
 
+import UIKit
 import Foundation
+
+class singleUser: NSObject {
+    static let currentUserrr = singleUser()
+
+      var username: User?
+    
+    
+    
+}
 
 struct User {
     let username: String

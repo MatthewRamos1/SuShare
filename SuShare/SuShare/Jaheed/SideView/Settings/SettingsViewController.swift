@@ -148,6 +148,7 @@ class SettingsViewController: UIViewController {
                 print("failed to update db user: \(error.localizedDescription)")
             case .success:
                 //print("successfully updated db user")
+               // url(url: URL(string: photoURL))
                 self.requestChangesToDatabase(url: URL(fileURLWithPath: photoURL))
             }
         }
