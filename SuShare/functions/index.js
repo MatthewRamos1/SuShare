@@ -30,12 +30,19 @@ exports.createStripeCharge = functions.https.onCall(async (data, context) => {
 });
 // [END chargecustomer]]
 
+
+
+
+
 exports.createChargeFunction = functions.https.onCall(async (data, context) => {
 const amount = data.amount;
 const paymentIntent = await stripe.paymentIntents.create({
   amount: amount,
   currency: 'usd',
   customer: 'cus_HX9HpktQ2oKuNs',
+  transfer_data: {
+    destination: 'acct_1GzaN0ErWenworok',
+  },
 });
 const clientSecret = paymentIntent.client_secret
 return clientSecret;
@@ -63,6 +70,16 @@ exports.createStripeCustomer = functions.https.onCall(async (data, context) => {
     return {
         customer_id: customer.id
     }
+});
+
+exports.createCustomAccount = functions.https.onCall(async (data, context) => {
+  const account = await stripe.accounts.create({
+  country: 'US',
+  type: 'custom',
+  requested_capabilities: ['card_payments', 'transfers'],
+});
+  const id = account.id
+   return id;
 });
 
 
