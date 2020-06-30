@@ -153,7 +153,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
     private func updateUserDataBaseInfo(fullName: String, stripeCustomerId: String) {
         
         databaseService.updateFireBaseUserWithStripeStuff(fullName: fullName, stripeCustomerId: stripeCustomerId) { (result) in

@@ -53,10 +53,11 @@ class SettingsViewController: UIViewController {
                     print("ERROR: \(error.localizedDescription)")
                 }
             case.success(let user):
-                self?.usernameLabel.text = user.username
-                let url = URL(string: user.profilePhoto)
-                self?.imageView.kf.setImage(with: url)
-                
+                DispatchQueue.main.async {
+                    self?.usernameLabel.text = user.username
+                    let url = URL(string: user.profilePhoto)
+                    self?.imageView.kf.setImage(with: url)
+                }
             }
         }
     }
@@ -89,7 +90,6 @@ class SettingsViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        print("\(user.photoURL) SETTINGS HERE ")
         imageView.kf.setImage(with: user.photoURL)
         usernameLabel.text = user.displayName
     }
@@ -103,13 +103,13 @@ class SettingsViewController: UIViewController {
             self.present(self.imagePickerController, animated: true)
         }
         
-        let photoLibrary = UIAlertAction(title: "photoLibrary", style: .default) {
+        let photoLibrary = UIAlertAction(title: "Photos", style: .default) {
             actionAlert in
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true)
         }
         
-        let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             // if there is no camera avaiable then the camera option is not avaialble either
             alertController.addAction(cameraAction)
@@ -150,7 +150,8 @@ class SettingsViewController: UIViewController {
                 print("failed to update db user: \(error.localizedDescription)")
             case .success:
                 //print("successfully updated db user")
-                self.requestChangesToDatabase(url: URL(fileURLWithPath: photoURL))
+                self.requestChangesToDatabase(url: URL(string: photoURL)!)
+                
             }
         }
     }
@@ -169,8 +170,6 @@ class SettingsViewController: UIViewController {
         })
     }
     
-    
-    
     @IBAction func signOutButtonPressed(_ sender: UIButton) {
         print("button pressed")
         do {
@@ -184,7 +183,6 @@ class SettingsViewController: UIViewController {
     }
     
 }
-
 
 
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
