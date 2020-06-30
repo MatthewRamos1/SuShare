@@ -65,6 +65,7 @@
 		30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB72491553B00AAB687 /* SlideInTransition.swift */; };
 		30945CBC2491553B00AAB687 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB82491553B00AAB687 /* MenuViewController.swift */; };
 		30945CBD2491553B00AAB687 /* SideView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB92491553B00AAB687 /* SideView.storyboard */; };
+		30A02B8424AB023F00D4567A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A02B8324AB023F00D4567A /* UIImageView+Extensions.swift */; };
 		30C5F11A24A7E1F6000411E2 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C5F11924A7E1F6000411E2 /* NewUserViewController.swift */; };
 		30C704B02497C48900B12578 /* SushareDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C704AF2497C48900B12578 /* SushareDetail.storyboard */; };
 		30F7700124A5710C00E1C246 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F76FFF24A5710C00E1C246 /* UserCell.swift */; };
@@ -159,6 +160,7 @@
 		30945CB72491553B00AAB687 /* SlideInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		30945CB82491553B00AAB687 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30945CB92491553B00AAB687 /* SideView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideView.storyboard; sourceTree = "<group>"; };
+		30A02B8324AB023F00D4567A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		30C5F11924A7E1F6000411E2 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		30C704AF2497C48900B12578 /* SushareDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SushareDetail.storyboard; sourceTree = "<group>"; };
 		30F76FFF24A5710C00E1C246 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				0CB1DAC3247C1C1500713BF5 /* UIImage + Extensions.swift */,
 				0CB1DAC9247C1D1200713BF5 /* Date+Extensions.swift */,
 				0C12C63224989B7F00128D06 /* UICollectionViewCell + Extensions.swift */,
+				30A02B8324AB023F00D4567A /* UIImageView+Extensions.swift */,
 				302B3725247E1D2C00FC6E6B /* DesignableView.swift */,
 			);
 			path = Extensions;
@@ -707,6 +710,7 @@
 				0C57A7D92475B1EC00DF437B /* AppDelegate.swift in Sources */,
 				3025943E24A91C2200B09F21 /* WalkthroughPageViewController.swift in Sources */,
 				0C57A7DB2475B1EC00DF437B /* SceneDelegate.swift in Sources */,
+				30A02B8424AB023F00D4567A /* UIImageView+Extensions.swift in Sources */,
 				3E23EC1E248ADCAF007C3013 /* EmptyView.swift in Sources */,
 				302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */,
 				0C12C63324989B7F00128D06 /* UICollectionViewCell + Extensions.swift in Sources */,

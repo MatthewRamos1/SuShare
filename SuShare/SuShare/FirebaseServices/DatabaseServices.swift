@@ -50,7 +50,7 @@ class DatabaseService{
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
             "susuImage": sushare.susuImage,
-            "description": sushare.suShareDescription,
+            "suShareDescription": sushare.suShareDescription,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
             "paymentSchedule": sushare.paymentSchedule,
@@ -370,6 +370,19 @@ class DatabaseService{
                 completion(.failure(error))
             } else {
                 if let snapshotUser = snapshot?.data()  {
+                    let user = User(snapshotUser)
+                    completion(.success(user))
+                }
+            }
+        }
+    }
+    
+    public func getUserForSuShare(suShare: SuShare, completion: @escaping (Result<User, Error>) -> ())  {
+        db.collection(DatabaseService.userCollection).document(suShare.userId).getDocument { (snapShot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                if let snapshotUser = snapShot?.data()  {
                     let user = User(snapshotUser)
                     completion(.success(user))
                 }

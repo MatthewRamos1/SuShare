@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
     private var listener: ListenerRegistration?
     
     public var sushare: SuShare?
-    private var user: User?
+    public var user: User?
     private var comment: Comment?
     
     private var isFavorite = false {
@@ -41,15 +41,22 @@ class DetailViewController: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateHeartUI()
         loadUI()
         tabBarController?.tabBar.isHidden = true
-    
+        durationLabel.isHidden = true
+        setUpUserProfileImageView()
     }
     
+    private func setUpUserProfileImageView(){
+        userProfileImage.layer.cornerRadius = (userProfileImage.frame.size.width ) / 2
+        userProfileImage.clipsToBounds = true
+        userProfileImage.layer.borderWidth = 3.0
+        userProfileImage.layer.borderColor = UIColor.white.cgColor
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         tabBarController?.tabBar.isHidden = false
@@ -133,52 +140,50 @@ class DetailViewController: UIViewController {
     }
     
     
-//    private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
-//       guard let susu = sushare
-//                else {
-//                    self.showAlert(title: "Error", message: "Could not load Sushares")
-//                    fatalError()
-//                }
-//        imageView.kf.setImage(with: URL(string: imageURL))
-//        titleLabel.text = title
-//        userProfileImage.kf.setImage(with: URL(string: profileImage))
-//        usernameLabel.text = username
-//        descriptionLabel.text = description
-//        potLabel.text = pot
-//        paymentLabel.text = payment
-//        durationLabel.text = duration
-//        
-//
-//    }
+//        private func updateUI(imageURL: String, title: String, profileImage: String, username: String, description: String, pot: String, payment: String, duration: String){
+//           guard let susu = sushare
+//                    else {
+//                        self.showAlert(title: "Error", message: "Could not load Sushares")
+//                        fatalError()
+//                    }
+//            imageView.kf.setImage(with: URL(string: imageURL))
+//            titleLabel.text = title
+//            userProfileImage.kf.setImage(with: URL(string: profileImage))
+//            usernameLabel.text = username
+//            descriptionLabel.text = description
+//            potLabel.text = pot
+//            paymentLabel.text = payment
+//            durationLabel.text = duration
+//        }
     
     private func loadUI(){
-        guard let imageURL = sushare?.susuImage
-        //    let userImage = user?.profilePhoto
+        guard let imageURL = sushare?.susuImage,
+            let userImage = user?.profilePhoto
             else{
-            imageView.image = UIImage(systemName: "sun")
-            return
+                imageView.image = UIImage(systemName: "sun")
+                return
         }
         imageView.kf.setImage(with: URL(string: imageURL))
         titleLabel.text = sushare?.susuTitle
-   //     userProfileImage.kf.setImage(with: URL(string: userImage))
+        userProfileImage.kf.setImage(with: URL(string: userImage))
         usernameLabel.text = user?.username
         descriptionLabel.text = sushare?.suShareDescription
-        potLabel.text = "Pot: \(String(describing: sushare?.potAmount))"
-        paymentLabel.text = sushare?.paymentSchedule
-        durationLabel.text = "Duration Number here"
+        potLabel.text = "Pot: \(sushare?.potAmount ?? 0.0)"
+        paymentLabel.text = "Payment Schedule: \(sushare?.paymentSchedule ?? "")"
+        //durationLabel.text = "Duration Number here"
         progressView.progress = Float((sushare?.usersInTheSuShare.count)! / sushare!.numOfParticipants) + 0.01
         commentsButtonLabel.text = comment?.comment.count.description
     }
     
-//    private func getUser(){
-//        databaseService.getCurrentUser { (result) in
-//            switch result{
-//            case.failure(let error):
-//                fatalError()
-//                
-//            }
-//        }
-//    }
+    //    private func getUser(){
+    //        databaseService.getCurrentUser { (result) in
+    //            switch result{
+    //            case.failure(let error):
+    //                fatalError()
+    //
+    //            }
+    //        }
+    //    }
     
     
     
