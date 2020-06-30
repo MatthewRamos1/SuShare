@@ -29,11 +29,13 @@ class TabController: UITabBarController {
     lazy var personalViewController: UIViewController = {
         let vc = PersonalViewController()
         vc.tabBarItem = UITabBarItem(title: "Personal", image: UIImage(systemName: "person.fill"), tag: 2)
+
         return vc
     }()
        
        override func viewDidLoad() {
            super.viewDidLoad()
         viewControllers = [exploreViewController, UINavigationController(rootViewController: updatesViewController), UINavigationController(rootViewController: personalViewController)]
+        tabBar.tintColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
        }
 }
