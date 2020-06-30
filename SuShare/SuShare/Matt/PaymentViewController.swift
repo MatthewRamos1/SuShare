@@ -43,8 +43,9 @@ class PaymentViewController: UIViewController {
         paymentContext = STPPaymentContext(customerContext: customerContext)
         paymentContext.paymentAmount = 50
         paymentContext.delegate = self
-        
         paymentContext.hostViewController = self
+        tabBarController?.tabBar.isHidden = true
+
         
         
         let infoForFooter = CardPaymentView(text: """

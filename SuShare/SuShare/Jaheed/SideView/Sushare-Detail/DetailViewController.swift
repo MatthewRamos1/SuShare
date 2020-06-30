@@ -62,11 +62,17 @@ class DetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
         guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
             return
         }
+        paymentVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(paymentVC, animated: true)
     }
     
