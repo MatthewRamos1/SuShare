@@ -77,7 +77,6 @@ class ExploreViewController: UIViewController {
         setSuShareListener()
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         updateButtonShadow()
-        
     }
     
     //---------------------------------------------------------------------------------
@@ -142,6 +141,7 @@ class ExploreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setSuShareListener()
+
     }
     
     private func toggleExplore() {
