@@ -48,7 +48,7 @@ class AddFriendViewController: UIViewController {
         addFriendView.tableView.dataSource = self
         addFriendView.tableView.delegate = self
         addFriendView.searchBar.delegate = self
-        addFriendView.tableView.register(SubtitleTableViewCell.self, forCellReuseIdentifier: "friendsToAddCell")
+        addFriendView.tableView.register(AddFriendCell.self, forCellReuseIdentifier: "addFriendCell")
         navigationItem.title = "Search"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
@@ -74,14 +74,12 @@ extension AddFriendViewController: UITableViewDataSource    {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsToAddCell", for: indexPath)
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addFriendCell", for: indexPath) as? AddFriendCell else {
+            fatalError()
+        }
         let user = allUsersSorted[indexPath.row]
-        
-        cell.imageView?.image = UIImage(systemName: "person")
-        cell.textLabel?.text = user.username
-        cell.detailTextLabel?.text = user.email
-        
+        cell.configureCell(user: user)
+
         return cell
     }
 }
