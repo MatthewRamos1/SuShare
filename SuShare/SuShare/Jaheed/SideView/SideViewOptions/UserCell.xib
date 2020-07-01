@@ -24,7 +24,7 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eYS-o9-iUS">
                         <rect key="frame" x="20" y="8.5" width="65" height="64"/>
-                        <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.66695033500299505" green="0.88646097715736039" blue="0.84917812659483771" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="fMv-2B-86h"/>
                             <constraint firstAttribute="width" constant="65" id="zIl-02-gXI"/>

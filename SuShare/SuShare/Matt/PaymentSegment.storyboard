@@ -33,25 +33,49 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="712"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suShareCell" rowHeight="162" id="zGP-4W-6n3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suShareCell" rowHeight="162" id="zGP-4W-6n3" customClass="SuShareCell" customModule="SuShare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zGP-4W-6n3" id="DFS-fw-EyR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suShareLogo-White-eggShell" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-37-sHo">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suShareLogo-White-eggShell" translatesAutoresizingMaskIntoConstraints="NO" id="wYz-37-sHo">
                                                     <rect key="frame" x="0.0" y="0.0" width="165.5" height="162"/>
                                                     <color key="backgroundColor" red="0.66580978229999999" green="1" blue="0.81535414159999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ni8-ZF-5OM">
+                                                    <rect key="frame" x="173.5" y="11" width="212.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAP-Ro-bKz">
+                                                    <rect key="frame" x="173.5" y="40" width="212.5" height="97"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ni8-ZF-5OM" firstAttribute="top" secondItem="DFS-fw-EyR" secondAttribute="topMargin" id="0D8-re-vk1"/>
+                                                <constraint firstItem="yAP-Ro-bKz" firstAttribute="height" secondItem="DFS-fw-EyR" secondAttribute="height" multiplier="0.6" id="73O-y4-vhh"/>
+                                                <constraint firstItem="yAP-Ro-bKz" firstAttribute="top" secondItem="ni8-ZF-5OM" secondAttribute="bottom" constant="8" id="AKK-Aw-vPK"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ni8-ZF-5OM" secondAttribute="trailing" constant="8" id="CLE-xE-Xcp"/>
                                                 <constraint firstItem="wYz-37-sHo" firstAttribute="width" secondItem="DFS-fw-EyR" secondAttribute="width" multiplier="0.4" id="Exc-jN-3fV"/>
+                                                <constraint firstItem="ni8-ZF-5OM" firstAttribute="leading" secondItem="wYz-37-sHo" secondAttribute="trailing" constant="8" id="T5Q-m0-Ica"/>
+                                                <constraint firstItem="yAP-Ro-bKz" firstAttribute="leading" secondItem="wYz-37-sHo" secondAttribute="trailing" constant="8" id="bIO-lI-8d8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yAP-Ro-bKz" secondAttribute="trailing" constant="8" id="jOb-nG-sas"/>
                                                 <constraint firstAttribute="bottom" secondItem="wYz-37-sHo" secondAttribute="bottom" id="js5-XX-n8K"/>
                                                 <constraint firstItem="wYz-37-sHo" firstAttribute="top" secondItem="DFS-fw-EyR" secondAttribute="top" id="kC3-1M-irM"/>
                                                 <constraint firstItem="wYz-37-sHo" firstAttribute="leading" secondItem="DFS-fw-EyR" secondAttribute="leading" id="uzV-yg-eKg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="suShareDescriptionLabel" destination="yAP-Ro-bKz" id="h6A-ZU-swX"/>
+                                            <outlet property="suShareImage" destination="wYz-37-sHo" id="VvQ-xP-KUc"/>
+                                            <outlet property="suShareTitleLabel" destination="ni8-ZF-5OM" id="jGl-Ax-fTa"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="paymentCell" rowHeight="111" id="HaD-15-Hh1">
                                         <rect key="frame" x="0.0" y="190" width="414" height="111"/>
@@ -82,7 +106,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subscribeCell" rowHeight="185" id="JYB-nq-WVY">
+                                    <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subscribeCell" rowHeight="185" id="JYB-nq-WVY" customClass="SubscribeCell" customModule="SuShare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="301" width="414" height="185"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JYB-nq-WVY" id="pHA-PM-2Im">
@@ -109,6 +133,10 @@
                                                 <constraint firstItem="kPe-NW-kql" firstAttribute="top" secondItem="pHA-PM-2Im" secondAttribute="topMargin" constant="10" id="sD7-SE-krZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="paymentFreqLabel" destination="kPe-NW-kql" id="Hy1-gN-pz1"/>
+                                            <outlet property="totalLabel" destination="2YV-F8-Sxr" id="DJL-Ib-Zdh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>

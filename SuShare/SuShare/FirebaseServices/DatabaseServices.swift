@@ -16,11 +16,22 @@ class DatabaseService{
     static let commentCollection = "comments"
     static let favoriteCollection = "favorites"
     static let friendsCollection = "friends"
+    static let updatesCollection = "updates"
     
     private let db = Firestore.firestore()
     
     static let shared = DatabaseService()
     
+    
+    public func addUpdate(suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
+        db.collection(DatabaseService.updatesCollection).addDocument(data: ["userId": suShare.userId, "susuTitle": suShare.susuTitle]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     
     public func createASusu(
         sushare: SuShare,
@@ -38,8 +49,8 @@ class DatabaseService{
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
-            "susuImage": sushare.susuImage,
-            "description": sushare.suShareDescription,
+            "susuImage": sushare.imageURL,
+            "suShareDescription": sushare.suShareDescription,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
             "paymentSchedule": sushare.paymentSchedule,
@@ -47,7 +58,7 @@ class DatabaseService{
             "category": sushare.category,
             "createdDate": sushare.createdDate,
             "iD": docRef.documentID,
-            "usersApartOfSuShare": sushare.usersInTheSuShare,
+            "usersInTheSuShare": sushare.usersInTheSuShare,
             "favId": sushare.favId
             
         ]) { (error) in
@@ -234,7 +245,7 @@ class DatabaseService{
         guard let user = Auth.auth().currentUser else {return}
         db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
                       "susuTitle": sushare.susuTitle,
-                      "imageURL": sushare.susuImage,
+                      "imageURL": sushare.imageURL,
                       "description": sushare.suShareDescription,
                       "potAmount": sushare.potAmount,
                       "numOfParticipants": sushare.numOfParticipants,
@@ -244,7 +255,7 @@ class DatabaseService{
                       "createdDate": sushare.createdDate,
                       "iD": sushare.suShareId,
                       "favId": docRef.documentID,
-                      "usersApartOfSuShare": sushare.usersInTheSuShare])
+                      "usersInTheSuShare": sushare.usersInTheSuShare])
         { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -359,6 +370,19 @@ class DatabaseService{
                 completion(.failure(error))
             } else {
                 if let snapshotUser = snapshot?.data()  {
+                    let user = User(snapshotUser)
+                    completion(.success(user))
+                }
+            }
+        }
+    }
+    
+    public func getUserForSuShare(suShare: SuShare, completion: @escaping (Result<User, Error>) -> ())  {
+        db.collection(DatabaseService.userCollection).document(suShare.userId).getDocument { (snapShot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                if let snapshotUser = snapShot?.data()  {
                     let user = User(snapshotUser)
                     completion(.success(user))
                 }

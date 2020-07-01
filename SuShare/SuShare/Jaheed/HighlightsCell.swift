@@ -28,7 +28,7 @@ class HighlightsCell: UICollectionViewCell {
     public func configureCell(for suShare: SuShare) {
         titleLabel.text = suShare.susuTitle
         descriptionLabel.text = suShare.suShareDescription
-        let url = URL(string: suShare.susuImage)
+        let url = URL(string: suShare.imageURL)
         susuImageView.kf.setImage(with: url)
     }
     

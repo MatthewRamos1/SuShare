@@ -53,7 +53,7 @@ struct SuShare{
   
     let securityState: String
     let susuTitle: String
-    let susuImage: String
+    let imageURL: String
     let suShareDescription: String
     let potAmount: Double
     let numOfParticipants: Int
@@ -74,7 +74,7 @@ extension SuShare {
     init(_ dictionary: [String: Any]) {
         self.securityState = dictionary["securityState"] as? String ?? "No securityState"
         self.susuTitle = dictionary["susuTitle"] as? String ?? "No Title"
-        self.susuImage = dictionary["imageURL"] as? String ?? " no image url"
+        self.imageURL = dictionary["imageURL"] as? String ?? " no image url"
         self.suShareDescription = dictionary["suShareDescription"] as? String ?? "No Description"
         self.potAmount = dictionary["potAmount"] as? Double ?? 0.0
         self.numOfParticipants = dictionary["numOfParticipants"] as? Int ?? 0
@@ -84,7 +84,7 @@ extension SuShare {
         self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
             //dictionary["createdDate"] as? String ?? ""
         self.suShareId = dictionary["iD"] as? String ?? ""
-        self.usersInTheSuShare = dictionary["users"] as? [String] ?? [""]
+        self.usersInTheSuShare = dictionary["usersInTheSuShare"] as? [String] ?? [""]
         self.favId = dictionary["favId"] as? String ?? ""
         self.isTheSuShareFlagged = dictionary["isTheSuShareFlagged"] as? Bool ?? false
     }

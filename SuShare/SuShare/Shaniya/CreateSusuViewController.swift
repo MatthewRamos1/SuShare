@@ -131,7 +131,12 @@ class CreateSusuViewController: UIViewController {
     private func configureController(){
        // dropDownButton.titleLabel?.text = "ljol"
         //titleLabel?.text = "select a category"
+// configures the privacy state
+        isItPrivate = Security.publicState
 
+        // configures the amountof users
+        amountOfParticipants = 4
+        
         navigationController?.title = "Create a SuShare"
         dropDownButton.setTitle("select a category", for: .normal)
             //.titleLabel?.text = "select a category"
@@ -278,7 +283,6 @@ class CreateSusuViewController: UIViewController {
             PrivacySettingsLabel.text = "Privacy Setting: OFF"
         }
         
-        isItPrivate = Security.publicState
     }
     
     
@@ -315,13 +319,13 @@ class CreateSusuViewController: UIViewController {
         // TOGGLE the buttons for on and off
         
         switch sender.restorationIdentifier {
-        case "weekly":
+        case "Weekly":
             sender.backgroundColor = .systemGray
             schedule = sender.restorationIdentifier
-        case "bi-weekly":
+        case "Bi-Weekly":
             sender.backgroundColor = .systemGray
             schedule = sender.restorationIdentifier
-        case "monthly":
+        case "Monthly":
             sender.backgroundColor = .systemGray
             schedule = sender.restorationIdentifier
         default :
@@ -416,7 +420,7 @@ class CreateSusuViewController: UIViewController {
         // TODO: We are currently passing a UIImage, but in the databse function it is not passing the image.. is that okay.
         let selectedIntValue = selectedCategories.map { $0.rawValue }
         
-        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, susuImage: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: ["\(user.uid)"], isTheSuShareFlagged: false, favId: ""), completion:
+        db.createASusu(sushare: SuShare(securityState: securitySetting.rawValue, susuTitle: susuTitle, imageURL: "should be accessed from storage", suShareDescription: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, userId: "nil", category: selectedIntValue , createdDate: Timestamp(date: Date()), suShareId: "nil", usersInTheSuShare: ["\(user.uid)"], isTheSuShareFlagged: false, favId: ""), completion:
             //susuTitle: susuTitle, description: susuDes, potAmount: num, numOfParticipants: participants, paymentSchedule: paymentSchedule, category: selectedCategories
             //, displayName: displayName
          { (result) in
@@ -455,7 +459,6 @@ class CreateSusuViewController: UIViewController {
                 // everything went okay
                 DispatchQueue.main.async {
                     self?.navigationController?.popViewController(animated: true)
-                    
                     //TODO: need to add  the closing circle animation
                 }
                 print("all went well with the update")
