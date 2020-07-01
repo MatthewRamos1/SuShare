@@ -17,7 +17,7 @@ class SuShareCell: UITableViewCell {
     
     
     func configureCell(suShare: SuShare) {
-        let url = URL(string: suShare.susuImage)
+        let url = URL(string: suShare.imageURL)
         suShareImage.kf.setImage(with: url)
         suShareTitleLabel.text = suShare.susuTitle
         suShareDescriptionLabel.text = suShare.suShareDescription
