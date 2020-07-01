@@ -82,7 +82,12 @@ extension PaymentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            return tableView.dequeueReusableCell(withIdentifier: "suShareCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "suShareCell", for: indexPath) as? SuShareCell else {
+                return UITableViewCell()
+            }
+            cell.configureCell(suShare: suShare!)
+            return cell
+            
         case 1:
             return tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath)
         case 2:
