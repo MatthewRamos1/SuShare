@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import FirebaseFunctions
+import Kingfisher
 
 class PaymentViewController: UIViewController {
     
@@ -18,14 +19,14 @@ class PaymentViewController: UIViewController {
     
     private var paymentContext = STPPaymentContext()
     public var suShare: SuShare?
-
+    
     private var cardPaymentView = CardPaymentView()
     private var cardVC = STPAddCardViewController()
     private var clientSecret = ""
-
-
- //   private var cardPaymentView = CardPaymentView()
-
+    
+    
+    //   private var cardPaymentView = CardPaymentView()
+    
     
     
     override func viewDidLoad() {
@@ -45,16 +46,16 @@ class PaymentViewController: UIViewController {
         paymentContext.delegate = self
         paymentContext.hostViewController = self
         tabBarController?.tabBar.isHidden = true
-
+        
         
         
         let infoForFooter = CardPaymentView(text: """
 This card will be saved under settings as your default payment method
     you can access your settings to change the card later
 """
-)
-       // paymentContext.paymentOptionsViewControllerFooterView = infoForFooter
-      //    let addCardFooter = CardPaymentView(text: "You can add custom footer views to the add card screen.")
+        )
+        // paymentContext.paymentOptionsViewControllerFooterView = infoForFooter
+        //    let addCardFooter = CardPaymentView(text: "You can add custom footer views to the add card screen.")
         
         paymentContext.addCardViewControllerFooterView = infoForFooter
         /*
@@ -62,11 +63,11 @@ This card will be saved under settings as your default payment method
          paymentContext.paymentOptionsViewControllerFooterView = paymentSelectionFooter
          */
         
-       // paymentContext.addCardViewControllerFooterView =  cardPaymentView
-       // paymentContext.addCardViewControllerFooterView.backgroundColor = .blue
+        // paymentContext.addCardViewControllerFooterView =  cardPaymentView
+        // paymentContext.addCardViewControllerFooterView.backgroundColor = .blue
         //paymentTableView.tableFooterView?.backgroundColor = .blue
     }
-   
+    
     @IBAction func subscribeButtonPressed(_ sender: UIButton) {
         paymentContext.requestPayment()
     }
@@ -117,25 +118,25 @@ extension PaymentViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-       // let paymentInfoView = CardPaymentView(text: "now will it work???!??!")
+        // let paymentInfoView = CardPaymentView(text: "now will it work???!??!")
         let vw  = UIView()
-          vw.backgroundColor = UIColor.clear
-          let titleLabel = UILabel(frame: CGRect(x:10,y: 5 ,width:350,height:150))
-          titleLabel.numberOfLines = 0;
-          titleLabel.lineBreakMode = .byWordWrapping
+        vw.backgroundColor = UIColor.clear
+        let titleLabel = UILabel(frame: CGRect(x:10,y: 5 ,width:350,height:150))
+        titleLabel.numberOfLines = 0;
+        titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.textColor = .gray
-          titleLabel.backgroundColor = UIColor.clear
-          titleLabel.font = UIFont(name: "Montserrat-Regular", size: 10)
-          titleLabel.text  = """
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.font = UIFont(name: "Montserrat-Regular", size: 10)
+        titleLabel.text  = """
         Thank you for selecting this SuShare
-            some things to remember:
-               - The amount above is what you will be contributing to this sushare.
-               - payments are taken from your account like a subscription service
-               - Opting out of this suShare will result in delaying future enrollement in other SuShares
-               - Please be kind
+        some things to remember:
+        - The amount above is what you will be contributing to this sushare.
+        - payments are taken from your account like a subscription service
+        - Opting out of this suShare will result in delaying future enrollement in other SuShares
+        - Please be kind
         """
-          vw.addSubview(titleLabel)
-          return vw
+        vw.addSubview(titleLabel)
+        return vw
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -147,16 +148,16 @@ extension PaymentViewController: UITableViewDelegate {
 extension PaymentViewController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
         
-    let data: [String: Any] = ["amount": paymentContext.paymentAmount]
-       Functions.functions().httpsCallable("createChargeFunction").call(data)  {
-       (result, error) in
-           if let error = error {
-            print(error.localizedDescription)
-           } else if let result = result {
-            self.clientSecret = result.data as! String
-            print(self.clientSecret)
-           }
-       }
+        let data: [String: Any] = ["amount": paymentContext.paymentAmount]
+        Functions.functions().httpsCallable("createChargeFunction").call(data)  {
+            (result, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let result = result {
+                self.clientSecret = result.data as! String
+                print(self.clientSecret)
+            }
+        }
     }
     
     
@@ -177,29 +178,29 @@ extension PaymentViewController: STPPaymentContextDelegate {
         self.present(alertController, animated: true, completion: nil)
         return
     }
-
+    
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-       
+        
         
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
         paymentIntentParams.paymentMethodId = paymentResult.paymentMethod?.stripeId
-
-            // Confirm the PaymentIntent
-            STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: paymentContext) { status, paymentIntent, error in
-                switch status {
-                case .succeeded:
-                    // Your backend asynchronously fulfills the customer's order, e.g. via webhook
-                    completion(.success, nil)
-                case .failed:
-                    completion(.error, error) // Report error
-                case .canceled:
-                    completion(.userCancellation, nil) // Customer cancelled
-                @unknown default:
-                    completion(.error, nil)
-                }
+        
+        // Confirm the PaymentIntent
+        STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: paymentContext) { status, paymentIntent, error in
+            switch status {
+            case .succeeded:
+                // Your backend asynchronously fulfills the customer's order, e.g. via webhook
+                completion(.success, nil)
+            case .failed:
+                completion(.error, error) // Report error
+            case .canceled:
+                completion(.userCancellation, nil) // Customer cancelled
+            @unknown default:
+                completion(.error, nil)
             }
         }
+    }
     
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
@@ -210,8 +211,8 @@ extension PaymentViewController: STPPaymentContextDelegate {
             showAlert(title: "Success!", message: "Your first payment has been processed.")
         default:
             return
+        }
     }
-}
 }
 
 //extension PaymentViewController: STPAddCardViewControllerDelegate {

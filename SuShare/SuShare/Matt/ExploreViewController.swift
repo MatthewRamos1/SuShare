@@ -77,6 +77,13 @@ class ExploreViewController: UIViewController {
         setSuShareListener()
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         updateButtonShadow()
+        
+//        do {
+//            try Auth.auth().signOut()
+//            UIViewController.showViewController(storyBoardName: "LoginView", viewControllerId: "LoginViewController")
+//        } catch {
+//            print("error")
+//        }
     }
     
     //---------------------------------------------------------------------------------
