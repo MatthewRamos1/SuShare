@@ -32,4 +32,5 @@ class HighlightsCell: UICollectionViewCell {
         susuImageView.kf.setImage(with: url)
     }
     
+    
 }

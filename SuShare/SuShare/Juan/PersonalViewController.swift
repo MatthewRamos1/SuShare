@@ -402,7 +402,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
 extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = UIScreen.main.bounds.size.height / 4
+        let height = UIScreen.main.bounds.size.height / 3.55
         let width =
             UIScreen.main.bounds.size.width * 0.84
         return CGSize(width: width, height: height * 2)
