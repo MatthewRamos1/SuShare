@@ -17,16 +17,17 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var paymentTableView: UITableView!
     
-    private var paymentContext = STPPaymentContext()
-    public var suShare: SuShare?
-    
-    private var cardPaymentView = CardPaymentView()
-    private var cardVC = STPAddCardViewController()
-    private var clientSecret = ""
-    
-    
-    //   private var cardPaymentView = CardPaymentView()
-    
+
+     private var paymentContext = STPPaymentContext()
+     public var suShare: SuShare?
+
+     private var cardPaymentView = CardPaymentView()
+     private var cardVC = STPAddCardViewController()
+     private var clientSecret = ""
+
+ //   private var cardPaymentView = CardPaymentView()
+
+
     
     
     override func viewDidLoad() {
@@ -85,7 +86,10 @@ extension PaymentViewController: UITableViewDataSource {
         case 1:
             return tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath)
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "subscribeCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "subscribeCell", for: indexPath) as? SubscribeCell else {
+                return UITableViewCell()
+            }
+            cell.configureCell(suShare: suShare!)
             cell.isUserInteractionEnabled = false
             return cell
             
