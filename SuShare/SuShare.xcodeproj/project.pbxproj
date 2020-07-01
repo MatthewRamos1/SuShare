@@ -17,6 +17,7 @@
 		0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E12475B1EE00DF437B /* Assets.xcassets */; };
 		0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */; };
 		0C57A7F02475B1EE00DF437B /* SuShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C57A7EF2475B1EE00DF437B /* SuShareTests.swift */; };
+		0C62E46924AC0CCC00FE7728 /* SubscribeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C62E46824AC0CCB00FE7728 /* SubscribeCell.swift */; };
 		0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C8CA5C5248C5BD60069109A /* DataProjection.storyboard */; };
 		0C8CA5C8248C5CEE0069109A /* DataProjectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */; };
 		0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CB1DA8C247A233700713BF5 /* Highlights.storyboard */; };
@@ -113,6 +114,7 @@
 		0C57A7EB2475B1EE00DF437B /* SuShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C57A7EF2475B1EE00DF437B /* SuShareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuShareTests.swift; sourceTree = "<group>"; };
 		0C57A7F12475B1EE00DF437B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C62E46824AC0CCB00FE7728 /* SubscribeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeCell.swift; sourceTree = "<group>"; };
 		0C8CA5C5248C5BD60069109A /* DataProjection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DataProjection.storyboard; sourceTree = "<group>"; };
 		0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProjectionViewController.swift; sourceTree = "<group>"; };
 		0CB1DA8C247A233700713BF5 /* Highlights.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Highlights.storyboard; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				0C8CA5C7248C5CEE0069109A /* DataProjectionViewController.swift */,
 				0C12C62E249894E400128D06 /* PaymentViewController.swift */,
 				0C12C634249B0C6700128D06 /* PaymentSegment.storyboard */,
+				0C62E46824AC0CCB00FE7728 /* SubscribeCell.swift */,
 				0C576F6B249DC79F001DD47F /* MyAPIClient.swift */,
 			);
 			path = Matt;
@@ -687,6 +690,7 @@
 				0CB1DAC2247C1BF000713BF5 /* UIViewController + Alerts.swift in Sources */,
 				0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */,
 				0C576F6C249DC79F001DD47F /* MyAPIClient.swift in Sources */,
+				0C62E46924AC0CCC00FE7728 /* SubscribeCell.swift in Sources */,
 				0C8CA5C8248C5CEE0069109A /* DataProjectionViewController.swift in Sources */,
 				3E23EC1624892F70007C3013 /* AddFriendViewController.swift in Sources */,
 				30C5F11A24A7E1F6000411E2 /* NewUserViewController.swift in Sources */,
