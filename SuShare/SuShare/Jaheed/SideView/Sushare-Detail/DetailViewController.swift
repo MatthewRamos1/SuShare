@@ -166,7 +166,8 @@ class DetailViewController: UIViewController {
 //        }
     
     private func loadUI(){
-        guard let imageURL = sushare?.susuImage,
+
+        guard let imageURL = sushare?.imageURL,
             let userImage = user?.profilePhoto,
             let potAmount = sushare?.potAmount
             else{
