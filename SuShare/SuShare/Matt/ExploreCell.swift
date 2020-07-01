@@ -19,7 +19,7 @@ class ExploreCell: UICollectionViewCell {
     public func configureCell(suShare: SuShare) {
         titleLabel.text = suShare.susuTitle
         let suShareCategory = suShare.suShareDescription
-        descriptionLabel.text = suShareCategory
+       // descriptionLabel.text = suShareCategory
         let url = URL(string: suShare.susuImage)
         susuImageView.kf.setImage(with: url)
         fundingProgressView.progress = Float(suShare.usersInTheSuShare.count / suShare.numOfParticipants) + 0.01
