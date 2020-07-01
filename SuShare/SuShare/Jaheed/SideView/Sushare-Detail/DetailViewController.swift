@@ -166,8 +166,10 @@ class DetailViewController: UIViewController {
 //        }
     
     private func loadUI(){
+
         guard let imageURL = sushare?.imageURL,
-            let userImage = user?.profilePhoto
+            let userImage = user?.profilePhoto,
+            let potAmount = sushare?.potAmount
             else{
                 imageView.image = UIImage(systemName: "sun")
                 return
@@ -177,7 +179,8 @@ class DetailViewController: UIViewController {
         userProfileImage.kf.setImage(with: URL(string: userImage))
         usernameLabel.text = user?.username
         descriptionLabel.text = sushare?.suShareDescription
-        potLabel.text = "Pot: \(sushare?.potAmount ?? 0.0)"
+        let convertedPot = String(format: "%.2f", potAmount)
+        potLabel.text = "Pot: $\(convertedPot)"
         paymentLabel.text = "Payment Schedule: \(sushare?.paymentSchedule ?? "")"
         //durationLabel.text = "Duration Number here"
         progressView.progress = Float((sushare?.usersInTheSuShare.count)! / sushare!.numOfParticipants) + 0.01

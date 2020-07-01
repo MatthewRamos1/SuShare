@@ -301,7 +301,7 @@ extension ExploreViewController: UICollectionViewDataSource {
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = collectionView.bounds.height / 3
+        let height = collectionView.bounds.height / 2.80
         let width =
             UIScreen.main.bounds.size.width - 100
         return CGSize(width: width, height: height * 2)
