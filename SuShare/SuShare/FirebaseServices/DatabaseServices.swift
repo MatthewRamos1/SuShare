@@ -49,7 +49,7 @@ class DatabaseService{
         db.collection(DatabaseService.suShareCollection).document(docRef.documentID).setData([
             "securityState": sushare.securityState,
             "susuTitle": sushare.susuTitle,
-            "susuImage": sushare.susuImage,
+            "susuImage": sushare.imageURL,
             "suShareDescription": sushare.suShareDescription,
             "potAmount": sushare.potAmount,
             "numOfParticipants": sushare.numOfParticipants,
@@ -245,7 +245,7 @@ class DatabaseService{
         guard let user = Auth.auth().currentUser else {return}
         db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
                       "susuTitle": sushare.susuTitle,
-                      "imageURL": sushare.susuImage,
+                      "imageURL": sushare.imageURL,
                       "description": sushare.suShareDescription,
                       "potAmount": sushare.potAmount,
                       "numOfParticipants": sushare.numOfParticipants,

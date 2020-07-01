@@ -166,7 +166,7 @@ class DetailViewController: UIViewController {
 //        }
     
     private func loadUI(){
-        guard let imageURL = sushare?.susuImage,
+        guard let imageURL = sushare?.imageURL,
             let userImage = user?.profilePhoto
             else{
                 imageView.image = UIImage(systemName: "sun")
