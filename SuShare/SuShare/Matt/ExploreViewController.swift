@@ -167,6 +167,9 @@ class ExploreViewController: UIViewController {
                     let allShares = snapshot.documents.map {SuShare($0.data())}
                     let sortedAllShares = allShares.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
                     self.originalSusus = sortedAllShares
+                    if self.currentTags.isEmpty && self.currentQuery.isEmpty {
+                        self.currentSusus = sortedAllShares
+                    }
                 }
             }
         })

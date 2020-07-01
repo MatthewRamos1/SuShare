@@ -43,7 +43,9 @@ class PaymentViewController: UIViewController {
         let client = MyAPIClient.sharedClient
         let customerContext = STPCustomerContext(keyProvider: client)
         paymentContext = STPPaymentContext(customerContext: customerContext)
-        paymentContext.paymentAmount = 50
+        let paymentAmount = (suShare!.potAmount / Double(suShare!.numOfParticipants))
+        let paymentInt = Int(paymentAmount * 100)
+        paymentContext.paymentAmount = paymentInt
         paymentContext.delegate = self
         paymentContext.hostViewController = self
         tabBarController?.tabBar.isHidden = true
@@ -156,7 +158,6 @@ extension PaymentViewController: UITableViewDelegate {
 
 extension PaymentViewController: STPPaymentContextDelegate {
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        
         let data: [String: Any] = ["amount": paymentContext.paymentAmount]
         Functions.functions().httpsCallable("createChargeFunction").call(data)  {
             (result, error) in
