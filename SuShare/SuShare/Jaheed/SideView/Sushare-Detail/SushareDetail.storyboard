@@ -378,37 +378,37 @@
                                                 <rect key="frame" x="30" y="724" width="354" height="2"/>
                                             </progressView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqS-HW-IQ1">
-                                                <rect key="frame" x="30.5" y="758.5" width="42" height="14.5"/>
+                                                <rect key="frame" x="18" y="758.5" width="42" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="numB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od7-eB-Wu2">
-                                                <rect key="frame" x="35" y="736" width="32.5" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od7-eB-Wu2">
+                                                <rect key="frame" x="35" y="736" width="8" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="numR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l18-zo-22S">
-                                                <rect key="frame" x="210" y="736" width="32.5" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l18-zo-22S">
+                                                <rect key="frame" x="170.5" y="736" width="15.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days Remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pc-EJ-oHs">
-                                                <rect key="frame" x="181.5" y="758.5" width="90" height="14.5"/>
+                                                <rect key="frame" x="133.5" y="758.5" width="90" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-EW-ZXK">
-                                                <rect key="frame" x="113.5" y="758.5" width="51" height="14.5"/>
+                                                <rect key="frame" x="76" y="758.5" width="51" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="numC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg0-KK-y6L">
-                                                <rect key="frame" x="122" y="736" width="33.5" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg0-KK-y6L">
+                                                <rect key="frame" x="97.5" y="736" width="8" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -486,7 +486,7 @@
                                             <constraint firstItem="SE7-IK-Pse" firstAttribute="top" secondItem="byh-ba-XOx" secondAttribute="bottom" constant="8" id="cZa-6w-cmQ"/>
                                             <constraint firstItem="Rtz-lT-dDf" firstAttribute="leading" secondItem="ysl-oh-VdI" secondAttribute="leading" constant="30" id="hXb-EA-kcM"/>
                                             <constraint firstAttribute="trailing" secondItem="Rtz-lT-dDf" secondAttribute="trailing" constant="30" id="mtq-R9-B3y"/>
-                                            <constraint firstItem="l18-zo-22S" firstAttribute="leading" secondItem="qg0-KK-y6L" secondAttribute="trailing" constant="54.5" id="nK6-qX-vj6"/>
+                                            <constraint firstItem="l18-zo-22S" firstAttribute="leading" secondItem="qg0-KK-y6L" secondAttribute="trailing" constant="65" id="nK6-qX-vj6"/>
                                             <constraint firstItem="ajs-us-Xys" firstAttribute="leading" secondItem="ysl-oh-VdI" secondAttribute="leading" constant="30" id="pfB-rK-z1s"/>
                                             <constraint firstItem="y1q-rY-fHX" firstAttribute="leading" secondItem="ysl-oh-VdI" secondAttribute="leading" constant="30" id="qGJ-5g-Mrg"/>
                                             <constraint firstItem="y1q-rY-fHX" firstAttribute="top" secondItem="mWu-Ol-Oz5" secondAttribute="bottom" constant="20" id="r5U-IY-pzo"/>

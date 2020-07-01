@@ -69,9 +69,12 @@ class DetailViewController: UIViewController {
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
-        guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+        
+        guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController,
+            let sushare = sushare else {
             return
         }
+        paymentVC.suShare = sushare
         paymentVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(paymentVC, animated: true)
     }
