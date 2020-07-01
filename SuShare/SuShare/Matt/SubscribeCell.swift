@@ -14,8 +14,11 @@ class SubscribeCell: UITableViewCell {
     
     @IBOutlet weak var totalLabel: UILabel!
     
+    
     func configureCell(suShare: SuShare) {
-        paymentFreqLabel.text = suShare.paymentSchedule
-        totalLabel.text = "$1.00"
+        paymentFreqLabel.text = suShare.paymentSchedule + ":"
+        let paymentTotal = suShare.potAmount / Double(suShare.numOfParticipants)
+        let doubleStr = String(format: "%.2f", paymentTotal)
+        totalLabel.text = "$\(doubleStr)"
     }
 }
