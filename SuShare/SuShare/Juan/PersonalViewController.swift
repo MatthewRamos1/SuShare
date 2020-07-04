@@ -231,9 +231,6 @@ class PersonalViewController: UIViewController {
     
     @objc private func buttonTapped(_ sender: UIButton) {
         print("add friend")
-        guard let currentUser = Auth.auth().currentUser else    {
-            fatalError()
-        }
         guard let selectedUser = user else  {
             fatalError()
         }
@@ -365,6 +362,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
                             print(error.localizedDescription)
                         case .success(let user):
                             let photoURL = URL(string: user.profilePhoto)
+                            // using auth.currentuser.photo doesnt work
                             self.profileHeaderView.profilePictureImageView.kf.setImage(with: photoURL)
                             self.profileHeaderView.determineUserUI(user: user)
                             self.profileHeaderView.addFriendButton.isHidden = true

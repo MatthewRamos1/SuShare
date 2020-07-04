@@ -9,6 +9,11 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import UserNotifications
+
+protocol NotificationDelegate: AnyObject {
+    func didSomething()
+}
 
 class UpdatesViewController: UIViewController {
 
@@ -18,76 +23,92 @@ class UpdatesViewController: UIViewController {
         view = updatesView
     }
     
-    private var updates = [SuShare]() {
+    private var updates = [Update]() {
         didSet {
             updatesView.tableView.reloadData()
         }
     }
     
-    private var suShareListener: ListenerRegistration?
-    private var updateListener: ListenerRegistration?
     private var db = DatabaseService()
+    private let center = UNUserNotificationCenter.current()
+    weak var notifDelegate: NotificationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkForNotificationAuthorization()
+        //center.delegate = self
+        //createNotification()
+
         view.backgroundColor = .systemBackground
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
+        updatesView.tableView.register(UpdateCell.self, forCellReuseIdentifier: "updateCell")
         updatesView.tableView.dataSource = self
         updatesView.tableView.delegate = self
-        getUpdates()
-        configureUpdates()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        getUpdates()
-        configureUpdates()
+        db.getUserUpdates { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let dbUpdates):
+                self.updates = dbUpdates
+            }
+        }
     }
     
-    private func configureUpdates() {
-        guard let currentUser = Auth.auth().currentUser else {
-            fatalError()
-        }
-        
-        suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).whereField("userId", isEqualTo: currentUser.uid).addSnapshotListener({ (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    // changed documents array
-                    let updatedSuShares = snapshot.documents.map {SuShare($0.data())}
-                    for update in updatedSuShares {
-                        self.db.addUpdate(suShare: update) { (result) in
-                            switch result {
-                            case .failure(let error):
-                                print(error.localizedDescription)
-                            case .success:
-                                print()
-                            }
-                        }
-                    }
-                }
+    private func requestNotificationsPermissions()  {
+        center.requestAuthorization(options: [.badge, .sound]) { (granted, error) in
+            if let error = error    {
+                print("error requesting authorization: \(error)")
+                return
             }
-        })
+            if granted  {
+                print("access was granted")
+            }
+            else    {
+                print("access denied")
+            }
+        }
     }
     
-    private func getUpdates()   {
-        guard let currentUser = Auth.auth().currentUser else {
-            fatalError()
-        }
-        
-        updateListener = Firestore.firestore().collection(DatabaseService.updatesCollection).whereField("userId", isEqualTo: currentUser.uid).addSnapshotListener({ (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    self.updates = snapshot.documents.map {SuShare($0.data())}
-                }
+    private func checkForNotificationAuthorization()    {
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized  {
+                print("app is authorized for notifications")
             }
-        })
+            else    {
+                self.requestNotificationsPermissions()
+            }
+        }
     }
+    
+    private func createNotification()   {
+        let content = UNMutableNotificationContent()
+        content.sound = .default
+        content.badge = 1
+        
+        UIApplication.shared.applicationIconBadgeNumber = 1
+        
+        let identifier = UUID().uuidString
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(), repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error    {
+                print("error adding request \(error)")
+            }
+            else    {
+                print("request added")
+            }
+        }
+
+    }
+    
 }
 
 extension UpdatesViewController: UITableViewDataSource  {
@@ -96,11 +117,11 @@ extension UpdatesViewController: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "updateCell", for: indexPath)
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "updatesCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "updateCell", for: indexPath) as? UpdateCell else {
+            fatalError()
+        }
         let update = updates[indexPath.row]
-        cell.textLabel?.text = update.userId.description
-        cell.detailTextLabel?.text = update.susuTitle.description
+        cell.configureCell(update: update)
         return cell
     }
 }
@@ -110,5 +131,12 @@ extension UpdatesViewController: UITableViewDelegate    {
         let maxHeaight = UIScreen.main.bounds.size.height
         let sizePerCell = maxHeaight/7
         return sizePerCell
+    }
+}
+
+// Notification Delegate w/ func
+extension UpdatesViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.badge)
     }
 }
