@@ -36,8 +36,8 @@ class UpdatesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForNotificationAuthorization()
-        //center.delegate = self
-        //createNotification()
+        center.delegate = self
+        createNotification()
 
         view.backgroundColor = .systemBackground
         navigationItem.title = "SuShare"
@@ -90,12 +90,10 @@ class UpdatesViewController: UIViewController {
         let content = UNMutableNotificationContent()
         content.sound = .default
         content.badge = 1
-        
-        UIApplication.shared.applicationIconBadgeNumber = 1
-        
+                
         let identifier = UUID().uuidString
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(), repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 2, repeats: false)
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { (error) in
@@ -106,6 +104,9 @@ class UpdatesViewController: UIViewController {
                 print("request added")
             }
         }
+        
+        UIApplication.shared.registerForRemoteNotifications()
+        UIApplication.shared.applicationIconBadgeNumber = 1
 
     }
     
