@@ -97,14 +97,22 @@ class DetailViewController: UIViewController {
                 print(error.localizedDescription)
             case .success:
                 print("user joined")
-                self.databaseService.addUpdate(user: self.user!, suShare: sushare) { (result) in
-                    switch result   {
+                self.databaseService.getCurrentUser { (result) in
+                    switch result {
                     case .failure(let error):
                         print(error.localizedDescription)
-                    case .success:
-                        print("added update")
+                    case .success(let dbUser):
+                        self.databaseService.addUpdate(user: dbUser, suShare: sushare) { (result) in
+                            switch result   {
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            case .success:
+                                print("added update")
+                            }
+                        }
                     }
                 }
+                
             }
         }
         
