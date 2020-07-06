@@ -87,7 +87,6 @@
 		3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */; };
 		3E396B9924AE102800BC8412 /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E396B9824AE102800BC8412 /* UpdateCell.swift */; };
 		3E396B9B24AFB6E800BC8412 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E396B9A24AFB6E800BC8412 /* Update.swift */; };
-		3E6393A824B0F6A400E42CC3 /* PendingNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6393A724B0F6A400E42CC3 /* PendingNotification.swift */; };
 		3EFCC96D24AC44E3008EBB0E /* AddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFCC96C24AC44E3008EBB0E /* AddFriendCell.swift */; };
 		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
@@ -188,7 +187,6 @@
 		3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		3E396B9824AE102800BC8412 /* UpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
 		3E396B9A24AFB6E800BC8412 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
-		3E6393A724B0F6A400E42CC3 /* PendingNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingNotification.swift; sourceTree = "<group>"; };
 		3EFCC96C24AC44E3008EBB0E /* AddFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCell.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 				3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */,
 				3E23EC1D248ADCAF007C3013 /* EmptyView.swift */,
 				0CB1DAA8247A259E00713BF5 /* PersonalCell.xib */,
-				3E6393A724B0F6A400E42CC3 /* PendingNotification.swift */,
 			);
 			path = Juan;
 			sourceTree = "<group>";
@@ -701,7 +698,6 @@
 				30F7700524A5C8AC00E1C246 /* FriendsSideViewCell.swift in Sources */,
 				0CB1DABB247C1B0200713BF5 /* User.swift in Sources */,
 				0CB1DAB1247C1A5300713BF5 /* HighlightsCell.swift in Sources */,
-				3E6393A824B0F6A400E42CC3 /* PendingNotification.swift in Sources */,
 				0CB1DABD247C1B1000713BF5 /* DatabaseServices.swift in Sources */,
 				30F7700124A5710C00E1C246 /* UserCell.swift in Sources */,
 				0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */,

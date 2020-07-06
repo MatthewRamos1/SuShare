@@ -25,9 +25,10 @@ class DatabaseService{
     //photos of users joining
     public func addUpdate(user: User, suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
         
-        
+        let docRef = db.collection(DatabaseService.updatesCollection).document()
+
         // this is grabbing user who created not joined
-        db.collection(DatabaseService.updatesCollection).addDocument(data: ["userId": suShare.userId, "susuTitle": suShare.susuTitle, "createdAt": Timestamp(), "userJoined": user.username, "userJoinedPhoto": user.profilePhoto]) { (error) in
+        db.collection(DatabaseService.updatesCollection).document(docRef.documentID).setData(["userId": suShare.userId, "susuTitle": suShare.susuTitle, "createdAt": Timestamp(), "userJoined": user.username, "userJoinedPhoto": user.profilePhoto, "updateId": docRef.documentID]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -199,8 +200,6 @@ class DatabaseService{
         }
     }
     
-   
-    
     // add refresher, or refactor to use listener
     func getCreatedSuSharesForCurrentUser(completion: @escaping (Result<[SuShare], Error>) -> ())  {
         guard let user = Auth.auth().currentUser else {
@@ -309,6 +308,16 @@ class DatabaseService{
                         completion(.success(true))
                     }
                 }
+            }
+        }
+    }
+    
+    public func removeUpdate(update: Update, completion: @escaping (Result <Bool, Error>) -> ()) {
+        db.collection(DatabaseService.updatesCollection).document(update.updateId).delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
             }
         }
     }

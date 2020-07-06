@@ -15,6 +15,7 @@ struct Update   {
     let userJoined: String
     let susuTitle: String
     let userJoinedPhoto: String
+    let updateId: String
 }
 
 extension Update {
@@ -24,5 +25,6 @@ extension Update {
         self.userJoined = dictionary["userJoined"] as? String ?? "No user joined"
         self.susuTitle = dictionary["susuTitle"] as? String ?? "No title"
         self.userJoinedPhoto = dictionary["userJoinedPhoto"] as? String ?? "no photo"
+        self.updateId = dictionary["updateId"] as? String ?? "no id"
     }
 }

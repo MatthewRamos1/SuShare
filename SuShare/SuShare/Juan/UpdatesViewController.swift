@@ -9,11 +9,6 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import UserNotifications
-
-protocol NotificationDelegate: AnyObject {
-    func didSomething()
-}
 
 class UpdatesViewController: UIViewController {
 
@@ -25,21 +20,17 @@ class UpdatesViewController: UIViewController {
     
     private var updates = [Update]() {
         didSet {
-            updatesView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.updatesView.tableView.reloadData()
+            }
         }
     }
     
     private var db = DatabaseService()
-    private let center = UNUserNotificationCenter.current()
     private var refreshControl: UIRefreshControl!
-    weak var notifDelegate: NotificationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkForNotificationAuthorization()
-        center.delegate = self
-        createNotification()
-
         view.backgroundColor = .systemBackground
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
@@ -47,6 +38,7 @@ class UpdatesViewController: UIViewController {
         updatesView.tableView.register(UpdateCell.self, forCellReuseIdentifier: "updateCell")
         updatesView.tableView.dataSource = self
         updatesView.tableView.delegate = self
+        configureRefreshControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,54 +53,40 @@ class UpdatesViewController: UIViewController {
         }
     }
     
-    private func requestNotificationsPermissions()  {
-        center.requestAuthorization(options: [.badge, .sound]) { (granted, error) in
-            if let error = error    {
-                print("error requesting authorization: \(error)")
-                return
-            }
-            if granted  {
-                print("access was granted")
-            }
-            else    {
-                print("access denied")
-            }
-        }
+    private func configureRefreshControl()  {
+        refreshControl = UIRefreshControl()
+        updatesView.tableView.refreshControl = refreshControl
+        updatesView.tableView.alwaysBounceVertical = true
+        updatesView.tableView.refreshControl?.tintColor = .systemGreen
+        refreshControl.addTarget(self, action: #selector(refreshUpdates), for: .valueChanged)
     }
     
-    private func checkForNotificationAuthorization()    {
-        center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus == .authorized  {
-                print("app is authorized for notifications")
-            }
-            else    {
-                self.requestNotificationsPermissions()
+    @objc func refreshUpdates()    {
+        updatesView.tableView.refreshControl?.beginRefreshing()
+        print("refreshing")
+        db.getUserUpdates { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let dbUpdates):
+                self.updates = dbUpdates
             }
         }
+        updatesView.tableView.refreshControl?.endRefreshing()
     }
     
-    private func createNotification()   {
-        let content = UNMutableNotificationContent()
-        content.sound = .default
-        content.badge = 1
-                
-        let identifier = UUID().uuidString
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Date().timeIntervalSinceNow + 2, repeats: false)
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error    {
-                print("error adding request \(error)")
-            }
-            else    {
-                print("request added")
+    private func removeUpdate(update: Update, atIndexPath indexPath: IndexPath)   {
+        db.removeUpdate(update: update) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                DispatchQueue.main.async {
+                    self.updates.remove(at: indexPath.row)
+                    self.updatesView.tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
             }
         }
-        
-        UIApplication.shared.registerForRemoteNotifications()
-        UIApplication.shared.applicationIconBadgeNumber = 1
-
     }
     
 }
@@ -126,6 +104,13 @@ extension UpdatesViewController: UITableViewDataSource  {
         cell.configureCell(update: update)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let update = updates[indexPath.row]
+        if editingStyle == .delete  {
+            removeUpdate(update: update, atIndexPath: indexPath)
+        }
+    }
 }
 
 extension UpdatesViewController: UITableViewDelegate    {
@@ -134,11 +119,9 @@ extension UpdatesViewController: UITableViewDelegate    {
         let sizePerCell = maxHeaight/7
         return sizePerCell
     }
-}
-
-// Notification Delegate w/ func
-extension UpdatesViewController: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler(.badge)
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
 }
+
