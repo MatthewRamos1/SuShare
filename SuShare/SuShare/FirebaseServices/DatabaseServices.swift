@@ -25,11 +25,9 @@ class DatabaseService{
     //photos of users joining
     public func addUpdate(user: User, suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
         
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
+        
         // this is grabbing user who created not joined
-        db.collection(DatabaseService.updatesCollection).addDocument(data: ["userId": suShare.userId, "susuTitle": suShare.susuTitle, "createdAt": Timestamp(), "userJoined": currentUser.uid, "userJoinedPhoto": user.profilePhoto]) { (error) in
+        db.collection(DatabaseService.updatesCollection).addDocument(data: ["userId": suShare.userId, "susuTitle": suShare.susuTitle, "createdAt": Timestamp(), "userJoined": user.username, "userJoinedPhoto": user.profilePhoto]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

@@ -31,6 +31,7 @@ class UpdatesViewController: UIViewController {
     
     private var db = DatabaseService()
     private let center = UNUserNotificationCenter.current()
+    private var refreshControl: UIRefreshControl!
     weak var notifDelegate: NotificationDelegate?
     
     override func viewDidLoad() {

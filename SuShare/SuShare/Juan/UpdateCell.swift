@@ -37,7 +37,7 @@
     // had to get photo of user joined ,auth.auth might not work user.photoURL
     public func configureCell(update: Update)    {
         updateLabel.text = update.userJoined
-        detailLabel.text = update.susuTitle
+        detailLabel.text = "Has joined your \"\(update.susuTitle)\" SuShare"
         profilePhotoImageView.contentMode = .scaleAspectFit
         guard let url = URL(string: update.userJoinedPhoto) else {
              profilePhotoImageView.image = UIImage(systemName: "person")
