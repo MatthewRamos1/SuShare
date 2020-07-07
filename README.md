@@ -1,7 +1,7 @@
 # SuShare
 
 ![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/AppIcon.appiconset/Icon1-76@2x.png)
-
+![2](/SuShare/SuShare/SupportingFiles/Assets.xcassets/ssLogoNew.imageset/ssLogoNew.png)
 The Ultimate App™
 
 ## Contributers
