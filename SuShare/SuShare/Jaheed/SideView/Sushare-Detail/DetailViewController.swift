@@ -67,13 +67,58 @@ class DetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+    // current user is added to sushare field partOfSuShare
+    // this is added as an update
+    // update appears in updatesVC
+    
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
+        
+        // add to partof
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        
+        
         let storyboard = UIStoryboard(name: "PaymentSegment", bundle: nil)
         
         guard let paymentVC = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController,
-            let sushare = sushare else {
+            var sushare = sushare else {
             return
         }
+        
+        sushare.usersInTheSuShare.append(currentUser.uid)
+        
+        // userId added to array in db
+        // user here is person that created, need to grab user that joined for his photo
+        databaseService.joinUserToSuShare(suShare: sushare) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("user joined")
+                self.databaseService.getCurrentUser { (result) in
+                    switch result {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .success(let dbUser):
+                        self.databaseService.addUpdate(user: dbUser, suShare: sushare) { (result) in
+                            switch result   {
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            case .success:
+                                print("added update")
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        // add to updates
+        
+        
         paymentVC.suShare = sushare
         paymentVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(paymentVC, animated: true)

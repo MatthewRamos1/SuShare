@@ -18,15 +18,16 @@ class UpdatesViewController: UIViewController {
         view = updatesView
     }
     
-    private var updates = [SuShare]() {
+    private var updates = [Update]() {
         didSet {
-            updatesView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.updatesView.tableView.reloadData()
+            }
         }
     }
     
-    private var suShareListener: ListenerRegistration?
-    private var updateListener: ListenerRegistration?
     private var db = DatabaseService()
+    private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,60 +35,60 @@ class UpdatesViewController: UIViewController {
         navigationItem.title = "SuShare"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05098039216, green: 0.6823529412, blue: 0.631372549, alpha: 1)
+        updatesView.tableView.register(UpdateCell.self, forCellReuseIdentifier: "updateCell")
         updatesView.tableView.dataSource = self
         updatesView.tableView.delegate = self
-        getUpdates()
-        configureUpdates()
+        configureRefreshControl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        getUpdates()
-        configureUpdates()
+        db.getUserUpdates { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let dbUpdates):
+                self.updates = dbUpdates
+            }
+        }
     }
     
-    private func configureUpdates() {
-        guard let currentUser = Auth.auth().currentUser else {
-            fatalError()
-        }
-        
-        suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).whereField("userId", isEqualTo: currentUser.uid).addSnapshotListener({ (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    // changed documents array
-                    let updatedSuShares = snapshot.documents.map {SuShare($0.data())}
-                    for update in updatedSuShares {
-                        self.db.addUpdate(suShare: update) { (result) in
-                            switch result {
-                            case .failure(let error):
-                                print(error.localizedDescription)
-                            case .success:
-                                print()
-                            }
-                        }
-                    }
-                }
-            }
-        })
+    private func configureRefreshControl()  {
+        refreshControl = UIRefreshControl()
+        updatesView.tableView.refreshControl = refreshControl
+        updatesView.tableView.alwaysBounceVertical = true
+        updatesView.tableView.refreshControl?.tintColor = .systemGreen
+        refreshControl.addTarget(self, action: #selector(refreshUpdates), for: .valueChanged)
     }
     
-    private func getUpdates()   {
-        guard let currentUser = Auth.auth().currentUser else {
-            fatalError()
-        }
-        
-        updateListener = Firestore.firestore().collection(DatabaseService.updatesCollection).whereField("userId", isEqualTo: currentUser.uid).addSnapshotListener({ (snapshot, error) in
-            if let error = error {
+    @objc func refreshUpdates()    {
+        updatesView.tableView.refreshControl?.beginRefreshing()
+        print("refreshing")
+        db.getUserUpdates { (result) in
+            switch result {
+            case .failure(let error):
                 print(error.localizedDescription)
-            } else {
-                if let snapshot = snapshot {
-                    self.updates = snapshot.documents.map {SuShare($0.data())}
+            case .success(let dbUpdates):
+                self.updates = dbUpdates
+            }
+        }
+        updatesView.tableView.refreshControl?.endRefreshing()
+    }
+    
+    private func removeUpdate(update: Update, atIndexPath indexPath: IndexPath)   {
+        db.removeUpdate(update: update) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                DispatchQueue.main.async {
+                    self.updates.remove(at: indexPath.row)
+                    self.updatesView.tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
             }
-        })
+        }
     }
+    
 }
 
 extension UpdatesViewController: UITableViewDataSource  {
@@ -96,12 +97,19 @@ extension UpdatesViewController: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "updateCell", for: indexPath)
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "updatesCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "updateCell", for: indexPath) as? UpdateCell else {
+            fatalError()
+        }
         let update = updates[indexPath.row]
-        cell.textLabel?.text = update.userId.description
-        cell.detailTextLabel?.text = update.susuTitle.description
+        cell.configureCell(update: update)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let update = updates[indexPath.row]
+        if editingStyle == .delete  {
+            removeUpdate(update: update, atIndexPath: indexPath)
+        }
     }
 }
 
@@ -111,4 +119,9 @@ extension UpdatesViewController: UITableViewDelegate    {
         let sizePerCell = maxHeaight/7
         return sizePerCell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
 }
+
