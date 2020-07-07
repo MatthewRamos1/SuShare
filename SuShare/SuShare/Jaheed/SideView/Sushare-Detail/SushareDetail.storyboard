@@ -540,7 +540,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IQu-8F-N0q">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="heart" catalog="system" id="ZP9-jc-VWy">
-                            <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.66695033500000001" green="0.88646097720000006" blue="0.84917812660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="favoriteButtonPressed:" destination="uyG-uc-5nY" id="DQq-sP-jn2"/>
                             </connections>
