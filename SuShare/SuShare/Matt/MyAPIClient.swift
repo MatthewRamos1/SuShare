@@ -89,7 +89,7 @@ class MyAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
 
 
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
-            Functions.functions().httpsCallable("getStripeEphemeralKeys").call(["api_version" : apiVersion, "customer_id" : "cus_HX9HpktQ2oKuNs"]) { (response, error) in
+            Functions.functions().httpsCallable("getStripeEphemeralKeys").call(["api_version" : apiVersion, "customer_id" : "cus_HZHr6xok84h97G"]) { (response, error) in
                 if let error = error {
                     print(error)
                     completion(nil, error)
