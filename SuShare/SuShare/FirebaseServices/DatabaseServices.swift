@@ -17,10 +17,34 @@ class DatabaseService{
     static let favoriteCollection = "favorites"
     static let friendsCollection = "friends"
     static let updatesCollection = "updates"
+    static let flaggedCollection = "flagged SuShares"
     
     private let db = Firestore.firestore()
     
     static let shared = DatabaseService()
+    
+    public func flagASuShare(suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> () ) {
+         guard let user = Auth.auth().currentUser else {
+             return
+         }
+       
+         let docRef = db.collection(DatabaseService.flaggedCollection).document()
+         
+         db.collection(DatabaseService.flaggedCollection).document(docRef.documentID).setData([
+             "userWhoFlaggedIt" : user.uid,
+             // MARK: Add this later so its more detailed
+             // "reasonWhyTheyFlaggedIt": String
+             "suShareId" : suShare.suShareId,
+             "user who created the SuShare ID" : suShare.userId
+         ]) {
+            (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+     }
     
     //photos of users joining
     public func addUpdate(user: User, suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
@@ -64,6 +88,7 @@ class DatabaseService{
             }
         }
     }
+    
     
     public func createASusu(
         sushare: SuShare,
