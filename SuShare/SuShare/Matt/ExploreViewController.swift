@@ -369,7 +369,6 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
 extension ExploreViewController: extraOptionsButtonDelegate {
     func buttonWasPressed(_ cellData: ExploreCell, suShareData: SuShare) {
          let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                        
                         let reportAction = UIAlertAction(title: "Report", style: .destructive) {
                             alertAction in
                             
@@ -378,9 +377,6 @@ extension ExploreViewController: extraOptionsButtonDelegate {
                           // self.imagePickerController.sourceType = .camera
                           //  self.present(self.imagePickerController, animated: true)
                         }
-                        
-                      
-                        
                         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
                     
                        alertController.addAction(cancelAction)
@@ -388,7 +384,5 @@ extension ExploreViewController: extraOptionsButtonDelegate {
                       present(alertController, animated: true)
                     
     }
-    
-    
-    
+
 }

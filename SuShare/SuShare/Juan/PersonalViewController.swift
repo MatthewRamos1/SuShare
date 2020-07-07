@@ -342,6 +342,7 @@ extension PersonalViewController: UICollectionViewDataSource    {
         cell.layer.masksToBounds = false
         let suShare = suShares[indexPath.row]
         
+        cell.delgateForHighlights = self
         cell.configureCell(for: suShare)
         return cell
     }
@@ -441,4 +442,25 @@ extension PersonalViewController: HeaderDelegate    {
         configureSuShares2(tag: tag)
         headerTag = tag
     }
+}
+
+extension PersonalViewController: extraOptionsButtonHighlightsDelegate {
+    func buttonWasPressed(_ cellData: HighlightsCell, suShareData: SuShare) {
+       
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                           let reportAction = UIAlertAction(title: "Report", style: .destructive) {
+                               alertAction in
+                               
+                               print("here is where was change the status on the suShare")
+                               print("we should also reload the sushare list and hid the sushare once its confirmed ")
+                             // self.imagePickerController.sourceType = .camera
+                             //  self.present(self.imagePickerController, animated: true)
+                           }
+                           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                       
+                          alertController.addAction(cancelAction)
+                           alertController.addAction(reportAction)
+                         present(alertController, animated: true)
+                       
+       }
 }
