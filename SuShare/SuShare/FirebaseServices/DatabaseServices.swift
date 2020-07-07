@@ -46,8 +46,29 @@ class DatabaseService{
         }
      }
     
-    public func updateFlaggedInSuShare(suShare: SuShare, completion: @escaping (Result <Bool, Error> ) -> () ) {
-      //  let docRef = db.collection(DatabaseService.updatesCollection).document()
+    public func updateFlaggedInSuShare(suShareId: String, completion: @escaping (Result <Bool, Error> ) -> () ) {
+       // let docRef = db.collection(DatabaseService.suShareCollection).document()
+        
+        db.collection(DatabaseService.suShareCollection).document(suShareId).updateData(["isTheSuShareFlagged" : true]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+        /*
+            public func updateDatabaseUserImage(photoURL: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+             guard let user = Auth.auth().currentUser else { return }
+             db.collection(DatabaseService.userCollection)
+                 .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
+                     if let error = error {
+                         completion(.failure(error))
+                     } else {
+                         completion(.success(true))
+                     }
+             }
+         }
+         */
         
     }
     

@@ -369,6 +369,7 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
 extension ExploreViewController: extraOptionsButtonDelegate {
     func buttonWasPressed(_ cellData: ExploreCell, suShareData: SuShare) {
          let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
                         let reportAction = UIAlertAction(title: "Report", style: .destructive) {
                             alertAction in
                             
@@ -376,6 +377,15 @@ extension ExploreViewController: extraOptionsButtonDelegate {
                             print("we should also reload the sushare list and hid the sushare once its confirmed ")
                           // self.imagePickerController.sourceType = .camera
                           //  self.present(self.imagePickerController, animated: true)
+                            
+                            // MARK: database function to add it to flagged
+                                // - update sushare flag bool
+                                // - refresh the controller without the flagged item
+                            self.updateSushareFlagged(suShare: suShareData)
+                            
+                            
+                        //    self.confirmingShowAlert(title: "are you sure")
+                            
                         }
                         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
                     
@@ -385,4 +395,23 @@ extension ExploreViewController: extraOptionsButtonDelegate {
                     
     }
 
+    private func updateSushareFlagged(suShare: SuShare){
+        database.updateFlaggedInSuShare(suShareId: suShare.suShareId) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let isItDone):
+                print("is it done: \(isItDone) inside of explore controller")
+            }
+        }
+    }
+    
+ 
+    
+    func addSuShareToFlaggedList(){
+        
+    }
+    func reportAlertAction() {
+        
+    }
 }
