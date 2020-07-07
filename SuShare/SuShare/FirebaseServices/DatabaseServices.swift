@@ -46,6 +46,11 @@ class DatabaseService{
         }
      }
     
+    public func updateFlaggedInSuShare(suShare: SuShare, completion: @escaping (Result <Bool, Error> ) -> () ) {
+      //  let docRef = db.collection(DatabaseService.updatesCollection).document()
+        
+    }
+    
     //photos of users joining
     public func addUpdate(user: User, suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
         
