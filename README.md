@@ -2,7 +2,7 @@
 
 ![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/Logo-colorBlock/AppIcon.appiconset/suShareLogo-noStroke-83.5@2x.png)
 
-The Ultimate App™
+**Save together, pay together**
 
 ## Contributers
 
