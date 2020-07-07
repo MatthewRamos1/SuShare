@@ -117,8 +117,6 @@ class SettingsViewController: UIViewController {
         alertController.addAction(photoLibrary)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
-        
-        
     }
     
     @IBAction func updateImagePressed(_ sender: UIButton) {

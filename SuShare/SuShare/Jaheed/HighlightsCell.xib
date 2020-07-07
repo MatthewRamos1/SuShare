@@ -27,7 +27,10 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkd-c5-Zh7">
-                                <rect key="frame" x="20" y="270" width="380" height="24"/>
+                                <rect key="frame" x="20" y="270" width="300" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="uus-rp-0oM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,7 +46,7 @@
                                 <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </progressView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="112" translatesAutoresizingMaskIntoConstraints="NO" id="NL0-W1-ufK">
-                                <rect key="frame" x="82.5" y="389" width="255.5" height="14.5"/>
+                                <rect key="frame" x="60" y="389" width="255.5" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHM-c0-PVV">
                                         <rect key="frame" x="0.0" y="0.0" width="8" height="14.5"/>
@@ -66,7 +69,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="xoH-q8-SU9">
-                                <rect key="frame" x="52" y="418.5" width="316" height="14.5"/>
+                                <rect key="frame" x="40" y="418.5" width="316" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% Backed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfQ-b7-haM">
                                         <rect key="frame" x="0.0" y="0.0" width="55.5" height="14.5"/>
@@ -88,21 +91,37 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MV4-vJ-yCe">
+                                <rect key="frame" x="366" y="260" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="4hZ-iB-WRg"/>
+                                    <constraint firstAttribute="height" constant="44" id="iPL-Dy-tDV"/>
+                                </constraints>
+                                <color key="tintColor" red="0.20644190909999999" green="0.47089093920000002" blue="0.45098334550000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="ellipsis" catalog="system">
+                                    <color key="titleColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="extraOptionsAction:" destination="c5S-Jj-eFj" eventType="touchUpInside" id="SdR-bk-4vn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Fj0-VQ-QNt" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" constant="20" id="091-k8-8nI"/>
                             <constraint firstItem="UNC-ZY-8Mb" firstAttribute="top" secondItem="abh-bx-BRD" secondAttribute="top" id="16q-Wv-fMg"/>
                             <constraint firstItem="jkd-c5-Zh7" firstAttribute="top" secondItem="UNC-ZY-8Mb" secondAttribute="bottom" constant="20" id="1y9-zN-DUq"/>
+                            <constraint firstItem="xoH-q8-SU9" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" constant="40" id="26Z-xG-DvG"/>
                             <constraint firstAttribute="trailing" secondItem="yqS-Xh-nYd" secondAttribute="trailing" constant="20" id="9nb-m1-qgp"/>
-                            <constraint firstItem="xoH-q8-SU9" firstAttribute="centerX" secondItem="abh-bx-BRD" secondAttribute="centerX" id="A31-e7-NMa"/>
                             <constraint firstItem="NL0-W1-ufK" firstAttribute="top" secondItem="yqS-Xh-nYd" secondAttribute="bottom" constant="30" id="DLx-6n-iV1"/>
                             <constraint firstItem="jkd-c5-Zh7" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" constant="20" id="Dd4-yR-PE3"/>
                             <constraint firstItem="Fj0-VQ-QNt" firstAttribute="top" secondItem="jkd-c5-Zh7" secondAttribute="bottom" constant="25" id="Fv1-bz-0CU"/>
-                            <constraint firstAttribute="trailing" secondItem="jkd-c5-Zh7" secondAttribute="trailing" constant="20" id="HfJ-yq-OAu"/>
+                            <constraint firstItem="MV4-vJ-yCe" firstAttribute="top" secondItem="UNC-ZY-8Mb" secondAttribute="bottom" constant="10" id="KXX-pq-rny"/>
                             <constraint firstItem="xoH-q8-SU9" firstAttribute="top" secondItem="NL0-W1-ufK" secondAttribute="bottom" constant="15" id="QuG-my-6dE"/>
-                            <constraint firstItem="NL0-W1-ufK" firstAttribute="centerX" secondItem="abh-bx-BRD" secondAttribute="centerX" id="VdT-O8-RxG"/>
+                            <constraint firstAttribute="trailing" secondItem="MV4-vJ-yCe" secondAttribute="trailing" constant="10" id="T0t-gG-2Sa"/>
                             <constraint firstItem="yqS-Xh-nYd" firstAttribute="top" secondItem="Fj0-VQ-QNt" secondAttribute="bottom" constant="20" id="bgu-kw-YBg"/>
+                            <constraint firstItem="MV4-vJ-yCe" firstAttribute="centerY" secondItem="jkd-c5-Zh7" secondAttribute="centerY" id="jlX-uf-VPP"/>
+                            <constraint firstItem="NL0-W1-ufK" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" constant="60" id="k3q-wb-wRm"/>
                             <constraint firstAttribute="trailing" secondItem="UNC-ZY-8Mb" secondAttribute="trailing" id="kAo-hR-o48"/>
                             <constraint firstItem="yqS-Xh-nYd" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" constant="20" id="r3U-GF-lLk"/>
                             <constraint firstItem="UNC-ZY-8Mb" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" id="t5C-ZW-m18"/>
@@ -124,6 +143,7 @@
                 <outlet property="commitsLabel" destination="a1B-A4-Shg" id="IaF-ff-RXg"/>
                 <outlet property="daysRemainLabel" destination="Ezv-Ym-zR5" id="D1I-cT-20S"/>
                 <outlet property="descriptionLabel" destination="Fj0-VQ-QNt" id="S36-Aw-JIO"/>
+                <outlet property="extraOptionsButton" destination="MV4-vJ-yCe" id="fVT-Zz-x2w"/>
                 <outlet property="numCommitsLabel" destination="ajQ-YV-RLo" id="KOk-7d-JS7"/>
                 <outlet property="numPercentageBackedLabel" destination="FHM-c0-PVV" id="ZjU-tL-p9l"/>
                 <outlet property="numdaysRemainLabel" destination="58a-HU-p8c" id="F1e-O7-3yE"/>
@@ -136,6 +156,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="sun.haze" catalog="system" width="128" height="119"/>
     </resources>
 </document>

@@ -49,17 +49,20 @@
                                                             </constraints>
                                                         </imageView>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Km3-VW-1dg">
-                                                            <rect key="frame" x="20" y="322" width="332" height="2"/>
+                                                            <rect key="frame" x="20" y="342" width="332" height="2"/>
                                                             <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </progressView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfY-lj-hT1">
-                                                            <rect key="frame" x="10" y="278" width="352" height="24"/>
+                                                            <rect key="frame" x="10" y="278" width="300" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="300" id="4JT-HU-Id1"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="PyC-EB-8KU">
-                                                            <rect key="frame" x="87.5" y="363.5" width="197.5" height="14.5"/>
+                                                            <rect key="frame" x="80" y="383.5" width="197.5" height="14.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% Backed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RK0-dD-8Es">
                                                                     <rect key="frame" x="0.0" y="0.0" width="55.5" height="14.5"/>
@@ -82,7 +85,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="67" translatesAutoresizingMaskIntoConstraints="NO" id="9tl-Pk-Ky9">
-                                                            <rect key="frame" x="107" y="339" width="158" height="14.5"/>
+                                                            <rect key="frame" x="100" y="359" width="158" height="14.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZx-3m-rnR">
                                                                     <rect key="frame" x="0.0" y="0.0" width="8" height="14.5"/>
@@ -104,20 +107,34 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-NM-Yda">
+                                                            <rect key="frame" x="318" y="278" width="44" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="44" id="07u-gJ-ZMp"/>
+                                                                <constraint firstAttribute="height" constant="44" id="PR2-yC-WMs"/>
+                                                            </constraints>
+                                                            <color key="tintColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <state key="normal" image="ellipsis" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="reportButton:" destination="t4s-iu-Zd0" eventType="touchUpInside" id="Hh5-pR-xw5"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="hfY-lj-hT1" secondAttribute="trailing" constant="10" id="3s3-JH-qNq"/>
+                                                        <constraint firstItem="P8a-NM-Yda" firstAttribute="centerY" secondItem="hfY-lj-hT1" secondAttribute="centerY" id="9to-Eb-5Nc"/>
                                                         <constraint firstItem="hfY-lj-hT1" firstAttribute="top" secondItem="wTj-ee-dwe" secondAttribute="bottom" constant="10" id="Fjl-SK-yXV"/>
+                                                        <constraint firstItem="P8a-NM-Yda" firstAttribute="top" secondItem="wTj-ee-dwe" secondAttribute="bottom" constant="10" id="G4z-Yg-JfU"/>
                                                         <constraint firstItem="wTj-ee-dwe" firstAttribute="leading" secondItem="SBI-6q-srh" secondAttribute="leading" id="P8R-O8-yvl"/>
                                                         <constraint firstItem="hfY-lj-hT1" firstAttribute="leading" secondItem="SBI-6q-srh" secondAttribute="leading" constant="10" id="Tpt-3A-HRI"/>
+                                                        <constraint firstItem="PyC-EB-8KU" firstAttribute="leading" secondItem="SBI-6q-srh" secondAttribute="leading" constant="80" id="UqZ-Hm-IxP"/>
                                                         <constraint firstItem="9tl-Pk-Ky9" firstAttribute="top" secondItem="Km3-VW-1dg" secondAttribute="bottom" constant="15" id="VHV-rE-Q6t"/>
                                                         <constraint firstAttribute="trailing" secondItem="Km3-VW-1dg" secondAttribute="trailing" constant="20" id="YCk-3y-UMs"/>
                                                         <constraint firstAttribute="trailing" secondItem="wTj-ee-dwe" secondAttribute="trailing" id="a57-JG-qJ7"/>
                                                         <constraint firstItem="Km3-VW-1dg" firstAttribute="top" secondItem="hfY-lj-hT1" secondAttribute="bottom" constant="20" id="aLz-hH-HKx"/>
-                                                        <constraint firstItem="9tl-Pk-Ky9" firstAttribute="centerX" secondItem="SBI-6q-srh" secondAttribute="centerX" id="cgZ-3U-7PG"/>
+                                                        <constraint firstAttribute="trailing" secondItem="P8a-NM-Yda" secondAttribute="trailing" constant="10" id="fMk-QT-woS"/>
                                                         <constraint firstItem="Km3-VW-1dg" firstAttribute="leading" secondItem="SBI-6q-srh" secondAttribute="leading" constant="20" id="jgo-xL-pTh"/>
-                                                        <constraint firstItem="PyC-EB-8KU" firstAttribute="centerX" secondItem="SBI-6q-srh" secondAttribute="centerX" id="kmu-NO-c2r"/>
+                                                        <constraint firstItem="9tl-Pk-Ky9" firstAttribute="leading" secondItem="SBI-6q-srh" secondAttribute="leading" constant="100" id="kr5-n9-7JX"/>
                                                         <constraint firstItem="PyC-EB-8KU" firstAttribute="top" secondItem="9tl-Pk-Ky9" secondAttribute="bottom" constant="10" id="xYM-MZ-OiI"/>
                                                         <constraint firstItem="wTj-ee-dwe" firstAttribute="top" secondItem="SBI-6q-srh" secondAttribute="top" id="xwi-Rp-zbv"/>
                                                     </constraints>
@@ -135,6 +152,7 @@
                                         <size key="customSize" width="373" height="482"/>
                                         <connections>
                                             <outlet property="fundingProgressView" destination="Km3-VW-1dg" id="V55-PM-wQz"/>
+                                            <outlet property="reportButton" destination="P8a-NM-Yda" id="bjF-hh-hB6"/>
                                             <outlet property="susuImageView" destination="wTj-ee-dwe" id="LJA-EB-AFY"/>
                                             <outlet property="titleLabel" destination="hfY-lj-hT1" id="IEU-Sj-1M8"/>
                                         </connections>
@@ -541,6 +559,7 @@
         <image name="createSushare-wPlus-Light" width="470" height="470"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
         <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>

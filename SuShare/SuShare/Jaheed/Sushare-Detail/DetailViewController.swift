@@ -25,6 +25,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var commentsButtonLabel: UILabel!
     @IBOutlet weak var numOfCommentsLabel: UILabel!
     
+    @IBOutlet weak var extraOptionsButton: UIButton!
+    
     private var databaseService = DatabaseService()
     private var listener: ListenerRegistration?
     
@@ -70,6 +72,56 @@ class DetailViewController: UIViewController {
     // current user is added to sushare field partOfSuShare
     // this is added as an update
     // update appears in updatesVC
+    private func updateSushareFlagged(suShare: SuShare){
+          databaseService.updateFlaggedInSuShare(suShareId: suShare.suShareId) { (result) in
+              switch result {
+              case .failure(let error):
+                  print("this is inside of updateSushareFlagged function: \(error.localizedDescription)")            case .success(let isItDone):
+                      print("is it done: \(isItDone) inside of explore controller")
+                      // should show alert and refresh the controller
+                      self.addSuShareToFlaggedList(suShare: suShare)
+              }
+          }
+      }
+      
+    private func addSuShareToFlaggedList(suShare: SuShare){
+          // once done should show alert that its done
+          databaseService.flagASuShare(suShare: suShare) { (result) in
+              switch result {
+              case .failure(let error):
+                  print("this is inside of addSuShareToFlaggedList function: \(error.localizedDescription)")
+              case .success(let good):
+                  self.showAlert(title: "this SuShare has been flagged", message: "we got your report")
+                  print("this is inside of addSuShareToFlaggedList \(good)")
+              }
+          }
+      }
+    private func buttonWasPressed(suShareData: SuShare) {
+           let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+           
+           let reportAction = UIAlertAction(title: "Report", style: .destructive) {
+               alertAction in
+               
+               print("here is where was change the status on the suShare")
+               print("we should also reload the sushare list and hid the sushare once its confirmed ")
+               
+               self.updateSushareFlagged(suShare: suShareData)
+               
+           }
+           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+           
+           alertController.addAction(cancelAction)
+           alertController.addAction(reportAction)
+           present(alertController, animated: true)
+           
+       }
+    
+    @IBAction func extraOptionsButton(_ sender: Any) {
+        
+        buttonWasPressed(suShareData: sushare!)
+        
+    }
+    
     
     @IBAction func joinSushareButtonPressed(_ sender: UIButton) {
         

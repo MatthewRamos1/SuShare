@@ -16,6 +16,17 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    func confirmingShowAlert(title: String) {
+        let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let noAction = UIAlertAction(title: "no", style: .cancel, handler: nil)
+        let yesAction = UIAlertAction(title: "yes", style: .destructive, handler: nil)
+        
+        
+        alertController.addAction(noAction)
+        alertController.addAction(yesAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     private static func resetWindow(with rootViewController: UIViewController) {
       guard let scene = UIApplication.shared.connectedScenes.first,
         let sceneDelegate = scene.delegate as? SceneDelegate,
