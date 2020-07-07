@@ -165,7 +165,11 @@ class ExploreViewController: UIViewController {
             } else {
                 if let snapshot = snapshot {
                     let allShares = snapshot.documents.map {SuShare($0.data())}
-                    let sortedAllShares = allShares.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
+                    let sortByFlagged = allShares.filter { $0.isTheSuShareFlagged != true }
+                     // take out all the ones that are flagged
+                    
+                    
+                    let sortedAllShares = sortByFlagged.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
                     self.originalSusus = sortedAllShares
                     if self.currentTags.isEmpty && self.currentQuery.isEmpty {
                         self.currentSusus = sortedAllShares
@@ -402,6 +406,7 @@ extension ExploreViewController: extraOptionsButtonDelegate {
                 print(error.localizedDescription)
             case .success(let isItDone):
                 print("is it done: \(isItDone) inside of explore controller")
+                // should show alert and refresh the controller
             }
         }
     }
