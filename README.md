@@ -1,6 +1,6 @@
 # SuShare
 
-![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/AppIcon.appiconset/Icon1-76@2x.png)
+![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/Logo-colorBlock/AppIcon.appiconset/suShareLogo-noStroke-83.5@2x.png)
 
 The Ultimate App™
 
