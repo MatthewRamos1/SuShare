@@ -266,8 +266,8 @@ extension ExploreViewController: UICollectionViewDataSource {
         }
         
         let suShare = currentSusus[indexPath.row]
-        
-        cell.configureCell(suShare: suShare)
+        cell.delegate = self // will not work without it 
+         cell.configureCell(suShare: suShare)
         cell.shadowConfig()
         return cell
         
@@ -364,4 +364,31 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
         transiton.isPresenting = false
         return transiton
     }
+}
+
+extension ExploreViewController: extraOptionsButtonDelegate {
+    func buttonWasPressed(_ cellData: ExploreCell, suShareData: SuShare) {
+         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                        
+                        let reportAction = UIAlertAction(title: "Report", style: .destructive) {
+                            alertAction in
+                            
+                            print("here is where was change the status on the suShare")
+                            print("we should also reload the sushare list and hid the sushare once its confirmed ")
+                          // self.imagePickerController.sourceType = .camera
+                          //  self.present(self.imagePickerController, animated: true)
+                        }
+                        
+                      
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    
+                       alertController.addAction(cancelAction)
+                        alertController.addAction(reportAction)
+                      present(alertController, animated: true)
+                    
+    }
+    
+    
+    
 }

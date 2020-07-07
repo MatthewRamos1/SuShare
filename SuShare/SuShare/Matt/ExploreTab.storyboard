@@ -115,6 +115,9 @@
                                                             </constraints>
                                                             <color key="tintColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <state key="normal" image="ellipsis" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="reportButton:" destination="t4s-iu-Zd0" eventType="touchUpInside" id="Hh5-pR-xw5"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -149,6 +152,7 @@
                                         <size key="customSize" width="373" height="482"/>
                                         <connections>
                                             <outlet property="fundingProgressView" destination="Km3-VW-1dg" id="V55-PM-wQz"/>
+                                            <outlet property="reportButton" destination="P8a-NM-Yda" id="bjF-hh-hB6"/>
                                             <outlet property="susuImageView" destination="wTj-ee-dwe" id="LJA-EB-AFY"/>
                                             <outlet property="titleLabel" destination="hfY-lj-hT1" id="IEU-Sj-1M8"/>
                                         </connections>
