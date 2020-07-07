@@ -290,6 +290,7 @@
 				0CB1DAA6247A258700713BF5 /* HighlightsCell.xib */,
 				0CB1DAB0247C1A5300713BF5 /* HighlightsCell.swift */,
 				30C5F11824A7E1C3000411E2 /* Login */,
+				30C704B12497C4A300B12578 /* Sushare-Detail */,
 				30945CA9249150DE00AAB687 /* SideView */,
 			);
 			path = Jaheed;
@@ -395,7 +396,6 @@
 				30945CB62491553B00AAB687 /* HomeViewController.swift */,
 				30945CB82491553B00AAB687 /* MenuViewController.swift */,
 				30945CB72491553B00AAB687 /* SlideInTransition.swift */,
-				30C704B12497C4A300B12578 /* Sushare-Detail */,
 				30945CAE249152B800AAB687 /* Friends */,
 				30945CB5249154CC00AAB687 /* Settings */,
 			);
