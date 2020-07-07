@@ -1,5 +1,7 @@
 # SuShare
 
+![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/1.imageset/1.png)
+
 The Ultimate App™
 
 ## Contributers
