@@ -1,6 +1,6 @@
 # SuShare
 
-![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/1.imageset/1.png)
+![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/AppIcon.appiconset/Icon1-20.png)
 
 The Ultimate App™
 
