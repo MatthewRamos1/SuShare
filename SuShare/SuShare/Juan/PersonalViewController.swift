@@ -453,8 +453,7 @@ extension PersonalViewController: extraOptionsButtonHighlightsDelegate {
                                
                                print("here is where was change the status on the suShare")
                                print("we should also reload the sushare list and hid the sushare once its confirmed ")
-                             // self.imagePickerController.sourceType = .camera
-                             //  self.present(self.imagePickerController, animated: true)
+                       self.updateSushareFlagged(suShare: suShareData)
                            }
                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
                        
@@ -463,4 +462,29 @@ extension PersonalViewController: extraOptionsButtonHighlightsDelegate {
                          present(alertController, animated: true)
                        
        }
+    private func updateSushareFlagged(suShare: SuShare){
+           db.updateFlaggedInSuShare(suShareId: suShare.suShareId) { (result) in
+               switch result {
+               case .failure(let error):
+                   print("this is inside of updateSushareFlagged function in personal controller: \(error.localizedDescription)")            case .success(let isItDone):
+                       print("is it done: \(isItDone) inside of personal controller")
+                       // should show alert and refresh the controller
+                       self.addSuShareToFlaggedList(suShare: suShare)
+               }
+           }
+       }
+       
+     private func addSuShareToFlaggedList(suShare: SuShare){
+           // once done should show alert that its done
+           db.flagASuShare(suShare: suShare) { (result) in
+               switch result {
+               case .failure(let error):
+                   print("this is inside of addSuShareToFlaggedList function in personal controller: \(error.localizedDescription)")
+               case .success(let good):
+                   self.showAlert(title: "this SuShare has been flagged", message: "we got your report")
+                   print("this is inside of addSuShareToFlaggedList \(good) in personal controller")
+               }
+           }
+       }
+     
 }

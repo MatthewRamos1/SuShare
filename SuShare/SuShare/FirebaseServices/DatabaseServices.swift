@@ -56,19 +56,6 @@ class DatabaseService{
                 completion(.success(true))
             }
         }
-        /*
-            public func updateDatabaseUserImage(photoURL: String, completion: @escaping (Result<Bool, Error>) -> ()) {
-             guard let user = Auth.auth().currentUser else { return }
-             db.collection(DatabaseService.userCollection)
-                 .document(user.uid).updateData(["photoURL" : photoURL]) { (error) in
-                     if let error = error {
-                         completion(.failure(error))
-                     } else {
-                         completion(.success(true))
-                     }
-             }
-         }
-         */
         
     }
     

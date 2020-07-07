@@ -78,12 +78,12 @@ class ExploreViewController: UIViewController {
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         updateButtonShadow()
         
-//        do {
-//            try Auth.auth().signOut()
-//            UIViewController.showViewController(storyBoardName: "LoginView", viewControllerId: "LoginViewController")
-//        } catch {
-//            print("error")
-//        }
+        //        do {
+        //            try Auth.auth().signOut()
+        //            UIViewController.showViewController(storyBoardName: "LoginView", viewControllerId: "LoginViewController")
+        //        } catch {
+        //            print("error")
+        //        }
     }
     
     //---------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ class ExploreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         setSuShareListener()
-
+        
     }
     
     private func toggleExplore() {
@@ -166,7 +166,7 @@ class ExploreViewController: UIViewController {
                 if let snapshot = snapshot {
                     let allShares = snapshot.documents.map {SuShare($0.data())}
                     let sortByFlagged = allShares.filter { $0.isTheSuShareFlagged != true }
-                     // take out all the ones that are flagged
+                    // take out all the ones that are flagged
                     
                     
                     let sortedAllShares = sortByFlagged.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
@@ -271,7 +271,7 @@ extension ExploreViewController: UICollectionViewDataSource {
         
         let suShare = currentSusus[indexPath.row]
         cell.delegate = self // will not work without it 
-         cell.configureCell(suShare: suShare)
+        cell.configureCell(suShare: suShare)
         cell.shadowConfig()
         return cell
         
@@ -360,8 +360,6 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
             transiton.isPresenting = true
             return transiton
         }
-        
-        
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -372,49 +370,48 @@ extension ExploreViewController: UIViewControllerTransitioningDelegate {
 
 extension ExploreViewController: extraOptionsButtonDelegate {
     func buttonWasPressed(_ cellData: ExploreCell, suShareData: SuShare) {
-         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-                        let reportAction = UIAlertAction(title: "Report", style: .destructive) {
-                            alertAction in
-                            
-                            print("here is where was change the status on the suShare")
-                            print("we should also reload the sushare list and hid the sushare once its confirmed ")
-                          // self.imagePickerController.sourceType = .camera
-                          //  self.present(self.imagePickerController, animated: true)
-                            
-                            // MARK: database function to add it to flagged
-                                // - update sushare flag bool
-                                // - refresh the controller without the flagged item
-                            self.updateSushareFlagged(suShare: suShareData)
-                            
-                            
-                        //    self.confirmingShowAlert(title: "are you sure")
-                            
-                        }
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                    
-                       alertController.addAction(cancelAction)
-                        alertController.addAction(reportAction)
-                      present(alertController, animated: true)
-                    
+        let reportAction = UIAlertAction(title: "Report", style: .destructive) {
+            alertAction in
+            
+            print("here is where was change the status on the suShare")
+            print("we should also reload the sushare list and hid the sushare once its confirmed ")
+            
+            self.updateSushareFlagged(suShare: suShareData)
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(reportAction)
+        present(alertController, animated: true)
+        
     }
-
+    
     private func updateSushareFlagged(suShare: SuShare){
         database.updateFlaggedInSuShare(suShareId: suShare.suShareId) { (result) in
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let isItDone):
-                print("is it done: \(isItDone) inside of explore controller")
-                // should show alert and refresh the controller
+                print("this is inside of updateSushareFlagged function: \(error.localizedDescription)")            case .success(let isItDone):
+                    print("is it done: \(isItDone) inside of explore controller")
+                    // should show alert and refresh the controller
+                    self.addSuShareToFlaggedList(suShare: suShare)
             }
         }
     }
     
- 
-    
-    func addSuShareToFlaggedList(){
-        
+  private func addSuShareToFlaggedList(suShare: SuShare){
+        // once done should show alert that its done
+        database.flagASuShare(suShare: suShare) { (result) in
+            switch result {
+            case .failure(let error):
+                print("this is inside of addSuShareToFlaggedList function: \(error.localizedDescription)")
+            case .success(let good):
+                self.showAlert(title: "this SuShare has been flagged", message: "we got your report")
+                print("this is inside of addSuShareToFlaggedList \(good)")
+            }
+        }
     }
     func reportAlertAction() {
         
