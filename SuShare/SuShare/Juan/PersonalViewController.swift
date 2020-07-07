@@ -130,26 +130,26 @@ class PersonalViewController: UIViewController {
         if let selectedUser = user  {
             switch tag {
             case 0:
-              createListner = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
-                  if let error = error {
-                      print(error.localizedDescription)
-                  } else {
-                      if let snapshot = snapshot {
-                        let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: selectedUser.userId)
-                          _ = snapshotQuery.getDocuments { (snapshot, error) in
-                              if let error = error {
-                                  print(error.localizedDescription)
-                              } else {
-                                  if let snapshot = snapshot {
-                                      let shares = snapshot.documents.map {SuShare($0.data())}
-                                      self.suShares = shares
-                                      print("triggered create")
-                                  }
-                              }
-                          }
-                      }
-                  }
-              })
+                createListner = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        if let snapshot = snapshot {
+                            let snapshotQuery = snapshot.query.whereField("userId", isEqualTo: selectedUser.userId)
+                            _ = snapshotQuery.getDocuments { (snapshot, error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    if let snapshot = snapshot {
+                                        let shares = snapshot.documents.map {SuShare($0.data())}
+                                        self.suShares = shares
+                                        print("triggered create")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
             case 1:
                 favListener = Firestore.firestore().collection(DatabaseService.favoriteCollection).addSnapshotListener({ (snapshot, error) in
                     if let error = error {
@@ -415,7 +415,7 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "SushareDetail", bundle: nil)
         guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
-             return
+            return
         }
         detailVC.sushare = suShares[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
@@ -446,45 +446,19 @@ extension PersonalViewController: HeaderDelegate    {
 
 extension PersonalViewController: extraOptionsButtonHighlightsDelegate {
     func buttonWasPressed(_ cellData: HighlightsCell, suShareData: SuShare) {
-       
-            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                           let reportAction = UIAlertAction(title: "Report", style: .destructive) {
-                               alertAction in
-                               
-                               print("here is where was change the status on the suShare")
-                               print("we should also reload the sushare list and hid the sushare once its confirmed ")
-                       self.updateSushareFlagged(suShare: suShareData)
-                           }
-                           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                       
-                          alertController.addAction(cancelAction)
-                           alertController.addAction(reportAction)
-                         present(alertController, animated: true)
-                       
-       }
-    private func updateSushareFlagged(suShare: SuShare){
-           db.updateFlaggedInSuShare(suShareId: suShare.suShareId) { (result) in
-               switch result {
-               case .failure(let error):
-                   print("this is inside of updateSushareFlagged function in personal controller: \(error.localizedDescription)")            case .success(let isItDone):
-                       print("is it done: \(isItDone) inside of personal controller")
-                       // should show alert and refresh the controller
-                       self.addSuShareToFlaggedList(suShare: suShare)
-               }
-           }
-       }
-       
-     private func addSuShareToFlaggedList(suShare: SuShare){
-           // once done should show alert that its done
-           db.flagASuShare(suShare: suShare) { (result) in
-               switch result {
-               case .failure(let error):
-                   print("this is inside of addSuShareToFlaggedList function in personal controller: \(error.localizedDescription)")
-               case .success(let good):
-                   self.showAlert(title: "this SuShare has been flagged", message: "we got your report")
-                   print("this is inside of addSuShareToFlaggedList \(good) in personal controller")
-               }
-           }
-       }
-     
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let editAction =  UIAlertAction(title: "Edit", style: .default)
+        let sendAction = UIAlertAction(title: "Send To ", style: .default)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(editAction)
+        alertController.addAction(sendAction)
+        present(alertController, animated: true)
+        
+    }
+    
 }
