@@ -4,7 +4,7 @@
 
 **Save together, pay together**
 
-https://img.shields.io/librariesio/github/MatthewRamos1/SuShare?style=plastic
+![Dependencies](https://img.shields.io/librariesio/github/MatthewRamos1/SuShare?style=plastic)
 
 ## Contributers
 
