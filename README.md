@@ -1,6 +1,6 @@
-# SuShare
-
 ![1](/SuShare/SuShare/SupportingFiles/Assets.xcassets/Logo-colorBlock/AppIcon.appiconset/suShareLogo-noStroke-83.5@2x.png)
+
+# SuShare
 
 **Save together, pay together**
 
