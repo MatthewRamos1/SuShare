@@ -7,7 +7,7 @@
 
 ![Dependencies](https://img.shields.io/librariesio/github/MatthewRamos1/SuShare?style=plastic) ![Pull Requests](https://img.shields.io/github/issues-pr/MatthewRamos1/SuShare?style=plastic)
 
-## Contributers
+## Contributors
 
 [Jaheed Haynes](https://github.com/jaheedhaynes)
 
