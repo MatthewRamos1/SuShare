@@ -54,6 +54,10 @@ class CreateSusuViewController: UIViewController {
     @IBOutlet weak var sliderForParticipaints: UISlider!
     @IBOutlet weak var stepperForparticipaints: UIStepper!
     
+    
+    @IBOutlet var scheduleButtons: [UIButton]!
+    
+    
     private let db = DatabaseService()
     private let ss = StorageService()
     
@@ -318,19 +322,23 @@ class CreateSusuViewController: UIViewController {
         
         // TOGGLE the buttons for on and off
         
-        switch sender.restorationIdentifier {
-        case "Weekly":
-            sender.backgroundColor = .systemGray
-            schedule = sender.restorationIdentifier
-        case "Bi-Weekly":
-            sender.backgroundColor = .systemGray
-            schedule = sender.restorationIdentifier
-        case "Monthly":
-            sender.backgroundColor = .systemGray
-            schedule = sender.restorationIdentifier
-        default :
-            print("the alert should show that they didnt pick one. ")
-        }
+        scheduleButtons.forEach( { $0.backgroundColor = .systemGray
+            
+        })
+        sender.backgroundColor = .red
+//        switch sender.restorationIdentifier {
+//        case "Weekly":
+//            sender.backgroundColor = .systemGray
+//            schedule = sender.restorationIdentifier
+//        case "Bi-Weekly":
+//            sender.backgroundColor = .systemGray
+//            schedule = sender.restorationIdentifier
+//        case "Monthly":
+//            sender.backgroundColor = .systemGray
+//            schedule = sender.restorationIdentifier
+//        default :
+//            print("the alert should show that they didnt pick one. ")
+//        }
     }
     
     // MARK: keyboard handling

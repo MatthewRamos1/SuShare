@@ -187,7 +187,7 @@
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Monthly" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgP-DT-gur" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
                                                 <rect key="frame" x="100" y="1560.5" width="214" height="30"/>
-                                                <color key="backgroundColor" red="0.29077950120000001" green="0.64764571189999998" blue="0.61176747080000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Monthly">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -203,7 +203,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Bi-Weekly" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ma-JM-lUd" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
                                                 <rect key="frame" x="100" y="1510.5" width="214" height="30"/>
-                                                <color key="backgroundColor" red="0.29063498970000001" green="0.64372515679999998" blue="0.60784584279999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Bi-Weekly">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -218,7 +218,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Weekly" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cpl-qa-JHn" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
                                                 <rect key="frame" x="100" y="1460.5" width="214" height="30"/>
-                                                <color key="backgroundColor" red="0.2867566943" green="0.63980382680000003" blue="0.60392421480000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Weekly">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -348,6 +348,9 @@
                         <outlet property="tableviewheight" destination="64y-1m-zvf" id="uvq-tS-DRh"/>
                         <outlet property="titleLabel" destination="rWx-Bh-1Ol" id="Q4F-Z6-IYN"/>
                         <outlet property="titleTextField" destination="Fed-ey-TAV" id="vvJ-Ss-i3n"/>
+                        <outletCollection property="scheduleButtons" destination="Cpl-qa-JHn" collectionClass="NSMutableArray" id="uTj-mp-lE3"/>
+                        <outletCollection property="scheduleButtons" destination="6Ma-JM-lUd" collectionClass="NSMutableArray" id="0q3-YF-8oD"/>
+                        <outletCollection property="scheduleButtons" destination="FgP-DT-gur" collectionClass="NSMutableArray" id="pEm-Hs-khG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0M2-cZ-cbd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
