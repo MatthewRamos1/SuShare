@@ -417,8 +417,20 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
         guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
             return
         }
-        detailVC.sushare = suShares[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
+        let currentSuShare = suShares[indexPath.row]
+        detailVC.sushare = currentSuShare
+        
+        db.getOriginalCreatorFromFavorite(suShare: currentSuShare) { [weak self]( result) in
+            switch result{
+            case.failure(let error):
+                print(error.localizedDescription)
+            case.success(let userSuShare):
+                DispatchQueue.main.async {
+                    detailVC.user = userSuShare
+                    self?.navigationController?.pushViewController(detailVC, animated: true)
+                }
+            }
+        }
     }
     
 }
