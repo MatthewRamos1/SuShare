@@ -50,6 +50,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         clearErrorLabel()
         clearNewUserTextFields()
+        textFieldObjectDelegates()
         GIDSignIn.sharedInstance()?.presentingViewController = self
     }
     
@@ -218,6 +219,16 @@ class LoginViewController: UIViewController {
         lastNameTextField.isHidden = false
     }
     
+    private func textFieldObjectDelegates(){
+        emailTextField.delegate = self
+        passwordTextfield.delegate = self
+        confirmPasswordTextField.delegate = self
+        usernameTextField.delegate = self
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+
+    }
+    
     @IBAction func toggleAccountState(_ sender: UIButton) {
         // change the account login state
         accountState = accountState == .existingUser ? .newUser : .existingUser
@@ -242,5 +253,12 @@ class LoginViewController: UIViewController {
                 self.accountStateButton.setTitle("LOGIN", for: .normal)
             }, completion: nil)
         }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+       return false
     }
 }
