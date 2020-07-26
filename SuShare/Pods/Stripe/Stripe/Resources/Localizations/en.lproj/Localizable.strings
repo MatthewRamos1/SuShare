@@ -31,7 +31,8 @@
 /* Payment Method type brand name. */
 "AU BECS Debit" = "AU BECS Debit";
 
-/* Source type brand name */
+/* Payment Method type brand name
+   Source type brand name */
 "Bancontact" = "Bancontact";
 
 /* Label for Bank Account selection or detail entry form */
@@ -76,7 +77,8 @@
 /* Label for Email field on form */
 "Email" = "Email";
 
-/* Source type brand name */
+/* Payment Method type brand name.
+   Source type brand name */
 "EPS" = "EPS";
 
 /* Placeholder string for email entry field. */
@@ -96,6 +98,9 @@
 
 /* Source type brand name */
 "Giropay" = "Giropay";
+
+/* Payment Method type brand name. */
+"giropay" = "giropay";
 
 /* Source type brand name */
 "iDEAL" = "iDEAL";
@@ -147,6 +152,9 @@
 
 /* Caption for Province field on address form (only countries that use province, like Canada) */
 "Province" = "Province";
+
+/* Payment Method type brand name. */
+"Przelewy24" = "Przelewy24";
 
 /* Text for button to scan a credit card */
 "Scan Card" = "Scan Card";
