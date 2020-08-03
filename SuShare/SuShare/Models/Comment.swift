@@ -25,6 +25,6 @@ extension Comment {
   self.susuId = dictionary["itemId"] as? String ?? "no susuId"
   self.susuName = dictionary["itemName"] as? String ?? "no susuName"
   self.creatorName = dictionary["sellerName"] as? String ?? "no creatorName"
-  self.comment = dictionary["comment"] as? String ?? "no comment"
+  self.comment = dictionary["comment"] as? String ?? "no comment."
  }
 }
