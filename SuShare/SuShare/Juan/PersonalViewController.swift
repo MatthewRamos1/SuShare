@@ -417,8 +417,53 @@ extension PersonalViewController: UICollectionViewDelegateFlowLayout    {
         guard let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {
             return
         }
-        detailVC.sushare = suShares[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
+        let currentSuShare = suShares[indexPath.row]
+        detailVC.sushare = currentSuShare
+        
+        if let searchedUser = user {
+            print("Searched User")
+            if currentSuShare.userId == searchedUser.userId {
+                DispatchQueue.main.async {
+                    detailVC.user = searchedUser
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
+            }
+        }
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+            
+            
+        if currentSuShare.originalCreator == currentUser.uid {
+            print("Current User")
+            print(currentSuShare.userId)
+            db.getCurrentUser { (result) in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let dbCurrentUser):
+                    DispatchQueue.main.async {
+                        detailVC.user = dbCurrentUser
+                        self.navigationController?.pushViewController(detailVC, animated: true)
+                    }
+                }
+            }
+        }
+         else {
+            print("Original User")
+            db.getOriginalCreatorFromFavorite(suShare: currentSuShare) { [weak self]( result) in
+                switch result{
+                case.failure(let error):
+                    print(error.localizedDescription)
+                case.success(let userSuShare):
+                    DispatchQueue.main.async {
+                        detailVC.user = userSuShare
+                        self?.navigationController?.pushViewController(detailVC, animated: true)
+                    }
+                }
+            }
+        }
     }
     
 }
