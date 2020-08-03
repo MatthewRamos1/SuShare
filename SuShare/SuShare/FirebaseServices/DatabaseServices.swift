@@ -24,19 +24,19 @@ class DatabaseService{
     static let shared = DatabaseService()
     
     public func flagASuShare(suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> () ) {
-         guard let user = Auth.auth().currentUser else {
-             return
-         }
-       
-         let docRef = db.collection(DatabaseService.flaggedCollection).document()
-         
-         db.collection(DatabaseService.flaggedCollection).document(docRef.documentID).setData([
-             "userWhoFlaggedIt" : user.uid,
-             // MARK: Add this later so its more detailed
-             // "reasonWhyTheyFlaggedIt": String
-             "suShareId" : suShare.suShareId,
-             "user who created the SuShare ID" : suShare.userId
-         ]) {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        
+        let docRef = db.collection(DatabaseService.flaggedCollection).document()
+        
+        db.collection(DatabaseService.flaggedCollection).document(docRef.documentID).setData([
+            "userWhoFlaggedIt" : user.uid,
+            // MARK: Add this later so its more detailed
+            // "reasonWhyTheyFlaggedIt": String
+            "suShareId" : suShare.suShareId,
+            "user who created the SuShare ID" : suShare.userId
+        ]) {
             (error) in
             if let error = error {
                 completion(.failure(error))
@@ -44,10 +44,10 @@ class DatabaseService{
                 completion(.success(true))
             }
         }
-     }
+    }
     
     public func updateFlaggedInSuShare(suShareId: String, completion: @escaping (Result <Bool, Error> ) -> () ) {
-       // let docRef = db.collection(DatabaseService.suShareCollection).document()
+        // let docRef = db.collection(DatabaseService.suShareCollection).document()
         
         db.collection(DatabaseService.suShareCollection).document(suShareId).updateData(["isTheSuShareFlagged" : true]) { (error) in
             if let error = error {
@@ -63,7 +63,7 @@ class DatabaseService{
     public func addUpdate(user: User, suShare: SuShare, completion: @escaping (Result <Bool, Error>) -> ()) {
         
         let docRef = db.collection(DatabaseService.updatesCollection).document()
-
+        
         // this is grabbing user who created not joined
         db.collection(DatabaseService.updatesCollection).document(docRef.documentID).setData(["userId": suShare.userId, "susuTitle": suShare.susuTitle, "createdAt": Timestamp(), "userJoined": user.username, "userJoinedPhoto": user.profilePhoto, "updateId": docRef.documentID]) { (error) in
             if let error = error {
@@ -129,6 +129,7 @@ class DatabaseService{
             "createdDate": sushare.createdDate,
             "suShareId": docRef.documentID,
             "usersInTheSuShare": sushare.usersInTheSuShare,
+            "originalCreator": user.uid,
             "favId": sushare.favId
             
         ]) { (error) in
@@ -206,22 +207,22 @@ class DatabaseService{
     
     
     
-   public func updateFireBaseUserWithStripeStuff(fullName: String, stripeCustomerId: String, completion: @escaping (Result<Bool, Error>) -> () ){
-           
+    public func updateFireBaseUserWithStripeStuff(fullName: String, stripeCustomerId: String, completion: @escaping (Result<Bool, Error>) -> () ){
+        
         guard let user = Auth.auth().currentUser
             else { return }
-    
+        
         db.collection(DatabaseService.userCollection).document(user.uid).updateData([
             "fullName": fullName,
             "stripeCustomerId" : stripeCustomerId
-                ]) { (error) in
+        ]) { (error) in
             if let error  = error {
                 completion(.failure(error))
             } else {
                 completion(.success(true))
-                    }
-       }
-}
+            }
+        }
+    }
     
     func getAllUsers(completion: @escaping (Result<[User], Error>) -> ())  {
         db.collection(DatabaseService.userCollection).getDocuments { (snapshot, error) in
@@ -311,25 +312,49 @@ class DatabaseService{
         let docRef = db.collection(DatabaseService.suShareCollection).document()
         print("docRef is \(docRef)")
         guard let user = Auth.auth().currentUser else {return}
-        db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData(["securityState": sushare.securityState,
-                      "susuTitle": sushare.susuTitle,
-                      "imageURL": sushare.imageURL,
-                      "description": sushare.suShareDescription,
-                      "potAmount": sushare.potAmount,
-                      "numOfParticipants": sushare.numOfParticipants,
-                      "paymentSchedule": sushare.paymentSchedule,
-                      "userId": user.uid,
-                      "category": sushare.category,
-                      "createdDate": sushare.createdDate,
-                      "suShareId": sushare.suShareId,
-                      "favId": docRef.documentID,
-                      "usersInTheSuShare": sushare.usersInTheSuShare])
+        db.collection(DatabaseService.favoriteCollection).document(docRef.documentID).setData([
+            "securityState": sushare.securityState,
+            "susuTitle": sushare.susuTitle,
+            "imageURL": sushare.imageURL,
+            "description": sushare.suShareDescription,
+            "potAmount": sushare.potAmount,
+            "numOfParticipants": sushare.numOfParticipants,
+            "paymentSchedule": sushare.paymentSchedule,
+            "userId": user.uid,
+            "category": sushare.category,
+            "createdDate": sushare.createdDate,
+            "suShareId": sushare.suShareId,
+            "favId": docRef.documentID,
+            "originalCreator": sushare.userId,
+            "usersInTheSuShare": sushare.usersInTheSuShare])
         { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
                 completion(.success(true))
                 print("added favorite")
+            }
+        }
+    }
+    
+    public func getOriginalCreatorFromFavorite(suShare: SuShare, completion: @escaping (Result<User, Error>) -> ())  {
+        db.collection(DatabaseService.favoriteCollection).document(suShare.favId).getDocument { (snapShot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                if let snapshot = snapShot  {
+                    let originalCreator = snapshot.get("originalCreator") as? String ?? ""
+                    self.db.collection(DatabaseService.userCollection).document(originalCreator).getDocument { (snapshot, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            if let snapshot = snapshot?.data()  {
+                                let user = User(snapshot)
+                                completion(.success(user))
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -420,23 +445,23 @@ class DatabaseService{
     }
     
     public func updateUserFriend(completion: @escaping (Result<[String], Error>) -> ()){
-    guard let user = Auth.auth().currentUser else {
-        return
-    }
-    db.collection(DatabaseService.friendsCollection).whereField("currentUser", isEqualTo: user.uid).getDocuments { (snapshot, error) in
-        if let error = error    {
-            completion(.failure(error))
+        guard let user = Auth.auth().currentUser else {
+            return
         }
-        else    {
-            if let snapshot = snapshot  {
-                let users = snapshot.documents.map {$0.get("friendUsername") as! String}
-                //let usersSorted = users.sorted  {$0.username.lowercased() < $1.username.lowercased()}
-                
-                completion(.success(users))
+        db.collection(DatabaseService.friendsCollection).whereField("currentUser", isEqualTo: user.uid).getDocuments { (snapshot, error) in
+            if let error = error    {
+                completion(.failure(error))
+            }
+            else    {
+                if let snapshot = snapshot  {
+                    let users = snapshot.documents.map {$0.get("friendUsername") as! String}
+                    //let usersSorted = users.sorted  {$0.username.lowercased() < $1.username.lowercased()}
+                    
+                    completion(.success(users))
+                }
             }
         }
     }
-}
     
     public func getCurrentUser(completion: @escaping (Result<User, Error>) -> ())   {
         guard let currentUser = Auth.auth().currentUser else {
