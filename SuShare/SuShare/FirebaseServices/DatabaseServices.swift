@@ -129,6 +129,7 @@ class DatabaseService{
             "createdDate": sushare.createdDate,
             "suShareId": docRef.documentID,
             "usersInTheSuShare": sushare.usersInTheSuShare,
+            "originalCreator": user.uid,
             "favId": sushare.favId
             
         ]) { (error) in
