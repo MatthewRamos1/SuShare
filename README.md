@@ -15,7 +15,11 @@ SuShare aims to solve the difficult problem of incentivizing savings. Borrowing 
 
 SuShare takes this concept to the next level by adding social networking features, allowing you to create SuShares with friends and family, or with other online users over mutual savings interests. Stripe integration allows for a intuitave and secure payment rotation that elevates the security of a su-su to a new level. <br />
 
-| ![2](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/logInScreen.imageset/logInScreen.png) | ![3](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareList.imageset/sushareList.png) |
+![2](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/logInScreen.imageset/logInScreen.png)
+
+| ![3](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareList.imageset/sushareList.png) | ![4](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareDetail.imageset/sushareDetail.png) | ![5](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/paymentOverview.imageset/paymentOverview.png) |
+
+
 
 ## Contributors
 
