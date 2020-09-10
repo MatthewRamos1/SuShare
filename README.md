@@ -21,7 +21,7 @@ SuShare takes this concept to the next level by adding social networking feature
 
 ### User Experience
 
-| ![3](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareList.imageset/sushareList.png) | ![4](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareDetail.imageset/sushareDetail.png) | ![5](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/paymentOverview.imageset/paymentOverview.png) |
+![3](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareList.imageset/sushareList.png) ![4](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareDetail.imageset/sushareDetail.png) ![5](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/paymentOverview.imageset/paymentOverview.png)
 
 ![gif](/SuShare/SuShare/SupportingFiles/Assets.xcassets/readmeAssets/sushareGif.dataset/sushareGif.gif)
 
