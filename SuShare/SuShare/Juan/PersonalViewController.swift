@@ -26,6 +26,8 @@ class PersonalViewController: UIViewController {
     
     let personalView = PersonalView()
     
+    // practicing app store run
+    
     var suShares = [SuShare]()   {
         didSet  {
             personalView.personalCollectionView.reloadData()
