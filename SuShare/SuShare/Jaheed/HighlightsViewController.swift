@@ -46,6 +46,7 @@ class HighlightsViewController: UIViewController, UIViewControllerTransitioningD
 //        collectionView.register(UINib(nibName: "HighlightsCell", bundle: nil), forCellWithReuseIdentifier: "highlightsCell")
     }
     
+//************** COMMENT HERE 01/05/2021 ****************
     
 //        override func viewDidAppear(_ animated: Bool) {
 //            super.viewDidAppear(true)
