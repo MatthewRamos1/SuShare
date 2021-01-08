@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stripe
 
 class CardPaymentView: UIView {
 
@@ -17,7 +16,7 @@ class CardPaymentView: UIView {
         didSet {
             textLabel.text = text
            // textLabel.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
-            textLabel.textColor = UIColor.gray
+            textLabel.textColor = UIColor.systemRed
         }
     }
     
