@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Stripe
+//import Stripe
 import FirebaseFunctions
 import Kingfisher
 
@@ -18,11 +18,11 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var paymentTableView: UITableView!
     
 
-     private var paymentContext = STPPaymentContext()
+     //private var paymentContext = STPPaymentContext()
      public var suShare: SuShare?
 
      private var cardPaymentView = CardPaymentView()
-     private var cardVC = STPAddCardViewController()
+     //private var cardVC = STPAddCardViewController()
      private var clientSecret = ""
 
  //   private var cardPaymentView = CardPaymentView()
@@ -40,27 +40,27 @@ class PaymentViewController: UIViewController {
         subscribeButton.layer.shadowOpacity = 0.4
         paymentTableView.dataSource = self
         paymentTableView.delegate = self
-        let client = MyAPIClient.sharedClient
-        let customerContext = STPCustomerContext(keyProvider: client)
-        paymentContext = STPPaymentContext(customerContext: customerContext)
+        //let client = MyAPIClient.sharedClient
+       // let customerContext = STPCustomerContext(keyProvider: client)
+        //paymentContext = STPPaymentContext(customerContext: customerContext)
         let paymentAmount = (suShare!.potAmount / Double(suShare!.numOfParticipants))
         let paymentInt = Int(paymentAmount * 100)
-        paymentContext.paymentAmount = paymentInt
-        paymentContext.delegate = self
-        paymentContext.hostViewController = self
+       // paymentContext.paymentAmount = paymentInt
+       // paymentContext.delegate = self
+        //paymentContext.hostViewController = self
         tabBarController?.tabBar.isHidden = true
         
         
         
-        let infoForFooter = CardPaymentView(text: """
-This card will be saved under settings as your default payment method
-    you can access your settings to change the card later
-"""
-        )
+//        let infoForFooter = CardPaymentView(text: """
+//This card will be saved under settings as your default payment method
+//    you can access your settings to change the card later
+//"""
+//        )
         // paymentContext.paymentOptionsViewControllerFooterView = infoForFooter
         //    let addCardFooter = CardPaymentView(text: "You can add custom footer views to the add card screen.")
         
-        paymentContext.addCardViewControllerFooterView = infoForFooter
+        //paymentContext.addCardViewControllerFooterView = infoForFooter
         /*
          paymentSelectionFooter.theme = settings.theme
          paymentContext.paymentOptionsViewControllerFooterView = paymentSelectionFooter
@@ -72,7 +72,7 @@ This card will be saved under settings as your default payment method
     }
     
     @IBAction func subscribeButtonPressed(_ sender: UIButton) {
-        paymentContext.requestPayment()
+        //paymentContext.requestPayment()
     }
 }
 
@@ -107,7 +107,7 @@ extension PaymentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
-            paymentContext.pushPaymentOptionsViewController()
+            //paymentContext.pushPaymentOptionsViewController()
         }
     }
     
@@ -156,74 +156,74 @@ extension PaymentViewController: UITableViewDelegate {
     
 }
 
-extension PaymentViewController: STPPaymentContextDelegate {
-    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        let data: [String: Any] = ["amount": paymentContext.paymentAmount]
-        Functions.functions().httpsCallable("createChargeFunction").call(data)  {
-            (result, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let result = result {
-                self.clientSecret = result.data as! String
-                print(self.clientSecret)
-            }
-        }
-    }
-    
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-            _ = self.navigationController?.popViewController(animated: true)
-        })
-        let retry = UIAlertAction(title: "Retry", style: .default, handler: { action in
-            self.paymentContext.retryLoading()
-        })
-        alertController.addAction(cancel)
-        alertController.addAction(retry)
-        self.present(alertController, animated: true, completion: nil)
-        return
-    }
-    
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
-        
-        
-        let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
-        paymentIntentParams.paymentMethodId = paymentResult.paymentMethod?.stripeId
-        
-        // Confirm the PaymentIntent
-        STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: paymentContext) { status, paymentIntent, error in
-            switch status {
-            case .succeeded:
-                // Your backend asynchronously fulfills the customer's order, e.g. via webhook
-                completion(.success, nil)
-            case .failed:
-                completion(.error, error) // Report error
-            case .canceled:
-                completion(.userCancellation, nil) // Customer cancelled
-            @unknown default:
-                completion(.error, nil)
-            }
-        }
-    }
-    
-    
-    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        switch status {
-        case .error:
-            showAlert(title: "Error", message: error?.localizedDescription ?? "")
-        case .success:
-            showAlert(title: "Success!", message: "Your first payment has been processed.")
-        default:
-            return
-        }
-    }
-}
+//extension PaymentViewController: STPPaymentContextDelegate {
+//    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+//        let data: [String: Any] = ["amount": paymentContext.paymentAmount]
+//        Functions.functions().httpsCallable("createChargeFunction").call(data)  {
+//            (result, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else if let result = result {
+//                self.clientSecret = result.data as! String
+//                print(self.clientSecret)
+//            }
+//        }
+//    }
+//
+//
+//    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
+//        let alertController = UIAlertController(
+//            title: "Error",
+//            message: error.localizedDescription,
+//            preferredStyle: .alert
+//        )
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+//            _ = self.navigationController?.popViewController(animated: true)
+//        })
+//        let retry = UIAlertAction(title: "Retry", style: .default, handler: { action in
+//            self.paymentContext.retryLoading()
+//        })
+//        alertController.addAction(cancel)
+//        alertController.addAction(retry)
+//        self.present(alertController, animated: true, completion: nil)
+//        return
+//    }
+//
+//
+//    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPPaymentStatusBlock) {
+//
+//
+//        let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
+//        paymentIntentParams.paymentMethodId = paymentResult.paymentMethod?.stripeId
+//
+//        // Confirm the PaymentIntent
+//        STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: paymentContext) { status, paymentIntent, error in
+//            switch status {
+//            case .succeeded:
+//                // Your backend asynchronously fulfills the customer's order, e.g. via webhook
+//                completion(.success, nil)
+//            case .failed:
+//                completion(.error, error) // Report error
+//            case .canceled:
+//                completion(.userCancellation, nil) // Customer cancelled
+//            @unknown default:
+//                completion(.error, nil)
+//            }
+//        }
+//    }
+//
+//
+//    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+//        switch status {
+//        case .error:
+//            showAlert(title: "Error", message: error?.localizedDescription ?? "")
+//        case .success:
+//            showAlert(title: "Success!", message: "Your first payment has been processed.")
+//        default:
+//            return
+//        }
+//    }
+//}
 
 //extension PaymentViewController: STPAddCardViewControllerDelegate {
 //

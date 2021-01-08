@@ -323,7 +323,6 @@
 			children = (
 				0CB1DA9C247A24DC00713BF5 /* CreateSusu.storyboard */,
 				0CB1DA9E247A24EE00713BF5 /* CreateSusuViewController.swift */,
-				0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */,
 			);
 			path = Shaniya;
 			sourceTree = "<group>";
@@ -449,6 +448,7 @@
 			children = (
 				30FCE3CD249AF782008B3933 /* createSushare-wPlus.png */,
 				0C57A7D82475B1EC00DF437B /* AppDelegate.swift */,
+				0C57A7DA2475B1EC00DF437B /* SceneDelegate.swift */,
 				0C57A7E12475B1EE00DF437B /* Assets.xcassets */,
 				0C57A7E32475B1EE00DF437B /* LaunchScreen.storyboard */,
 				30891416249414A300525DC6 /* TabController.swift */,

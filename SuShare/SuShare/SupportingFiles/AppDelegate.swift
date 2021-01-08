@@ -8,29 +8,18 @@
 
 import UIKit
 import Firebase
-import GoogleSignIn
-import Stripe
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        GIDSignIn.sharedInstance()?.clientID = "952790559118-iahita7ifbfbfrm0v6bplp55tdm0mea3.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance()?.delegate = self
-        STPTheme.default().accentColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
-        Stripe.setDefaultPublishableKey("pk_test_51GryzXAPBA6SjrmolJPfilMdykNqfRYZTPewUgSzvin70EdHDGykQvbJRwbkIB9SNAcDwTIbFLVjD2uX5IUuHyPc00W6hzHMaL")
+       
         return true
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("User email: \(user.profile.email ?? "No Email")")
-    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
-    }
 
     // MARK: UISceneSession Lifecycle
 

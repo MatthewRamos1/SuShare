@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import GoogleSignIn
+
 
 enum AccountState {
     case existingUser
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     private var accountState: AccountState = .existingUser
     private var authSession = AuthenticationSession()
     private var databaseService = DatabaseService()
-    private let apiClient = MyAPIClient.sharedClient
+    //private let apiClient = MyAPIClient.sharedClient
     
     let hidden = ""
     
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         clearErrorLabel()
         clearNewUserTextFields()
         textFieldObjectDelegates()
-        GIDSignIn.sharedInstance()?.presentingViewController = self
+        
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController {
                         case .failure(let error):
                             print(error.localizedDescription)
                         case .success:
-                            self?.retieveUserEnteredData()
+                           // self?.retieveUserEnteredData()
                             print("update successful")
                         }
                     }
@@ -130,44 +130,44 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func retieveUserEnteredData(){
-        guard let first = firstNameTextField.text, !first.isEmpty,
-            let last  = lastNameTextField.text, !last.isEmpty else {
-                showAlert(title: "missing fields", message: "please make sure all the fields are filled in")
-                return
-        }
-        
-        guard let user = Auth.auth().currentUser else {
-            return
-        }
-        
-        print(user)
-        let fullName = "\(first) \(last) "
-        
-        apiClient.createDummyUser(fullName: fullName) { (result) in
-            switch result{
-            case .failure(let error):
-                print("the error is: \(error.localizedDescription)")
-            case.success(let stripeCustomerID):
-                self.updateUserDataBaseInfo(fullName: fullName, stripeCustomerId: stripeCustomerID)
-            }
-        }
-    }
+//    private func retieveUserEnteredData(){
+//        guard let first = firstNameTextField.text, !first.isEmpty,
+//            let last  = lastNameTextField.text, !last.isEmpty else {
+//                showAlert(title: "missing fields", message: "please make sure all the fields are filled in")
+//                return
+//        }
+//
+//        guard let user = Auth.auth().currentUser else {
+//            return
+//        }
+//
+//        print(user)
+//        let fullName = "\(first) \(last) "
+//
+//        apiClient.createDummyUser(fullName: fullName) { (result) in
+//            switch result{
+//            case .failure(let error):
+//                print("the error is: \(error.localizedDescription)")
+//            case.success(let stripeCustomerID):
+//                self.updateUserDataBaseInfo(fullName: fullName, stripeCustomerId: stripeCustomerID)
+//            }
+//        }
+//    }
     
-    private func updateUserDataBaseInfo(fullName: String, stripeCustomerId: String) {
-        
-        databaseService.updateFireBaseUserWithStripeStuff(fullName: fullName, stripeCustomerId: stripeCustomerId) { (result) in
-            switch result {
-            case .failure(let error):
-                print("error is: \(error.localizedDescription)")
-            case .success(let itWork):
-                self.navigateToNewUserFlow()
-                print(itWork)
-                // dismiss to the main storyboard
-                // MARK: needs to navigate to the main storyboard
-            }
-        }
-    }
+//    private func updateUserDataBaseInfo(fullName: String, stripeCustomerId: String) {
+//
+//        databaseService.updateFireBaseUserWithStripeStuff(fullName: fullName, stripeCustomerId: stripeCustomerId) { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print("error is: \(error.localizedDescription)")
+//            case .success(let itWork):
+//                self.navigateToNewUserFlow()
+//                print(itWork)
+//                // dismiss to the main storyboard
+//                // MARK: needs to navigate to the main storyboard
+//            }
+//        }
+//    }
     
     private func createDatabaseUser(authDataResult: AuthDataResult) {
         databaseService.createDatabaseUser(authDataResult: authDataResult) { [weak self] (result) in

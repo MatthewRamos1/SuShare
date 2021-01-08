@@ -14,7 +14,7 @@ struct User {
     let userId: String
     let profilePhoto: String
     let fullName: String
-    let stripeCustomerId: String
+    //let stripeCustomerId: String
 }
 
 extension User {
@@ -24,6 +24,6 @@ extension User {
         self.userId = dictionary["userId"] as? String ?? "No user id"
         self.profilePhoto = dictionary["photoURL"] as? String ?? "No profile Photo"
         self.fullName = dictionary["fullName"] as? String ?? "No full name avaiable"
-        self.stripeCustomerId = dictionary["stripeCustomerId"] as? String ?? "no Stripe Id has been made"
+        //self.stripeCustomerId = dictionary["stripeCustomerId"] as? String ?? "no Stripe Id has been made"
     }
 }
