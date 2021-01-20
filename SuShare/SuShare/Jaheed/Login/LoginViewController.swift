@@ -51,6 +51,12 @@ class LoginViewController: UIViewController {
         clearErrorLabel()
         clearNewUserTextFields()
         textFieldObjectDelegates()
+        emailTextField.textColor = .black
+        passwordTextfield.textColor = .black
+        confirmPasswordTextField.textColor = .black
+        usernameTextField.textColor = .black
+        firstNameTextField.textColor = .black
+        lastNameTextField.textColor = .black
         
     }
     
