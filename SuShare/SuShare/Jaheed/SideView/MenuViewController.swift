@@ -15,7 +15,7 @@ enum MenuType: Int {
     case username
     case friends
     case search
-    case settings
+    //case settings
 }
 
 class MenuViewController: UITableViewController {
@@ -74,7 +74,7 @@ class MenuViewController: UITableViewController {
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "SideViewUserCell")
         tableView.register(UINib(nibName: "FriendsSideViewCell", bundle: nil), forCellReuseIdentifier: "FriendsSideViewCell")
         tableView.register(UINib(nibName: "SearchSideViewCell", bundle: nil), forCellReuseIdentifier: "SearchSideViewCell")
-        tableView.register(UINib(nibName: "SettingsSideViewCell", bundle: nil), forCellReuseIdentifier: "SettingsSideViewCell")
+        //tableView.register(UINib(nibName: "SettingsSideViewCell", bundle: nil), forCellReuseIdentifier: "SettingsSideViewCell")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,13 +96,14 @@ class MenuViewController: UITableViewController {
                 fatalError()
             }
             return cell
-        }else if indexPath.row == 3{
-            registerCell()
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSideViewCell") as? SettingsSideViewCell else {
-                fatalError()
-            }
-            return cell
         }
+//        else if indexPath.row == 3{
+//            registerCell()
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSideViewCell") as? SettingsSideViewCell else {
+//                fatalError()
+//            }
+//            return cell
+//        }
         return UITableViewCell()
     }
     

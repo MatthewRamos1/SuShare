@@ -125,15 +125,15 @@ class ExploreViewController: UIViewController {
             self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
-        case .settings:
-            //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
-            //            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            //            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
-            //            self.navigationController?.pushViewController(settingsVC, animated: true)
-            self.tabBarController?.tabBar.items?[0].title = "Explore"
-            self.tabBarController?.tabBar.items?[1].title = "Updates"
-            self.tabBarController?.tabBar.items?[2].title = "Personal"
-            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
+//        case .settings:
+//            //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+//            //            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+//            //            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+//            //            self.navigationController?.pushViewController(settingsVC, animated: true)
+//            self.tabBarController?.tabBar.items?[0].title = "Explore"
+//            self.tabBarController?.tabBar.items?[1].title = "Updates"
+//            self.tabBarController?.tabBar.items?[2].title = "Personal"
+//            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
     }
     

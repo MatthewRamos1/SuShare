@@ -305,11 +305,11 @@ class PersonalViewController: UIViewController {
             self.navigationController?.pushViewController(friendsVC, animated: true)
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
-        case .settings:
-            self.tabBarController?.tabBar.items?[0].title = "Explore"
-            self.tabBarController?.tabBar.items?[1].title = "Updates"
-            self.tabBarController?.tabBar.items?[2].title = "Personal"
-            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
+//        case .settings:
+//            self.tabBarController?.tabBar.items?[0].title = "Explore"
+//            self.tabBarController?.tabBar.items?[1].title = "Updates"
+//            self.tabBarController?.tabBar.items?[2].title = "Personal"
+//            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
     }
     //-----------------------------------------------------------------
