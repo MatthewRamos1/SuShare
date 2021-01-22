@@ -55,8 +55,8 @@ class HomeViewController: UIViewController {
             view.frame = self.view.bounds
             self.view.addSubview(view)
             self.topView = view
-        case .settings:
-            UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+//        case .settings:
+//            UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
         }
     }
 }
