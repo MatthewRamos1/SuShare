@@ -34,10 +34,8 @@ class MenuViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tableView.tableFooterView = UIView()
         tableView.delegate = self
         registerCell()
-        
     }
     
     private func updateUI(){
