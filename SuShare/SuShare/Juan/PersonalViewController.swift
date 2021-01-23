@@ -296,7 +296,7 @@ class PersonalViewController: UIViewController {
         switch menuType {
         case .username:
             let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(identifier: "SettingsViewController")
+            let settingsVC = storyboard.instantiateViewController(identifier: "UserSettingsViewController")
             self.navigationController?.pushViewController(settingsVC, animated: true)
             
         case .friends:

@@ -34,7 +34,7 @@ class MenuViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //usernameLabel.text = "something"
+        //tableView.tableFooterView = UIView()
         tableView.delegate = self
         registerCell()
         

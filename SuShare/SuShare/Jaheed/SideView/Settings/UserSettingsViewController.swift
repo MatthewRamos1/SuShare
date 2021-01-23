@@ -17,7 +17,7 @@ enum SettingsType{
     case signOut
 }
 
-class SettingsViewController: UIViewController {
+class UserSettingsViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -183,7 +183,7 @@ class SettingsViewController: UIViewController {
 }
 
 
-extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UserSettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {

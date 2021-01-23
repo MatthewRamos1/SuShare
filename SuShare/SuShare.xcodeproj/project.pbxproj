@@ -55,13 +55,11 @@
 		302B372A247EED6100FC6E6B /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B3729247EED6100FC6E6B /* CommentsViewController.swift */; };
 		3054972224A648B400DC3064 /* SearchSideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054972024A648B400DC3064 /* SearchSideViewCell.swift */; };
 		3054972324A648B500DC3064 /* SearchSideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3054972124A648B400DC3064 /* SearchSideViewCell.xib */; };
-		3054972624A64D0500DC3064 /* SettingsSideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3054972424A64D0500DC3064 /* SettingsSideViewCell.swift */; };
-		3054972724A64D0500DC3064 /* SettingsSideViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3054972524A64D0500DC3064 /* SettingsSideViewCell.xib */; };
 		307A7AAA2499C3CD003E3E8C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */; };
 		30891417249414A300525DC6 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30891416249414A300525DC6 /* TabController.swift */; };
 		30945CAB2491529600AAB687 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CAA2491529600AAB687 /* Friends.storyboard */; };
 		30945CAD249152B000AAB687 /* UserFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CAC249152B000AAB687 /* UserFriendsViewController.swift */; };
-		30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB1249153F500AAB687 /* SettingsViewController.swift */; };
+		30945CB3249153F500AAB687 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB1249153F500AAB687 /* UserSettingsViewController.swift */; };
 		30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30945CB2249153F500AAB687 /* UserSettings.storyboard */; };
 		30945CBA2491553B00AAB687 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB62491553B00AAB687 /* HomeViewController.swift */; };
 		30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30945CB72491553B00AAB687 /* SlideInTransition.swift */; };
@@ -156,13 +154,11 @@
 		302B3729247EED6100FC6E6B /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		3054972024A648B400DC3064 /* SearchSideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSideViewCell.swift; sourceTree = "<group>"; };
 		3054972124A648B400DC3064 /* SearchSideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSideViewCell.xib; sourceTree = "<group>"; };
-		3054972424A64D0500DC3064 /* SettingsSideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSideViewCell.swift; sourceTree = "<group>"; };
-		3054972524A64D0500DC3064 /* SettingsSideViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSideViewCell.xib; sourceTree = "<group>"; };
 		307A7AA92499C3CD003E3E8C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30891416249414A300525DC6 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabController.swift; path = ../TabController.swift; sourceTree = "<group>"; };
 		30945CAA2491529600AAB687 /* Friends.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		30945CAC249152B000AAB687 /* UserFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFriendsViewController.swift; sourceTree = "<group>"; };
-		30945CB1249153F500AAB687 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		30945CB1249153F500AAB687 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		30945CB2249153F500AAB687 /* UserSettings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
 		30945CB62491553B00AAB687 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		30945CB72491553B00AAB687 /* SlideInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
@@ -384,8 +380,6 @@
 				30F7700424A5C8AC00E1C246 /* FriendsSideViewCell.xib */,
 				3054972024A648B400DC3064 /* SearchSideViewCell.swift */,
 				3054972124A648B400DC3064 /* SearchSideViewCell.xib */,
-				3054972424A64D0500DC3064 /* SettingsSideViewCell.swift */,
-				3054972524A64D0500DC3064 /* SettingsSideViewCell.xib */,
 			);
 			path = SideViewOptions;
 			sourceTree = "<group>";
@@ -417,7 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				30945CB2249153F500AAB687 /* UserSettings.storyboard */,
-				30945CB1249153F500AAB687 /* SettingsViewController.swift */,
+				30945CB1249153F500AAB687 /* UserSettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -579,7 +573,6 @@
 				0CB1DAA7247A258700713BF5 /* HighlightsCell.xib in Resources */,
 				30F7700224A5710C00E1C246 /* UserCell.xib in Resources */,
 				30945CB4249153F500AAB687 /* UserSettings.storyboard in Resources */,
-				3054972724A64D0500DC3064 /* SettingsSideViewCell.xib in Resources */,
 				3E56263425A580EE00F2B233 /* GoogleService-Info.plist in Resources */,
 				0CB1DAA9247A259E00713BF5 /* PersonalCell.xib in Resources */,
 				0CB1DA8D247A233700713BF5 /* Highlights.storyboard in Resources */,
@@ -722,10 +715,9 @@
 				30945CBB2491553B00AAB687 /* SlideInTransition.swift in Sources */,
 				0C12C62F249894E400128D06 /* PaymentViewController.swift in Sources */,
 				3E23EC1824892FB2007C3013 /* AddFriendView.swift in Sources */,
-				30945CB3249153F500AAB687 /* SettingsViewController.swift in Sources */,
+				30945CB3249153F500AAB687 /* UserSettingsViewController.swift in Sources */,
 				0CB1DA97247A248100713BF5 /* ExploreViewController.swift in Sources */,
 				0CB1DAA1247A250800713BF5 /* PersonalViewController.swift in Sources */,
-				3054972624A64D0500DC3064 /* SettingsSideViewCell.swift in Sources */,
 				0CB1DA9F247A24EE00713BF5 /* CreateSusuViewController.swift in Sources */,
 				0C576F6E249EAFAB001DD47F /* CardPaymentView.swift in Sources */,
 				3E396B9B24AFB6E800BC8412 /* Update.swift in Sources */,

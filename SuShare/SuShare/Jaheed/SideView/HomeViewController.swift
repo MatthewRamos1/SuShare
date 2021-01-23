@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
        
     }
     
@@ -56,7 +56,7 @@ class HomeViewController: UIViewController {
             self.view.addSubview(view)
             self.topView = view
 //        case .settings:
-//            UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "SettingsViewController")
+//            UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "UserSettingsViewController")
         }
     }
 }
