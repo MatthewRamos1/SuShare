@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,13 +12,13 @@
         <!--Settings-->
         <scene sceneID="2po-aw-pNJ">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="tEk-eH-ios" customClass="UserSettingsViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserSettingsViewController" id="tEk-eH-ios" customClass="UserSettingsViewController" customModule="SuShare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ltQ-IZ-Iw8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yPA-RL-j5A">
-                                <rect key="frame" x="127" y="85.5" width="160" height="157.5"/>
+                                <rect key="frame" x="127" y="129.5" width="160" height="157.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="DN3-Id-Qy6"/>
                                     <constraint firstAttribute="width" constant="160" id="V8i-Wm-VAL"/>
