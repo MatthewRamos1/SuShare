@@ -25,6 +25,7 @@ class UserSettingsViewController: UIViewController {
     private let databaseService = DatabaseService()
     private let storageService = StorageService()
     private let refreshControl = UIRefreshControl()
+    private let activityIndicator = UIActivityIndicatorView()
     
     private lazy var imagePickerController: UIImagePickerController = {
         let ip = UIImagePickerController()
@@ -56,6 +57,7 @@ class UserSettingsViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.usernameLabel.text = user.username
                     let url = URL(string: user.profilePhoto)
+                    self?.imageView.kf.indicatorType = .activity
                     self?.imageView.kf.setImage(with: url)
                 }
             }
@@ -119,14 +121,8 @@ class UserSettingsViewController: UIViewController {
         present(alertController, animated: true)
     }
     
-    @IBAction func updateImagePressed(_ sender: UIButton) {
-        guard let user = Auth.auth().currentUser, let image = selectedImage else {
-            return
-        }
-        updateStorageServices(userId: user.uid, image: image)
-    }
-    
     private func updateStorageServices(userId: String, image: UIImage){
+        //activityIndicator.startAnimating()
         storageService.uploadPhoto(userId: userId, image: image) {
             [weak self]
             (result) in
@@ -162,7 +158,7 @@ class UserSettingsViewController: UIViewController {
                 print("this aint work \(error.localizedDescription)")
             } else {
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Photo Update successful", message: "your profile has updated the photo properly")
+                    self.showAlert(title: "Success", message: "your profile has been updated")
                 }
             }
         })
@@ -190,6 +186,10 @@ extension UserSettingsViewController: UIImagePickerControllerDelegate, UINavigat
             return
         }
         selectedImage = image
+        guard let user = Auth.auth().currentUser, let savedImage = selectedImage else {
+            return
+        }
+        updateStorageServices(userId: user.uid, image: savedImage)
         dismiss(animated: true)
     }
 }
