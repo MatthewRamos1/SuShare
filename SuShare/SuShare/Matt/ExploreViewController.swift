@@ -333,15 +333,18 @@ extension ExploreViewController: UISearchBarDelegate {
         guard let query = searchBar.text?.lowercased(), !query.isEmpty else {
             if !currentTags.isEmpty {
                 currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
+                searchBar.resignFirstResponder()
             } else {
                 currentSusus = originalSusus
+                searchBar.resignFirstResponder()
             }
             return
         }
         currentQuery = query
         currentSusus = originalSusus.filter { $0.suShareDescription.lowercased().contains(query) || $0.susuTitle.lowercased().contains(query)}
-        
+        searchBar.resignFirstResponder()
     }
+    
 }
 
 //---------------------------------------------------------------------------------
@@ -417,3 +420,4 @@ extension ExploreViewController: extraOptionsButtonDelegate {
         
     }
 }
+
