@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,11 +44,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yqS-Xh-nYd">
-                                <rect key="frame" x="20" y="357" width="380" height="2"/>
+                                <rect key="frame" x="20" y="357" width="380" height="4"/>
                                 <color key="tintColor" red="0.037223685530000002" green="0.65932434799999995" blue="0.61176383499999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </progressView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="112" translatesAutoresizingMaskIntoConstraints="NO" id="NL0-W1-ufK">
-                                <rect key="frame" x="60" y="389" width="255.5" height="14.5"/>
+                                <rect key="frame" x="60" y="391" width="128" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHM-c0-PVV">
                                         <rect key="frame" x="0.0" y="0.0" width="8" height="14.5"/>
@@ -60,31 +62,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58a-HU-p8c">
-                                        <rect key="frame" x="240" y="0.0" width="15.5" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="xoH-q8-SU9">
-                                <rect key="frame" x="40" y="418.5" width="316" height="14.5"/>
+                                <rect key="frame" x="40" y="420.5" width="167" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="% Backed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfQ-b7-haM">
-                                        <rect key="frame" x="0.0" y="0.0" width="55.5" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="56.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1B-A4-Shg">
-                                        <rect key="frame" x="115.5" y="0.0" width="50.5" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days Remaining" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezv-Ym-zR5">
-                                        <rect key="frame" x="226" y="0.0" width="90" height="14.5"/>
+                                        <rect key="frame" x="116.5" y="0.0" width="50.5" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -106,7 +96,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Fj0-VQ-QNt" firstAttribute="leading" secondItem="abh-bx-BRD" secondAttribute="leading" constant="20" id="091-k8-8nI"/>
                             <constraint firstItem="UNC-ZY-8Mb" firstAttribute="top" secondItem="abh-bx-BRD" secondAttribute="top" id="16q-Wv-fMg"/>
@@ -141,12 +131,10 @@
             <size key="customSize" width="420" height="550"/>
             <connections>
                 <outlet property="commitsLabel" destination="a1B-A4-Shg" id="IaF-ff-RXg"/>
-                <outlet property="daysRemainLabel" destination="Ezv-Ym-zR5" id="D1I-cT-20S"/>
                 <outlet property="descriptionLabel" destination="Fj0-VQ-QNt" id="S36-Aw-JIO"/>
                 <outlet property="extraOptionsButton" destination="MV4-vJ-yCe" id="fVT-Zz-x2w"/>
                 <outlet property="numCommitsLabel" destination="ajQ-YV-RLo" id="KOk-7d-JS7"/>
                 <outlet property="numPercentageBackedLabel" destination="FHM-c0-PVV" id="ZjU-tL-p9l"/>
-                <outlet property="numdaysRemainLabel" destination="58a-HU-p8c" id="F1e-O7-3yE"/>
                 <outlet property="percentageBackedLabel" destination="WfQ-b7-haM" id="DBL-48-IYd"/>
                 <outlet property="progressView" destination="yqS-Xh-nYd" id="BkK-qP-dOw"/>
                 <outlet property="susuImageView" destination="UNC-ZY-8Mb" id="5jt-t1-qQd"/>
@@ -158,5 +146,8 @@
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="sun.haze" catalog="system" width="128" height="119"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

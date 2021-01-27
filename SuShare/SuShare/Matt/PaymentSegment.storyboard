@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Er-aV-usR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Er-aV-usR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-mU-dCg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-mU-dCg">
                                 <rect key="frame" x="12" y="800" width="390" height="50"/>
                                 <color key="backgroundColor" red="0.29313957689999998" green="0.65127474070000002" blue="0.6156913638" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -31,7 +33,7 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CmU-HC-Ene">
                                 <rect key="frame" x="0.0" y="88" width="414" height="712"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suShareCell" rowHeight="162" id="zGP-4W-6n3" customClass="SuShareCell" customModule="SuShare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="162"/>
@@ -77,50 +79,21 @@
                                             <outlet property="suShareTitleLabel" destination="ni8-ZF-5OM" id="jGl-Ax-fTa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="paymentCell" rowHeight="111" id="HaD-15-Hh1">
-                                        <rect key="frame" x="0.0" y="190" width="414" height="111"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HaD-15-Hh1" id="yG2-JU-3ig">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay from: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mii-7i-D1a">
-                                                    <rect key="frame" x="28" y="45" width="85" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVu-bH-oMC">
-                                                    <rect key="frame" x="264" y="45" width="130" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="hVu-bH-oMC" firstAttribute="trailing" secondItem="yG2-JU-3ig" secondAttribute="trailingMargin" id="63u-tK-7CG"/>
-                                                <constraint firstItem="Mii-7i-D1a" firstAttribute="leading" secondItem="yG2-JU-3ig" secondAttribute="leadingMargin" constant="8" id="7Fl-Yz-F8e"/>
-                                                <constraint firstItem="hVu-bH-oMC" firstAttribute="trailing" secondItem="yG2-JU-3ig" secondAttribute="trailingMargin" id="p8c-x2-Ufb"/>
-                                                <constraint firstItem="hVu-bH-oMC" firstAttribute="centerY" secondItem="yG2-JU-3ig" secondAttribute="centerY" id="qUv-SU-JAJ"/>
-                                                <constraint firstItem="Mii-7i-D1a" firstAttribute="centerY" secondItem="yG2-JU-3ig" secondAttribute="centerY" id="zdj-lA-h8u"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="subscribeCell" rowHeight="185" id="JYB-nq-WVY" customClass="SubscribeCell" customModule="SuShare" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="301" width="414" height="185"/>
+                                        <rect key="frame" x="0.0" y="190" width="414" height="185"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JYB-nq-WVY" id="pHA-PM-2Im">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="185"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekly:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPe-NW-kql">
-                                                    <rect key="frame" x="28" y="21" width="87" height="29"/>
+                                                    <rect key="frame" x="28" y="21" width="86" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YV-F8-Sxr">
-                                                    <rect key="frame" x="323.5" y="21" width="70.5" height="29"/>
+                                                    <rect key="frame" x="325" y="21" width="69" height="29"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -142,7 +115,8 @@
                                 <sections/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="cST-wc-dEw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CmU-HC-Ene" firstAttribute="top" secondItem="cST-wc-dEw" secondAttribute="top" id="4qz-UC-fk3"/>
                             <constraint firstItem="9Mu-mU-dCg" firstAttribute="top" secondItem="CmU-HC-Ene" secondAttribute="bottom" id="I7f-Lt-zk3"/>
@@ -152,7 +126,6 @@
                             <constraint firstItem="9Mu-mU-dCg" firstAttribute="leading" secondItem="cST-wc-dEw" secondAttribute="leading" constant="12" id="mhD-ZG-uXk"/>
                             <constraint firstItem="cST-wc-dEw" firstAttribute="trailing" secondItem="9Mu-mU-dCg" secondAttribute="trailing" constant="12" id="pE8-Gb-4ck"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cST-wc-dEw"/>
                     </view>
                     <navigationItem key="navigationItem" id="TOc-FA-EUv"/>
                     <connections>
@@ -185,5 +158,8 @@
     </scenes>
     <resources>
         <image name="suShareLogo-White-eggShell" width="1245" height="1245"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

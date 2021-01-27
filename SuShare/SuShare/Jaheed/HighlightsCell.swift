@@ -27,7 +27,6 @@ class HighlightsCell: UICollectionViewCell {
     @IBOutlet weak var numPercentageBackedLabel: UILabel!
     @IBOutlet weak var commitsLabel: UILabel!
     @IBOutlet weak var numCommitsLabel: UILabel!
-    @IBOutlet weak var daysRemainLabel: UILabel!
     @IBOutlet weak var numdaysRemainLabel: UILabel!
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var tagLabel: UILabel!

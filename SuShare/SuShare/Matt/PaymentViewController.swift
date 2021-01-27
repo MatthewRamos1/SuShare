@@ -78,7 +78,7 @@ class PaymentViewController: UIViewController {
 
 extension PaymentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,10 +89,8 @@ extension PaymentViewController: UITableViewDataSource {
             }
             cell.configureCell(suShare: suShare!)
             return cell
-            
+
         case 1:
-            return tableView.dequeueReusableCell(withIdentifier: "paymentCell", for: indexPath)
-        case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "subscribeCell", for: indexPath) as? SubscribeCell else {
                 return UITableViewCell()
             }
@@ -120,8 +118,6 @@ extension PaymentViewController: UITableViewDelegate {
         case 0:
             return 162
         case 1:
-            return 110
-        case 2:
             return 100
         default:
             return 1
@@ -132,19 +128,19 @@ extension PaymentViewController: UITableViewDelegate {
         // let paymentInfoView = CardPaymentView(text: "now will it work???!??!")
         let vw  = UIView()
         vw.backgroundColor = UIColor.clear
-        let titleLabel = UILabel(frame: CGRect(x:10,y: 5 ,width:350,height:150))
+        let xPosition = UIScreen.main.bounds.width * 0.1
+        let yPosition = UIScreen.main.bounds.height * 0.3
+        let titleLabel = UILabel(frame: CGRect(x: xPosition, y: yPosition, width:350, height:150))
         titleLabel.numberOfLines = 0;
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.textColor = .gray
         titleLabel.backgroundColor = UIColor.clear
-        titleLabel.font = UIFont(name: "Montserrat-Regular", size: 10)
+        titleLabel.font = UIFont(name: "courier", size: 12)
         titleLabel.text  = """
         Thank you for selecting this SuShare
-        some things to remember:
-        - The amount above is what you will be contributing to this sushare.
-        - payments are taken from your account like a subscription service
-        - Opting out of this suShare will result in delaying future enrollement in other SuShares
-        - Please be kind
+        some things to remember: (1)The amount above is what you will be contributing to this sushare. (2)Payments are taken from your account like a subscription service. (3)Opting out of this suShare will result in delaying future enrollement in other SuShares
+
+        Please be kind
         """
         vw.addSubview(titleLabel)
         return vw
