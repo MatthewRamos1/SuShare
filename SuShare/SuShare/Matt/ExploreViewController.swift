@@ -15,8 +15,6 @@ class ExploreViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var exploreButton: UIButton!
-    @IBOutlet weak var friendsButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     
     var suShareListener: ListenerRegistration?
@@ -63,7 +61,6 @@ class ExploreViewController: UIViewController {
             }
         }
     }
-    var currentTags = [Int]()
     var currentQuery = ""
     
     override func viewDidLoad() {
@@ -71,9 +68,6 @@ class ExploreViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBar.delegate = self
-        toggleExplore()
-        boldFont = exploreButton.titleLabel?.font
-        thinFont = friendsButton.titleLabel?.font
         setSuShareListener()
         createButton.layer.cornerRadius = (createButton.frame.size.width / 2) + (createButton.frame.size.height / 2 )
         updateButtonShadow()
@@ -126,14 +120,14 @@ class ExploreViewController: UIViewController {
         case .search:
             self.navigationController?.pushViewController(AddFriendViewController(), animated: true)
         //case .settings:
-            //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "UserSettingsViewController")
-            //            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
-            //            let settingsVC = storyboard.instantiateViewController(identifier: "UserSettingsViewController")
-            //            self.navigationController?.pushViewController(settingsVC, animated: true)
-//            self.tabBarController?.tabBar.items?[0].title = "Explore"
-//            self.tabBarController?.tabBar.items?[1].title = "Updates"
-//            self.tabBarController?.tabBar.items?[2].title = "Personal"
-//            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
+        //UIViewController.showViewController(storyBoardName: "UserSettings", viewControllerId: "UserSettingsViewController")
+        //            let storyboard: UIStoryboard = UIStoryboard(name: "UserSettings", bundle: nil)
+        //            let settingsVC = storyboard.instantiateViewController(identifier: "UserSettingsViewController")
+        //            self.navigationController?.pushViewController(settingsVC, animated: true)
+        //            self.tabBarController?.tabBar.items?[0].title = "Explore"
+        //            self.tabBarController?.tabBar.items?[1].title = "Updates"
+        //            self.tabBarController?.tabBar.items?[2].title = "Personal"
+        //            self.showAlert(title: "We are still under construction", message: "please visit this at a later date ")
         }
     }
     
@@ -151,13 +145,6 @@ class ExploreViewController: UIViewController {
         
     }
     
-    private func toggleExplore() {
-        exploreButton.isEnabled = false
-        friendsButton.isEnabled = true
-        exploreButton.underline()
-        
-    }
-    
     private func setSuShareListener() {
         suShareListener = Firestore.firestore().collection(DatabaseService.suShareCollection).addSnapshotListener({ (snapshot, error) in
             if let error = error {
@@ -171,60 +158,12 @@ class ExploreViewController: UIViewController {
                     
                     let sortedAllShares = sortByFlagged.sorted {$0.createdDate.dateValue() > $1.createdDate.dateValue()}
                     self.originalSusus = sortedAllShares
-                    if self.currentTags.isEmpty && self.currentQuery.isEmpty {
+                    if self.currentQuery.isEmpty {
                         self.currentSusus = sortedAllShares
                     }
                 }
             }
         })
-    }
-    
-    @IBAction func exploreButtonPressed(_ sender: UIButton) {
-        friendsButton.removeLine()
-        exploreButton.titleLabel?.font = boldFont
-        friendsButton.titleLabel?.font = thinFont
-        toggleExplore()
-    }
-    
-    @IBAction func friendsButtonPressed(_ sender: UIButton) {
-        friendsButton.isEnabled.toggle()
-        exploreButton.isEnabled.toggle()
-        exploreButton.titleLabel?.font = thinFont
-        friendsButton.titleLabel?.font = boldFont
-        exploreButton.removeLine()
-        friendsButton.underline()
-    }
-    
-    
-    @IBAction func tagButtonPressed(_ sender: UIButton) {
-        let wasPressed = tagFilter(tag: sender.tag)
-        switch wasPressed {
-        case true:
-            sender.backgroundColor = .systemGray4
-            sender.tintColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
-        case false:
-            sender.backgroundColor = .systemGray6
-            sender.tintColor = #colorLiteral(red: 0, green: 0.6613236666, blue: 0.617059052, alpha: 1)
-        }
-    }
-    
-    private func tagFilter(tag: Int) -> Bool {
-        var wasPressed = false
-        if !currentTags.contains(tag) {
-            currentTags.append(tag)
-            wasPressed.toggle()
-        } else {
-            guard let index = currentTags.firstIndex(of: tag) else {
-                return wasPressed
-            }
-            currentTags.remove(at: index)
-            if currentTags.isEmpty && currentQuery == "" {
-                currentSusus = originalSusus
-                return wasPressed
-            }
-        }
-        currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
-        return wasPressed
     }
     
     //need to add case for returning to 0 tags, with query
@@ -331,13 +270,8 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UINavigatio
 extension ExploreViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text?.lowercased(), !query.isEmpty else {
-            if !currentTags.isEmpty {
-                currentSusus = originalSusus.filter { currentTags.contains($0.category.first ?? 0)}
-                searchBar.resignFirstResponder()
-            } else {
-                currentSusus = originalSusus
-                searchBar.resignFirstResponder()
-            }
+            currentSusus = originalSusus
+            searchBar.resignFirstResponder()
             return
         }
         currentQuery = query
@@ -404,7 +338,7 @@ extension ExploreViewController: extraOptionsButtonDelegate {
         }
     }
     
-  private func addSuShareToFlaggedList(suShare: SuShare){
+    private func addSuShareToFlaggedList(suShare: SuShare){
         // once done should show alert that its done
         database.flagASuShare(suShare: suShare) { (result) in
             switch result {
