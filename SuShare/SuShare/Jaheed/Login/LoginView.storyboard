@@ -98,13 +98,13 @@
                                         <rect key="frame" x="0.0" y="223.5" width="374" height="34"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartQuotesType="no"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3a-OX-KbJ" customClass="DesignableTextField" customModule="SuShare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="267.5" width="374" height="34"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartQuotesType="no"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjR-qf-nft">
                                         <rect key="frame" x="0.0" y="311.5" width="374" height="20.5"/>
@@ -116,7 +116,7 @@
                                         <rect key="frame" x="0.0" y="342" width="374" height="34"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="4"/>
@@ -199,8 +199,10 @@
                         <outlet property="firstNameTextField" destination="odZ-OD-zaY" id="IC6-7r-j7l"/>
                         <outlet property="lastNameTextField" destination="k3a-OX-KbJ" id="kYg-5b-q20"/>
                         <outlet property="loginButton" destination="fD4-yh-797" id="X1X-Sw-hqe"/>
+                        <outlet property="loginSignUpStackView" destination="zvC-pB-8jd" id="3Nk-UH-LOJ"/>
                         <outlet property="nameLabel" destination="quv-jj-BNc" id="tIz-cW-6T2"/>
                         <outlet property="passwordTextfield" destination="3P2-tI-dhE" id="IRy-8V-5m8"/>
+                        <outlet property="textFieldsStackView" destination="7W7-P9-gTc" id="aoj-XG-Pdf"/>
                         <outlet property="usernameLabel" destination="yjR-qf-nft" id="uRs-uf-P0I"/>
                         <outlet property="usernameTextField" destination="fqv-1d-sY9" id="i4L-IN-O2s"/>
                     </connections>
