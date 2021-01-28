@@ -37,17 +37,22 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var firstNameTextField: DesignableTextField!
     @IBOutlet weak var lastNameTextField: DesignableTextField!
+    @IBOutlet weak var textFieldsStackView: UIStackView!
+    @IBOutlet weak var loginSignUpStackView: UIStackView!
+    
     
     
     private var accountState: AccountState = .existingUser
     private var authSession = AuthenticationSession()
     private var databaseService = DatabaseService()
-    //private let apiClient = MyAPIClient.sharedClient
+    private var keyboardIsVisible = false
+    private var originalYConstraint: CGFloat?
     
     let hidden = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForKeyboardNotifications()
         clearErrorLabel()
         clearNewUserTextFields()
         textFieldObjectDelegates()
@@ -85,6 +90,43 @@ class LoginViewController: UIViewController {
             }
             continueLoginFlow(email: email, password: password)
         }
+    }
+    
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func unregisterForKeyboardNotifications()   {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardDidShow(_ notification: NSNotification) {
+        
+        guard let keyboardFrame = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect else  {
+            return
+        }
+        
+        moveKeyboardUp(keyboardFrame.size.height)
+    }
+    
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+        
+    }
+    
+    private func moveKeyboardUp(_ height: CGFloat) {
+        if keyboardIsVisible {return}
+        originalYConstraint = textFieldsStackView.frame.origin.y
+        textFieldsStackView.frame.origin.y -= (height * 0.8)
+        keyboardIsVisible = true
+    }
+    
+    private func resetUI() {
+        keyboardIsVisible = false
+        textFieldsStackView.frame.origin.y += originalYConstraint ?? 0
     }
     
     private func continueLoginFlow(email: String, password: String, username: String? = nil, firstName: String? = nil, lastName: String? = nil) {
@@ -265,6 +307,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        resetUI()
        return false
     }
 }
