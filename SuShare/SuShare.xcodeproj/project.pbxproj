@@ -85,6 +85,7 @@
 		3E23EC27248B181E007C3013 /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */; };
 		3E396B9924AE102800BC8412 /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E396B9824AE102800BC8412 /* UpdateCell.swift */; };
 		3E396B9B24AFB6E800BC8412 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E396B9A24AFB6E800BC8412 /* Update.swift */; };
+		3E521CED25C663FF00EA05BF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E521CEC25C663FF00EA05BF /* LoadingView.swift */; };
 		3E56263425A580EE00F2B233 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E56263325A580ED00F2B233 /* GoogleService-Info.plist */; };
 		3EFCC96D24AC44E3008EBB0E /* AddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFCC96C24AC44E3008EBB0E /* AddFriendCell.swift */; };
 		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
@@ -184,6 +185,7 @@
 		3E23EC26248B181E007C3013 /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		3E396B9824AE102800BC8412 /* UpdateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
 		3E396B9A24AFB6E800BC8412 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
+		3E521CEC25C663FF00EA05BF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3E56263325A580ED00F2B233 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EFCC96C24AC44E3008EBB0E /* AddFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCell.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				0CB1DABC247C1B1000713BF5 /* DatabaseServices.swift */,
 				302B3727247E315C00FC6E6B /* StorageService.swift */,
 				0CB1DAC5247C1C8A00713BF5 /* AuthenticationSession.swift */,
+				3E521CEC25C663FF00EA05BF /* LoadingView.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				0CB1DAC0247C1BCC00713BF5 /* Comment.swift in Sources */,
 				0CB1DAC2247C1BF000713BF5 /* UIViewController + Alerts.swift in Sources */,
 				0CB1DAC6247C1C8A00713BF5 /* AuthenticationSession.swift in Sources */,
+				3E521CED25C663FF00EA05BF /* LoadingView.swift in Sources */,
 				0C576F6C249DC79F001DD47F /* MyAPIClient.swift in Sources */,
 				0C62E46924AC0CCC00FE7728 /* SubscribeCell.swift in Sources */,
 				0C8CA5C8248C5CEE0069109A /* DataProjectionViewController.swift in Sources */,
