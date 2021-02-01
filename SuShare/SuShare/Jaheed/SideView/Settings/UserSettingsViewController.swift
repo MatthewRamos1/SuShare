@@ -123,7 +123,7 @@ class UserSettingsViewController: UIViewController {
     
     private func updateStorageServices(userId: String, image: UIImage){
         //activityIndicator.startAnimating()
-        storageService.uploadPhoto(userId: userId, image: image) {
+        storageService.uploadPhoto(userId: userId, image: image, vc: self) {
             [weak self]
             (result) in
             switch result {
@@ -157,9 +157,7 @@ class UserSettingsViewController: UIViewController {
             if let error = error {
                 print("this aint work \(error.localizedDescription)")
             } else {
-                DispatchQueue.main.async {
-                    self.showAlert(title: "Success", message: "your profile has been updated")
-                }
+                print()
             }
         })
     }
