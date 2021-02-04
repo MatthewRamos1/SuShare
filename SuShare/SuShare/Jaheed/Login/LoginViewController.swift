@@ -18,8 +18,6 @@ enum AccountState {
 
 class LoginViewController: UIViewController {
     
-    
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var emailTextField: DesignableTextField!
     
@@ -74,18 +72,19 @@ class LoginViewController: UIViewController {
                 let username = usernameTextField.text,
                 !username.isEmpty,
                 let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty, confirmPassword == password else {
-                    print("missing fields")
+                self.showAlert(title: "Error", message: "Missing Fields")
                     return
             }
             continueLoginFlow(email: email, password: password, username: username)
         }
         
         if accountState == .existingUser{
+            
             guard let email = emailTextField.text,
                 !email.isEmpty,
                 let password = passwordTextfield.text,
                 !password.isEmpty else {
-                    print("missing fields")
+                self.showAlert(title: "Error", message: "Missing Fields")
                     return
             }
             continueLoginFlow(email: email, password: password)
@@ -93,7 +92,7 @@ class LoginViewController: UIViewController {
     }
     
     private func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -113,8 +112,20 @@ class LoginViewController: UIViewController {
         moveKeyboardUp(keyboardFrame.size.height)
     }
     
+    @objc func keyboardWillShow(_ notification: NSNotification) {
+        if accountState == .existingUser {return}
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    
     @objc func keyboardWillHide(_ notification: NSNotification) {
-        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
     private func moveKeyboardUp(_ height: CGFloat) {
@@ -135,8 +146,7 @@ class LoginViewController: UIViewController {
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {
-                        self?.errorLabel.text = "\(error.localizedDescription)"
-                        self?.errorLabel.textColor = .systemRed
+                        self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                     }
                 case .success:
                     DispatchQueue.main.async {
@@ -149,8 +159,7 @@ class LoginViewController: UIViewController {
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {
-                        self?.errorLabel.text = "\(error.localizedDescription)"
-                        self?.errorLabel.textColor = .systemRed
+                        self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                     }
                 case .success(let authDataResult):
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -246,7 +255,7 @@ class LoginViewController: UIViewController {
     }
     
     private func clearErrorLabel() {
-        errorLabel.text = ""
+       
     }
     
     private func clearNewUserTextFields() {
