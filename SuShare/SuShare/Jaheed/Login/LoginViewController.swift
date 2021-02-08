@@ -63,6 +63,10 @@ class LoginViewController: UIViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        preferredContentSize = containerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        }
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if accountState == .newUser {
             guard let email = emailTextField.text,
@@ -114,6 +118,11 @@ class LoginViewController: UIViewController {
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
         if accountState == .existingUser {return}
+        if accountState == .newUser {
+            if emailTextField.isEditing {return}
+            if passwordTextfield.isEditing {return}
+            if confirmPasswordTextField.isEditing {return}
+        }
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         let keyboardFrame = keyboardSize.cgRectValue
@@ -210,7 +219,7 @@ class LoginViewController: UIViewController {
 //            }
 //        }
 //    }
-    
+//
 //    private func updateUserDataBaseInfo(fullName: String, stripeCustomerId: String) {
 //
 //        databaseService.updateFireBaseUserWithStripeStuff(fullName: fullName, stripeCustomerId: stripeCustomerId) { (result) in

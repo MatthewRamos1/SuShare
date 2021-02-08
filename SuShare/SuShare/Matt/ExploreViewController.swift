@@ -12,7 +12,6 @@ import FirebaseAuth
 
 class ExploreViewController: UIViewController {
     
-    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var createButton: UIButton!

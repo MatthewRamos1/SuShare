@@ -205,7 +205,7 @@ class DatabaseService{
         }
     }
     
-    
+    //***************************************************************************************
     
 //    public func updateFireBaseUserWithStripeStuff(fullName: String, stripeCustomerId: String, completion: @escaping (Result<Bool, Error>) -> () ){
 //
@@ -223,6 +223,8 @@ class DatabaseService{
 //            }
 //        }
 //    }
+    //***************************************************************************************
+
     
     func getAllUsers(completion: @escaping (Result<[User], Error>) -> ())  {
         db.collection(DatabaseService.userCollection).getDocuments { (snapshot, error) in
