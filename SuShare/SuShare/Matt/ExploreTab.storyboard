@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -152,7 +152,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7r-PJ-LDe" customClass="DesignableButton" customModule="SuShare" customModuleProvider="target">
-                                <rect key="frame" x="310" y="777" width="70" height="70"/>
+                                <rect key="frame" x="300" y="777" width="70" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="3DU-I7-0eg"/>
@@ -170,7 +170,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sot-vA-Y9h" firstAttribute="top" secondItem="NHj-ua-sKX" secondAttribute="bottom" constant="25" id="4ZR-jb-NG0"/>
-                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="310" id="9D1-Nj-wpL"/>
+                            <constraint firstItem="S7r-PJ-LDe" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="300" id="9D1-Nj-wpL"/>
                             <constraint firstItem="auh-yt-3WH" firstAttribute="trailing" secondItem="NHj-ua-sKX" secondAttribute="trailing" constant="44" id="DR5-vs-2e0"/>
                             <constraint firstItem="S7r-PJ-LDe" firstAttribute="bottom" secondItem="auh-yt-3WH" secondAttribute="bottom" constant="-15" id="EVK-Zz-n57"/>
                             <constraint firstItem="NHj-ua-sKX" firstAttribute="leading" secondItem="auh-yt-3WH" secondAttribute="leading" constant="44" id="JOn-ib-jSy"/>
