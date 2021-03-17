@@ -140,7 +140,7 @@
                 <outlet property="susuImageView" destination="UNC-ZY-8Mb" id="5jt-t1-qQd"/>
                 <outlet property="titleLabel" destination="jkd-c5-Zh7" id="9jW-F8-pZw"/>
             </connections>
-            <point key="canvasLocation" x="89.855072463768124" y="103.79464285714285"/>
+            <point key="canvasLocation" x="-803" y="24"/>
         </collectionViewCell>
     </objects>
     <resources>
