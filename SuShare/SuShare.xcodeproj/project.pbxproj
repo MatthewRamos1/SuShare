@@ -87,6 +87,7 @@
 		3E396B9B24AFB6E800BC8412 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E396B9A24AFB6E800BC8412 /* Update.swift */; };
 		3E521CED25C663FF00EA05BF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E521CEC25C663FF00EA05BF /* LoadingView.swift */; };
 		3E56263425A580EE00F2B233 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E56263325A580ED00F2B233 /* GoogleService-Info.plist */; };
+		3ED0E0AD2601B01900AB6131 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0E0AC2601B01800AB6131 /* FriendCell.xib */; };
 		3EFCC96D24AC44E3008EBB0E /* AddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFCC96C24AC44E3008EBB0E /* AddFriendCell.swift */; };
 		554255112487ED7100BFA270 /* Extensions+CircleTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */; };
 		5E37C21F1A68763B391ABB0F /* Pods_SuShareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C314961139EAC1F160FE51 /* Pods_SuShareTests.framework */; };
@@ -187,6 +188,7 @@
 		3E396B9A24AFB6E800BC8412 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		3E521CEC25C663FF00EA05BF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3E56263325A580ED00F2B233 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3ED0E0AC2601B01800AB6131 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		3EFCC96C24AC44E3008EBB0E /* AddFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCell.swift; sourceTree = "<group>"; };
 		50B99C25CD29EB627E0C7485 /* Pods-SuShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuShareTests.release.xcconfig"; path = "Target Support Files/Pods-SuShareTests/Pods-SuShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		554255102487ED7100BFA270 /* Extensions+CircleTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+CircleTransitions.swift"; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			children = (
 				30945CAA2491529600AAB687 /* Friends.storyboard */,
 				30945CAC249152B000AAB687 /* UserFriendsViewController.swift */,
+				3ED0E0AC2601B01800AB6131 /* FriendCell.xib */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				0C57A7E52475B1EE00DF437B /* LaunchScreen.storyboard in Resources */,
 				0CB1DA9D247A24DC00713BF5 /* CreateSusu.storyboard in Resources */,
 				0C57A7E22475B1EE00DF437B /* Assets.xcassets in Resources */,
+				3ED0E0AD2601B01900AB6131 /* FriendCell.xib in Resources */,
 				0CB1DAB5247C1A8900713BF5 /* LoginView.storyboard in Resources */,
 				0CB1DAA5247A256500713BF5 /* ExploreCell.xib in Resources */,
 				0C8CA5C6248C5BD60069109A /* DataProjection.storyboard in Resources */,
